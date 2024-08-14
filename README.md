@@ -1,2 +1,2 @@
 # PyMiner
-This is a tool to mining and extract metrics from Python open source projects from github for an empirical research.
+This is a tool for mining and extracting metrics from Python open source projects on GitHub for empirical research.
