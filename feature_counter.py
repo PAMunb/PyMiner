@@ -20,7 +20,10 @@ class FeatureCounter:
 
         for commit_details, repo_files in self.commit_processor.process_commits():
             feature_count = 0
-            feature_while_count = 0
+            feature_annotation_count = 0
+            feature_arguments_count = 0
+            feature_with_count = 0
+            feature_assign_count = 0
             error_count = 0
 
             for file in repo_files:
@@ -36,7 +39,10 @@ class FeatureCounter:
                     
                     # Acumula os contadores de features
                     feature_count += visitor.feature_count
-                    feature_while_count += visitor.feature_while
+                    feature_annotation_count += visitor.feature_annotation
+                    feature_arguments_count += visitor.feature_arguments
+                    feature_with_count += visitor.feature_with
+                    feature_assign_count += visitor.feature_assign
 
                 except Exception as e:
                     print(f'Erro no arquivo {file}: {e}')
@@ -49,15 +55,25 @@ class FeatureCounter:
                 'commit_hash': commit_details.hash,
                 'file_count': len(repo_files),
                 'feature_count': feature_count,
-                'feature_while_count': feature_while_count,
+                'feature_annotation_count': feature_annotation_count,
+                'feature_arguments_count': feature_arguments_count,
+                'feature_with_count': feature_with_count,
+                'feature_assign_count': feature_assign_count,
                 'error_count': error_count
             })
 
     def export_to_csv(self, output_path):
-        with open(output_path, 'w', newline='') as csvfile:
-            fieldnames = ['project', 'date', 'commit_hash', 'file_count', 'feature_count', 'feature_while_count','error_count']
-            writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        try:
+            with open(output_path, 'w', newline='') as csvfile:
+                fieldnames = ['project', 'date', 'commit_hash', 'file_count', 'feature_count', 'feature_annotation_count','feature_arguments_count','feature_with_count', 'feature_assign_count','error_count']
+                writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
-            writer.writeheader()
-            for row in self.results:
-                writer.writerow(row)
+                writer.writeheader()
+                for row in self.results:
+                    writer.writerow(row) 
+
+        except PermissionError as e:
+            print(f"Permission Error: {e} ")
+            os.remove(output_path)
+
+        
