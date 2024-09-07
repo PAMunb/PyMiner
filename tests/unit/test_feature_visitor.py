@@ -10,8 +10,7 @@ def loader(file):
     file_content = ''
     try:
         with open(path+"/"+file, 'r') as f:
-            file_content = f.read()
-            print(file_content)                
+            file_content = f.read()                          
     except Exception as e:
         print(f'Erro no arquivo {file}: {e}')
     return file_content
@@ -20,10 +19,10 @@ def loader(file):
 class TestFeatureVisitor(unittest.TestCase):
 
                     
-    def test_with_statement_count(self):
+    def test_annotation_expression_count(self):
         # Create an AST node representing the code with a single With statement
         
-        code = loader('tests/resources/with_stmt.py')
+        code = loader('tests/resources/annotation_stmt.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -33,9 +32,24 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_with, 1)
+        self.assertEqual(visitor.feature_annotation, 23)
 
- 
+
+    def test_all_stmts_count(self):
+        # Create an AST node representing the code with a single With statement
+        
+        code = loader('tests/resources/annotation_stmt.py')
+        tree = ast.parse(code)
+
+        # Create a FeatureVisitor instance
+        visitor = FeatureVisitor()
+
+        # Visit the AST tree
+        visitor.visit(tree)
+
+        # Assert that the feature_with count is correct
+        self.assertEqual(visitor.all_stmts, 12)
+
 
 if __name__ == '__main__':
     unittest.main()
