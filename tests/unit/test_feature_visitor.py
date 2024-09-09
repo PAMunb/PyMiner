@@ -19,10 +19,27 @@ def loader(file):
 class TestFeatureVisitor(unittest.TestCase):
 
                     
-    def test_annotation_expression_count(self):
-        # Create an AST node representing the code with a single With statement
+    def test_match_count(self):
         
-        code = loader('tests/resources/annotation_stmt.py')
+        
+        code = loader('tests/resources/pattern_matching.py')
+        tree = ast.parse(code)
+
+        # Create a FeatureVisitor instance
+        visitor = FeatureVisitor()
+
+        # Visit the AST tree
+        visitor.visit(tree)
+
+        # Assert that the feature_match count is correct
+        self.assertEqual(visitor.feature_match, 2)
+        
+
+
+    def test_case_count(self):
+        
+        
+        code = loader('tests/resources/pattern_matching.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -32,23 +49,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_annotation, 23)
-
-
-    def test_all_stmts_count(self):
-        # Create an AST node representing the code with a single With statement
-        
-        code = loader('tests/resources/annotation_stmt.py')
-        tree = ast.parse(code)
-
-        # Create a FeatureVisitor instance
-        visitor = FeatureVisitor()
-
-        # Visit the AST tree
-        visitor.visit(tree)
-
-        # Assert that the feature_with count is correct
-        self.assertEqual(visitor.all_stmts, 12)
+        self.assertEqual(visitor.feature_case, 5)
 
 
 if __name__ == '__main__':
