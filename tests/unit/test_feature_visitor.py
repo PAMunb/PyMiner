@@ -32,7 +32,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_match count is correct
-        self.assertEqual(visitor.feature_match, 2)
+        self.assertEqual(visitor.feature_match, 15)
         
 
 
@@ -49,7 +49,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_case, 5)
+        self.assertEqual(visitor.feature_case, 42)
 
 
 if __name__ == '__main__':

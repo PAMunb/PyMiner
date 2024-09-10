@@ -1,4 +1,5 @@
 import ast
+from unittest import case
 
 class FeatureVisitor(ast.NodeVisitor):
     def __init__(self):
@@ -15,16 +16,12 @@ class FeatureVisitor(ast.NodeVisitor):
         super().generic_visit(node)
         
     def visit_Match(self, node):
-        # Contar o match encontrado
-        if isinstance(node, ast.Match):
-            self.feature_match += 1
-            print(f'Encontrado Match: {ast.dump(node, annotate_fields=True)}')
+        self.feature_match += 1
+            # print(f'Encontrado Match: {ast.dump(node, annotate_fields=True)}')
         self.generic_visit(node)  # Visita todos os filhos do nó
 
-    def visit_Case(self, node):
-        # Contar o case encontrado
-        if isinstance(node, ast.Case):
-            self.feature_case += 1
-            print(f'Encontrado Case: {ast.dump(node, annotate_fields=True)}')
+    def visit_match_case(self, node):
+        self.feature_case += 1
+        # print(f'Encontrado Case: {ast.dump(node, annotate_fields=True)}')
         self.generic_visit(node)  # Visita todos os filhos do nó
         
