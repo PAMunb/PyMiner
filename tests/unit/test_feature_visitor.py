@@ -22,7 +22,7 @@ class TestFeatureVisitor(unittest.TestCase):
     def test_annotation_expression_count(self):
         # Create an AST node representing the code with a single With statement
         
-        code = loader('tests/resources/keyword_only_arguments.py')
+        code = loader('tests/resources/non_locals.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -32,7 +32,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_k_args, 9)
+        self.assertEqual(visitor.feature_nonlocal, 7)
 
 
  
