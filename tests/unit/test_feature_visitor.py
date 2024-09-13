@@ -19,10 +19,10 @@ def loader(file):
 class TestFeatureVisitor(unittest.TestCase):
 
                     
-    def test_annotation_expression_count(self):
+    def tests_extended_unpacking(self):
         # Create an AST node representing the code with a single With statement
         
-        code = loader('tests/resources/non_locals.py')
+        code = loader('tests/resources/unpack.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -32,10 +32,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_nonlocal, 7)
-
-
- 
+        self.assertEqual(visitor.feature_unpack, 7)
 
 if __name__ == '__main__':
     unittest.main()
