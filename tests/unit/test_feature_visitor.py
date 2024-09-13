@@ -22,7 +22,7 @@ class TestFeatureVisitor(unittest.TestCase):
     def tests_extended_unpacking(self):
         # Create an AST node representing the code with a single With statement
         
-        code = loader('tests/resources/unpack.py')
+        code = loader('tests/resources/fstrings.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -32,7 +32,9 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_unpack, 7)
+        self.assertEqual(visitor.feature_complex_expression, )
+        self.assertEqual(visitor.feature_fstring, )
+        self.assertEqual(visitor.feature_newline, )
 
 if __name__ == '__main__':
     unittest.main()
