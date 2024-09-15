@@ -13,9 +13,6 @@ def func(a, b, c):
 def func(a, b, *args, c, d):
     pass
 
-def another_func(x, y, *args, z, *, w, v):
-    pass
-
 
 #test_keyword_only_args_in_class(self):
 class MyClass:

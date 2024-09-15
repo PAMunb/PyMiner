@@ -31,8 +31,8 @@ class TestFeatureVisitor(unittest.TestCase):
         # Visit the AST tree
         visitor.visit(tree)
 
-        # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_k_args, 9)
+        # Assert that the count is correct
+        self.assertEqual(visitor.feature_k_args, 8)
 
 
  
