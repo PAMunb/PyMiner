@@ -31,7 +31,7 @@ class TestFeatureVisitor(unittest.TestCase):
         # Visit the AST tree
         visitor.visit(tree)
 
-        # Assert that the feature_with count is correct
+        # Assert that the count is correct
         self.assertEqual(visitor.feature_unpack, 7)
 
 if __name__ == '__main__':
