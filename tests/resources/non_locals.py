@@ -9,6 +9,7 @@ def test_multiple():
         
 def test_no_nonlocal():
     x = 10
+    
     def inner():
         x += 1
 
