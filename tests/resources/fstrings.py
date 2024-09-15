@@ -1,20 +1,31 @@
-#test_no_unpacking
-a, b, c = [1, 2, 3]
+#Testa a contagem de f-strings
+f"Hello, {name}!"
 
-#test_single_unpacking
-a, *b = [1, 2, 3, 4, 5]
+#Testa a contagem de f-strings
+f"Hello, {name}!"
 
-#test_multiple_unpacking
-a, *b, c = [1, 2, 3, 4, 5]
-d, *e = [6, 7, 8, 9]
+"Just a normal string."
 
-#test_unpacking_in_function
-def func(*args):
-    a, *b = args
-    
-#test_nested_unpacking    
-a, (b, *c), d = (1, (2, 3, 4), 5)
+#Testa a detecção de comentários dentro de f-strings
+f"Hello, {name  # Nome do usuário}!
 
-#test_unpacking_with_defaults
-def func(a, *args, b=2):
-    *rest, last = [1, 2, 3, 4]
+# Com quebra de linha
+f"""
+    Hello, {name
+}.
+"""
+# Sem quebra de linha
+f"Hello, {name}!" 
+
+#Testa a contagem de expressões complexas dentro de f-strings
+f"The result is {5 * (8 + 2)}."
+
+#Testa a detecção combinada de todos os recursos da PEP 701
+name = "Alice"
+age = 30
+
+greeting = f"""
+Hello, {name  # Nome do usuário
+}. You are {age  # Idade do usuário
+} years old. Your age in five years will be {age + 5}.
+"""
