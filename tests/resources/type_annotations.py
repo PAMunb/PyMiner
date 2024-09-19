@@ -8,8 +8,8 @@ class Example:
     x: int
     y: str = "hello"
 
-def func(a: int, b: str) -> None:
-    pass
+    def func(a: int, b: str) -> None:
+        pass
 
 class NoAnnotations:
     def method(self):
