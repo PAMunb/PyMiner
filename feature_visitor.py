@@ -2,19 +2,28 @@ import ast
 
 class FeatureVisitor(ast.NodeVisitor):
     def __init__(self):        
-        self.feature_union = 0
-        self.feature_update = 0
+        self.feature_simple_decorators = 0
+        self.feature_complex_decorators = 0
 
-    # Verifica se uma operação binária usa o operador |
-    def visit_BinOp(self, node):
-        if isinstance(node.op, ast.BitOr):  # Operação de união (|)
-            if isinstance(node.left, ast.Dict) or isinstance(node.right, ast.Dict):
-                self.feature_union += 1
+    # Verifica cada função ou classe decorada
+    def visit_FunctionDef(self, node):
+        self._count_decorators(node.decorator_list)
         self.generic_visit(node)
 
-    # Verifica se uma operação in-place usa o operador |=
-    def visit_AugAssign(self, node):
-        if isinstance(node.op, ast.BitOr):  # Operação de atualização (|=)
-            if isinstance(node.target, ast.Dict):
-                self.feature_update += 1
+    def visit_AsyncFunctionDef(self, node):
+        self._count_decorators(node.decorator_list)
         self.generic_visit(node)
+
+    def visit_ClassDef(self, node):
+        self._count_decorators(node.decorator_list)
+        self.generic_visit(node)
+
+    # Função que identifica e conta decoradores simples ou complexos
+    def _count_decorators(self, decorators):
+        for decorator in decorators:
+            if isinstance(decorator, ast.Name):
+                # Decorador simples: apenas um nome de função ou objeto
+                self.feature_simple_decorators += 1
+            else:
+                # Decorador complexo: expressão (ex: chamadas, acessos a atributos, etc.)
+                self.feature_complex_decorators += 1

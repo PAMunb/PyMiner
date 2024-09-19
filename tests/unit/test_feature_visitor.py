@@ -31,26 +31,9 @@ class TestFeatureVisitor(unittest.TestCase):
         # Visit the AST tree
         visitor.visit(tree)
 
-        # Assert that the count is correct
-        self.assertEqual(visitor.feature_union, 1)
-       
-        
-    def test_update_count(self):
-        # Create an AST node representing the code with a single With statement
-        
-        code = loader('tests/resources/union_dict.py')
-        tree = ast.parse(code)
-
-        # Create a FeatureVisitor instance
-        visitor = FeatureVisitor()
-
-        # Visit the AST tree
-        visitor.visit(tree)
-
-        # Assert that the count is correct
-  
-        self.assertEqual(visitor.feature_update, 1)
-
+        # Assert that the count is correct        
+        self.assertEqual(visitor.feature_simple_decorators, 1)
+        self.assertEqual(visitor.feature_complex_decorators, 2)
  
 
 if __name__ == '__main__':

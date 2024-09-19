@@ -1,14 +1,11 @@
-dict1 = {'a': 1}
-dict2 = {'b': 2}
-result = dict1 | dict2
+@simple_decorator
+def func1():
+    pass
 
-dict1 |= dict2
+@complex_decorator(1, 2)
+def func2():
+    pass
 
-a = 1 | 2  # Operação bitwise comum
-b = 3
-b |= 4
-
-dict1 = {'a': 1}
-dict2 = {'b': 2}
-result = dict1 & dict2  # Operação inválida
-dict1 += dict2  # Não é a operação da PEP 584
+@obj.attr.decorator
+def func3():
+    pass
