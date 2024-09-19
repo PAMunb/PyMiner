@@ -22,7 +22,7 @@ class TestFeatureVisitor(unittest.TestCase):
     def test_union_count(self):
         # Create an AST node representing the code with a single With statement
         
-        code = loader('tests/resources/union_dict.py')
+        code = loader('tests/resources/decorator.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
