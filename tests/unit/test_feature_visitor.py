@@ -19,10 +19,10 @@ def loader(file):
 class TestFeatureVisitor(unittest.TestCase):
 
                     
-    def test_annotation_expression_count(self):
+    def test_union_count(self):
         # Create an AST node representing the code with a single With statement
         
-        code = loader('tests/resources/keyword_only_arguments.py')
+        code = loader('tests/resources/union_dict.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -31,9 +31,25 @@ class TestFeatureVisitor(unittest.TestCase):
         # Visit the AST tree
         visitor.visit(tree)
 
-        # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_k_args, 9)
+        # Assert that the count is correct
+        self.assertEqual(visitor.feature_union, 1)
+       
+        
+    def test_update_count(self):
+        # Create an AST node representing the code with a single With statement
+        
+        code = loader('tests/resources/union_dict.py')
+        tree = ast.parse(code)
 
+        # Create a FeatureVisitor instance
+        visitor = FeatureVisitor()
+
+        # Visit the AST tree
+        visitor.visit(tree)
+
+        # Assert that the count is correct
+  
+        self.assertEqual(visitor.feature_update, 1)
 
  
 

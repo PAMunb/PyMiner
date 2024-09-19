@@ -1,20 +1,20 @@
 import ast
 
 class FeatureVisitor(ast.NodeVisitor):
-    def __init__(self):
-        self.feature_k_args = 0
-        
+    def __init__(self):        
+        self.feature_union = 0
+        self.feature_update = 0
 
-    def visit_FunctionDef(self, node):
-        # Conta os parâmetros apenas nomeados na função
-        keyword_only_params = node.args.kwonlyargs
-        self.feature_k_args += len(keyword_only_params)
-        # Continue visitando outros nós
+    # Verifica se uma operação binária usa o operador |
+    def visit_BinOp(self, node):
+        if isinstance(node.op, ast.BitOr):  # Operação de união (|)
+            if isinstance(node.left, ast.Dict) or isinstance(node.right, ast.Dict):
+                self.feature_union += 1
         self.generic_visit(node)
 
-    def visit_Arguments(self, node):
-        # Conta os parâmetros apenas nomeados após o *
-        if node.kwonlyargs:
-            self.feature_k_args += len(node.kwonlyargs)
-        # Continue visitando outros nós
+    # Verifica se uma operação in-place usa o operador |=
+    def visit_AugAssign(self, node):
+        if isinstance(node.op, ast.BitOr):  # Operação de atualização (|=)
+            if isinstance(node.target, ast.Dict):
+                self.feature_update += 1
         self.generic_visit(node)
