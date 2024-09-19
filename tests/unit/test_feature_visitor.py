@@ -19,10 +19,9 @@ def loader(file):
 class TestFeatureVisitor(unittest.TestCase):
 
                     
-    def test_union_count(self):
-        # Create an AST node representing the code with a single With statement
+    def test_type_count(self):
         
-        code = loader('tests/resources/decorator.py')
+        code = loader('tests/resources/type_annotations.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -32,8 +31,8 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the count is correct        
-        self.assertEqual(visitor.feature_simple_decorators, 1)
-        self.assertEqual(visitor.feature_complex_decorators, 2)
+        self.assertEqual(visitor.feature_type_annotation, 1)
+       
  
 
 if __name__ == '__main__':

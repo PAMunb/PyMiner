@@ -2,28 +2,25 @@ import ast
 
 class FeatureVisitor(ast.NodeVisitor):
     def __init__(self):        
-        self.feature_simple_decorators = 0
-        self.feature_complex_decorators = 0
+        self.feature_type_annotation = 0
 
-    # Verifica cada função ou classe decorada
+    def visit_AnnAssign(self, node):
+        # Contabiliza anotações de tipo
+        self.feature_type_annotation += 1
+        self.generic_visit(node)  # Continua a visitar os nós filhos
+
     def visit_FunctionDef(self, node):
-        self._count_decorators(node.decorator_list)
-        self.generic_visit(node)
-
-    def visit_AsyncFunctionDef(self, node):
-        self._count_decorators(node.decorator_list)
+        # Contabiliza anotações de tipo em parâmetros e retorno
+        if node.returns:
+            self.feature_type_annotation += 1
+        for arg in node.args.args:
+            if arg.annotation:
+                self.feature_type_annotation += 1
         self.generic_visit(node)
 
     def visit_ClassDef(self, node):
-        self._count_decorators(node.decorator_list)
+        # Contabiliza anotações de tipo em atributos
+        for body_item in node.body:
+            if isinstance(body_item, ast.AnnAssign):
+                self.feature_type_annotation += 1
         self.generic_visit(node)
-
-    # Função que identifica e conta decoradores simples ou complexos
-    def _count_decorators(self, decorators):
-        for decorator in decorators:
-            if isinstance(decorator, ast.Name):
-                # Decorador simples: apenas um nome de função ou objeto
-                self.feature_simple_decorators += 1
-            else:
-                # Decorador complexo: expressão (ex: chamadas, acessos a atributos, etc.)
-                self.feature_complex_decorators += 1
