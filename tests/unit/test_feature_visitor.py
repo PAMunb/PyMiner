@@ -31,7 +31,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the count is correct        
-        self.assertEqual(visitor.feature_num_literals, 9)
+        self.assertEqual(visitor.feature_f_string, 9)
        
  
 
