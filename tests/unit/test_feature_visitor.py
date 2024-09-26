@@ -17,11 +17,10 @@ def loader(file):
 
 
 class TestFeatureVisitor(unittest.TestCase):
-
-                    
-    def test_num_literals_count(self):
+   
+    def test_asyn_gen1(self):
         
-        code = loader('tests/resources/num_literals.py')
+        code = loader('tests/resources/asyn_gen.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -31,8 +30,8 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the count is correct        
-        self.assertEqual(visitor.feature_f_string, 9)
-       
+ 
+        self.assertEqual(visitor.feature_async_generators, 3)
  
 
 if __name__ == '__main__':
