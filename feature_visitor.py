@@ -2,7 +2,7 @@ import ast
 
 class FeatureVisitor(ast.NodeVisitor):
     def __init__(self):        
-                self.feature_annotation_count = 0
+        self.feature_annotation_count = 0
     
     def visit_AnnAssign(self, node):
         """Conta declarações com anotações de tipo."""
