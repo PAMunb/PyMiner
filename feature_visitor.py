@@ -1,26 +1,23 @@
 import ast
 
 class FeatureVisitor(ast.NodeVisitor):
-    def __init__(self):        
-                self.feature_annotation_count = 0
-    
-    def visit_AnnAssign(self, node):
-        """Conta declarações com anotações de tipo."""
-        self.feature_annotation_count += 1
-        self.generic_visit(node)  # Continue visitando os subnós
-        
-    """O CODIGO ABAIXO É BEM REFINADO MAS AO UTILIZA-LO ELE DUPLICA OS RESULTADOS
+    def __init__(self):      
+        self.feature_async_comprehension_count = 0
+        self.feature_async_for_count = 0
+        self.feature_async_function_count = 0
 
-    def visit_FunctionDef(self, node):
-        Visita funções para contar variáveis anotadas dentro delas.
-        for stmt in node.body:
-            if isinstance(stmt, ast.AnnAssign):
-                self.feature_annotation_count += 1
+    def visit_AsyncComprehension(self, node):
+        """Conta compreensões assíncronas."""
+        self.feature_async_comprehension_count += 1
         self.generic_visit(node)
-    
-    def visit_ClassDef(self, node):
-        Visita classes para contar atributos de classe anotados.
-        for stmt in node.body:
-            if isinstance(stmt, ast.AnnAssign):
-                self.feature_annotation_count += 1
-        self.generic_visit(node)"""
+
+    #parte refinada
+    def visit_AsyncFor(self, node):
+        """Conta loops assíncronos."""
+        self.feature_async_for_count += 1
+        self.generic_visit(node)
+
+    def visit_AsyncFunctionDef(self, node):
+        """Conta definições de funções assíncronas."""
+        self.feature_async_function_count += 1
+        self.generic_visit(node)

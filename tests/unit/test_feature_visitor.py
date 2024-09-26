@@ -20,7 +20,7 @@ class TestFeatureVisitor(unittest.TestCase):
    
     def test_var_annotation(self):
         
-        code = loader('tests/resources/var_annotation.py')
+        code = loader('tests/resources/compreension_async.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -31,7 +31,9 @@ class TestFeatureVisitor(unittest.TestCase):
 
         # Assert that the count is correct        
  
-        self.assertEqual(visitor.feature_annotation_count, 9)
+        self.assertEqual(visitor.feature_async_comprehension_count, 1)  # Nenhuma compreensão assíncrona encontrada
+        self.assertEqual(visitor.feature_async_for_count, 1)   # Nenhum loop assíncrono encontrado
+        self.assertEqual(visitor.feature_async_function_count, 1) 
  
 
 if __name__ == '__main__':
