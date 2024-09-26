@@ -18,9 +18,9 @@ def loader(file):
 
 class TestFeatureVisitor(unittest.TestCase):
    
-    def test_asyn_gen1(self):
+    def test_var_annotation(self):
         
-        code = loader('tests/resources/asyn_gen.py')
+        code = loader('tests/resources/var_annotation.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -31,7 +31,7 @@ class TestFeatureVisitor(unittest.TestCase):
 
         # Assert that the count is correct        
  
-        self.assertEqual(visitor.feature_async_generators, 3)
+        self.assertEqual(visitor.feature_annotation_count, 9)
  
 
 if __name__ == '__main__':
