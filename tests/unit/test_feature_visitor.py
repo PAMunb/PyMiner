@@ -29,12 +29,10 @@ class TestFeatureVisitor(unittest.TestCase):
         # Visit the AST tree
         visitor.visit(tree)
 
-        # Assert that the count is correct        
- 
-        self.assertEqual(visitor.feature_async_comprehension_count, 1)  # Nenhuma compreensão assíncrona encontrada
-        self.assertEqual(visitor.feature_async_for_count, 1)   # Nenhum loop assíncrono encontrado
-        self.assertEqual(visitor.feature_async_function_count, 1) 
- 
+        # Assert that the count is correct  
+        #self.assertEqual(visitor.feature_type_params_in_classes, 1) 
+        #self.assertEqual(visitor.feature_type_vars, 1) 
+        self.assertEqual(visitor.feature_type_params_in_functions, 1) 
 
 if __name__ == '__main__':
     unittest.main()

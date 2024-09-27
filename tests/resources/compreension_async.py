@@ -1,13 +1,26 @@
-# Código com uma compreensão assíncrona e um loop assíncrono
-async def func():
-    result = [x async for x in async_iter()]
-    async for y in async_iter2():
-        pass
+from typing import TypeVar
+from typing import TypeAlias
+
+T = TypeVar('T')
+def func(x: T) -> T:
+    return x
+
+#code_negative_typevar
+def func(x) -> None:
+    pass
+
+#test_type_params_in_class
+class MyClass:
+    def __init__(self, value: T) -> None:
+        self.value = value
+
+       
+#test_type_params_in_function
+    def func(x: T) -> T:
+            pass
+        
+#test_incorrect_type_var_usage
+x = TypeVar('T')
 
 
-# Código sem compreensões assíncronas e loops assíncronos
-def func():
-    result = [x for x in range(10)]
-
-
-            
+MyList: TypeAlias = list[str]
