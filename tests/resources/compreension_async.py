@@ -1,26 +1,28 @@
-from typing import TypeVar
-from typing import TypeAlias
+#test_list_annotation
+from collections import Counter, defaultdict, deque
+from typing import List
 
-T = TypeVar('T')
-def func(x: T) -> T:
-    return x
 
-#code_negative_typevar
-def func(x) -> None:
-    pass
-
-#test_type_params_in_class
-class MyClass:
-    def __init__(self, value: T) -> None:
-        self.value = value
-
-       
-#test_type_params_in_function
-    def func(x: T) -> T:
-            pass
+my_list: list[int] = []
         
-#test_incorrect_type_var_usage
-x = TypeVar('T')
+#test_dict_annotation
+my_dict: dict[str, int] = {}
+   
+#test_set_annotation
+my_set: set[int] = set()
 
+#test_tuple_annotation
+my_tuple: tuple[int, int] = (1, 2)
 
-MyList: TypeAlias = list[str]
+#test_deque_annotation(self):
+my_deque: deque[int] = deque()   
+
+#test_counter_annotation(self)
+my_counter: Counter[str] = Counter()
+
+# test_defaultdict_annotation(self):
+my_defaultdict: defaultdict[str, int] = defaultdict(int)
+
+#test_old_typing_annotations
+mlist:List[int] = []
+    
