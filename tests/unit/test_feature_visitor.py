@@ -18,9 +18,9 @@ def loader(file):
 
 class TestFeatureVisitor(unittest.TestCase):
    
-    def test_var_annotation(self):
+    def test_type_hiting(self):
         
-        code = loader('tests/resources/compreension_async.py')
+        code = loader('tests/resources/type_hiting.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
@@ -30,11 +30,12 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the count is correct  
-        #self.assertEqual(visitor.feature_collections_annotations, 1) 
+       
         self.assertEqual(visitor.feature_list_annotations, 1) 
         self.assertEqual(visitor.feature_dict_annotations, 1) 
         self.assertEqual(visitor.feature_set_annotations, 1)
-       # self.assertEqual(visitor.feature_old_typing_annotations, 1)  
+        #self.assertEqual(visitor.feature_old_typing_annotations, 1) 
+        #self.assertEqual(visitor.feature_collections_annotations, 1)  
         self.assertEqual(visitor.feature_tuple_annotations, 1) 
 
 if __name__ == '__main__':
