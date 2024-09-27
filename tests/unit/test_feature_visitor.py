@@ -18,9 +18,9 @@ def loader(file):
 
 class TestFeatureVisitor(unittest.TestCase):
    
-    def test_var_annotation(self):
+    def test_type_stmt(self):
         
-        code = loader('tests/resources/compreension_async.py')
+        code = loader('tests/resources/type_stmt.py')
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
