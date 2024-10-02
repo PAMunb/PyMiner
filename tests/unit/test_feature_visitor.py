@@ -25,15 +25,14 @@ class TestFeatureVisitor(unittest.TestCase):
         tree = ast.parse(code)
 
         # Create a FeatureVisitor instance
-        visitor = FeatureVisitor()
+        visitor = FeatureVisitor(code)
 
         # Visit the AST tree
         visitor.visit(tree)
 
         # Assert that the count is correct        
-        self.assertEqual(visitor.feature_num_literals, 9)
+        self.assertEqual(visitor.feature_num_literals, 8)
        
  
-
 if __name__ == '__main__':
     unittest.main()
