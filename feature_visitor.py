@@ -20,5 +20,6 @@ class FeatureVisitor(ast.NodeVisitor):
             literal_source = self.source_code[node.lineno - 1][node.col_offset:node.end_col_offset]
             if '_' in literal_source:
                 self.feature_num_literals += 1
+                
         self.generic_visit(node)
 
