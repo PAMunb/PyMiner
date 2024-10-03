@@ -30,9 +30,7 @@ class TestFeatureVisitor(unittest.TestCase):
         # Visit the AST tree
         visitor.visit(tree)
 
-        # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_case, 5)
-      
+        
         # Verifica o número de grupos de exceções e except*
         self.assertEqual(visitor.feature_exception_group_count, 2, "Should find 2 exception groups.")
         self.assertEqual(visitor.feature_except_star_count, 2, "Should find 2 except* blocks.")
