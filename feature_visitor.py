@@ -2,29 +2,35 @@ import ast
 
 class FeatureVisitor(ast.NodeVisitor):
     def __init__(self): 
-          
-        self.feature_type_vars = 0
-        self.feature_type_params_in_classes = 0
-        self.feature_type_params_in_functions = 0
+        self.feature_type_vars_bounds = 0
+        self.feature_type_vars_constraints = 0
+        self.feature_type_param_spec = 0
+        self.feature_type_var_tuple = 0
+        self.feature_all_stmts = 0
+
+    def generic_visit(self, node):
+        # Chama o método de visitação adequado para cada tipo de nó
+        if isinstance(node, ast.stmt):
+            #print(f'Encontrado node Stmt: {ast.dump(node, annotate_fields=True, indent=1)}')
+            self.feature_all_stmts += 1
+        super().generic_visit(node)
       
     def visit_TypeVar(self, node):
-        self.feature_type_vars += 1
+        if node.bound:
+            if isinstance(node.bound, ast.Tuple):
+                # print(f'Encontrado node TypeVar.constraints: {ast.dump(node, annotate_fields=True, indent=1)}')
+                self.feature_type_vars_constraints += 1 
+            else:
+                # print(f'Encontrado node TypeVar.bound: {ast.dump(node, annotate_fields=True, indent=1)}')
+                self.feature_type_vars_bounds += 1              
         self.generic_visit(node)
-
-    def visit_ClassDef(self, node):
-        # Verifica se a classe tem parâmetros de tipo
-        if hasattr(node, 'type_params') and node.type_params:
-            self.feature_type_params_in_classes += 1
+        
+    def visit_ParamSpec(self, node):
+        # print(f'Encontrado node ParamSpec: {ast.dump(node, annotate_fields=True, indent=1)}')
+        self.feature_type_param_spec += 1
         self.generic_visit(node)
-
-    def visit_FunctionDef(self, node):
-        # Verifica se a função tem parâmetros de tipo
-        if hasattr(node, 'type_params') and node.type_params:
-            self.feature_type_params_in_functions += 1
-        self.generic_visit(node)
-
-    def visit_AnnAssign(self, node):
-        # Verifica se a anotação é do tipo TypeAlias
-        if isinstance(node.target, ast.Name) and isinstance(node.annotation, ast.Subscript):
-            self.feature_type_vars += 1
+    
+    def visit_TypeVarTuple(self, node):
+        # print(f'Encontrado node TypeVarTuple: {ast.dump(node, annotate_fields=True, indent=1)}')
+        self.feature_type_var_tuple += 1
         self.generic_visit(node)

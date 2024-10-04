@@ -30,9 +30,10 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the count is correct  
-        #self.assertEqual(visitor.feature_type_params_in_classes, 1) 
-        #self.assertEqual(visitor.feature_type_vars, 1) 
-        self.assertEqual(visitor.feature_type_params_in_functions, 1) 
+        self.assertEqual(visitor.feature_type_vars_constraints, 3) 
+        self.assertEqual(visitor.feature_type_vars_bounds, 4) 
+        self.assertEqual(visitor.feature_type_param_spec, 1) 
+        self.assertEqual(visitor.feature_type_var_tuple,1)
 
 if __name__ == '__main__':
     unittest.main()

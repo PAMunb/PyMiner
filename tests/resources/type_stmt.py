@@ -1,124 +1,87 @@
-# Importando o módulo typing
-from typing import List, Dict, Tuple, Set, Optional, Union, Any, Callable, Iterable, TypeVar, Protocol
+type ListOrSet[T] = list[T] | set[T]
 
-# 1. int, float, str, bool
-def soma(a: int, b: int) -> int:
+def func[T](a: T, b: T) -> T:
+    return None
+
+class ClassA[T: str]:
+    def method1(self) -> T:
+        return None
+    
+class ClassA[T: dict[str, int]]: ...  # OK
+
+class ClassB[T: "ForwardReference"]: ...  # OK
+
+class ClassA[AnyStr: (str, bytes)]: ...  # OK
+
+class ClassB[T: ("ForwardReference", bytes)]: ...  # OK
+
+
+# A type alias that includes a forward reference
+type AnimalOrVegetable = Animal | "Vegetable"
+
+# A generic self-referential type alias
+type RecursiveList[T] = T | list[RecursiveList[T]]
+
+
+# A non-generic type alias
+type IntOrStr = int | str
+
+# A generic type alias
+type ListOrSet[T] = list[T] | set[T]
+
+
+type IntFunc[**P] = Callable[P, int]  # ParamSpec
+type LabeledTuple[*Ts] = tuple[str, *Ts]  # TypeVarTuple
+type HashableSequence[T: Hashable] = Sequence[T]  # TypeVar with bound
+type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
+
+
+################# Sintaxe antiga para validação..
+
+from typing import TypeVar
+
+# TypeVar com 'bound' e 'constraints'
+T1 = TypeVar('T1', bound=int)  # Somente int ou subtipos
+T2 = TypeVar('T2', int, str)    # Somente int ou str
+
+def process_int(item: T1) -> T1:
+    return item
+
+def process_item(item: T2) -> T2:
+    return item
+
+# Funciona: 42 é um int, que é o limite superior
+print(process_int(42))   # OK
+
+# Funciona: 'int' está nas restrições
+print(process_item(42))   # OK
+
+# Funciona: 'str' está nas restrições
+print(process_item('hello'))  # OK
+
+from typing import Generic, TypeVar
+
+_T_co = TypeVar("_T_co", covariant=True, bound=str)
+
+class ClassA(Generic[_T_co]):
+    def method1(self) -> _T_co:
+        return None
+    
+from typing import Callable, ParamSpec
+
+P = ParamSpec('P')
+
+def executar_funcao_int(func: Callable[P, int], *args: P.args, **kwargs: P.kwargs) -> int:
+    return func(*args, **kwargs)
+
+def somar(a: int, b: int) -> int:
     return a + b
 
-def dividir(x: float, y: float) -> float:
-    return x / y
+resultado = executar_funcao_int(somar, 10, 20)
+print(resultado)  # Saída: 30
 
-def cumprimentar(nome: str) -> str:
-    return f"Olá, {nome}!"
+def rotular_tupla(*valores: *Ts) -> tuple[str, *Ts]:
+    return ("Rótulo", *valores)
 
-def is_maior_de_idade(idade: int) -> bool:
-    return idade >= 18
-
-# 2. List
-def somar_lista(numeros: List[int]) -> int:
-    return sum(numeros)
-
-# 3. Dict
-def obter_preco(produtos: Dict[str, float], produto: str) -> Optional[float]:
-    return produtos.get(produto)
-
-# 4. Tuple
-def coordenadas() -> Tuple[float, float]:
-    return (10.5, 20.5)
-
-# 5. Set
-def verificar_numero_conjunto(numeros: Set[int], valor: int) -> bool:
-    return valor in numeros
-
-# 6. Optional
-def saudacao(nome: Optional[str] = None) -> str:
-    if nome:
-        return f"Olá, {nome}!"
-    return "Olá, visitante!"
-
-# 7. Union
-def processar_valor(valor: Union[int, float]) -> float:
-    return valor * 2.5
-
-# 8. Any
-def imprimir_dado(dado: Any) -> None:
-    print(dado)
-
-# 9. Callable
-def executar_funcao(funcao: Callable[[int, int], int], a: int, b: int) -> int:
-    return funcao(a, b)
-
-# 10. Iterable
-def listar_numeros(numeros: Iterable[int]) -> None:
-    for numero in numeros:
-        print(numero)
-
-# 11. TypeVar
-T = TypeVar('T')
-
-def devolver_mesmo_valor(valor: T) -> T:
-    return valor
-
-# 12. Protocol (Python 3.8+)
-class Comparavel(Protocol):
-    def comparar(self, outro: 'Comparavel') -> bool:
-        pass
-
-class Produto:
-    def _init_(self, preco: float):
-        self.preco = preco
-
-    def comparar(self, outro: 'Produto') -> bool:
-        return self.preco < outro.preco
-
-# Exemplo de uso
-if _name_ == "_main_":
-    # 1. Usando int, float, str, bool
-    print(soma(5, 3))
-    print(dividir(10.0, 2.0))
-    print(cumprimentar("Lucas"))
-    print(is_maior_de_idade(20))
-
-    # 2. Usando List
-    print(somar_lista([1, 2, 3, 4, 5]))
-
-    # 3. Usando Dict
-    produtos = {"banana": 2.50, "maçã": 3.00}
-    print(obter_preco(produtos, "banana"))
-
-    # 4. Usando Tuple
-    print(coordenadas())
-
-    # 5. Usando Set
-    conjunto = {1, 2, 3, 4}
-    print(verificar_numero_conjunto(conjunto, 3))
-
-    # 6. Usando Optional
-    print(saudacao())
-    print(saudacao("Walter"))
-
-    # 7. Usando Union
-    print(processar_valor(10))
-    print(processar_valor(10.5))
-
-    # 8. Usando Any
-    imprimir_dado("Texto")
-    imprimir_dado(100)
-
-    # 9. Usando Callable
-    def somar(a: int, b: int) -> int:
-        return a + b
-
-    print(executar_funcao(somar, 5, 7))
-
-    # 10. Usando Iterable
-    listar_numeros([10, 20, 30])
-
-    # 11. Usando TypeVar
-    print(devolver_mesmo_valor(100))
-    print(devolver_mesmo_valor("Texto"))
-
-    # 12. Usando Protocol
-    p1 = Produto(50.0)
-    p2 = Produto(30.0)
-    print(p1.comparar(p2))
+tupla = rotular_tupla(1, 2, 3, "texto")
+print(tupla)  # Saída: ('Rótulo', 1, 2, 3, 'texto')
