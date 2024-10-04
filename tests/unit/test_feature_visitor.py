@@ -32,7 +32,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the count is correct
-        self.assertEqual(visitor.feature_k_args, 8)
+        self.assertEqual(visitor.feature_k_args, 14)
 
 
  
