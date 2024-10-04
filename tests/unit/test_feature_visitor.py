@@ -32,9 +32,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_complex_expression, )
-        self.assertEqual(visitor.feature_fstring, )
-        self.assertEqual(visitor.feature_newline, )
+        self.assertEqual(visitor.feature_fstring, 15)
 
 if __name__ == '__main__':
     unittest.main()
