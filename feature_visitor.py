@@ -2,37 +2,38 @@ import ast
 
 class FeatureVisitor(ast.NodeVisitor):
     def __init__(self):
-        self.feature_unpack_lists = 0
-        self.feature_unpack_tuples = 0
-        self.feature_unpack_dicts = 0
-        self.feature_call_unpack_args = 0
-        self.feature_call_unpack_kwargs = 0
+        self.feature_unpacking_generalizations = 0
+        self.feature_all_stmts = 0
 
-    def visit_List(self, node):
-        # Verifica se há desempacotamento usando *
+    def generic_visit(self, node):
+        # Chama o método de visitação adequado para cada tipo de nó
+        if isinstance(node, ast.stmt):
+            #print(f'Encontrado node Stmt: {ast.dump(node, annotate_fields=True, indent=1)}')
+            self.feature_all_stmts += 1
+        super().generic_visit(node)
+
+    def visit_Starred(self, node):
+        # print(f'Encontrado node Starred: {ast.dump(node, annotate_fields=True, indent=1)}')
+        self.feature_unpacking_generalizations += 1
+        self.generic_visit(node)
         
-        if any(isinstance(elt, ast.Starred) for elt in node.elts):
-            print("list")
-            self.feature_unpack_lists += 1
-        self.generic_visit(node)
-
-    def visit_Tuple(self, node):
-        # Verifica se há desempacotamento usando *
-        if any(isinstance(elt, ast.Starred) for elt in node.elts):
-            self.feature_unpack_tuples += 1
-        self.generic_visit(node)
-
     def visit_Dict(self, node):
-        # Verifica se há desempacotamento usando **
-        if any(isinstance(key, ast.Starred) for key in node.keys):
-            self.feature_unpack_dicts += 1
+       # Iterar sobre as chaves e valores do dicionário
+        for key, value in zip(node.keys, node.values):
+            # Verificar se a chave é None, o que indica o desempacotamento de dicionário (**)
+            if key is None:
+                # O valor associado será o objeto a ser desempacotado
+                # print(f"Encontrado desempacotamento de dicionário: **{ast.dump(value)}")
+                self.feature_unpacking_generalizations += 1
         self.generic_visit(node)
-
+        
     def visit_Call(self, node):
-        # Verifica se há desempacotamento usando *
-        if any(isinstance(kwarg, ast.Starred) for kwarg in node.args):
-            self.feature_call_unpack_args += 1
-        # Verifica se há desempacotamento usando **
-        if any(isinstance(kwarg, ast.keyword) and isinstance(kwarg.value, ast.Starred) for kwarg in node.keywords):
-            self.feature_call_unpack_kwargs += 1
+    # Verificar a lista de keywords da chamada de função
+        for keyword in node.keywords:
+            if keyword.arg is None:
+                # Isso indica o uso de **kwargs
+                # print(f"Encontrado desempacotamento de **kwargs: {ast.dump(keyword.value)}")
+                self.feature_unpacking_generalizations += 1
+        
+        # Continuar a visita aos nós filhos
         self.generic_visit(node)
