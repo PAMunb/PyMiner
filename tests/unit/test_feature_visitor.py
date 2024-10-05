@@ -31,9 +31,12 @@ class TestFeatureVisitor(unittest.TestCase):
 
         # Assert that the count is correct        
  
-        self.assertEqual(visitor.feature_async_comprehension_count, 1)  # Nenhuma compreensão assíncrona encontrada
-        self.assertEqual(visitor.feature_async_for_count, 1)   # Nenhum loop assíncrono encontrado
-        self.assertEqual(visitor.feature_async_function_count, 1) 
+        self.assertEqual(visitor.async_for, 1)
+        self.assertEqual(visitor.async_with, 1)
+        self.assertEqual(visitor.async_list_comprehensions, 1)
+        self.assertEqual(visitor.async_set_comprehensions, 1)
+        self.assertEqual(visitor.async_dict_comprehensions, 1)
+        self.assertEqual(visitor.async_generator_expressions, 1)
  
 
 if __name__ == '__main__':
