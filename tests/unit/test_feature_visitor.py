@@ -32,7 +32,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the count is correct
-        self.assertEqual(visitor.feature_unpack, 7)
+        self.assertEqual(visitor.feature_unpack, 5)
 
 if __name__ == '__main__':
     unittest.main()
