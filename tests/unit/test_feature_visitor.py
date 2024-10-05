@@ -32,10 +32,8 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the count is correct
-        self.assertEqual(visitor.feature_k_args, 14)
-
-
- 
+        self.assertEqual(visitor.feature_kw_defaults, 7)
+        self.assertEqual(visitor.feature_kw_args, 7)
 
 if __name__ == '__main__':
     unittest.main()
