@@ -1,88 +1,69 @@
 import ast
 
 class FeatureVisitor(ast.NodeVisitor):
-    def __init__(self): 
-          
-        self.feature_list_annotations = 0
-        self.feature_dict_annotations = 0
-        self.feature_set_annotations = 0
-        self.feature_tuple_annotations = 0
-        self.feature_old_typing_annotations = 0
-        self.feature_collections_annotations = {
-            "deque": 0,
-            "Counter": 0,
-            "defaultdict": 0,
-            "OrderedDict": 0,
-            "ChainMap": 0, #falta outros tipos tira duvida com walter
+    def __init__(self):
+        self.type_hint_counts = {
+            'list': 0,
+            'tuple': 0,
+            'dict': 0,
+            'set': 0,
+            'frozenset': 0,
+            'deque': 0,
+            'defaultdict': 0,
+            'OrderedDict': 0,
+            'Counter': 0,
+            'ChainMap': 0,
+            'Awaitable': 0,
+            'Coroutine': 0,
+            'AsyncIterable': 0,
+            'AsyncIterator': 0,
+            'AsyncGenerator': 0,
+            'Iterable': 0,
+            'Iterator': 0,
+            'Generator': 0,
+            'Reversible': 0,
+            'Container': 0,
+            'Collection': 0,
+            'Callable': 0,
+            'Set': 0,
+            'MutableSet': 0,
+            'Mapping': 0,
+            'MutableMapping': 0,
+            'Sequence': 0,
+            'MutableSequence': 0,
+            'ByteString': 0,
+            'MappingView': 0,
+            'KeysView': 0,
+            'ItemsView': 0,
+            'ValuesView': 0,
+            'AbstractContextManager': 0,
+            'AbstractAsyncContextManager': 0,
+            'Pattern': 0,
+            'Match': 0,
         }
+        self.all_stmts = 0
 
-    def visit_AnnAssign(self, node):
-        # Verifica se a anotação é uma coleção padrão ou coleção do módulo collections
-        if isinstance(node.annotation, ast.Subscript):
-            if isinstance(node.annotation.value, ast.Name):
-                if node.annotation.value.id == 'list':
-                    self.feature_list_annotations += 1
-                elif node.annotation.value.id == 'dict':
-                    self.feature_dict_annotations += 1
-                elif node.annotation.value.id == 'set':
-                    self.feature_set_annotations += 1
-                elif node.annotation.value.id == 'tuple':
-                    self.feature_tuple_annotations += 1
-                elif node.annotation.value.id in self.feature_collections_annotations:
-                    self.feature_collections_annotations[node.annotation.value.id] += 1
+    def generic_visit(self, node):
+        # Chama o método de visitação adequado para cada tipo de nó
+        if isinstance(node, ast.stmt):
+            # print(f'Encontrado node Stmt: {ast.dump(node, annotate_fields=True, indent=1)}')
+            self.all_stmts += 1
+        super().generic_visit(node)
+      
+        
+    def visit_Name(self, node):
+        type_name = node.id
+        if type_name in self.type_hint_counts:
+            self.type_hint_counts[type_name] += 1
         self.generic_visit(node)
-
-    def visit_FunctionDef(self, node):
-        # Verifica anotações de tipo em parâmetros e retorno
-        for arg in node.args.args:
-            if arg.annotation and isinstance(arg.annotation, ast.Subscript):
-                if isinstance(arg.annotation.value, ast.Name):
-                    if arg.annotation.value.id == 'list':
-                        self.feature_list_annotations += 1
-                    elif arg.annotation.value.id == 'dict':
-                        self.feature_dict_annotations += 1
-                    elif arg.annotation.value.id == 'set':
-                        self.feature_set_annotations += 1
-                    elif arg.annotation.value.id == 'tuple':
-                        self.feature_tuple_annotations += 1
-                    elif arg.annotation.value.id in self.feature_collections_annotations:
-                        self.feature_collections_annotations[arg.annotation.value.id] += 1
-
-        if node.returns and isinstance(node.returns, ast.Subscript):
-            if isinstance(node.returns.value, ast.Name):
-                if node.returns.value.id == 'list':
-                    self.feature_list_annotations += 1
-                elif node.returns.value.id == 'dict':
-                    self.feature_dict_annotations += 1
-                elif node.returns.value.id == 'set':
-                    self.feature_set_annotations += 1
-                elif node.returns.value.id == 'tuple':
-                    self.feature_tuple_annotations += 1
-                elif node.returns.value.id in self.feature_collections_annotations:
-                    self.feature_collections_annotations[node.returns.value.id] += 1
-
-        # Verifica se há uso de anotações do módulo typing
-        for decorator in node.decorator_list:
-            if isinstance(decorator, ast.Name):
-                if decorator.id in ['List', 'Dict', 'Set', 'Tuple', 'deque', 'Counter', 'defaultdict', 'OrderedDict', 'ChainMap']:
-                    self.feature_old_typing_annotations += 1
-
-        self.generic_visit(node)
-
-    def visit_Assign(self, node):
-        # Verifica atribuições com coleções padrão e coleções do módulo collections
-        for target in node.targets:
-            if isinstance(target, ast.Name) and hasattr(node, 'annotation'):
-                if isinstance(node.annotation, ast.Subscript):
-                    if isinstance(node.annotation.value, ast.Name):
-                        if node.annotation.value.id == 'list':
-                            self.feature_list_annotations += 1
-                        elif node.annotation.value.id == 'dict':
-                            self.feature_dict_annotations += 1
-                        elif node.annotation.value.id == 'set':
-                            self.feature_set_annotations += 1
-                        elif node.annotation.value.id == 'tuple':
-                            self.feature_tuple_annotations += 1
-                        elif node.annotation.value.id in self.feature_collections_annotations:
-                            self.feature_collections_annotations[node.annotation.value.id] += 1
+        
+    # Ainda falta melhorar essa implementação.. pois acredito que não está cobrindo todos os casos. Outra alternativa é focar apenas nos tipos primitivos    
+    def visit_Call(self, node):
+        if isinstance(node.func, ast.Attribute):
+            # Verifica se a chamada é do módulo re
+            if isinstance(node.func.value, ast.Name) and node.func.value.id == 're':
+                if node.func.attr == 'compile':
+                    
+                    # print(f'Encontrado node Pattern: {ast.dump(node, annotate_fields=True, indent=1)}')
+                    self.type_hint_counts['Pattern'] += 1  # Captura Pattern
         self.generic_visit(node)
