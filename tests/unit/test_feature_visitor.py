@@ -19,7 +19,7 @@ def loader(file):
 class TestFeatureVisitor(unittest.TestCase):
 
                     
-    def test_annotation_expression_count(self):
+    def test_function_annotation_expression_count(self):
         # Create an AST node representing the code with a single With statement
         
         code = loader('tests/resources/annotation_expression.py')
@@ -32,7 +32,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_with count is correct
-        self.assertEqual(visitor.feature_annotation, 12)
+        self.assertEqual(visitor.function_args_return_annotation, 25)
 
 
     def test_all_stmts_count(self):
@@ -48,7 +48,7 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_with count is correct
-        self.assertEqual(visitor.all_stmts, 23)
+        self.assertEqual(visitor.all_stmts, 49)
 
 
 if __name__ == '__main__':
