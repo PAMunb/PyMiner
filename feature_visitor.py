@@ -5,13 +5,17 @@ class FeatureVisitor(ast.NodeVisitor):
         self.feature_async_defs = 0
         self.feature_await_expressions = 0
         self.feature_awaitable_objects = 0
-    
-    def visit_FunctionDef(self, node):
-        # Verifica se a função é uma corrotina
-        if isinstance(node, ast.FunctionDef) and any(isinstance(decorator, ast.Name) and decorator.id == 'async' for decorator in node.decorator_list):
-            self.feature_async_defs += 1
-        self.generic_visit(node)
+        self.feature_async_fors = 0
+        self.feature_async_withs = 0
+        self.all_stmts = 0
 
+    def generic_visit(self, node):
+        # Chama o método de visitação adequado para cada tipo de nó
+        if isinstance(node, ast.stmt):
+            # print(f'Encontrado node Stmt: {ast.dump(node, annotate_fields=True, indent=1)}')
+            self.all_stmts += 1
+        super().generic_visit(node)
+        
     def visit_AsyncFunctionDef(self, node):
         # Conta funções definidas com async def
         self.feature_async_defs += 1
@@ -20,9 +24,21 @@ class FeatureVisitor(ast.NodeVisitor):
     def visit_Await(self, node):
         # Conta expressões que utilizam await
         self.feature_await_expressions += 1
-        # Verifica se o await está usando um objeto awaitable
-        if isinstance(node.value, ast.Call):
+        
+        # Verifica se o valor de await é um objeto que pode ser aguardado
+        if isinstance(node.value, (ast.Call, ast.GeneratorExp, ast.YieldFrom)):
             self.feature_awaitable_objects += 1
+        
+        self.generic_visit(node)
+
+    def visit_AsyncFor(self, node):
+        # Conta loops assíncronos com async for
+        self.feature_async_fors += 1
+        self.generic_visit(node)
+
+    def visit_AsyncWith(self, node):
+        # Conta blocos de contexto assíncronos com async with
+        self.feature_async_withs += 1
         self.generic_visit(node)
         
     

@@ -35,9 +35,11 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)    
         
         
-        self.assertEqual(visitor.feature_async_defs, 2)  # Deve encontrar duas funções corrotinas
-        self.assertEqual(visitor.feature_await_expressions, 2)  # Deve encontrar duas expressões await
-        self.assertEqual(visitor.feature_awaitable_objects, 2)  # Deve encontrar dois objetos awaitable
+        self.assertEqual(visitor.feature_async_defs, 4)
+        self.assertEqual(visitor.feature_async_fors, 2)
+        self.assertEqual(visitor.feature_async_withs, 2)
+        self.assertEqual(visitor.feature_await_expressions, 6)
+        self.assertEqual(visitor.feature_awaitable_objects, 6)
 
     
         
