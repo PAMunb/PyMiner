@@ -31,7 +31,7 @@ class TestFeatureVisitor(unittest.TestCase):
 
         # Assert that the count is correct        
  
-        self.assertEqual(visitor.feature_async_generators, 3)
+        self.assertEqual(visitor.feature_async_generators, 6)
  
 
 if __name__ == '__main__':
