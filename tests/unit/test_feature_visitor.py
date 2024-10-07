@@ -34,6 +34,7 @@ class TestFeatureVisitor(unittest.TestCase):
         self.assertEqual(visitor.feature_type_vars_bounds, 4) 
         self.assertEqual(visitor.feature_type_param_spec, 1) 
         self.assertEqual(visitor.feature_type_var_tuple,1)
+        self.assertEqual(visitor.feature_type_alias,11)
 
 if __name__ == '__main__':
     unittest.main()

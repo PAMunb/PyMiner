@@ -35,6 +35,8 @@ type LabeledTuple[*Ts] = tuple[str, *Ts]  # TypeVarTuple
 type HashableSequence[T: Hashable] = Sequence[T]  # TypeVar with bound
 type IntOrStrSequence[T: (int, str)] = Sequence[T]  # TypeVar with constraints
 
+type Point = tuple[float, float]
+type Box[T] = list[T]
 
 ################# Sintaxe antiga para validação..
 

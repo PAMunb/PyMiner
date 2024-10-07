@@ -6,6 +6,7 @@ class FeatureVisitor(ast.NodeVisitor):
         self.feature_type_vars_constraints = 0
         self.feature_type_param_spec = 0
         self.feature_type_var_tuple = 0
+        self.feature_type_alias = 0
         self.feature_all_stmts = 0
 
     def generic_visit(self, node):
@@ -33,4 +34,9 @@ class FeatureVisitor(ast.NodeVisitor):
     def visit_TypeVarTuple(self, node):
         # print(f'Encontrado node TypeVarTuple: {ast.dump(node, annotate_fields=True, indent=1)}')
         self.feature_type_var_tuple += 1
+        self.generic_visit(node)
+        
+    def visit_TypeAlias(self, node):
+        # print(f'Encontrado node TypeAlias: {ast.dump(node, annotate_fields=True, indent=1)}')
+        self.feature_type_alias += 1
         self.generic_visit(node)
