@@ -28,8 +28,6 @@ class TestFeatureVisitor(unittest.TestCase):
 
         # Visit the AST tree
         visitor.visit(tree)
-        
-        # print(visitor.type_hint_counts)
 
         # Verifica se as contagens estão corretas
         self.assertEqual(visitor.type_hint_counts['list'], 10) 
@@ -38,5 +36,7 @@ class TestFeatureVisitor(unittest.TestCase):
         self.assertEqual(visitor.type_hint_counts['set'], 4) 
         self.assertEqual(visitor.type_hint_counts['frozenset'], 4)
         self.assertEqual(visitor.type_hint_counts['type'], 3)
+
+
 if __name__ == '__main__':
     unittest.main()

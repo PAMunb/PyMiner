@@ -10,6 +10,8 @@ class FeatureVisitor(ast.NodeVisitor):
             'frozenset': 0,
             'type': 0
         }
+        self.type_aliases = []
+        self.type_params = []
         self.all_stmts = 0
 
     def generic_visit(self, node):
@@ -63,8 +65,21 @@ class FeatureVisitor(ast.NodeVisitor):
                 self.extract_annotation(stmt)
             if isinstance(stmt,ast.ClassDef):
                 self.visit_ClassDef(stmt)
+                
+        if node.bases:
+            for base in node.bases:
+                if isinstance(base, ast.Subscript):
+                    # print(f'Classe com parâmetros de tipo: {ast.dump(base)}')
+                    self.extract_annotation(base)
         # self.generic_visit(node)
         
+    def visit_Assign(self, node):
+        # Verifica se a atribuição é de um type alias
+        # print(f'Type aliases: {ast.dump(node)}')
+        if isinstance(node.value, ast.Subscript):
+            # print(f'Tipo alias detectado: {ast.dump(node)}')
+            self.extract_annotation(node.value)
+                    
     def visit_Module(self, node):
         if node.body:
             for stmt in node.body:
@@ -79,11 +94,26 @@ class FeatureVisitor(ast.NodeVisitor):
                 type_name = node.value.id
                 if type_name in self.type_hint_counts:
                     self.type_hint_counts[type_name] += 1
+            else:
+                self.extract_annotation(node.value)
         elif isinstance(node, ast.Name):
-            # print(f'Encontrado Annotation Name Id: {node.id}')
+            # print(f'Encontrado Annotation Name Id: {node.id}')            
             type_name = node.id
             if type_name in self.type_hint_counts:
                 self.type_hint_counts[type_name] += 1
         elif isinstance(node, ast.AnnAssign):
             if node.annotation:
                 self.extract_annotation(node.annotation)
+        elif isinstance(node, ast.Constant):
+            # Aqui tratamos o caso de anotações que são strings
+            # print(f'Encontrado Annotation Name Id: {node.value}')
+            if isinstance(node.value, str):
+                type_name = node.value
+                if type_name in self.type_hint_counts:
+                    self.type_hint_counts[type_name] += 1
+        elif isinstance(node, ast.Attribute):
+            # Aqui lidamos com anotações que são atributos de módulos
+            # print(f'Encontrado Annotation Name Id: {node.value.id}.{node.attr}')
+            type_name = f'{node.value.id}.{node.attr}'
+            if type_name in self.type_hint_counts:
+                self.type_hint_counts[type_name] += 1

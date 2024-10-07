@@ -3,7 +3,7 @@
 
 from ast import Match
 from collections import deque, defaultdict, OrderedDict, Counter, ChainMap
-from collections.abc import Awaitable, Coroutine, AsyncIterable, AsyncIterator, AsyncGenerator, Iterable, Iterator, Generator, Reversible, Container, Collection, Callable, Set, MutableSet, Mapping, MutableMapping, Sequence, MutableSequence, ByteString, MappingView, KeysView, ItemsView, ValuesView
+from collections.abc import Awaitable, Coroutine, AsyncIterable, AsyncIterator, AsyncGenerator, Hashable, Iterable, Iterator, Generator, Reversible, Container, Collection, Callable, Set, MutableSet, Mapping, MutableMapping, Sequence, MutableSequence, ByteString, MappingView, KeysView, ItemsView, ValuesView
 import re
 from contextlib import AbstractContextManager, AbstractAsyncContextManager
 
