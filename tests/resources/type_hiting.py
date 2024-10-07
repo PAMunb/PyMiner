@@ -7,6 +7,78 @@ from collections.abc import Awaitable, Coroutine, AsyncIterable, AsyncIterator, 
 import re
 from contextlib import AbstractContextManager, AbstractAsyncContextManager
 
+# Variáveis globais com anotações de tipo
+x: int = 42                          # Inteiro
+y: float = 3.14                      # Float
+nome: str = "Walter"                 # String
+itens: list[str] = ["item1", "item2"]  # Lista de strings
+config: dict[str, str] = {"key": "value"}  # Dicionário com chaves e valores de string
+conjunto: set[int] = {1, 2, 3} # Conjunto de inteiros
+tupla: tuple[float, float] = (y, y) # exemplo de tupla
+conjuntos_imutaveis: frozenset[int] = frozenset([1, 2, 3, 4, 5])  # Frozenset de inteiros
+tipo_dados: type = str  # Anotação de tipo que representa o tipo 'str'
+
+# Variáveis globais sem anotações de tipo
+mensagem = "Olá, mundo!"             # String
+contagem = 100                        # Inteiro
+ativo = True                          # Booleano
+elementos = []                        # Lista vazia
+
+class MinhaClasse:
+    items: list[str]  # Anotação de tipo para um atributo da classe
+    occurrences: dict[str, int]  # Outro exemplo de anotação de tipo
+
+class Armazenamento:
+    def __init__(self):
+        self.itens: list[str] = []  # Lista de itens do tipo string
+        self.ocorrencias: dict[str, int] = {}  # Dicionário com chaves do tipo string e valores do tipo inteiro
+
+    def adicionar_item(self, item: str) -> None:
+        self.itens.append(item)
+        if item in self.ocorrencias:
+            self.ocorrencias[item] += 1
+        else:
+            self.ocorrencias[item] = 1
+
+class Grupo:
+    def __init__(self):
+        self.membros: set[str] = set()  # Conjunto de membros do tipo string
+
+    def adicionar_membro(self, membro: str) -> None:
+        self.membros.add(membro)
+
+    def tem_membro(self, membro: str) -> bool:
+        return membro in self.membros
+
+class Coordenadas:
+    def __init__(self, latitude: float, longitude: float):
+        self.localizacao: tuple[float, float] = (latitude, longitude)  # Tupla para coordenadas
+
+    def obter_coordenadas(self) -> tuple[float, float]:
+        return self.localizacao
+    
+class Catalogo:
+    def __init__(self):
+        self.itens: frozenset[str] = frozenset()  # Conjunto imutável de itens do tipo string
+
+    def adicionar_item(self, item: str) -> None:
+        # Como frozenset é imutável, criar uma nova instância ao adicionar
+        self.itens = self.itens.union({item})
+
+    def obter_itens(self) -> frozenset[str]:
+        return self.itens
+    
+class TipoObjeto:
+    def __init__(self, objeto: object):
+        self.tipo: type = type(objeto)  # Tipo do objeto passado
+
+    def obter_tipo(self) -> str:
+        return self.tipo.__name__  # Retorna o nome do tipo
+    
+    def outer_function(param: int) -> None:
+        def inner_function(inner_param: str) -> None:
+            pass
+
 # 1. tuple
 def processar_dados(dados: tuple[int, str]) -> None:
     print(f"Id: {dados[0]}, Nome: {dados[1]}")
@@ -33,6 +105,7 @@ def criar_frozenset(valores: list[int]) -> frozenset[int]:
 # 6. type
 def obter_tipo(objeto: object) -> type:
     return type(objeto)
+
 
 # 7. collections.deque
 def manipular_deque(entrada: deque[int]) -> None:

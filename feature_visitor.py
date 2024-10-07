@@ -8,38 +8,7 @@ class FeatureVisitor(ast.NodeVisitor):
             'dict': 0,
             'set': 0,
             'frozenset': 0,
-            'deque': 0,
-            'defaultdict': 0,
-            'OrderedDict': 0,
-            'Counter': 0,
-            'ChainMap': 0,
-            'Awaitable': 0,
-            'Coroutine': 0,
-            'AsyncIterable': 0,
-            'AsyncIterator': 0,
-            'AsyncGenerator': 0,
-            'Iterable': 0,
-            'Iterator': 0,
-            'Generator': 0,
-            'Reversible': 0,
-            'Container': 0,
-            'Collection': 0,
-            'Callable': 0,
-            'Set': 0,
-            'MutableSet': 0,
-            'Mapping': 0,
-            'MutableMapping': 0,
-            'Sequence': 0,
-            'MutableSequence': 0,
-            'ByteString': 0,
-            'MappingView': 0,
-            'KeysView': 0,
-            'ItemsView': 0,
-            'ValuesView': 0,
-            'AbstractContextManager': 0,
-            'AbstractAsyncContextManager': 0,
-            'Pattern': 0,
-            'Match': 0,
+            'type': 0
         }
         self.all_stmts = 0
 
@@ -49,21 +18,72 @@ class FeatureVisitor(ast.NodeVisitor):
             # print(f'Encontrado node Stmt: {ast.dump(node, annotate_fields=True, indent=1)}')
             self.all_stmts += 1
         super().generic_visit(node)
-      
         
-    def visit_Name(self, node):
-        type_name = node.id
-        if type_name in self.type_hint_counts:
-            self.type_hint_counts[type_name] += 1
+    def visit_FunctionDef(self,node):
+        if node.args.args:
+            for arg in node.args.args:
+                if arg.annotation:
+                        self.extract_annotation(arg.annotation)
+        if node.returns:
+                self.extract_annotation(node.returns)
+        if node.body:
+            for stmt in node.body:
+                if isinstance(stmt,ast.AnnAssign):
+                    self.extract_annotation(stmt)
+                if isinstance(stmt,ast.FunctionDef):
+                    self.visit_FunctionDef(stmt)
+                if isinstance(stmt,ast.AsyncFunctionDef):
+                    self.visit_AsyncFunctionDef(stmt)
+        # self.generic_visit(node)
+        
+    def visit_AsyncFunctionDef(self,node):
+        if node.args.args:
+            for arg in node.args.args:
+                if arg.annotation:
+                    self.extract_annotation(arg.annotation)
+        if node.returns:
+            self.extract_annotation(node.returns)
+        if node.body:
+            for stmt in node.body:
+                if isinstance(stmt,ast.AnnAssign):
+                    self.extract_annotation(stmt)
+                if isinstance(stmt,ast.FunctionDef):
+                    self.visit_FunctionDef(stmt)
+                if isinstance(stmt,ast.AsyncFunctionDef):
+                    self.visit_AsyncFunctionDef(stmt)
+        # self.generic_visit(node)
+        
+    def visit_ClassDef(self, node):
+        for stmt in node.body:
+            if isinstance(stmt,ast.FunctionDef):
+                self.visit_FunctionDef(stmt)
+            if isinstance(stmt,ast.AsyncFunctionDef):
+                self.visit_AsyncFunctionDef(stmt)
+            if isinstance(stmt,ast.AnnAssign):
+                self.extract_annotation(stmt)
+            if isinstance(stmt,ast.ClassDef):
+                self.visit_ClassDef(stmt)
+        # self.generic_visit(node)
+        
+    def visit_Module(self, node):
+        if node.body:
+            for stmt in node.body:
+                if isinstance(stmt,ast.AnnAssign):
+                    self.extract_annotation(stmt)
         self.generic_visit(node)
         
-    # Ainda falta melhorar essa implementação.. pois acredito que não está cobrindo todos os casos. Outra alternativa é focar apenas nos tipos primitivos    
-    def visit_Call(self, node):
-        if isinstance(node.func, ast.Attribute):
-            # Verifica se a chamada é do módulo re
-            if isinstance(node.func.value, ast.Name) and node.func.value.id == 're':
-                if node.func.attr == 'compile':
-                    
-                    # print(f'Encontrado node Pattern: {ast.dump(node, annotate_fields=True, indent=1)}')
-                    self.type_hint_counts['Pattern'] += 1  # Captura Pattern
-        self.generic_visit(node)
+    def extract_annotation(self, node):
+        if isinstance(node, ast.Subscript):
+            if isinstance(node.value, ast.Name):
+                # print(f'Encontrado Subscript Annotation Id: {node.value.id}')
+                type_name = node.value.id
+                if type_name in self.type_hint_counts:
+                    self.type_hint_counts[type_name] += 1
+        elif isinstance(node, ast.Name):
+            # print(f'Encontrado Annotation Name Id: {node.id}')
+            type_name = node.id
+            if type_name in self.type_hint_counts:
+                self.type_hint_counts[type_name] += 1
+        elif isinstance(node, ast.AnnAssign):
+            if node.annotation:
+                self.extract_annotation(node.annotation)
