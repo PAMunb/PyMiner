@@ -8,7 +8,12 @@ def test_multiple():
         x += 1
         
 def test_no_nonlocal():
+<<<<<<< HEAD
     xw = 10
+=======
+    xw = 10
+    
+>>>>>>> def3526823cb4723c4792c3afb540180796c0bb8
     def inner():
         xw += 1
 
