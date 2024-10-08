@@ -8,29 +8,29 @@ def test_multiple():
         x += 1
         
 def test_no_nonlocal():
-    x = 10
+    xw = 10
     def inner():
-        x += 1
+        xw += 1
 
 
 def test_nonlocal_in_nested_functions():
-    x = 10
+    xy = 10
     def inner1():
-        nonlocal x
+        nonlocal xy
     def inner2():
         def inner3():
-            nonlocal x           
+            nonlocal xy          
 
 
 def test_nonlocal_with_other_scopes():
-    x = 10
+    xv = 10
     def inner1():
-        nonlocal x
+        nonlocal xv
     def inner2():
         def inner3():
-            nonlocal x
+            nonlocal xv
     def inner4():
-        y = 20
+        yv = 20
         def inner5():
-            nonlocal y
+            nonlocal yv
 
