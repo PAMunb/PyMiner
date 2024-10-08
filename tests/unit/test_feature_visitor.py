@@ -9,7 +9,7 @@ path = os.getcwd()
 def loader(file):
     file_content = ''
     try:
-        with open(path+"/"+file, 'r') as f:
+        with open(path+"/"+file, 'r', encoding="utf8") as f:
             file_content = f.read()                          
     except Exception as e:
         print(f'Erro no arquivo {file}: {e}')

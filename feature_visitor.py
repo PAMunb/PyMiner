@@ -15,7 +15,7 @@ class FeatureVisitor(ast.NodeVisitor):
         
     def visit_arguments(self, node):
         if node.kw_defaults:
-            # print(f"Encontrado nodes Keyword-Only Arguments: **{ast.dump(node)}")
+            print(f"Encontrado nodes Keyword-Only Arguments: **{ast.dump(node, annotate_fields=True, indent=3)}")
             self.feature_kw_defaults += len(node.kw_defaults)
         if node.kwonlyargs:
         # Adicionar o número de argumentos keyword-only (com ou sem valores padrão)
