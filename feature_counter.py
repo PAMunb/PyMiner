@@ -1,14 +1,13 @@
-from datetime import datetime, timezone
+from datetime import datetime
 import os
 import csv
 import ast
 
 from commit_processor import CommitProcessor
 from repo_manager import RepoManager
-from feature_visitor import FeatureVisitor
 
 class FeatureCounter:
-    def __init__(self, repo_url, feature_visitor_class, start_date=datetime(2024, 11, 1)):
+    def __init__(self, repo_url, feature_visitor_class, start_date=datetime(2024, 11, 10)):
         self.repo_manager = RepoManager(repo_url)
         self.commit_processor = CommitProcessor(self.repo_manager, start_date)
         self.feature_visitor_class = feature_visitor_class
