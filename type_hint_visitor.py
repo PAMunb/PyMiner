@@ -1,6 +1,6 @@
 import ast
 
-class FeatureVisitor(ast.NodeVisitor):
+class TypeHintVisitor(ast.NodeVisitor):
     def __init__(self):
         self.metrics = {
             'type_hint_count_list': 0,
