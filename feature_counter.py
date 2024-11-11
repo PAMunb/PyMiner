@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timezone
 import os
 import csv
 import ast
@@ -19,11 +19,18 @@ class FeatureCounter:
         self.commit_processor.collect_commits()
 
         for commit_details, repo_files in self.commit_processor.process_commits():
-            feature_count = 0
-            feature_annotation_count = 0
-            feature_arguments_count = 0
-            feature_with_count = 0
-            feature_assign_count = 0
+            type_hint_list = 0
+            type_hint_tuple = 0
+            type_hint_dict = 0
+            type_hint_set = 0
+            type_hint_frozenset = 0
+            type_hint_type = 0
+            type_hint_file_list = 0
+            type_hint_file_tuple = 0
+            type_hint_file_dict = 0
+            type_hint_file_set = 0
+            type_hint_file_frozenset = 0
+            type_hint_file_type = 0
             error_count = 0
 
             for file in repo_files:
@@ -35,14 +42,24 @@ class FeatureCounter:
                     
                     # Crie uma instância de FeatureVisitor e aplique a visitação
                     visitor = self.feature_visitor_class()
+                    
+                    visitor.set_current_file(file)
+                    
                     visitor.visit(parsed_code)
                     
-                    # Acumula os contadores de features
-                    feature_count += visitor.feature_count
-                    feature_annotation_count += visitor.feature_annotation
-                    feature_arguments_count += visitor.feature_arguments
-                    feature_with_count += visitor.feature_with
-                    feature_assign_count += visitor.feature_assign
+                    type_hint_list += visitor.type_hint_counts['list']
+                    type_hint_tuple += visitor.type_hint_counts['tuple']
+                    type_hint_dict += visitor.type_hint_counts['dict']
+                    type_hint_set += visitor.type_hint_counts['set']
+                    type_hint_frozenset += visitor.type_hint_counts['frozenset']
+                    type_hint_type += visitor.type_hint_counts['type']
+                    
+                    type_hint_file_list += len(visitor.type_hint_file_counts['list'])
+                    type_hint_file_tuple += len(visitor.type_hint_file_counts['tuple'])
+                    type_hint_file_dict += len(visitor.type_hint_file_counts['dict'])
+                    type_hint_file_set += len(visitor.type_hint_file_counts['set'])
+                    type_hint_file_frozenset += len(visitor.type_hint_file_counts['frozenset'])
+                    type_hint_file_type += len(visitor.type_hint_file_counts['type'])
 
                 except Exception as e:
                     print(f'Erro no arquivo {file}: {e}')
@@ -54,18 +71,27 @@ class FeatureCounter:
                 'date': str(commit_details.author_date.strftime('%Y-%m-%d')),
                 'commit_hash': commit_details.hash,
                 'file_count': len(repo_files),
-                'feature_count': feature_count,
-                'feature_annotation_count': feature_annotation_count,
-                'feature_arguments_count': feature_arguments_count,
-                'feature_with_count': feature_with_count,
-                'feature_assign_count': feature_assign_count,
+                'type_hint_list': type_hint_list,
+                'type_hint_tuple': type_hint_tuple,
+                'type_hint_dict': type_hint_dict,
+                'type_hint_set': type_hint_set,
+                'type_hint_frozenset': type_hint_frozenset,
+                'type_hint_type': type_hint_type,
+                'type_hint_file_list': type_hint_file_list,
+                'type_hint_file_tuple': type_hint_file_tuple,
+                'type_hint_file_dict': type_hint_file_dict,
+                'type_hint_file_set': type_hint_file_set,
+                'type_hint_file_frozenset': type_hint_file_frozenset,
+                'type_hint_file_type': type_hint_file_type,
                 'error_count': error_count
             })
 
     def export_to_csv(self, output_path):
         try:
             with open(output_path, 'w', newline='') as csvfile:
-                fieldnames = ['project', 'date', 'commit_hash', 'file_count', 'feature_count', 'feature_annotation_count','feature_arguments_count','feature_with_count', 'feature_assign_count','error_count']
+                fieldnames = ['project', 'date', 'commit_hash', 'file_count',
+                               'type_hint_list','type_hint_tuple','type_hint_dict','type_hint_set','type_hint_frozenset','type_hint_type',
+                               'type_hint_file_list','type_hint_file_tuple','type_hint_file_dict','type_hint_file_set','type_hint_file_frozenset','type_hint_file_type','error_count']
                 writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
 
                 writer.writeheader()
