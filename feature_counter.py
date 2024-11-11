@@ -8,10 +8,10 @@ from repo_manager import RepoManager
 from feature_visitor import FeatureVisitor
 
 class FeatureCounter:
-    def __init__(self, repo_url, feature_visitor_class, start_date=datetime(2024, 8, 29)):
+    def __init__(self, repo_url, feature_visitor_class, start_date=datetime(2024, 11, 1)):
         self.repo_manager = RepoManager(repo_url)
         self.commit_processor = CommitProcessor(self.repo_manager, start_date)
-        self.feature_visitor_class = FeatureVisitor
+        self.feature_visitor_class = feature_visitor_class
         self.results = []
 
     def process(self):
