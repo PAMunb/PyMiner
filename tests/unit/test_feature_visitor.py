@@ -29,23 +29,23 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.set_current_file("tests/resources/type_hiting.py")
 
         # Visit the AST tree
-        visitor.visit(tree)    
+        visitor.visit(tree)
 
         # Verifica se as contagens estão corretas
-        self.assertEqual(visitor.type_hint_counts['list'], 10) 
-        self.assertEqual(visitor.type_hint_counts['tuple'], 4)  
-        self.assertEqual(visitor.type_hint_counts['dict'], 7) 
-        self.assertEqual(visitor.type_hint_counts['set'], 4) 
-        self.assertEqual(visitor.type_hint_counts['frozenset'], 4)
-        self.assertEqual(visitor.type_hint_counts['type'], 3)
+        self.assertEqual(visitor.metrics['type_hint_count_list'], 10) 
+        self.assertEqual(visitor.metrics['type_hint_count_tuple'], 4)  
+        self.assertEqual(visitor.metrics['type_hint_count_dict'], 7) 
+        self.assertEqual(visitor.metrics['type_hint_count_set'], 4) 
+        self.assertEqual(visitor.metrics['type_hint_count_frozenset'], 4)
+        self.assertEqual(visitor.metrics['type_hint_count_type'], 3)
         
         # Verifica se as contagens de arquivos com ocorrência estão corretas
-        self.assertEqual(len(visitor.type_hint_file_counts['list']), 1)
-        self.assertEqual(len(visitor.type_hint_file_counts['tuple']), 1)  
-        self.assertEqual(len(visitor.type_hint_file_counts['dict']), 1) 
-        self.assertEqual(len(visitor.type_hint_file_counts['set']), 1) 
-        self.assertEqual(len(visitor.type_hint_file_counts['frozenset']), 1)
-        self.assertEqual(len(visitor.type_hint_file_counts['type']), 1)
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_list']), 1)
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_tuple']), 1)  
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_dict']), 1) 
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_set']), 1) 
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_frozenset']), 1)
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_type']), 1)
         
     def test_ignore_typing_examples(self):
         
@@ -61,20 +61,20 @@ class TestFeatureVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Verifica se as contagens estão corretas
-        self.assertEqual(visitor.type_hint_counts['list'], 0) 
-        self.assertEqual(visitor.type_hint_counts['tuple'], 0)  
-        self.assertEqual(visitor.type_hint_counts['dict'], 0) 
-        self.assertEqual(visitor.type_hint_counts['set'], 0) 
-        self.assertEqual(visitor.type_hint_counts['frozenset'], 0)
-        self.assertEqual(visitor.type_hint_counts['type'], 0)
+        self.assertEqual(visitor.metrics['type_hint_count_list'], 0) 
+        self.assertEqual(visitor.metrics['type_hint_count_tuple'], 0)  
+        self.assertEqual(visitor.metrics['type_hint_count_dict'], 0) 
+        self.assertEqual(visitor.metrics['type_hint_count_set'], 0) 
+        self.assertEqual(visitor.metrics['type_hint_count_frozenset'], 0)
+        self.assertEqual(visitor.metrics['type_hint_count_type'], 0)
         
         # Verifica se as contagens de arquivos com ocorrência estão corretas
-        self.assertEqual(len(visitor.type_hint_file_counts['list']), 0)
-        self.assertEqual(len(visitor.type_hint_file_counts['tuple']), 0)  
-        self.assertEqual(len(visitor.type_hint_file_counts['dict']), 0) 
-        self.assertEqual(len(visitor.type_hint_file_counts['set']), 0) 
-        self.assertEqual(len(visitor.type_hint_file_counts['frozenset']), 0)
-        self.assertEqual(len(visitor.type_hint_file_counts['type']), 0)
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_list']), 0)
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_tuple']), 0)  
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_dict']), 0) 
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_set']), 0) 
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_frozenset']), 0)
+        self.assertEqual(len(visitor.metrics['type_hint_count_files_type']), 0)
 
 if __name__ == '__main__':
     unittest.main()
