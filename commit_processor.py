@@ -1,5 +1,6 @@
 import os
 from pydriller import Repository
+from datetime import timedelta
 
 class CommitProcessor:
     def __init__(self, repo_manager, start_date):
@@ -14,8 +15,16 @@ class CommitProcessor:
         if not self.repo:
             self.repo = self.repo_manager.get_repo()
 
+        last_commit_date = None  # Variável para armazenar a data do último commit coletado
+
         for commit in Repository(self.repo_manager.repo_url, since=self.start_date).traverse_commits():
-            self.repo_commits.append(commit.hash)
+            commit_date = commit.author_date  # A data do commit
+
+            # Se o último commit não foi coletado ainda, ou a diferença de datas for maior que 30 dias
+            if last_commit_date is None or (commit_date - last_commit_date).days >= 30:
+                self.repo_commits.append(commit.hash)
+                last_commit_date = commit_date  # Atualiza a data do último commit
+
         print("Total de commits: ", len(self.repo_commits))
 
     def process_commits(self):
