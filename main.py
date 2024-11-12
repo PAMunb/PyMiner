@@ -1,14 +1,17 @@
+import logging
 from feature_counter import FeatureCounter
 from type_hint_visitor import TypeHintVisitor
 import csv
 import os
 import sys
 
+logger = logging.getLogger(__name__)
+
 if __name__ == "__main__":
     
     # Verifica se o caminho do arquivo CSV foi fornecido como argumento de linha de comando
     if len(sys.argv) < 2:
-        print("Por favor, forneça o caminho para o arquivo CSV como argumento de linha de comando.")
+        logger.error("Por favor, forneça o caminho para o arquivo CSV como argumento de linha de comando.")
         sys.exit(1)
     
     # Caminho para o arquivo CSV

@@ -73,7 +73,7 @@ class FeatureCounter:
     def process_file(self, file, visitors):
         
         # Log indicando qual arquivo está sendo processado e qual thread está sendo usada
-        logger.info(f"Thread {threading.current_thread().name} processando arquivo: {file}")
+        # logger.info(f"Thread {threading.current_thread().name} processando arquivo: {file}")
         
         file_path = os.path.join(self.repo_manager.get_clone_path(), file)
         file_metrics = {visitor: visitor.metrics.copy() for visitor in visitors}
@@ -115,7 +115,7 @@ class FeatureCounter:
                     writer.writerow(row)
 
         except PermissionError as e:
-            print(f"Permission Error: {e}")
+            logger.error(f'Erro de permissão ao criar o arquivo: {e}')
             os.remove(output_path)
 
         

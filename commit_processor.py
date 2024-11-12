@@ -1,6 +1,9 @@
 import os
 from pydriller import Repository
 from datetime import timedelta
+import logging
+
+logger = logging.getLogger(__name__)
 
 class CommitProcessor:
     def __init__(self, repo_manager, start_date):
@@ -25,22 +28,23 @@ class CommitProcessor:
                 self.repo_commits.append(commit.hash)
                 last_commit_date = commit_date  # Atualiza a data do último commit
 
-        print("Total de commits: ", len(self.repo_commits))
+        logger.info(f"Total de commits: {len(self.repo_commits)}")
 
     def process_commits(self):
         if not self.repo:
             self.repo = self.repo_manager.get_repo()
-
+        commit_count = len(self.repo_commits)
         for commit in self.repo_commits:
             self.repo.git.checkout(commit)
-            print(f'Commit: {commit}')
+            logger.info(f"Commit {commit_count}/{len(self.repo_commits)}: {commit}")
 
             # Obtém o commit completo usando Repository novamente
             repo = Repository(self.repo_manager.repo_url)
             commit_details = next((c for c in repo.traverse_commits() if c.hash == commit), None)
 
             if not commit_details:
-                print(f'Commit {commit.hash} não encontrado.')
+                logger.error(f'Commit {commit.hash} não encontrado.')
+                commit_count -= 1
                 continue
 
             self.repo_files = [
@@ -49,6 +53,7 @@ class CommitProcessor:
                 for file in files if file.endswith('.py')
             ]
             if len(self.repo_files) > 0:
-                print("Total de arquivos:", len(self.repo_files))
+                logger.info(f"Total de arquivos: {len(self.repo_files)}")
             
+            commit_count -= 1
             yield commit_details, self.repo_files
