@@ -24,37 +24,37 @@ class TypeParameterVisitor(ast.NodeVisitor):
     def visit_TypeVar(self, node):
         if node not in self.visited_nodes:
             self.visited_nodes.add(node)
-        if node.bound:
-            if isinstance(node.bound, ast.Tuple):
-                self.metrics['type_vars_constraints'] += 1
-                if self.current_file not in self.metrics['type_vars_constraints_files']:
-                    self.metrics['type_vars_constraints_files'].add(self.current_file) 
-            else:
-                self.metrics['type_vars_bounds'] += 1             
-                if self.current_file not in self.metrics['type_vars_bounds_files']:
-                    self.metrics['type_vars_bounds_files'].add(self.current_file)                  
+            if node.bound:
+                if isinstance(node.bound, ast.Tuple):
+                    self.metrics['type_vars_constraints'] += 1
+                    if self.current_file not in self.metrics['type_vars_constraints_files']:
+                        self.metrics['type_vars_constraints_files'].add(self.current_file) 
+                else:
+                    self.metrics['type_vars_bounds'] += 1             
+                    if self.current_file not in self.metrics['type_vars_bounds_files']:
+                        self.metrics['type_vars_bounds_files'].add(self.current_file)                  
         self.generic_visit(node)
         
     def visit_ParamSpec(self, node):
         if node not in self.visited_nodes:
             self.visited_nodes.add(node)
-        self.metrics['type_param_spec'] += 1
-        if self.current_file not in self.metrics['type_param_spec_files']:
-            self.metrics['type_param_spec_files'].add(self.current_file) 
+            self.metrics['type_param_spec'] += 1
+            if self.current_file not in self.metrics['type_param_spec_files']:
+                self.metrics['type_param_spec_files'].add(self.current_file) 
         self.generic_visit(node)
     
     def visit_TypeVarTuple(self, node):
         if node not in self.visited_nodes:
             self.visited_nodes.add(node)
-        self.metrics['type_var_tuple'] += 1
-        if self.current_file not in self.metrics['type_var_tuple_files']:
-            self.metrics['type_var_tuple_files'].add(self.current_file)
+            self.metrics['type_var_tuple'] += 1
+            if self.current_file not in self.metrics['type_var_tuple_files']:
+                self.metrics['type_var_tuple_files'].add(self.current_file)
         self.generic_visit(node)
         
     def visit_TypeAlias(self, node):
         if node not in self.visited_nodes:
             self.visited_nodes.add(node)
-        self.metrics['type_alias'] += 1
-        if self.current_file not in self.metrics['type_alias_files']:
-            self.metrics['type_alias_files'].add(self.current_file)
+            self.metrics['type_alias'] += 1
+            if self.current_file not in self.metrics['type_alias_files']:
+                self.metrics['type_alias_files'].add(self.current_file)
         self.generic_visit(node)
