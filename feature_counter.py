@@ -1,3 +1,6 @@
+import logging
+import threading
+import concurrent.futures
 from datetime import datetime
 import os
 import csv
@@ -5,6 +8,10 @@ import ast
 
 from commit_processor import CommitProcessor
 from repo_manager import RepoManager
+
+# Configurando o Logger
+logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
+logger = logging.getLogger(__name__)
 
 class FeatureCounter:
     def __init__(self, repo_url, feature_visitor_classes, start_date=datetime(2024, 11, 10)):
@@ -16,6 +23,8 @@ class FeatureCounter:
     def process(self):
         self.repo_manager.clone_repo()
         self.commit_processor.collect_commits()
+        
+        visitors = [visitor_class() for visitor_class in self.feature_visitor_classes]
 
         for commit_details, repo_files in self.commit_processor.process_commits():
             
@@ -25,51 +34,71 @@ class FeatureCounter:
                 'commit_hash': commit_details.hash,
                 'files': len(repo_files)
             }
-            
+                        
+            # Inicialize as métricas acumuladas para todos os visitantes
+            for visitor in visitors:
+                # Inicializa as métricas do visitante com zero ou conjuntos vazios
+                visitor.metrics = {key: 0 if isinstance(val, int) else set()
+                                            for key, val in visitor.metrics.items()}
+                # Adiciona as chaves de métricas ao accumulated_results
+                for key in visitor.metrics.keys():
+                    accumulated_results[key] = 0
+
             errors = 0
-            
-            for visitor_class in self.feature_visitor_classes:
-                visitor_instance = visitor_class()
-                 
-                # Inicializa as métricas do visitante para o commit atual
-                visitor_instance.metrics = {key: 0 if isinstance(val, int) else set() 
-                                        for key, val in visitor_instance.metrics.items()}
-                
-                for key, _ in visitor_instance.metrics.items():
-                    accumulated_results[f'{key}'] = 0
-                    
-                accumulated_results['errors'] = 0
 
+            # Usando multithreading para processar os arquivos
+            with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+                futures = []
                 for file in repo_files:
-                    file_path = os.path.join(self.repo_manager.get_clone_path(), file)
-                    try:
-                        with open(file_path, 'r') as f:
-                            file_content = f.read()
-                        parsed_code = ast.parse(file_content)
-                        
-                        visitor_instance.set_current_file(file)
-                        
-                        visitor_instance.visit(parsed_code)
-                        
-                        # Acumula as métricas por arquivo
-                        for key, value in visitor_instance.metrics.items():
-                            if isinstance(value, int):
-                                accumulated_results[key] += value
-                            elif isinstance(value, set):
-                                accumulated_results[key] += len(value)
-
-                    except Exception as e:
-                        print(f'Erro no arquivo {file}: {e}')
-                        errors += 1  # Incrementa o contador de erros para o arquivo atual
+                    futures.append(executor.submit(self.process_file, file, visitors))
                 
-                for key, value in visitor_instance.metrics.items():
-                    if isinstance(value, int):
-                        accumulated_results[f'{key}'] = value
-                    elif isinstance(value, set):
-                        accumulated_results[f'{key}'] = len(value)
-            
+                # Aguarda a conclusão de todas as threads e coleta os resultados
+                for future in concurrent.futures.as_completed(futures):
+                    future_result = future.result()
+                    errors += future_result['errors']
+                    for visitor, visitor_metrics in future_result['metrics'].items():
+                        for key, value in visitor_metrics.items():
+                            # Verifica se o valor é um inteiro ou um set
+                            if isinstance(value, int):
+                                accumulated_results[key] = value  # Soma o valor diretamente
+                            elif isinstance(value, set):
+                                accumulated_results[key] = len(value)  # Soma o tamanho do set
+                            
+                            
+            # Adiciona a contagem de erros ao final do dicionário accumulated_results
             accumulated_results['errors'] = errors
+            # Armazena o resultado acumulado para o commit atual
             self.results.append(accumulated_results)
+
+    def process_file(self, file, visitors):
+        
+        # Log indicando qual arquivo está sendo processado e qual thread está sendo usada
+        logger.info(f"Thread {threading.current_thread().name} processando arquivo: {file}")
+        
+        file_path = os.path.join(self.repo_manager.get_clone_path(), file)
+        file_metrics = {visitor: visitor.metrics.copy() for visitor in visitors}
+        errors = 0
+        
+        try:
+            with open(file_path, 'r') as f:
+                file_content = f.read()
+            parsed_code = ast.parse(file_content)
+
+            for visitor in visitors:
+                visitor.set_current_file(file)
+                visitor.visit(parsed_code)
+
+        except Exception as e:
+            logger.error(f'Erro no arquivo {file}: {e}')
+            errors += 1
+        
+        # Coleta as métricas após o processamento do arquivo
+        result = {
+            'errors': errors,
+            'metrics': {visitor: visitor.metrics for visitor in visitors}
+        }
+        
+        return result
 
     def export_to_csv(self, output_path):
         try:
