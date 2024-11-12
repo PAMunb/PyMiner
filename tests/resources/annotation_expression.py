@@ -85,3 +85,24 @@ async def main():
 
 # Executando o loop assíncrono
 asyncio.run(main())
+
+
+# exemplos para serem ignorados
+
+def soma(a, b):
+    return a + b
+
+def saudacao(nome):
+    print(f"Olá, {nome}!")
+    
+def fatorial(n):
+    if n == 0:
+        return 1
+    else:
+        return n * fatorial(n - 1)
+    
+def is_par(n):
+    return n % 2 == 0
+
+def filtra_pares(numeros):
+    return [n for n in numeros if n % 2 == 0]
