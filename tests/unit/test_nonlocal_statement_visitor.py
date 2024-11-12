@@ -2,6 +2,7 @@ import ast
 import unittest
 import os
 
+
 from nonlocal_statement_visitor import NonlocalStatementVisitor
 
 path = os.getcwd()
@@ -29,14 +30,12 @@ class TestNonlocalStatementVisitor(unittest.TestCase):
         visitor = NonlocalStatementVisitor()
         
         visitor.set_current_file('tests/resources/non_locals.py')
-
-        # Visit the AST tree
+        
         visitor.visit(tree)
 
         # Assert that the count is correct
         self.assertEqual(visitor.metrics['nonlocal'], 7)
         self.assertEqual(len(visitor.metrics['nonlocal_files']),1)
- 
 
 if __name__ == '__main__':
     unittest.main()
