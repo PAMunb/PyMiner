@@ -1,10 +1,12 @@
 import logging
+
 from feature_counter import FeatureCounter
 from type_hint_visitor import TypeHintVisitor
 from type_parameter_visitor import TypeParameterVisitor
 from keyword_only_arguments_visitor import KeywordOnlyArgumentsVisitor
+from function_annotations_visitor import FunctionAnnotationsVisitor
+
 import csv
-import os
 import sys
 
 logger = logging.getLogger(__name__)
@@ -34,6 +36,6 @@ if __name__ == "__main__":
         owner = repo_info["owner"]
         repo = repo_info["repo"]
         repo_url = f"https://github.com/{owner}/{repo}.git"
-        feature_counter = FeatureCounter(repo_url, [KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor])
+        feature_counter = FeatureCounter(repo_url, [FunctionAnnotationsVisitor,KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor])
         feature_counter.process()
         feature_counter.export_to_csv(f"results/{owner}_{repo}.csv")

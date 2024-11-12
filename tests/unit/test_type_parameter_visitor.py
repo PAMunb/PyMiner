@@ -20,13 +20,13 @@ class TestTypeParameterVisitor(unittest.TestCase):
    
     def test_type_stmt(self):
         
-        code = loader('tests/resources/type_stmt.py')
+        code = loader('tests/resources/type_parameters.py')
         tree = ast.parse(code)
 
         # Create a TypeParameterVisitor instance
         visitor = TypeParameterVisitor()
         
-        visitor.set_current_file("tests/resources/type_stmt.py")
+        visitor.set_current_file("tests/resources/type_parameters.py")
 
         # Visit the AST tree
         visitor.visit(tree)

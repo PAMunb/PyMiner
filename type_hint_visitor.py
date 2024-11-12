@@ -9,12 +9,12 @@ class TypeHintVisitor(ast.NodeVisitor):
             'type_hint_set': 0,
             'type_hint_frozenset': 0,
             'type_hint_type': 0,
-            'type_hint_files_list': set(),
-            'type_hint_files_tuple': set(),
-            'type_hint_files_dict': set(),
-            'type_hint_files_set': set(),
-            'type_hint_files_frozenset': set(),
-            'type_hint_files_type': set(),
+            'type_hint_list_files': set(),
+            'type_hint_tuple_files': set(),
+            'type_hint_dict_files': set(),
+            'type_hint_set_files': set(),
+            'type_hint_frozenset_files': set(),
+            'type_hint_type_files': set(),
             'statements': 0
         }
         self.visited_nodes = set()  # Conjunto para armazenar nós únicos já visitados
@@ -115,8 +115,8 @@ class TypeHintVisitor(ast.NodeVisitor):
                 type_name = node.value.id
                 if 'type_hint_'+type_name in self.metrics:
                     self.metrics['type_hint_'+type_name] += 1
-                    if self.current_file not in self.metrics['type_hint_files_'+type_name]:
-                        self.metrics['type_hint_files_'+type_name].add(self.current_file)
+                    if self.current_file not in self.metrics['type_hint_'+type_name+'_files']:
+                        self.metrics['type_hint_'+type_name+'_files'].add(self.current_file)
             else:
                 self.extract_annotation(node.value)
         elif isinstance(node, ast.Name):
@@ -124,8 +124,8 @@ class TypeHintVisitor(ast.NodeVisitor):
             type_name = node.id
             if 'type_hint_'+type_name in self.metrics:
                 self.metrics['type_hint_'+type_name] += 1
-                if self.current_file not in self.metrics['type_hint_files_'+type_name]:
-                    self.metrics['type_hint_files_'+type_name].add(self.current_file)
+                if self.current_file not in self.metrics['type_hint_'+type_name+'_files']:
+                    self.metrics['type_hint_'+type_name+'_files'].add(self.current_file)
         elif isinstance(node, ast.AnnAssign):
             if node.annotation:
                 self.extract_annotation(node.annotation)
@@ -136,8 +136,8 @@ class TypeHintVisitor(ast.NodeVisitor):
                 type_name = node.value
                 if 'type_hint_'+type_name in self.metrics:
                     self.metrics['type_hint_'+type_name] += 1
-                    if self.current_file not in self.metrics['type_hint_files_'+type_name]:
-                        self.metrics['type_hint_files_'+type_name].add(self.current_file)
+                    if self.current_file not in self.metrics['type_hint_'+type_name+'_files']:
+                        self.metrics['type_hint_'+type_name+'_files'].add(self.current_file)
         elif isinstance(node, ast.Attribute):
             # Aqui lidamos com anotações que são atributos de módulos
             # print(f'Encontrado Annotation Name Id: {node.value.id}.{node.attr}')
