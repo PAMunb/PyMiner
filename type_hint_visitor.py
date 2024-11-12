@@ -3,18 +3,18 @@ import ast
 class TypeHintVisitor(ast.NodeVisitor):
     def __init__(self):
         self.metrics = {
-            'type_hint_count_list': 0,
-            'type_hint_count_tuple': 0,
-            'type_hint_count_dict': 0,
-            'type_hint_count_set': 0,
-            'type_hint_count_frozenset': 0,
-            'type_hint_count_type': 0,
-            'type_hint_count_files_list': set(),
-            'type_hint_count_files_tuple': set(),
-            'type_hint_count_files_dict': set(),
-            'type_hint_count_files_set': set(),
-            'type_hint_count_files_frozenset': set(),
-            'type_hint_count_files_type': set(),
+            'type_hint_list': 0,
+            'type_hint_tuple': 0,
+            'type_hint_dict': 0,
+            'type_hint_set': 0,
+            'type_hint_frozenset': 0,
+            'type_hint_type': 0,
+            'type_hint_files_list': set(),
+            'type_hint_files_tuple': set(),
+            'type_hint_files_dict': set(),
+            'type_hint_files_set': set(),
+            'type_hint_files_frozenset': set(),
+            'type_hint_files_type': set(),
             'statements': 0
         }
         self.visited_nodes = set()  # Conjunto para armazenar nós únicos já visitados
@@ -113,19 +113,19 @@ class TypeHintVisitor(ast.NodeVisitor):
             if isinstance(node.value, ast.Name):
                 # print(f'Encontrado Subscript Annotation Id: {node.value.id}')
                 type_name = node.value.id
-                if 'type_hint_count_'+type_name in self.metrics:
-                    self.metrics['type_hint_count_'+type_name] += 1
-                    if self.current_file not in self.metrics['type_hint_count_files_'+type_name]:
-                        self.metrics['type_hint_count_files_'+type_name].add(self.current_file)
+                if 'type_hint_'+type_name in self.metrics:
+                    self.metrics['type_hint_'+type_name] += 1
+                    if self.current_file not in self.metrics['type_hint_files_'+type_name]:
+                        self.metrics['type_hint_files_'+type_name].add(self.current_file)
             else:
                 self.extract_annotation(node.value)
         elif isinstance(node, ast.Name):
             # print(f'Encontrado Annotation Name Id: {node.id}')            
             type_name = node.id
-            if 'type_hint_count_'+type_name in self.metrics:
-                self.metrics['type_hint_count_'+type_name] += 1
-                if self.current_file not in self.metrics['type_hint_count_files_'+type_name]:
-                    self.metrics['type_hint_count_files_'+type_name].add(self.current_file)
+            if 'type_hint_'+type_name in self.metrics:
+                self.metrics['type_hint_'+type_name] += 1
+                if self.current_file not in self.metrics['type_hint_files_'+type_name]:
+                    self.metrics['type_hint_files_'+type_name].add(self.current_file)
         elif isinstance(node, ast.AnnAssign):
             if node.annotation:
                 self.extract_annotation(node.annotation)
@@ -134,16 +134,16 @@ class TypeHintVisitor(ast.NodeVisitor):
             # print(f'Encontrado Annotation Name Id: {node.value}')
             if isinstance(node.value, str):
                 type_name = node.value
-                if 'type_hint_count_'+type_name in self.metrics:
-                    self.metrics['type_hint_count_'+type_name] += 1
-                    if self.current_file not in self.metrics['type_hint_count_files_'+type_name]:
-                        self.metrics['type_hint_count_files_'+type_name].add(self.current_file)
+                if 'type_hint_'+type_name in self.metrics:
+                    self.metrics['type_hint_'+type_name] += 1
+                    if self.current_file not in self.metrics['type_hint_files_'+type_name]:
+                        self.metrics['type_hint_files_'+type_name].add(self.current_file)
         elif isinstance(node, ast.Attribute):
             # Aqui lidamos com anotações que são atributos de módulos
             # print(f'Encontrado Annotation Name Id: {node.value.id}.{node.attr}')
             # type_name = f'{node.value.id}.{node.attr}'
-            # if type_name in self.type_hint_counts:
-            #     self.type_hint_counts[type_name] += 1
+            # if type_name in self.type_hints:
+            #     self.type_hints[type_name] += 1
             pass
                 
     def print_file_counts(self):
