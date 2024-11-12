@@ -14,7 +14,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class FeatureCounter:
-    def __init__(self, repo_url, feature_visitor_classes, start_date=datetime(2012, 1, 1)):
+    def __init__(self, repo_url, feature_visitor_classes, start_date=datetime(2024, 1, 1)):
         self.repo_manager = RepoManager(repo_url)
         self.commit_processor = CommitProcessor(self.repo_manager, start_date)
         self.feature_visitor_classes = feature_visitor_classes
