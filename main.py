@@ -33,7 +33,7 @@ if __name__ == "__main__":
     # Caminho para o arquivo CSV
     csv_file_path = sys.argv[1]
     
-    # Exemplo de data e número de threads
+    # Configurações para o processamento
     start_date = datetime(2012, 1, 1)  # Data para filtrar os commits
     max_threads = 4  # Número de threads a ser utilizado
     steps = 30 # Número de dias entre os commits
