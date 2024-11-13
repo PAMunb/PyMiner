@@ -14,11 +14,12 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 logger = logging.getLogger(__name__)
 
 class FeatureCounter:
-    def __init__(self, repo_url, feature_visitor_classes, start_date=datetime(2024, 1, 1)):
+    def __init__(self, repo_url, feature_visitor_classes, start_date=datetime(2012, 1, 1), max_threads=8, steps=30):
         self.repo_manager = RepoManager(repo_url)
-        self.commit_processor = CommitProcessor(self.repo_manager, start_date)
+        self.commit_processor = CommitProcessor(self.repo_manager, start_date, steps)
         self.feature_visitor_classes = feature_visitor_classes
         self.results = []
+        self.max_threads = max_threads
 
     def process(self):
         self.repo_manager.clone_repo()
@@ -50,7 +51,7 @@ class FeatureCounter:
             errors = 0
 
             # Usando multithreading para processar os arquivos
-            with concurrent.futures.ThreadPoolExecutor(max_workers=8) as executor:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=self.max_threads) as executor:
                 futures = []
                 for file in repo_files:
                     futures.append(executor.submit(self.process_file, file, visitors))

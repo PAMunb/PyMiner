@@ -6,12 +6,13 @@ import logging
 logger = logging.getLogger(__name__)
 
 class CommitProcessor:
-    def __init__(self, repo_manager, start_date):
+    def __init__(self, repo_manager, start_date, steps):
         self.repo_manager = repo_manager
         self.start_date = start_date
         self.repo = None
         self.repo_commits = []
         self.repo_files = []
+        self.steps = steps
 
     def collect_commits(self):
         # Inicializa o repositório se ainda não o fez
@@ -24,7 +25,7 @@ class CommitProcessor:
             commit_date = commit.author_date  # A data do commit
 
             # Se o último commit não foi coletado ainda, ou a diferença de datas for maior que 30 dias
-            if last_commit_date is None or (commit_date - last_commit_date).days >= 30:
+            if last_commit_date is None or (commit_date - last_commit_date).days >= self.steps:
                 self.repo_commits.append(commit.hash)
                 last_commit_date = commit_date  # Atualiza a data do último commit
 

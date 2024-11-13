@@ -1,6 +1,7 @@
 import logging
 import csv
 import sys
+from datetime import datetime
 
 from feature_counter import FeatureCounter
 from visitors.type_hint_visitor import TypeHintVisitor
@@ -32,6 +33,11 @@ if __name__ == "__main__":
     # Caminho para o arquivo CSV
     csv_file_path = sys.argv[1]
     
+    # Exemplo de data e número de threads
+    start_date = datetime(2012, 1, 1)  # Data para filtrar os commits
+    max_threads = 4  # Número de threads a ser utilizado
+    steps = 30 # Número de dias entre os commits
+    
     # Lista de repositórios para processar
     repositories = []
 
@@ -47,6 +53,6 @@ if __name__ == "__main__":
         owner = repo_info["owner"]
         repo = repo_info["repo"]
         repo_url = f"https://github.com/{owner}/{repo}.git"
-        feature_counter = FeatureCounter(repo_url, [DecoratorsWithExpressionVisitor,UnionOperatorsVisitor,AsynchronousComprehensionVisitor,UnderscoresNumericLiteralsVisitor,MatrixMultiplicationVisitor,CoroutinesVisitor,LiteralStringInterpolationVisitor,ExceptionGroupsVisitor,StructuralPatternMatchingVisitor,UnpackVisitor,NonlocalStatementVisitor,FunctionAnnotationsVisitor,KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor])
+        feature_counter = FeatureCounter(repo_url, [DecoratorsWithExpressionVisitor,UnionOperatorsVisitor,AsynchronousComprehensionVisitor,UnderscoresNumericLiteralsVisitor,MatrixMultiplicationVisitor,CoroutinesVisitor,LiteralStringInterpolationVisitor,ExceptionGroupsVisitor,StructuralPatternMatchingVisitor,UnpackVisitor,NonlocalStatementVisitor,FunctionAnnotationsVisitor,KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor], start_date, max_threads, steps)
         feature_counter.process()
         feature_counter.export_to_csv(f"results/{owner}_{repo}.csv")
