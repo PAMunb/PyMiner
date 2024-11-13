@@ -66,3 +66,22 @@ print(message)  # Output: {valor} é uma chave literal e não será formatada: 4
 fruits = ["maçã", "banana", "laranja"]
 message = f"Minhas frutas favoritas são: {', '.join(fruits)}."
 print(message)  # Output: Minhas frutas favoritas são: maçã, banana, laranja.
+
+# Exemplo de f-string com comentário no meio da interpolação
+nome = "João"
+idade = 30
+
+# F-string com comentário dentro
+saudacao = f"Olá, {nome}!"  # Este é o nome da pessoa
+mensagem = f"Você tem {idade} anos."  # Idade de João
+
+# F-string com quebras de linha
+mensagem_completa = f""" 
+Olá, {nome}.
+Você tem {idade} anos.
+Espero que tenha um ótimo dia!
+"""  # Fim da mensagem
+
+print(saudacao)
+print(mensagem)
+print(mensagem_completa)
