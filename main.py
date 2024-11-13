@@ -10,6 +10,7 @@ from unpack_visitor import UnpackVisitor
 from structural_pattern_matching_visitor import StructuralPatternMatchingVisitor
 from exception_groups_visitor import ExceptionGroupsVisitor
 from literal_string_interpolation_visitor import LiteralStringInterpolationVisitor
+from coroutines_visitor import CoroutinesVisitor
 
 import csv
 import sys
@@ -41,6 +42,6 @@ if __name__ == "__main__":
         owner = repo_info["owner"]
         repo = repo_info["repo"]
         repo_url = f"https://github.com/{owner}/{repo}.git"
-        feature_counter = FeatureCounter(repo_url, [LiteralStringInterpolationVisitor,ExceptionGroupsVisitor,StructuralPatternMatchingVisitor,UnpackVisitor,NonlocalStatementVisitor,FunctionAnnotationsVisitor,KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor])
+        feature_counter = FeatureCounter(repo_url, [CoroutinesVisitor,LiteralStringInterpolationVisitor,ExceptionGroupsVisitor,StructuralPatternMatchingVisitor,UnpackVisitor,NonlocalStatementVisitor,FunctionAnnotationsVisitor,KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor])
         feature_counter.process()
         feature_counter.export_to_csv(f"results/{owner}_{repo}.csv")
