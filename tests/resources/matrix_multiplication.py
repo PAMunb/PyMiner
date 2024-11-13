@@ -18,3 +18,9 @@ g = a * 3
 # Multiplicação de matrizes
 e = a @ b
 
+A = np.array([[1, 2], [3, 4]])
+B = np.array([[5, 6], [7, 8]])
+
+# Multiplicação de matrizes antes da PEP 465
+C = np.dot(A, B)
+print(C)
