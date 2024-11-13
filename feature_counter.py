@@ -1,5 +1,4 @@
 import logging
-import threading
 import concurrent.futures
 from datetime import datetime
 import os
@@ -8,6 +7,7 @@ import ast
 
 from commit_processor import CommitProcessor
 from repo_manager import RepoManager
+from underscores_numeric_literals_visitor import UnderscoresNumericLiteralsVisitor
 
 # Configurando o Logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
@@ -24,7 +24,13 @@ class FeatureCounter:
         self.repo_manager.clone_repo()
         self.commit_processor.collect_commits()
         
-        visitors = [visitor_class() for visitor_class in self.feature_visitor_classes]
+        # Criação da lista de visitors
+        visitors = []
+        for visitor_class in self.feature_visitor_classes:
+            if issubclass(visitor_class, UnderscoresNumericLiteralsVisitor):
+                visitors.append(visitor_class("")) 
+            else: 
+                visitors.append(visitor_class())
 
         for commit_details, repo_files in self.commit_processor.process_commits():
             
@@ -85,8 +91,11 @@ class FeatureCounter:
             parsed_code = ast.parse(file_content)
 
             for visitor in visitors:
+                if isinstance(visitor, UnderscoresNumericLiteralsVisitor):
+                    visitor.set_source_code(file_content)
                 visitor.set_current_file(file)
                 visitor.visit(parsed_code)
+
 
         except Exception as e:
             logger.error(f'Erro no arquivo {file}: {e}')
