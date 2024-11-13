@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from type_parameter_visitor import TypeParameterVisitor
+from visitors.type_parameter_visitor import TypeParameterVisitor
 
 path = os.getcwd()
 

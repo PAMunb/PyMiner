@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from underscores_numeric_literals_visitor import UnderscoresNumericLiteralsVisitor
+from visitors.underscores_numeric_literals_visitor import UnderscoresNumericLiteralsVisitor
 
 path = os.getcwd()
 

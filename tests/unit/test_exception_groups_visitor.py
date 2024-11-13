@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from exception_groups_visitor import ExceptionGroupsVisitor
+from visitors.exception_groups_visitor import ExceptionGroupsVisitor
 
 path = os.getcwd()
 

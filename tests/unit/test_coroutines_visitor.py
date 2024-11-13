@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from coroutines_visitor import CoroutinesVisitor
+from visitors.coroutines_visitor import CoroutinesVisitor
 
 path = os.getcwd()
 

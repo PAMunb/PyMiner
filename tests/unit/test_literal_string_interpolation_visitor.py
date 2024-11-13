@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from literal_string_interpolation_visitor import LiteralStringInterpolationVisitor
+from visitors.literal_string_interpolation_visitor import LiteralStringInterpolationVisitor
 
 path = os.getcwd()
 

@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from structural_pattern_matching_visitor import StructuralPatternMatchingVisitor
+from visitors.structural_pattern_matching_visitor import StructuralPatternMatchingVisitor
 
 path = os.getcwd()
 

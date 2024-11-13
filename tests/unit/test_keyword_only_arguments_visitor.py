@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from keyword_only_arguments_visitor import KeywordOnlyArgumentsVisitor
+from visitors.keyword_only_arguments_visitor import KeywordOnlyArgumentsVisitor
 
 path = os.getcwd()
 

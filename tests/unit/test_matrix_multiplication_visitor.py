@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from matrix_multiplication_visitor import MatrixMultiplicationVisitor
+from visitors.matrix_multiplication_visitor import MatrixMultiplicationVisitor
 
 path = os.getcwd()
 

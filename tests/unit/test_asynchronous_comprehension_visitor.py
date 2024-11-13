@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from asynchronous_comprehension_visitor import AsynchronousComprehensionVisitor
+from visitors.asynchronous_comprehension_visitor import AsynchronousComprehensionVisitor
 
 path = os.getcwd()
 

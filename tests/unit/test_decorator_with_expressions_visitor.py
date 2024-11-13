@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from decorator_with_expressions_visitor import DecoratorsWithExpressionVisitor
+from visitors.decorator_with_expressions_visitor import DecoratorsWithExpressionVisitor
 
 path = os.getcwd()
 

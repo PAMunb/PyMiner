@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from type_hint_visitor import TypeHintVisitor
+from visitors.type_hint_visitor import TypeHintVisitor
 
 path = os.getcwd()
 

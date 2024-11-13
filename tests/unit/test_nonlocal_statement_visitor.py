@@ -3,7 +3,7 @@ import unittest
 import os
 
 
-from nonlocal_statement_visitor import NonlocalStatementVisitor
+from visitors.nonlocal_statement_visitor import NonlocalStatementVisitor
 
 path = os.getcwd()
 

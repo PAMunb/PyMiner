@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from union_operators_visitor import UnionOperatorsVisitor
+from visitors.union_operators_visitor import UnionOperatorsVisitor
 
 path = os.getcwd()
 

@@ -7,7 +7,7 @@ import ast
 
 from commit_processor import CommitProcessor
 from repo_manager import RepoManager
-from underscores_numeric_literals_visitor import UnderscoresNumericLiteralsVisitor
+from visitors.underscores_numeric_literals_visitor import UnderscoresNumericLiteralsVisitor
 
 # Configurando o Logger
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')

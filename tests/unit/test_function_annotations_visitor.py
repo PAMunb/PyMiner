@@ -2,7 +2,7 @@ import ast
 import unittest
 import os
 
-from function_annotations_visitor import FunctionAnnotationsVisitor
+from visitors.function_annotations_visitor import FunctionAnnotationsVisitor
 
 path = os.getcwd()
 
