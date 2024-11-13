@@ -69,3 +69,13 @@ result = set_a | set_b  # {1, 2, 3, 4, 5}
 num_a = 5  # 0b0101
 num_b = 3  # 0b0011
 result = num_a | num_b  # 0b0111 (7)
+
+dict1 = {1: "a", 2: "b"}  # Dicionário literal
+dict2 = dict()  # Dicionário criado com dict()
+dict3 = dict({3: "c", 4: "d"})  # Dicionário criado com dict() e argumento literal
+
+# Operação de união (|) entre dicionários
+result = dict1 | dict2
+
+# Operação de união atualizada (|=) entre dicionários
+dict1 |= dict2
