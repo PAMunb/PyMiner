@@ -14,6 +14,10 @@ class UnderscoresNumericLiteralsVisitor(ast.NodeVisitor):
     def set_current_file(self, file_name):
         # Método para setar o arquivo atual
         self.current_file = file_name
+        
+    def set_source_code(self, source_code):
+        # Método para setar o código-fonte
+        self.source_code = source_code
     
     def visit_Constant(self, node):
         if node not in self.visited_nodes:
