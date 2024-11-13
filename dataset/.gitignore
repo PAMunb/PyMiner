@@ -1,0 +1,6 @@
+# Ignora tudo dentro do diretório dataset/
+*
+
+# Exclui o arquivo .gitkeep de ser ignorado
+!.gitkeep
+!.gitignore
