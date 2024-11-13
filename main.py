@@ -24,6 +24,7 @@ logger = logging.getLogger(__name__)
 if __name__ == "__main__":
     
     # Verifica se o caminho do arquivo CSV foi fornecido como argumento de linha de comando
+    # executar o comando: python3 main.py python-projects.csv
     if len(sys.argv) < 2:
         logger.error("Por favor, forneça o caminho para o arquivo CSV como argumento de linha de comando.")
         sys.exit(1)
