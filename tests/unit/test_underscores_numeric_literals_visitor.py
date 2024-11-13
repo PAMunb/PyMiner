@@ -25,7 +25,9 @@ class TestUnderscoresNumericLiteralsVisitor(unittest.TestCase):
         tree = ast.parse(code)
 
         # Create a UnderscoresNumericLiteralsVisitor instance
-        visitor = UnderscoresNumericLiteralsVisitor(code)
+        visitor = UnderscoresNumericLiteralsVisitor()
+        
+        visitor.set_source_code(code)
 
         visitor.set_current_file('tests/resources/num_literals.py')
 

@@ -2,12 +2,12 @@ import ast
 
 class UnderscoresNumericLiteralsVisitor(ast.NodeVisitor):
 
-    def __init__(self, source_code):
+    def __init__(self):
         self.metrics = {
             'underscores_num_literals' : 0,
             'underscores_num_literals_files' : set(),
          }        
-        self.source_code = source_code.splitlines()
+        self.source_code = ""
         self.visited_nodes = set()  # Conjunto para armazenar nós únicos já visitados
         self.current_file = ""  # Para armazenar o nome do arquivo atual
 
@@ -17,7 +17,7 @@ class UnderscoresNumericLiteralsVisitor(ast.NodeVisitor):
         
     def set_source_code(self, source_code):
         # Método para setar o código-fonte
-        self.source_code = source_code
+        self.source_code = source_code.splitlines()
     
     def visit_Constant(self, node):
         if node not in self.visited_nodes:

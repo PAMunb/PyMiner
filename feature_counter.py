@@ -27,10 +27,7 @@ class FeatureCounter:
         # Criação da lista de visitors
         visitors = []
         for visitor_class in self.feature_visitor_classes:
-            if issubclass(visitor_class, UnderscoresNumericLiteralsVisitor):
-                visitors.append(visitor_class("")) 
-            else: 
-                visitors.append(visitor_class())
+            visitors.append(visitor_class())
 
         for commit_details, repo_files in self.commit_processor.process_commits():
             
