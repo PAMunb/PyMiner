@@ -21,16 +21,20 @@ class CommitProcessor:
             self.repo = self.repo_manager.get_repo()
 
         last_commit_date = None  # Variável para armazenar a data do último commit coletado
+        
+        try:
+            for commit in Repository(self.repo_manager.repo_url, since=self.start_date).traverse_commits():
+                commit_date = commit.author_date
 
-        for commit in Repository(self.repo_manager.repo_url, since=self.start_date).traverse_commits():
-            commit_date = commit.author_date  # A data do commit
+                # Se o último commit não foi coletado ainda, ou a diferença de datas for maior que 30 dias
+                if last_commit_date is None or (commit_date - last_commit_date).days >= self.steps:
+                    self.repo_commits.append(commit.hash)
+                    last_commit_date = commit_date
 
-            # Se o último commit não foi coletado ainda, ou a diferença de datas for maior que 30 dias
-            if last_commit_date is None or (commit_date - last_commit_date).days >= self.steps:
-                self.repo_commits.append(commit.hash)
-                last_commit_date = commit_date  # Atualiza a data do último commit
-
-        logger.info(f"Total de commits: {len(self.repo_commits)}")
+            logger.info(f"Total de commits: {len(self.repo_commits)}")
+            
+        except Exception as e:
+            logger.error(f"Erro ao coletar os commits do repositório {self.repo_manager.repo_name}: {str(e)}")
         
     def should_ignore_file(self, file_path):
         ignored_files = [

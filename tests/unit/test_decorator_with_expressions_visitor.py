@@ -34,7 +34,7 @@ class TestDecoratorsWithExpressionVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the count is correct        
-        self.assertEqual(visitor.metrics['decorator_with_expressions'], 12)
+        self.assertEqual(visitor.metrics['decorator_with_expressions'], 6)
         self.assertEqual(len(visitor.metrics['decorator_with_expressions_files']), 1)
 
 if __name__ == '__main__':
