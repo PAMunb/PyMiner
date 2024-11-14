@@ -2,6 +2,7 @@ import logging
 import csv
 import sys
 from datetime import datetime
+import os
 
 from feature_counter import FeatureCounter
 from visitors.type_hint_visitor import TypeHintVisitor
@@ -52,6 +53,12 @@ if __name__ == "__main__":
     for repo_info in repositories:
         owner = repo_info["owner"]
         repo = repo_info["repo"]
+        
+        file_path = f"results/{owner}_{repo}.csv"
+        if os.path.isfile(file_path):
+            logger.info(f"Repositório {owner}/{repo} ja processado, pulando repositório.")
+            continue
+        
         repo_url = f"https://github.com/{owner}/{repo}.git"
         feature_counter = FeatureCounter(repo_url, [DecoratorsWithExpressionVisitor,UnionOperatorsVisitor,AsynchronousComprehensionVisitor,UnderscoresNumericLiteralsVisitor,MatrixMultiplicationVisitor,CoroutinesVisitor,LiteralStringInterpolationVisitor,ExceptionGroupsVisitor,StructuralPatternMatchingVisitor,UnpackVisitor,NonlocalStatementVisitor,FunctionAnnotationsVisitor,KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor], start_date, max_threads, steps)
         feature_counter.process()

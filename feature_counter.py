@@ -32,10 +32,12 @@ class FeatureCounter:
 
         for commit_details, repo_files in self.commit_processor.process_commits():
             
+            commit_date = datetime.fromtimestamp(commit_details.authored_date).strftime('%Y-%m-%d')
+            
             accumulated_results = {
                 'project': self.repo_manager.repo_name,
-                'date': str(commit_details.author_date.strftime('%Y-%m-%d')),
-                'commit_hash': commit_details.hash,
+                'date': commit_date,
+                'commit_hash': commit_details.hexsha,
                 'files': len(repo_files)
             }
                         
@@ -96,7 +98,7 @@ class FeatureCounter:
 
 
         except Exception as e:
-            logger.error(f'Erro no arquivo {file}: {e}')
+            # logger.error(f'Erro no arquivo {file}: {e}')
             errors += 1
         
         # Coleta as métricas após o processamento do arquivo
