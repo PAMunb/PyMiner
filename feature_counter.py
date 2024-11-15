@@ -93,12 +93,10 @@ class FeatureCounter:
             
             file_content = self._read_file(file_path)
             if not file_content:
-                logger.error(f"Conteúdo do arquivo vazio ou falha na leitura: {file_path}")
                 return {'errors': 1, 'visitor_errors': {}, 'metrics': {}}
 
-            parsed_code = self._parse_code(file_content)
+            parsed_code = self._parse_code(file_content,file_path)
             if not parsed_code:
-                logger.error(f"Falha ao analisar o código do arquivo: {file_path}")
                 return {'errors': 1, 'visitor_errors': {}, 'metrics': {}}
             
             for visitor in visitors:
@@ -130,17 +128,19 @@ class FeatureCounter:
             logger.error(f'Erro ao processar arquivo {file} do projeto {self.repo_manager.repo_name}: {e}')
             return {'errors': 1, 'visitor_errors': {}, 'metrics': {}}
     
-    def _parse_code(self, file_content):
+    def _parse_code(self, file_content, file_path):
         try:
             return ast.parse(file_content)
-        except SyntaxError:
+        except SyntaxError as e:
+            logger.error(f"Falha ao analisar o código do arquivo: {file_path}: {e}")
             return None
         
     def _read_file(self, file_path):
         try:
             with open(file_path, 'r') as f:
                 return f.read()
-        except FileNotFoundError:
+        except FileNotFoundError as e:
+            logger.error(f"Conteúdo do arquivo vazio ou falha na leitura: {file_path}: {e}")
             return None  
 
 
