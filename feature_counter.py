@@ -47,9 +47,8 @@ class FeatureCounter:
                 # Inicialize as métricas acumuladas para todos os visitantes
                 for visitor in visitors:
                     # Inicializa as métricas do visitante com zero ou conjuntos vazios
-                    if visitor.metrics is None:
-                        visitor.metrics = {key: 0 if isinstance(val, int) else set()
-                                                for key, val in visitor.metrics.items()}
+                    visitor.metrics = {key: 0 if isinstance(val, int) else set()
+                                            for key, val in visitor.metrics.items()}
                     # Adiciona as chaves de métricas ao accumulated_results
                     for key in visitor.metrics.keys():
                         accumulated_results[key] = 0
