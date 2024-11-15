@@ -1,6 +1,6 @@
 import os
 from pydriller import Repository
-from datetime import timedelta
+from datetime import datetime, timedelta
 import logging
 from git import Repo
 
@@ -58,8 +58,6 @@ class CommitProcessor:
             try:
                 
                 self.repo.git.checkout(commit)
-                
-                logger.info(f"Commit {commit_count}/{len(self.repo_commits)}: {commit} from {self.repo_manager.repo_name}")
 
                 # Obtém o commit completo usando Repository novamente
                 commit_details = self.get_commit_by_hash(commit)
@@ -77,7 +75,9 @@ class CommitProcessor:
                 ]
 
                 if len(self.repo_files) > 0:
-                    logger.info(f"Total de arquivos: {len(self.repo_files)}")
+                    commit_date = datetime.fromtimestamp(commit_details.authored_date).strftime('%Y-%m-%d')
+                    
+                    logger.info(f"Commit {commit_count}/{len(self.repo_commits)}: hash:{commit}/{commit_date} from {self.repo_manager.repo_name} | Total de arquivos: {len(self.repo_files)}")
                 
                 commit_count -= 1
                 yield commit_details, self.repo_files
