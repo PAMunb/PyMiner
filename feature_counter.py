@@ -109,7 +109,7 @@ class FeatureCounter:
                     # Registra o erro específico do visitor sem interromper os outros
                     visitor_name = visitor.__class__.__name__
                     visitor_errors[visitor_name] = str(visitor_error)
-                    logger.error(f"Erro ao processar o visitor {visitor_name} no arquivo {file}: {visitor_error}")
+                    # logger.error(f"Erro ao processar o visitor {visitor_name} no arquivo {file}: {visitor_error}")
             
             if len(visitor_errors) > 0:
                 errors += 1
@@ -125,14 +125,14 @@ class FeatureCounter:
         
         except Exception as e:
             errors += 1
-            logger.error(f'Erro ao processar arquivo {file} do projeto {self.repo_manager.repo_name}: {e}')
+            # logger.error(f'Erro ao processar arquivo {file} do projeto {self.repo_manager.repo_name}: {e}')
             return {'errors': 1, 'visitor_errors': {}, 'metrics': {}}
     
     def _parse_code(self, file_content, file_path):
         try:
             return ast.parse(file_content)
         except SyntaxError as e:
-            logger.error(f"Falha ao analisar o código do arquivo: {file_path}: {e}")
+            # logger.error(f"Falha ao analisar o código do arquivo: {file_path}: {e}")
             return None
         
     def _read_file(self, file_path):
@@ -140,7 +140,7 @@ class FeatureCounter:
             with open(file_path, 'r') as f:
                 return f.read()
         except FileNotFoundError as e:
-            logger.error(f"Conteúdo do arquivo vazio ou falha na leitura: {file_path}: {e}")
+            # logger.error(f"Conteúdo do arquivo vazio ou falha na leitura: {file_path}: {e}")
             return None  
 
 
