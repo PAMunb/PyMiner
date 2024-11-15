@@ -17,3 +17,5 @@ if [ -d "$DIR" ]; then
 else
   echo "O diretório $DIR não existe."
 fi
+
+# find results/ -type f -name "*.csv" -exec rm {} \;
