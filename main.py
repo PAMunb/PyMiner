@@ -3,6 +3,7 @@ import csv
 import sys
 from datetime import datetime
 import os
+import warnings
 
 from feature_counter import FeatureCounter
 from visitors.type_hint_visitor import TypeHintVisitor
@@ -20,6 +21,9 @@ from visitors.underscores_numeric_literals_visitor import UnderscoresNumericLite
 from visitors.asynchronous_comprehension_visitor import AsynchronousComprehensionVisitor
 from visitors.union_operators_visitor import UnionOperatorsVisitor
 from visitors.decorator_with_expressions_visitor import DecoratorsWithExpressionVisitor
+
+# Desabilitar todos os SyntaxWarnings para evitar que apareçam durante a execução
+warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 logger = logging.getLogger(__name__)
 
@@ -59,7 +63,36 @@ if __name__ == "__main__":
             logger.info(f"Repositório {owner}/{repo} ja processado, pulando repositório.")
             continue
         
+        # # pulando repositórios que precisam de mais de 20G de RAM | critério temporario
+        # elif owner == "lumapictures" and repo == "pymel":
+        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+        #     continue
+
+        # elif owner == "astropy" and repo == "astropy":
+        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+        #     continue
+        
+        # elif owner == "reactionmechanismgenerator" and repo == "rmg-database":
+        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+        #     continue
+
+        # elif owner == "tanghaibao" and repo == "goatools":
+        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+        #     continue
+        
+        # elif owner == "biopython" and repo == "biopython":
+        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+        #     continue
+        
+        # elif owner == "daviddrysdale" and repo == "python-phonenumbers":
+        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+        #     continue
+        
         repo_url = f"https://github.com/{owner}/{repo}.git"
+        # repo_url = f"https://github.com/PAMunb/PyMiner.git"
+        
         feature_counter = FeatureCounter(repo_url, [DecoratorsWithExpressionVisitor,UnionOperatorsVisitor,AsynchronousComprehensionVisitor,UnderscoresNumericLiteralsVisitor,MatrixMultiplicationVisitor,CoroutinesVisitor,LiteralStringInterpolationVisitor,ExceptionGroupsVisitor,StructuralPatternMatchingVisitor,UnpackVisitor,NonlocalStatementVisitor,FunctionAnnotationsVisitor,KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor], start_date, max_threads, steps)
+        
         feature_counter.process()
         feature_counter.export_to_csv(f"results/{owner}_{repo}.csv")
+        # feature_counter.export_to_csv(f"results/PAMunb_PyMiner.csv")
