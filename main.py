@@ -40,7 +40,7 @@ if __name__ == "__main__":
     
     # Configurações para o processamento
     start_date = datetime(2012, 1, 1)  # Data para filtrar os commits
-    max_threads = 4  # Número de threads a ser utilizado
+    max_threads = 8  # Número de threads a ser utilizado
     steps = 30 # Número de dias entre os commits
     
     # Lista de repositórios para processar
@@ -63,35 +63,35 @@ if __name__ == "__main__":
             logger.info(f"Repositório {owner}/{repo} ja processado, pulando repositório.")
             continue
         
-        # # pulando repositórios que precisam de mais de 20G de RAM | critério temporario
-        # elif owner == "lumapictures" and repo == "pymel":
-        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-        #     continue
+        # pulando repositórios que precisam de mais de 20G de RAM | critério temporario
+        elif owner == "lumapictures" and repo == "pymel":
+            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+            continue
 
-        # elif owner == "astropy" and repo == "astropy":
-        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-        #     continue
+        elif owner == "astropy" and repo == "astropy":
+            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+            continue
         
-        # elif owner == "reactionmechanismgenerator" and repo == "rmg-database":
-        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-        #     continue
+        elif owner == "reactionmechanismgenerator" and repo == "rmg-database":
+            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+            continue
 
-        # elif owner == "tanghaibao" and repo == "goatools":
-        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-        #     continue
+        elif owner == "tanghaibao" and repo == "goatools":
+            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+            continue
         
-        # elif owner == "biopython" and repo == "biopython":
-        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-        #     continue
+        elif owner == "biopython" and repo == "biopython":
+            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+            continue
         
-        # elif owner == "daviddrysdale" and repo == "python-phonenumbers":
-        #     logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-        #     continue
+        elif owner == "daviddrysdale" and repo == "python-phonenumbers":
+            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
+            continue
         
         repo_url = f"https://github.com/{owner}/{repo}.git"
         # repo_url = f"https://github.com/PAMunb/PyMiner.git"
         
-        feature_counter = FeatureCounter(repo_url, [DecoratorsWithExpressionVisitor,UnionOperatorsVisitor,AsynchronousComprehensionVisitor,UnderscoresNumericLiteralsVisitor,MatrixMultiplicationVisitor,CoroutinesVisitor,LiteralStringInterpolationVisitor,ExceptionGroupsVisitor,StructuralPatternMatchingVisitor,UnpackVisitor,NonlocalStatementVisitor,FunctionAnnotationsVisitor,KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor], start_date, max_threads, steps)
+        feature_counter = FeatureCounter(repo_url, [UnionOperatorsVisitor,AsynchronousComprehensionVisitor,MatrixMultiplicationVisitor,CoroutinesVisitor,LiteralStringInterpolationVisitor,ExceptionGroupsVisitor,StructuralPatternMatchingVisitor,UnpackVisitor,NonlocalStatementVisitor,FunctionAnnotationsVisitor,KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor], start_date, max_threads, steps)
         
         feature_counter.process()
         feature_counter.export_to_csv(f"results/{owner}_{repo}.csv")
