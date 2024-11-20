@@ -4,6 +4,7 @@ import sys
 from datetime import datetime
 import os
 import warnings
+import concurrent.futures
 
 from feature_counter import FeatureCounter
 from visitors.type_hint_visitor import TypeHintVisitor
@@ -17,18 +18,39 @@ from visitors.exception_groups_visitor import ExceptionGroupsVisitor
 from visitors.literal_string_interpolation_visitor import LiteralStringInterpolationVisitor
 from visitors.coroutines_visitor import CoroutinesVisitor
 from visitors.matrix_multiplication_visitor import MatrixMultiplicationVisitor
-from visitors.underscores_numeric_literals_visitor import UnderscoresNumericLiteralsVisitor
 from visitors.asynchronous_comprehension_visitor import AsynchronousComprehensionVisitor
 from visitors.union_operators_visitor import UnionOperatorsVisitor
-from visitors.decorator_with_expressions_visitor import DecoratorsWithExpressionVisitor
 
 # Desabilitar todos os SyntaxWarnings para evitar que apareçam durante a execução
 warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 logger = logging.getLogger(__name__)
 
-if __name__ == "__main__":
+def process_repository(repo_info, start_date, steps):
     
+    owner = repo_info["owner"]
+    repo = repo_info["repo"]
+    
+    logger.info(f"Iniciando o processamento do repositório {owner}/{repo}")
+
+    repo_url = f"https://github.com/{owner}/{repo}.git"
+    
+    feature_counter = FeatureCounter(
+        repo_url,
+        [UnionOperatorsVisitor, AsynchronousComprehensionVisitor, MatrixMultiplicationVisitor, CoroutinesVisitor,
+         LiteralStringInterpolationVisitor, ExceptionGroupsVisitor, StructuralPatternMatchingVisitor, UnpackVisitor,
+         NonlocalStatementVisitor, FunctionAnnotationsVisitor, KeywordOnlyArgumentsVisitor, TypeParameterVisitor,
+         TypeHintVisitor],
+        start_date, steps
+    )
+
+    feature_counter.process()
+    feature_counter.export_to_csv(f"results/{owner}_{repo}.csv")
+    logger.info(f"Processamento do repositório {owner}/{repo} concluído e resultados salvos.")
+
+
+if __name__ == "__main__":
+
     # Verifica se o caminho do arquivo CSV foi fornecido como argumento de linha de comando
     # executar o comando: python3 main.py python-projects.csv
     if len(sys.argv) < 2:
@@ -40,8 +62,7 @@ if __name__ == "__main__":
     
     # Configurações para o processamento
     start_date = datetime(2012, 1, 1)  # Data para filtrar os commits
-    max_threads = 8  # Número de threads a ser utilizado
-    steps = 30 # Número de dias entre os commits
+    steps = 30  # Número de dias entre os commits
     
     # Lista de repositórios para processar
     repositories = []
@@ -51,48 +72,15 @@ if __name__ == "__main__":
         csv_reader = csv.DictReader(csvfile)
         for row in csv_reader:
             repository_info = {"owner": row["name"].split('/')[0], "repo": row["name"].split('/')[1]}
+            file_path = f"results/{repository_info['owner']}_{repository_info['repo']}.csv"  # Caminho para o arquivo CSV do repositório, exemplo: "results/owner"]}_{repo}.csv"
+            if os.path.isfile(file_path):
+                logger.info(f"Repositório {repository_info['owner']}/{repository_info['repo']} já processado, pulando repositório.")
+                continue
             repositories.append(repository_info)
 
-    # Processa cada repositório
+    # Processa cada repositório sequencialmente
     for repo_info in repositories:
-        owner = repo_info["owner"]
-        repo = repo_info["repo"]
-        
-        file_path = f"results/{owner}_{repo}.csv"
-        if os.path.isfile(file_path):
-            logger.info(f"Repositório {owner}/{repo} ja processado, pulando repositório.")
-            continue
-        
-        # pulando repositórios que precisam de mais de 20G de RAM | critério temporario
-        elif owner == "lumapictures" and repo == "pymel":
-            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-            continue
-
-        elif owner == "astropy" and repo == "astropy":
-            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-            continue
-        
-        elif owner == "reactionmechanismgenerator" and repo == "rmg-database":
-            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-            continue
-
-        elif owner == "tanghaibao" and repo == "goatools":
-            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-            continue
-        
-        elif owner == "biopython" and repo == "biopython":
-            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-            continue
-        
-        elif owner == "daviddrysdale" and repo == "python-phonenumbers":
-            logger.info(f"Repositório {owner}/{repo} muito grande, pulando repositório.")
-            continue
-        
-        repo_url = f"https://github.com/{owner}/{repo}.git"
-        # repo_url = f"https://github.com/PAMunb/PyMiner.git"
-        
-        feature_counter = FeatureCounter(repo_url, [UnionOperatorsVisitor,AsynchronousComprehensionVisitor,MatrixMultiplicationVisitor,CoroutinesVisitor,LiteralStringInterpolationVisitor,ExceptionGroupsVisitor,StructuralPatternMatchingVisitor,UnpackVisitor,NonlocalStatementVisitor,FunctionAnnotationsVisitor,KeywordOnlyArgumentsVisitor,TypeParameterVisitor,TypeHintVisitor], start_date, max_threads, steps)
-        
-        feature_counter.process()
-        feature_counter.export_to_csv(f"results/{owner}_{repo}.csv")
-        # feature_counter.export_to_csv(f"results/PAMunb_PyMiner.csv")
+        try:
+            process_repository(repo_info, start_date, steps)
+        except Exception as e:
+            logger.error(f"Erro ao processar o repositório {repo_info['owner']}/{repo_info['repo']}: {str(e)}")

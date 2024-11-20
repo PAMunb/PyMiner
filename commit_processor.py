@@ -30,8 +30,6 @@ class CommitProcessor:
                 if last_commit_date is None or (commit_date - last_commit_date).days >= self.steps:
                     self.repo_commits.append(commit.hash)
                     last_commit_date = commit_date
-
-            logger.info(f"Total de commits: {len(self.repo_commits)}")
             
         except Exception as e:
             logger.error(f"Erro ao coletar os commits do repositório {self.repo_manager.repo_name}: {str(e)}")
@@ -53,6 +51,8 @@ class CommitProcessor:
         if not self.repo:
             self.repo = self.repo_manager.get_repo()
         commit_count = len(self.repo_commits)
+        
+        logger.info(f"Total de commits: {commit_count}")
         
         for commit in self.repo_commits:
             try:
@@ -77,7 +77,7 @@ class CommitProcessor:
                 if len(self.repo_files) > 0:
                     commit_date = datetime.fromtimestamp(commit_details.authored_date).strftime('%Y-%m-%d')
                     
-                    logger.info(f"Commit {commit_count}/{len(self.repo_commits)}: hash:{commit}/{commit_date} from {self.repo_manager.repo_name} | Total de arquivos: {len(self.repo_files)}")
+                    logger.info(f"Commit {commit_count}/{len(self.repo_commits)}: hash:{ commit} | date:{ commit_date} from {self.repo_manager.repo_name} | Total de arquivos: {len(self.repo_files)}")
                 
                 commit_count -= 1
                 yield commit_details, self.repo_files
