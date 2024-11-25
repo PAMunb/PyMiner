@@ -57,7 +57,15 @@ class CommitProcessor:
         for commit in self.repo_commits:
             try:
                 
-                self.repo.git.checkout(commit)
+                # o código abaixo lida com Histórico inconsistente ou corrompido
+                # O histórico do repositório pode conter inconsistências, especialmente se:
+
+                # O repositório sofreu rewrites (rebase, squash ou edição de histórico).
+                # Contribuidores forçaram commits que não refletem corretamente o estado do repositório.
+                # Arquivos foram adicionados com conflitos não resolvidos.
+                
+                self.repo.git.reset("--hard")
+                self.repo.git.checkout(commit, force=True)
 
                 # Obtém o commit completo usando Repository novamente
                 commit_details = self.get_commit_by_hash(commit)
@@ -83,7 +91,7 @@ class CommitProcessor:
                 yield commit_details, self.repo_files
             except Exception as e:
                 # Registrar a exceção no log e continuar com o próximo commit
-                logger.error(f"Erro ao processar commit {commit.hash}: {str(e)}")
+                logger.error(f"Erro ao processar commit {commit}: {str(e)}", exc_info=True)
                 commit_count -= 1
                 continue
     

@@ -129,6 +129,8 @@ class FeatureCounter:
                 if os.path.getsize(output_path) == 0:  # Adiciona cabeçalhos apenas no início
                     writer.writeheader()
                 writer.writerow(result)
-        except PermissionError as e:
-            logger.error(f'Erro de permissão ao criar o arquivo: {e}')
+        except PermissionError as pe:
+            logger.error(f'Erro de permissão ao criar o arquivo: {pe}')
             os.remove(output_path)
+        except Exception as e:
+            logger.error(f'Erro ao criar o arquivo: {e}')
