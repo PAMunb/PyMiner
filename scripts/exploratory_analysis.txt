@@ -1,0 +1,1292 @@
+Decomposition of dict_union:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -1.250245
+2011-12-01    0.378227
+2012-01-01    0.169894
+2012-02-01    0.381700
+2012-03-01    0.843505
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of dict_union_update:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -1.203570
+2011-12-01    1.713097
+2012-01-01    2.466569
+2012-02-01    1.334624
+2012-03-01   -1.713987
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of async_list_comprehensions:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -3.608863
+2011-12-01    -5.529002
+2012-01-01    -7.435252
+2012-02-01   -10.424835
+2012-03-01     7.446692
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of async_set_comprehensions:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    0.017205
+2011-12-01    0.010261
+2012-01-01    0.003316
+2012-02-01   -0.003628
+2012-03-01   -0.010572
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of async_dict_comprehensions:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -0.010261
+2011-12-01   -0.027622
+2012-01-01   -0.048455
+2012-02-01   -0.069289
+2012-03-01   -0.090122
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of matrix_multiplication:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -5.287571
+2011-12-01    -3.884793
+2012-01-01   -10.155627
+2012-02-01     4.656873
+2012-03-01     0.462429
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of async_def:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -57.482394
+2011-12-01   -114.124755
+2012-01-01   -153.645588
+2012-02-01   -184.687255
+2012-03-01    -21.086561
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of await_expressions:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -58.372351
+2011-12-01   -142.639712
+2012-01-01   -196.056379
+2012-02-01   -244.868879
+2012-03-01    -94.309851
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of async_for:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    0.189793
+2011-12-01   -0.410902
+2012-01-01    1.290487
+2012-02-01    0.780070
+2012-03-01   -0.244235
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of async_with:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    0.351162
+2011-12-01   -0.200921
+2012-01-01   -2.207866
+2012-02-01   -2.919671
+2012-03-01   -2.846755
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of fstring:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -131.994925
+2011-12-01   -148.085203
+2012-01-01   -556.147703
+2012-02-01   -681.203259
+2012-03-01    683.143964
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of structural_pattern_match:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -1.482617
+2011-12-01    -3.583311
+2012-01-01    -4.621506
+2012-02-01    16.079883
+2012-03-01    -7.486089
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of pattern_as:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -1.007033
+2011-12-01    -3.229256
+2012-01-01    -4.427172
+2012-02-01    16.281161
+2012-03-01    -8.079950
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of pattern_or:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -0.429777
+2011-12-01   -0.867277
+2012-01-01   -0.964499
+2012-02-01    3.271612
+2012-03-01   -1.332554
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of pattern_sequence:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -0.545606
+2011-12-01   -1.611579
+2012-01-01   -2.469217
+2012-02-01    9.003005
+2012-03-01   -4.233106
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of pattern_mapping:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -0.545139
+2011-12-01   -1.086806
+2012-01-01   -1.357639
+2012-02-01    4.871528
+2012-03-01   -2.170139
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of pattern_class:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -0.318153
+2011-12-01   -0.540376
+2012-01-01   -0.776487
+2012-02-01    2.813791
+2012-03-01   -1.422320
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of pattern_value:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -0.210248
+2011-12-01    -4.359553
+2012-01-01    -6.626914
+2012-02-01    20.321002
+2012-03-01   -11.574831
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of pattern_singleton:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -0.052684
+2011-12-01   -0.125601
+2012-01-01   -0.170740
+2012-02-01    0.613982
+2012-03-01   -0.302684
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of pattern_star:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -0.249421
+2011-12-01   -0.499421
+2012-01-01   -0.624421
+2012-02-01    2.250579
+2012-03-01   -0.999421
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of assign_unpack:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -1.854189
+2011-12-01   -0.284744
+2012-01-01   -0.454883
+2012-02-01   -2.378494
+2012-03-01   -2.218772
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of list_unpack:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    0.300970
+2011-12-01   -1.886530
+2012-01-01   -5.216391
+2012-02-01   -6.205974
+2012-03-01   -0.074030
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of tuple_unpack:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -2.905337
+2011-12-01   -0.155337
+2012-01-01   -2.127560
+2012-02-01    2.052996
+2012-03-01    1.209246
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of set_unpack:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    0.190994
+2011-12-01   -0.131922
+2012-01-01    0.197939
+2012-02-01    0.524328
+2012-03-01    0.100717
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of dict_unpack:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -0.092793
+2011-12-01    2.223179
+2012-01-01    0.487068
+2012-02-01   -2.134460
+2012-03-01   -3.745571
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of call_kwargs_unpack:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -55.113804
+2011-12-01     51.997307
+2012-01-01    -12.169360
+2012-02-01    103.875779
+2012-03-01    -74.047832
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of call_args_unpack:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -71.307537
+2011-12-01    -20.758925
+2012-01-01    -54.463787
+2012-02-01   -108.352675
+2012-03-01    -35.151287
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of nonlocal:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -1.926928
+2011-12-01   -3.281094
+2012-01-01   -3.906094
+2012-02-01   -1.579705
+2012-03-01    0.607795
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of function_args_annotation:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -381.208556
+2011-12-01    -460.930778
+2012-01-01    -804.045361
+2012-02-01   -1063.153000
+2012-03-01     238.871305
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of function_return_annotation:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -88.955885
+2011-12-01   -142.643385
+2012-01-01   -309.056579
+2012-02-01   -464.542691
+2012-03-01    -40.112135
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of kw_defaults:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -41.133814
+2011-12-01     7.359241
+2012-01-01    -8.859509
+2012-02-01   -33.529647
+2012-03-01   -61.883814
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of kw_args:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -41.133814
+2011-12-01     7.359241
+2012-01-01    -8.859509
+2012-02-01   -33.529647
+2012-03-01   -61.883814
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of type_hint_list:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -18.876781
+2011-12-01   -42.810808
+2012-01-01   -67.248308
+2012-02-01     9.425303
+2012-03-01    -8.105947
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of type_hint_tuple:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -6.712807
+2011-12-01   -14.816974
+2012-01-01   -25.886418
+2012-02-01    -4.386418
+2012-03-01    -7.525307
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of type_hint_dict:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01    -6.442508
+2011-12-01   -25.706397
+2012-01-01   -44.581397
+2012-02-01   -11.029314
+2012-03-01   -21.011952
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of type_hint_set:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -1.878361
+2011-12-01   -4.020722
+2012-01-01   -7.628361
+2012-02-01    3.836917
+2012-03-01    3.260528
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of type_hint_frozenset:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -1.760061
+2011-12-01   -2.138533
+2012-01-01   -1.530894
+2012-02-01    2.562856
+2012-03-01    1.903134
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Decomposition of type_hint_type:
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: trend, dtype: float64
+date
+2011-11-01   -4.297476
+2011-12-01   -5.484976
+2012-01-01   -5.474559
+2012-02-01    1.584468
+2012-03-01    2.212941
+Name: seasonal, dtype: float64
+date
+2011-11-01   NaN
+2011-12-01   NaN
+2012-01-01   NaN
+2012-02-01   NaN
+2012-03-01   NaN
+Name: resid, dtype: float64
+Autocorrelation Functions of dict_union:
+Autocorrelation Functions of dict_union_update:
+Autocorrelation Functions of async_list_comprehensions:
+Autocorrelation Functions of async_set_comprehensions:
+Autocorrelation Functions of async_dict_comprehensions:
+Autocorrelation Functions of matrix_multiplication:
+Autocorrelation Functions of async_def:
+Autocorrelation Functions of await_expressions:
+Autocorrelation Functions of async_for:
+Autocorrelation Functions of async_with:
+Autocorrelation Functions of fstring:
+Autocorrelation Functions of structural_pattern_match:
+Autocorrelation Functions of pattern_as:
+Autocorrelation Functions of pattern_or:
+Autocorrelation Functions of pattern_sequence:
+Autocorrelation Functions of pattern_mapping:
+Autocorrelation Functions of pattern_class:
+Autocorrelation Functions of pattern_value:
+Autocorrelation Functions of pattern_singleton:
+Autocorrelation Functions of pattern_star:
+Autocorrelation Functions of assign_unpack:
+Autocorrelation Functions of list_unpack:
+Autocorrelation Functions of tuple_unpack:
+Autocorrelation Functions of set_unpack:
+Autocorrelation Functions of dict_unpack:
+Autocorrelation Functions of call_kwargs_unpack:
+Autocorrelation Functions of call_args_unpack:
+Autocorrelation Functions of nonlocal:
+Autocorrelation Functions of function_args_annotation:
+Autocorrelation Functions of function_return_annotation:
+Autocorrelation Functions of kw_defaults:
+Autocorrelation Functions of kw_args:
+Autocorrelation Functions of type_hint_list:
+Autocorrelation Functions of type_hint_tuple:
+Autocorrelation Functions of type_hint_dict:
+Autocorrelation Functions of type_hint_set:
+Autocorrelation Functions of type_hint_frozenset:
+Autocorrelation Functions of type_hint_type:
+ADF Test for dict_union:
+ADF Statistic: 1.0574068384969932
+p-value: 0.9948362008645362
+Critical Values: {'1%': -3.4769274060112707, '5%': -2.8819726324025625, '10%': -2.577665408088415}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for dict_union_update:
+ADF Statistic: -0.9925269105653612
+p-value: 0.7559801707697177
+Critical Values: {'1%': -3.4729792729247793, '5%': -2.8802520918255534, '10%': -2.5767469641683105}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for async_list_comprehensions:
+ADF Statistic: 0.34729300836976706
+p-value: 0.9794132054630712
+Critical Values: {'1%': -3.4729792729247793, '5%': -2.8802520918255534, '10%': -2.5767469641683105}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for async_set_comprehensions:
+ADF Statistic: -0.3252218177939952
+p-value: 0.9218554282969077
+Critical Values: {'1%': -3.4729792729247793, '5%': -2.8802520918255534, '10%': -2.5767469641683105}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for async_dict_comprehensions:
+ADF Statistic: 0.3623954356558081
+p-value: 0.9800328707558564
+Critical Values: {'1%': -3.4729792729247793, '5%': -2.8802520918255534, '10%': -2.5767469641683105}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for matrix_multiplication:
+ADF Statistic: 0.3763723661436516
+p-value: 0.9805895236319524
+Critical Values: {'1%': -3.4750180242954167, '5%': -2.8811408028842043, '10%': -2.577221358046935}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for async_def:
+ADF Statistic: 3.1532855361402663
+p-value: 1.0
+Critical Values: {'1%': -3.4769274060112707, '5%': -2.8819726324025625, '10%': -2.577665408088415}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for await_expressions:
+ADF Statistic: 4.158113909997504
+p-value: 1.0
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for async_for:
+ADF Statistic: 3.4305522956071766
+p-value: 1.0
+Critical Values: {'1%': -3.4729792729247793, '5%': -2.8802520918255534, '10%': -2.5767469641683105}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for async_with:
+ADF Statistic: 4.021438663342928
+p-value: 1.0
+Critical Values: {'1%': -3.4759527332353084, '5%': -2.881548071241103, '10%': -2.577438765246763}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for fstring:
+ADF Statistic: -2.3933919809891795
+p-value: 0.14361016595823417
+Critical Values: {'1%': -3.4769274060112707, '5%': -2.8819726324025625, '10%': -2.577665408088415}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for structural_pattern_match:
+ADF Statistic: 0.44459404337563074
+p-value: 0.9830881475127691
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for pattern_as:
+ADF Statistic: 25.140288062072575
+p-value: 1.0
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for pattern_or:
+ADF Statistic: -2.2784064515401656
+p-value: 0.17902691809272453
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for pattern_sequence:
+ADF Statistic: 49.77080345446667
+p-value: 1.0
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for pattern_mapping:
+ADF Statistic: -6.908506541299644e-15
+p-value: 0.9585320860600554
+Critical Values: {'1%': -3.474714913481481, '5%': -2.881008708148148, '10%': -2.5771508444444446}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for pattern_class:
+ADF Statistic: 51.25641078912541
+p-value: 1.0
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for pattern_value:
+ADF Statistic: -26.122387686772612
+p-value: 0.0
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is stationary (rejects the null hypothesis)
+----------------------------------------
+ADF Test for pattern_singleton:
+ADF Statistic: -2.190590218930421
+p-value: 0.20967837367177689
+Critical Values: {'1%': -3.4753253063120644, '5%': -2.881274703275226, '10%': -2.5772928360116873}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for pattern_star:
+ADF Statistic: 0.3625049371038826
+p-value: 0.9800372941034436
+Critical Values: {'1%': -3.474714913481481, '5%': -2.881008708148148, '10%': -2.5771508444444446}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for assign_unpack:
+ADF Statistic: -0.29914563333582533
+p-value: 0.9256252489655133
+Critical Values: {'1%': -3.476597917537401, '5%': -2.8818291230495543, '10%': -2.5775887982253085}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for list_unpack:
+ADF Statistic: 3.6764190154379968
+p-value: 1.0
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for tuple_unpack:
+ADF Statistic: 1.1609097032097508
+p-value: 0.9957043593178617
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for set_unpack:
+ADF Statistic: 1.8227754883178504
+p-value: 0.9983931348852431
+Critical Values: {'1%': -3.4744158894942156, '5%': -2.880878382771059, '10%': -2.577081275821236}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for dict_unpack:
+ADF Statistic: -1.1677057937016664
+p-value: 0.6873313582221576
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for call_kwargs_unpack:
+ADF Statistic: -3.22138638595829
+p-value: 0.018779649395214003
+Critical Values: {'1%': -3.476597917537401, '5%': -2.8818291230495543, '10%': -2.5775887982253085}
+Test Results:
+The series is stationary (rejects the null hypothesis)
+----------------------------------------
+ADF Test for call_args_unpack:
+ADF Statistic: -4.32659537884346
+p-value: 0.00039939245350791957
+Critical Values: {'1%': -3.4732590518613002, '5%': -2.880374082105334, '10%': -2.5768120811654525}
+Test Results:
+The series is stationary (rejects the null hypothesis)
+----------------------------------------
+ADF Test for nonlocal:
+ADF Statistic: 0.6972011009754624
+p-value: 0.9897818469625583
+Critical Values: {'1%': -3.4769274060112707, '5%': -2.8819726324025625, '10%': -2.577665408088415}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for function_args_annotation:
+ADF Statistic: -1.1967928787758395
+p-value: 0.6749738106245808
+Critical Values: {'1%': -3.4769274060112707, '5%': -2.8819726324025625, '10%': -2.577665408088415}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for function_return_annotation:
+ADF Statistic: -1.8699563801199939
+p-value: 0.3463238434171665
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for kw_defaults:
+ADF Statistic: 3.7948630739823077
+p-value: 1.0
+Critical Values: {'1%': -3.473829775724492, '5%': -2.880622899711496, '10%': -2.5769448985432954}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for kw_args:
+ADF Statistic: 3.7948630739823077
+p-value: 1.0
+Critical Values: {'1%': -3.473829775724492, '5%': -2.880622899711496, '10%': -2.5769448985432954}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for type_hint_list:
+ADF Statistic: 3.7245777663312998
+p-value: 1.0
+Critical Values: {'1%': -3.476597917537401, '5%': -2.8818291230495543, '10%': -2.5775887982253085}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for type_hint_tuple:
+ADF Statistic: 0.752339325261868
+p-value: 0.9908265507794276
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for type_hint_dict:
+ADF Statistic: 12.15256608891277
+p-value: 1.0
+Critical Values: {'1%': -3.4729792729247793, '5%': -2.8802520918255534, '10%': -2.5767469641683105}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for type_hint_set:
+ADF Statistic: 4.887256845352395
+p-value: 1.0
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for type_hint_frozenset:
+ADF Statistic: 2.815885335100168
+p-value: 1.0
+Critical Values: {'1%': -3.477261624048995, '5%': -2.8821181874544233, '10%': -2.5777431104939494}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for type_hint_type:
+ADF Statistic: 5.285246813086156
+p-value: 1.0
+Critical Values: {'1%': -3.474714913481481, '5%': -2.881008708148148, '10%': -2.5771508444444446}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+Kendall Coefficient: 0.8794985047084374
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for dict_union.
+Kendall Coefficient: 0.9200316693019651
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for dict_union_update.
+Kendall Coefficient: 0.78030557028028
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for async_list_comprehensions.
+Kendall Coefficient: 0.42921255793861585
+p-value: 0.0000000000595435173140360
+Significance Level: 0.05
+Increasing Trend in the Time Series for async_set_comprehensions.
+Kendall Coefficient: 0.5825599735783545
+p-value: 0.0000000000000000001913449
+Significance Level: 0.05
+Increasing Trend in the Time Series for async_dict_comprehensions.
+Kendall Coefficient: 0.8679800845367239
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for matrix_multiplication.
+Kendall Coefficient: 0.9424053342710256
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for async_def.
+Kendall Coefficient: 0.9425784432596868
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for await_expressions.
+Kendall Coefficient: 0.9065574190661564
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for async_for.
+Kendall Coefficient: 0.9188023886700636
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for async_with.
+Kendall Coefficient: 0.934486758429851
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for fstring.
+Kendall Coefficient: 0.5781293723894787
+p-value: 0.0000000000000000000317087
+Significance Level: 0.05
+Increasing Trend in the Time Series for structural_pattern_match.
+Kendall Coefficient: 0.5770707011045729
+p-value: 0.0000000000000000000398322
+Significance Level: 0.05
+Increasing Trend in the Time Series for pattern_as.
+Kendall Coefficient: 0.5183257866036903
+p-value: 0.0000000000000003467308553
+Significance Level: 0.05
+Increasing Trend in the Time Series for pattern_or.
+Kendall Coefficient: 0.5326309256297815
+p-value: 0.0000000000000000691704710
+Significance Level: 0.05
+Increasing Trend in the Time Series for pattern_sequence.
+Kendall Coefficient: 0.2900290915163359
+p-value: 0.0000097551862992471597265
+Significance Level: 0.05
+Increasing Trend in the Time Series for pattern_mapping.
+Kendall Coefficient: 0.5367460974172751
+p-value: 0.0000000000000000304263444
+Significance Level: 0.05
+Increasing Trend in the Time Series for pattern_class.
+Kendall Coefficient: 0.5778475642625522
+p-value: 0.0000000000000000000330636
+Significance Level: 0.05
+Increasing Trend in the Time Series for pattern_value.
+Kendall Coefficient: 0.31213185929251436
+p-value: 0.0000015931583872272349899
+Significance Level: 0.05
+Increasing Trend in the Time Series for pattern_singleton.
+Kendall Coefficient: 0.2914333435460214
+p-value: 0.0000080451825854146000758
+Significance Level: 0.05
+Increasing Trend in the Time Series for pattern_star.
+Kendall Coefficient: 0.9711715714467662
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for assign_unpack.
+Kendall Coefficient: 0.9214644382105142
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for list_unpack.
+Kendall Coefficient: 0.9038984787781169
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for tuple_unpack.
+Kendall Coefficient: 0.8590769301045107
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for set_unpack.
+Kendall Coefficient: 0.9190122536863377
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for dict_unpack.
+Kendall Coefficient: 0.9817083129185039
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for call_kwargs_unpack.
+Kendall Coefficient: 0.9958760369250527
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for call_args_unpack.
+Kendall Coefficient: 0.9547401255113472
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for nonlocal.
+Kendall Coefficient: 0.9646289186643802
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for function_args_annotation.
+Kendall Coefficient: 0.9647557276773918
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for function_return_annotation.
+Kendall Coefficient: 0.9801900351042776
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for kw_defaults.
+Kendall Coefficient: 0.9801900351042776
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for kw_args.
+Kendall Coefficient: 0.9412764611399498
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for type_hint_list.
+Kendall Coefficient: 0.2955188980068124
+p-value: 0.0000000805378377565946908
+Significance Level: 0.05
+Increasing Trend in the Time Series for type_hint_tuple.
+Kendall Coefficient: 0.9574301996879306
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for type_hint_dict.
+Kendall Coefficient: 0.8969962153323913
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for type_hint_set.
+Kendall Coefficient: 0.7607951393457963
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for type_hint_frozenset.
+Kendall Coefficient: 0.915265443184582
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for type_hint_type.

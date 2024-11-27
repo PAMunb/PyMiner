@@ -23,7 +23,7 @@ data_filtrada = data_sorted[data_sorted['files'] >= limite_inferior]
 
 # print(len(data_filtrada))
 
-data_filtrada.to_csv('filtered_projects.csv', index=False, encoding='latin-1')
+# data_filtrada.to_csv('filtered_projects.csv', index=False, encoding='latin-1')
 
 # Função para extrair o nome do repositório a partir do campo "name"
 def extract_repo_name(name):

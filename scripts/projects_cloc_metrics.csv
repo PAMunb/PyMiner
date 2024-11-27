@@ -37,7 +37,7 @@ indico,1171,26014,21472,105294
 dirac,1256,43774,50464,168433
 pytrainer,114,2448,3504,14480
 mongo-python-driver,326,22345,26513,95936
-django-debug-toolbar,,,,
+django-debug-toolbar,85,1584,1235,6676
 jsonpickle,43,2188,1823,6657
 django-pipeline,50,813,590,3243
 binarybuilder,6,727,1160,2942
@@ -204,7 +204,7 @@ django-cacheops,33,990,397,3145
 zest.releaser,23,700,1078,2712
 plone.app.discussion,40,1542,1336,5778
 git-big-picture,5,249,445,1171
-uncertainties,,,,
+uncertainties,17,1678,3328,2989
 mayavi,511,15372,22987,48562
 pyramid,330,13459,9263,45516
 python,637,9202,7350,29604
@@ -386,7 +386,7 @@ subliminal,61,3188,2138,12257
 coaster,62,4478,5802,15084
 svtplay-dl,92,1864,1639,8655
 pydici,208,3264,2416,15237
-cob_command_tools,,,,
+cob_command_tools,57,1208,1497,5273
 pysb,144,5366,9945,17597
 ckanext-harvest,47,2032,1413,6638
 cecog,141,5239,2435,19047

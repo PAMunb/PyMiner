@@ -95,6 +95,13 @@ total_projects = df['project'].nunique()
 
 print("Total de projetos: ",total_projects)
 
+list_unique_projects = set()
+for proj in df['project']:
+    list_unique_projects.add(proj)
+    
+# for p in list_unique_projects:
+#     print(p)
+
 # Verificar se a feature tem pelo menos uma ocorrência
 df_feature_counts = melted_df.groupby('feature')['total'].sum().reset_index()
 df_filtered = df_feature_counts[df_feature_counts['total'] > 0]

@@ -66,10 +66,13 @@ def verificar_anos_em_csv(diretorio):
                 else:
                     ano_ultima_linha = None
                 # Verificar os anos das datas
-                print(f"Ano da primeira linha: {ano_primeira_linha}, ano da última linha: {ano_ultima_linha}")
-                if ano_primeira_linha != 2012 or ano_ultima_linha != 2024:
+                # print(f"Ano da primeira linha: {ano_primeira_linha}, ano da última linha: {ano_ultima_linha}")
+                if int(ano_primeira_linha) > 2012 or int(ano_ultima_linha) < 2024:
                     # Adicionar o nome do projeto à lista se os critérios não forem atendidos
                     projetos_nao_adequados.append(df.iloc[0]['project'])
+                else:
+                    # print(f"{df.iloc[0]['project']}: Ano da primeira linha: {ano_primeira_linha}, ano da última linha: {ano_ultima_linha}")
+                    continue
 
     # Imprimir os nomes dos projetos que não atendem aos critérios
     if projetos_nao_adequados:
