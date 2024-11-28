@@ -58,17 +58,19 @@ melted_df = melted_df.sort_values(by='year_month')
 features = [
 'dict_union', 'dict_union_update',
     'async_list_comprehensions', 'async_set_comprehensions', 'async_dict_comprehensions', 
-    'async_generator_expressions', 'matrix_multiplication',
+    # 'async_generator_expressions', 
+    'matrix_multiplication',
     'async_def', 'await_expressions', 'async_for', 'async_with',
-    'fstring', 'except_star', 
+    'fstring',
+    # 'except_star', 
     'structural_pattern_match', 'pattern_as', 'pattern_or', 'pattern_sequence',
     'pattern_mapping', 'pattern_class', 'pattern_value', 'pattern_singleton', 
     'pattern_star', 'assign_unpack', 'list_unpack', 'tuple_unpack', 'set_unpack', 
     'dict_unpack', 'call_kwargs_unpack', 'call_args_unpack', 
     'nonlocal', 'function_args_annotation', 'function_return_annotation', 
     'kw_defaults', 'kw_args', 
-    'type_vars_bounds', 'type_vars_constraints', 'type_param_spec', 'type_var_tuple', 
-    'type_alias', 'type_hint_list', 'type_hint_tuple', 'type_hint_dict', 
+    # 'type_vars_bounds', 'type_vars_constraints', 'type_param_spec', 'type_var_tuple', 'type_alias',
+    'type_hint_list', 'type_hint_tuple', 'type_hint_dict', 
     'type_hint_set', 'type_hint_frozenset', 'type_hint_type'
 ]
 
@@ -90,14 +92,12 @@ features_mapping = {
     'async_list_comprehensions': 'Async List Comprehensions',
     'async_set_comprehensions': 'Async Set Comprehensions',
     'async_dict_comprehensions': 'Async Dictionary Comprehensions',
-    'async_generator_expressions': 'Async Generator Expressions',
     'matrix_multiplication': 'Matrix Multiplication',
     'async_def': 'Async Function Definitions',
     'await_expressions': 'Await Expressions',
     'async_for': 'Async For Loops',
     'async_with': 'Async With Statements',
     'fstring': 'Formatted String Literals (f-strings)',
-    'except_star': 'Exception Groups (except *)',
     'structural_pattern_match': 'Structural Pattern Matching',
     'pattern_as': 'Pattern As Bindings',
     'pattern_or': 'Pattern Or',
@@ -119,11 +119,13 @@ features_mapping = {
     'function_return_annotation': 'Function Return Annotations',
     'kw_defaults': 'Keyword Defaults',
     'kw_args': 'Keyword Arguments',
-    'type_vars_bounds': 'Type Variables Bounds',
-    'type_vars_constraints': 'Type Variables Constraints',
-    'type_param_spec': 'Type Parameter Specification',
-    'type_var_tuple': 'Type Variable Tuple',
-    'type_alias': 'Type Aliases',
+    # 'type_vars_bounds': 'Type Variables Bounds',
+    # 'type_vars_constraints': 'Type Variables Constraints',
+    # 'type_param_spec': 'Type Parameter Specification',
+    # 'type_var_tuple': 'Type Variable Tuple',
+    # 'type_alias': 'Type Aliases',
+    # 'async_generator_expressions': 'Async Generator Expressions',
+    # 'except_star': 'Exception Groups (except *)',
     'type_hint_list': 'Type Hint for Lists',
     'type_hint_tuple': 'Type Hint for Tuples',
     'type_hint_dict': 'Type Hint for Dictionaries',
@@ -137,7 +139,7 @@ features_mapping = {
 
 feature_names = [features_mapping[feature] for feature in correlation_matrix.columns]
 # Plot the correlation matrix
-plt.figure(figsize=(16, 14))
+plt.figure(figsize=(20, 18))
 heatmap = sns.heatmap(correlation_matrix, annot=True, cmap='coolwarm', fmt=".2f", cbar=True, square=True, annot_kws={"size": 8})
 plt.title('Correlation Matrix')
 
