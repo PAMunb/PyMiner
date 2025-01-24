@@ -30,30 +30,52 @@ class UnionOperatorsVisitor(ast.NodeVisitor):
     def visit_BinOp(self, node):
         if node not in self.visited_nodes:
             self.visited_nodes.add(node)
-            if isinstance(node.op, ast.BitOr):  # Operação de união (|)
-                
-                left_dict = None
-                if isinstance(node.left, ast.Name) and node.left.id in self.dict_context:
-                    left_dict = self.dict_context[node.left.id]
- 
-                right_dict = None
-                if isinstance(node.right, ast.Name) and node.right.id in self.dict_context:
-                    right_dict = self.dict_context[node.right.id]
+            
+            # Verificar se a operação é de união (|) entre dicionários
+            if isinstance(node.op, ast.BitOr):
+                # Inicializar variáveis para os operandos
+                left_is_dict = False
+                right_is_dict = False
 
-                if left_dict is not None and right_dict is not None:
-                    # print(f'Encontrado operação de união de dicionários: {ast.dump(node, annotate_fields=True, indent=1)}')
+                # Verificar se o lado esquerdo é um dicionário no contexto ou literal
+                if isinstance(node.left, ast.Name) and node.left.id in self.dict_context:
+                    left_is_dict = True
+                elif isinstance(node.left, (ast.Dict, ast.Call)):
+                    try:
+                        left_value = ast.literal_eval(node.left)
+                        if isinstance(left_value, dict):
+                            left_is_dict = True
+                    except Exception:
+                        pass
+
+                # Verificar se o lado direito é um dicionário no contexto ou literal
+                if isinstance(node.right, ast.Name) and node.right.id in self.dict_context:
+                    right_is_dict = True
+                elif isinstance(node.right, (ast.Dict, ast.Call)):
+                    try:
+                        right_value = ast.literal_eval(node.right)
+                        if isinstance(right_value, dict):
+                            right_is_dict = True
+                    except Exception:
+                        pass
+
+                # Incrementar métricas somente se ambos os lados forem dicionários
+                if left_is_dict and right_is_dict:
                     self.metrics['dict_union'] += 1
-                    if self.current_file not in self.metrics['dict_union_files']:
-                        self.metrics['dict_union_files'].add(self.current_file)
+                    self.metrics['dict_union_files'].add(self.current_file)
+
+        # Continuar visitando os nós filhos
         self.generic_visit(node)
+
         
     def visit_AugAssign(self, node):
         if node not in self.visited_nodes:
             self.visited_nodes.add(node)
             if isinstance(node.op, ast.BitOr):  # Operação de união (|=)
                 if isinstance(node.target, ast.Name) and node.target.id in self.dict_context:
-                    # print(f'Encontrado operação de atribuição de união de dicionários: {ast.dump(node, annotate_fields=True, indent=1)}')
+                    # A operação de união de dicionários está sendo feita com uma variável já registrada
                     self.metrics['dict_union_update'] += 1
                     if self.current_file not in self.metrics['dict_union_update_files']:
                         self.metrics['dict_union_update_files'].add(self.current_file)
         self.generic_visit(node)
+
