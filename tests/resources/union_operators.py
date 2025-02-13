@@ -79,3 +79,14 @@ result = dict1 | dict2
 
 # Operação de união atualizada (|=) entre dicionários
 dict1 |= dict2
+
+
+dict1 = dict(a=1, b=2)  # Não será capturado
+dict2 = {c: 3 for c in range(2)}  # Não será capturado
+result = dict1 | dict2  # Será ignorado, pois `dict1` e `dict2` não estão no contexto
+
+
+set1 = {1, 2}
+set2 = {3, 4}
+result = set1 | set2  # União de conjuntos
+

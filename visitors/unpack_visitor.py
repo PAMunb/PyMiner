@@ -82,13 +82,35 @@ class UnpackVisitor(ast.NodeVisitor):
     def visit_Call(self, node):
         if node not in self.visited_nodes:
             self.visited_nodes.add(node)
-            # Detecta desempacotamento em chamadas de função (PEP 448)
-            if any(keyword.arg is None for keyword in node.keywords):  # None indica **kwargs
+
+            # Contadores para múltiplos desempacotamentos (PEP 448)
+            num_kwargs_unpack = 0
+            num_args_unpack = 0
+
+            # Verifica desempacotamento de **kwargs: 
+            # Contabiliza **todos** os desempacotamentos literais (ast.Dict).
+            for keyword in node.keywords:
+                if keyword.arg is None and isinstance(keyword.value, ast.Dict):
+                    num_kwargs_unpack += 1
+
+            # Verifica desempacotamento de *args:
+            # Contabiliza **todos** os desempacotamentos literais (ast.List, ast.Tuple ou ast.Set).
+            for arg in node.args:
+                if isinstance(arg, ast.Starred) and isinstance(arg.value, (ast.List, ast.Tuple, ast.Set)):
+                    num_args_unpack += 1
+
+            # Se houver pelo menos **um** desempacotamento literal, captura como PEP 448
+            if num_kwargs_unpack > 0:
                 self.metrics['call_kwargs_unpack'] += 1
-                if self.current_file not in self.metrics['call_kwargs_unpack_files']:
-                    self.metrics['call_kwargs_unpack_files'].add(self.current_file)
-            if any(isinstance(arg, ast.Starred) for arg in node.args):  # *args
+                self.metrics['call_kwargs_unpack_files'].add(self.current_file)
+
+            if num_args_unpack > 0:
                 self.metrics['call_args_unpack'] += 1
-                if self.current_file not in self.metrics['call_args_unpack_files']:
-                    self.metrics['call_args_unpack_files'].add(self.current_file)
+                self.metrics['call_args_unpack_files'].add(self.current_file)
+
         self.generic_visit(node)
+
+
+
+
+

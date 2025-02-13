@@ -4,7 +4,6 @@ import sys
 from datetime import datetime
 import os
 import warnings
-import concurrent.futures
 
 from feature_counter import FeatureCounter
 from visitors.type_hint_visitor import TypeHintVisitor
@@ -19,7 +18,6 @@ from visitors.literal_string_interpolation_visitor import LiteralStringInterpola
 from visitors.coroutines_visitor import CoroutinesVisitor
 from visitors.matrix_multiplication_visitor import MatrixMultiplicationVisitor
 from visitors.asynchronous_comprehension_visitor import AsynchronousComprehensionVisitor
-from visitors.union_operators_visitor import UnionOperatorsVisitor
 
 # Desabilitar todos os SyntaxWarnings para evitar que apareçam durante a execução
 warnings.filterwarnings("ignore", category=SyntaxWarning)
@@ -37,7 +35,7 @@ def process_repository(repo_info, start_date, steps):
     
     feature_counter = FeatureCounter(
         repo_url,
-        [UnionOperatorsVisitor, AsynchronousComprehensionVisitor, MatrixMultiplicationVisitor, CoroutinesVisitor,
+        [AsynchronousComprehensionVisitor, MatrixMultiplicationVisitor, CoroutinesVisitor,
          LiteralStringInterpolationVisitor, ExceptionGroupsVisitor, StructuralPatternMatchingVisitor, UnpackVisitor,
          NonlocalStatementVisitor, FunctionAnnotationsVisitor, KeywordOnlyArgumentsVisitor, TypeParameterVisitor,
          TypeHintVisitor],

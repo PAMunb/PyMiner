@@ -40,8 +40,8 @@ class TestUnpackVisitor(unittest.TestCase):
         self.assertEqual(visitor.metrics['tuple_unpack'], 1)
         self.assertEqual(visitor.metrics['set_unpack'], 1)
         self.assertEqual(visitor.metrics['dict_unpack'], 1)
-        self.assertEqual(visitor.metrics['call_args_unpack'], 1)
-        self.assertEqual(visitor.metrics['call_kwargs_unpack'], 1)
+        self.assertEqual(visitor.metrics['call_args_unpack'], 3)
+        self.assertEqual(visitor.metrics['call_kwargs_unpack'], 3)
         
         self.assertEqual(len(visitor.metrics['assign_unpack_files']), 1)
         self.assertEqual(len(visitor.metrics['list_unpack_files']), 1)
