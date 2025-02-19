@@ -7,9 +7,10 @@ from git import Repo
 logger = logging.getLogger(__name__)
 
 class CommitProcessor:
-    def __init__(self, repo_manager, start_date, steps):
+    def __init__(self, repo_manager, start_date, end_date, steps):
         self.repo_manager = repo_manager
         self.start_date = start_date
+        self.end_date = end_date
         self.repo = None
         self.repo_commits = []
         self.repo_files = []
@@ -23,7 +24,7 @@ class CommitProcessor:
         last_commit_date = None  # Variável para armazenar a data do último commit coletado
         
         try:
-            for commit in Repository(self.repo_manager.repo_url, since=self.start_date).traverse_commits():
+            for commit in Repository(self.repo_manager.clone_path, since=self.start_date, to=self.end_date).traverse_commits():
                 commit_date = commit.author_date
 
                 # Se o último commit não foi coletado ainda, ou a diferença de datas for maior que 30 dias

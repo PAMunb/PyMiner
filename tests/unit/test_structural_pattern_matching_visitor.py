@@ -34,7 +34,7 @@ class TestStructuralPatternMatchingVisitor(unittest.TestCase):
         visitor.visit(tree) 
 
         # Assert that the feature_match count is correct
-        self.assertEqual(visitor.metrics['structural_pattern_match'], 10)
+        self.assertEqual(visitor.metrics['pattern_match'], 10)
         self.assertEqual(visitor.metrics['pattern_as'], 12)
         self.assertEqual(visitor.metrics['pattern_or'], 1)
         self.assertEqual(visitor.metrics['pattern_sequence'], 3)
@@ -44,7 +44,7 @@ class TestStructuralPatternMatchingVisitor(unittest.TestCase):
         self.assertEqual(visitor.metrics['pattern_singleton'], 1)
         self.assertEqual(visitor.metrics['pattern_star'], 2)
         
-        self.assertEqual(len(visitor.metrics['structural_pattern_match_files']), 1)
+        self.assertEqual(len(visitor.metrics['pattern_match_files']), 1)
         self.assertEqual(len(visitor.metrics['pattern_as_files']), 1)
         self.assertEqual(len(visitor.metrics['pattern_or_files']), 1)
         self.assertEqual(len(visitor.metrics['pattern_sequence_files']), 1)
@@ -69,7 +69,7 @@ class TestStructuralPatternMatchingVisitor(unittest.TestCase):
         visitor.visit(tree)
 
         # Assert that the feature_match count is correct
-        self.assertEqual(visitor.metrics['structural_pattern_match'], 15)
+        self.assertEqual(visitor.metrics['pattern_match'], 15)
         self.assertEqual(visitor.metrics['pattern_as'], 36)
         self.assertEqual(visitor.metrics['pattern_or'], 2)
         self.assertEqual(visitor.metrics['pattern_sequence'], 6)
@@ -79,7 +79,7 @@ class TestStructuralPatternMatchingVisitor(unittest.TestCase):
         self.assertEqual(visitor.metrics['pattern_singleton'], 4)
         self.assertEqual(visitor.metrics['pattern_star'], 1)
         
-        self.assertEqual(len(visitor.metrics['structural_pattern_match_files']), 1)
+        self.assertEqual(len(visitor.metrics['pattern_match_files']), 1)
         self.assertEqual(len(visitor.metrics['pattern_as_files']), 1)
         self.assertEqual(len(visitor.metrics['pattern_or_files']), 1)
         self.assertEqual(len(visitor.metrics['pattern_sequence_files']), 1)

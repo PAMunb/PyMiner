@@ -27,8 +27,8 @@ class UnpackVisitor(ast.NodeVisitor):
         self.current_file = file_name
         
     def visit_Assign(self, node):
-        if node not in self.visited_nodes:
-            self.visited_nodes.add(node)
+        if id(node) not in self.visited_nodes:
+            self.visited_nodes.add(id(node))
             # Detecta o uso de *rest em atribuições para PEP 3132
             # print(f'Encontrado: {ast.dump(node, annotate_fields=True, indent=1)}')
             for target in node.targets:
@@ -40,73 +40,77 @@ class UnpackVisitor(ast.NodeVisitor):
         self.generic_visit(node)
 
     def visit_List(self, node):
-        if node not in self.visited_nodes:
-            self.visited_nodes.add(node)
-            # Ignora listas em atribuições, pois serão contadas por visit_Assign
-            if not isinstance(node.ctx, ast.Store) and any(isinstance(elt, ast.Starred) for elt in node.elts):
-                self.metrics['list_unpack'] += 1
-                if self.current_file not in self.metrics['list_unpack_files']:
-                    self.metrics['list_unpack_files'].add(self.current_file)
+        # Se já visitado, ignorar
+        if id(node) in self.visited_nodes:
+            return
+        self.visited_nodes.add(id(node))
+        # Se a lista contém um Starred, ela é um display de desempacotamento (PEP 448)
+        # Mas somente se o contexto NÃO for de atribuição (Store)
+        if not isinstance(node.ctx, ast.Store) and any(isinstance(elt, ast.Starred) for elt in node.elts):
+            self.metrics['list_unpack'] += 1
+            self.metrics['list_unpack_files'].add(self.current_file)
         self.generic_visit(node)
 
     def visit_Tuple(self, node):
-        if node not in self.visited_nodes:
-            self.visited_nodes.add(node)
-            # Ignora tuplas em atribuições, pois serão contadas por visit_Assign
-            if not isinstance(node.ctx, ast.Store) and any(isinstance(elt, ast.Starred) for elt in node.elts):
-                self.metrics['tuple_unpack'] += 1
-                if self.current_file not in self.metrics['tuple_unpack_files']:
-                    self.metrics['tuple_unpack_files'].add(self.current_file)
+        if id(node) in self.visited_nodes:
+            return
+        self.visited_nodes.add(id(node))
+        # Se a tupla não está sendo usada como alvo de atribuição e contém Starred
+        if not isinstance(node.ctx, ast.Store) and any(isinstance(elt, ast.Starred) for elt in node.elts):
+            self.metrics['tuple_unpack'] += 1
+            self.metrics['tuple_unpack_files'].add(self.current_file)
         self.generic_visit(node)
 
     def visit_Set(self, node):
-        if node not in self.visited_nodes:
-            self.visited_nodes.add(node)
-            # Detecta desempacotamento em sets (PEP 448)
-            if any(isinstance(elt, ast.Starred) for elt in node.elts):
-                self.metrics['set_unpack'] += 1
-                if self.current_file not in self.metrics['set_unpack_files']:
-                    self.metrics['set_unpack_files'].add(self.current_file)
+        if id(node) in self.visited_nodes:
+            return
+        self.visited_nodes.add(id(node))
+        # Verifica desempacotamento em sets (PEP 448)
+        if any(isinstance(elt, ast.Starred) for elt in node.elts):
+            self.metrics['set_unpack'] += 1
+            self.metrics['set_unpack_files'].add(self.current_file)
         self.generic_visit(node)
 
     def visit_Dict(self, node):
-        if node not in self.visited_nodes:
-            self.visited_nodes.add(node)
-            # Detecta desempacotamento em dicionários (PEP 448)
-            if any(key is None for key in node.keys):  # None indica **dict
-                self.metrics['dict_unpack'] += 1
-                if self.current_file not in self.metrics['dict_unpack_files']:
-                    self.metrics['dict_unpack_files'].add(self.current_file)
+        if id(node) in self.visited_nodes:
+            return
+        self.visited_nodes.add(id(node))
+        # Em displays de dicionário, um desempacotamento é indicado por uma chave None (para **)
+        if any(key is None for key in node.keys):
+            self.metrics['dict_unpack'] += 1
+            self.metrics['dict_unpack_files'].add(self.current_file)
         self.generic_visit(node)
 
     def visit_Call(self, node):
-        if node not in self.visited_nodes:
-            self.visited_nodes.add(node)
+        if id(node) in self.visited_nodes:
+            return
+        self.visited_nodes.add(id(node))
 
-            # Contadores para múltiplos desempacotamentos (PEP 448)
-            num_kwargs_unpack = 0
-            num_args_unpack = 0
+        # Contadores para desempacotamento em chamadas (PEP 448)
+        num_kwargs_unpack = 0
+        num_args_unpack = 0
 
-            # Verifica desempacotamento de **kwargs: 
-            # Contabiliza **todos** os desempacotamentos literais (ast.Dict).
-            for keyword in node.keywords:
-                if keyword.arg is None and isinstance(keyword.value, ast.Dict):
-                    num_kwargs_unpack += 1
+        # Para **kwargs: keyword.arg é None indica desempacotamento.
+        for keyword in node.keywords:
+            if keyword.arg is None:
+                num_kwargs_unpack += 1
 
-            # Verifica desempacotamento de *args:
-            # Contabiliza **todos** os desempacotamentos literais (ast.List, ast.Tuple ou ast.Set).
-            for arg in node.args:
-                if isinstance(arg, ast.Starred) and isinstance(arg.value, (ast.List, ast.Tuple, ast.Set)):
-                    num_args_unpack += 1
+        # Para *args: identifica nós Starred em node.args.
+        for arg in node.args:
+            if isinstance(arg, ast.Starred):
+                num_args_unpack += 1
 
-            # Se houver pelo menos **um** desempacotamento literal, captura como PEP 448
-            if num_kwargs_unpack > 0:
-                self.metrics['call_kwargs_unpack'] += 1
-                self.metrics['call_kwargs_unpack_files'].add(self.current_file)
+        # Só contabilizamos se houver MAIS de UM desempacotamento, pois um único desempacotamento
+        # já era permitido antes da PEP 448.
+        if num_kwargs_unpack > 1:
+            # print(f'Encontrado múltiplos kwargs unpack: {ast.dump(node, annotate_fields=True, indent=1)}')
+            self.metrics['call_kwargs_unpack'] += 1
+            self.metrics['call_kwargs_unpack_files'].add(self.current_file)
 
-            if num_args_unpack > 0:
-                self.metrics['call_args_unpack'] += 1
-                self.metrics['call_args_unpack_files'].add(self.current_file)
+        if num_args_unpack > 1:
+            # print(f'Encontrado múltiplos args unpack: {ast.dump(node, annotate_fields=True, indent=1)}')
+            self.metrics['call_args_unpack'] += 1
+            self.metrics['call_args_unpack_files'].add(self.current_file)
 
         self.generic_visit(node)
 

@@ -110,7 +110,7 @@ NUMERO_COLUNA=$2
 VALOR_COLUNA=$3
 
 # Executa o comando awk com os argumentos fornecidos
-# Exemplo sh sh filter_feature_first_occurrence.sh 2012-01 5 1
+# Exemplo sh filter_feature_first_occurrence.sh 2012-01 5 1
 
 awk -F, -v date="$STRING_DATA" -v col="$NUMERO_COLUNA" -v val="$VALOR_COLUNA" '
 BEGIN {OFS = FS}

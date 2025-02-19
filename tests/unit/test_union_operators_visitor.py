@@ -64,7 +64,7 @@ class TestUnionOperatorsVisitor(unittest.TestCase):
                 continue
             
             
-        print(visitor.metrics)
+        # print(visitor.metrics)
         # print(visitor.dict_context)        
         # Assert that the count is correct        
         self.assertEqual(visitor.metrics['dict_union'], 0)

@@ -113,3 +113,9 @@ self.path_in_package = os.path.join(*self.name.split('.'))
 
 def random(size):
     return rand(*size)
+
+
+res = ma.array(func(*(val, axis)), mask=func(*(msk, axis)))
+
+if post_hook:
+    post_hook(**{'pkg_name': pkg_name, 'scons_cmd' : self})

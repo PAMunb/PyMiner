@@ -3,7 +3,7 @@ import ast
 class StructuralPatternMatchingVisitor(ast.NodeVisitor):
     def __init__(self):
         self.metrics = {
-            'structural_pattern_match' : 0,
+            'pattern_match' : 0,
             'pattern_as' : 0,
             'pattern_or' : 0,
             'pattern_sequence' : 0,
@@ -12,7 +12,7 @@ class StructuralPatternMatchingVisitor(ast.NodeVisitor):
             'pattern_value' : 0,
             'pattern_singleton' : 0,
             'pattern_star' : 0,
-            'structural_pattern_match_files' : set(),
+            'pattern_match_files' : set(),
             'pattern_as_files' : set(),
             'pattern_or_files' : set(),
             'pattern_sequence_files' : set(),
@@ -33,9 +33,9 @@ class StructuralPatternMatchingVisitor(ast.NodeVisitor):
     def visit_Match(self, node):
         if node not in self.visited_nodes:
             self.visited_nodes.add(node)
-            self.metrics['structural_pattern_match'] += 1
-            if self.current_file not in self.metrics['structural_pattern_match_files']:
-                self.metrics['structural_pattern_match_files'].add(self.current_file)
+            self.metrics['pattern_match'] += 1
+            if self.current_file not in self.metrics['pattern_match_files']:
+                self.metrics['pattern_match_files'].add(self.current_file)
             for case in node.cases:
                 if case not in self.visited_nodes:
                     self.visited_nodes.add(case)
