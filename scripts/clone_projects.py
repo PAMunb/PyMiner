@@ -56,7 +56,7 @@ with open(sys.argv[2], newline='', encoding='latin-1') as f:
         folder_name = owner + "_" + repoName
         # Gera o caminho absoluto onde o repositório será clonado
         path = os.path.abspath(os.path.join(cwd, folder_name))
-        url = "https://github.com/" + project[1].strip() + ".git"
+        url = "git@github.com:" + project[1].strip() + ".git"
         logger.info(f"Caminho: {path} | URL: {url}")
 
         try:
