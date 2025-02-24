@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Carregue o DataFrame original
-df_original = pd.read_csv('filtered-results.csv', delimiter=',')
+df_original = pd.read_csv('results.csv', delimiter=',')
 # Defina a coluna 'date' como data
 df_original['date'] = pd.to_datetime(df_original['date'], format='%Y-%m-%d')  # Use '%Y-%m-%d' em vez de '%Y-%m-%d'
 
@@ -12,7 +12,7 @@ df_final = pd.DataFrame(columns=df_original.columns)
 projetos_unicos = df_original['project'].unique()
 
 # Crie um DataFrame de referência para o projeto atual com todas as datas no intervalo desejado
-date_range = pd.date_range(start="2012-01-01", end="2024-11-30", freq="M")
+date_range = pd.date_range(start="2008-01-01", end="2024-12-31", freq="M")
 date_range_str = date_range.strftime('%Y-%m-%d')
 df_referencia = pd.DataFrame({'date': date_range_str})
 

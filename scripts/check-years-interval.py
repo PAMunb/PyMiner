@@ -39,7 +39,7 @@ def verificar_anos_em_csv(diretorio):
             caminho_arquivo = os.path.join(diretorio, arquivo)
 
             # Definir o número de colunas esperadas
-            num_colunas = 96
+            num_colunas = 86
 
             # Ler o arquivo CSV filtrando linhas malformadas
             try:

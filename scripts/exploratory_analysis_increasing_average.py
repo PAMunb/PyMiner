@@ -13,20 +13,47 @@ df = pd.read_csv('results-without-gaps.csv')
 
 # Drop unnecessary columns
 df = df.drop(columns=['commit_hash', 'errors',
-    'dict_union_files', 'dict_union_update_files',
-    'async_list_comprehensions_files', 'async_set_comprehensions_files', 'async_dict_comprehensions_files', 
-    'async_generator_expressions_files', 'matrix_multiplication_files',
-    'async_def_files', 'await_expressions_files', 'async_for_files', 'async_with_files',
-    'fstring_files', 'except_star_files', 
-    'structural_pattern_match_files', 'pattern_as_files', 'pattern_or_files', 'pattern_sequence_files',
-    'pattern_mapping_files', 'pattern_class_files', 'pattern_value_files', 'pattern_singleton_files', 
-    'pattern_star_files', 'assign_unpack_files', 'list_unpack_files', 'tuple_unpack_files', 'set_unpack_files', 
-    'dict_unpack_files', 'call_kwargs_unpack_files', 'call_args_unpack_files', 
-    'nonlocal_files', 'function_args_annotation_files', 'function_return_annotation_files', 
-    'kw_defaults_files', 'kw_args_files', 
-    'type_vars_bounds_files', 'type_vars_constraints_files', 'type_param_spec_files', 'type_var_tuple_files', 
-    'type_alias_files', 'type_hint_list_files', 'type_hint_tuple_files', 'type_hint_dict_files', 
-    'type_hint_set_files', 'type_hint_frozenset_files', 'type_hint_type_files'])
+    'async_list_comprehensions_files',
+    'async_set_comprehensions_files',
+    'async_dict_comprehensions_files',
+    'async_generator_expressions_files',
+    'matrix_multiplication_files',
+    'async_def_files',
+    'await_expressions_files',
+    'async_for_files',
+    'async_with_files',
+    'fstring_files',
+    'except_star_files',
+    'pattern_match_files',
+    'pattern_as_files',
+    'pattern_or_files',
+    'pattern_sequence_files',
+    'pattern_mapping_files',
+    'pattern_class_files',
+    'pattern_value_files',
+    'pattern_singleton_files',
+    'pattern_star_files',
+    'assign_unpack_files',
+    'list_unpack_files',
+    'tuple_unpack_files',
+    'set_unpack_files',
+    'dict_unpack_files',
+    'call_kwargs_unpack_files',
+    'call_args_unpack_files',
+    'nonlocal_files',
+    'function_args_annotation_files',
+    'function_return_annotation_files',
+    'kw_defaults_files',
+    'kw_args_files',
+    'type_vars_bounds_files',
+    'type_vars_constraints_files',
+    'type_param_spec_files',
+    'type_var_tuple_files',
+    'type_alias_files',
+    'yield_from_files',
+    'assignment_expression_files',
+    'suppressing_exception_context_files'
+    ])
 
 # Convert the 'date' column to datetime format
 df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
@@ -65,8 +92,6 @@ melted_df = melted_df.sort_values(by='year_month')
 
 # List of features
 features_mapping = {
-    'dict_union': 'Dictionary Union',
-    'dict_union_update': 'Dictionary Union Update',
     'async_list_comprehensions': 'Async List Comprehensions',
     'async_set_comprehensions': 'Async Set Comprehensions',
     'async_dict_comprehensions': 'Async Dictionary Comprehensions',
@@ -78,7 +103,7 @@ features_mapping = {
     'async_with': 'Async With Statements',
     'fstring': 'Formatted String Literals (f-strings)',
     'except_star': 'Exception Groups (except *)',
-    'structural_pattern_match': 'Structural Pattern Matching',
+    'pattern_match': 'Pattern Matching',
     'pattern_as': 'Pattern As Bindings',
     'pattern_or': 'Pattern Or',
     'pattern_sequence': 'Pattern Sequence',
@@ -104,12 +129,9 @@ features_mapping = {
     'type_param_spec': 'Type Parameter Specification',
     'type_var_tuple': 'Type Variable Tuple',
     'type_alias': 'Type Aliases',
-    'type_hint_list': 'Type Hint for Lists',
-    'type_hint_tuple': 'Type Hint for Tuples',
-    'type_hint_dict': 'Type Hint for Dictionaries',
-    'type_hint_set': 'Type Hint for Sets',
-    'type_hint_frozenset': 'Type Hint for Frozen Sets',
-    'type_hint_type': 'Type Hint for Types'
+    'yield_from': 'Yield From',
+    'assignment_expression': 'Assignment Expression',
+    'suppressing_exception_context': 'Suppressing Exception Context'
 }
 
 for feature in features_mapping:
