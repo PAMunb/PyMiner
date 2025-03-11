@@ -19,6 +19,7 @@ from visitors.literal_string_interpolation_visitor import LiteralStringInterpola
 from visitors.coroutines_visitor import CoroutinesVisitor
 from visitors.matrix_multiplication_visitor import MatrixMultiplicationVisitor
 from visitors.asynchronous_comprehension_visitor import AsynchronousComprehensionVisitor
+from visitors.variable_annotations_visitor import VariableAnnotationsVisitor
 from visitors.yield_from_visitor import YieldFromVisitor
 
 # Desabilitar todos os SyntaxWarnings para evitar que apareçam durante a execução
@@ -40,7 +41,7 @@ def process_repository(repo_info, start_date, end_date, steps):
         [AsynchronousComprehensionVisitor, MatrixMultiplicationVisitor, CoroutinesVisitor,
          LiteralStringInterpolationVisitor, ExceptionGroupsVisitor, StructuralPatternMatchingVisitor, UnpackVisitor,
          NonlocalStatementVisitor, FunctionAnnotationsVisitor, KeywordOnlyArgumentsVisitor, TypeParameterVisitor, YieldFromVisitor, AssignmentExpressionVisitor,
-         SuppressingExceptionContextVisitor],
+         VariableAnnotationsVisitor,SuppressingExceptionContextVisitor],
         start_date, end_date, steps
     )
 

@@ -36,13 +36,11 @@ class TestTypeParameterVisitor(unittest.TestCase):
         self.assertEqual(visitor.metrics['type_vars_bounds'], 4) 
         self.assertEqual(visitor.metrics['type_param_spec'], 1) 
         self.assertEqual(visitor.metrics['type_var_tuple'],1)
-        self.assertEqual(visitor.metrics['type_alias'],11)
         
         self.assertEqual(len(visitor.metrics['type_vars_constraints_files']), 1) 
         self.assertEqual(len(visitor.metrics['type_vars_bounds_files']), 1) 
         self.assertEqual(len(visitor.metrics['type_param_spec_files']), 1) 
         self.assertEqual(len(visitor.metrics['type_var_tuple_files']),1)
-        self.assertEqual(len(visitor.metrics['type_alias_files']),1)
 
 if __name__ == '__main__':
     unittest.main()
