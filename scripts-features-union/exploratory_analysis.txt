@@ -1,27 +1,27 @@
 ADF Test for Asynchronous Comprehensions:
-ADF Statistic: 0.4523711038252637
-p-value: 0.9833512556558908
+ADF Statistic: 0.3719934662051465
+p-value: 0.9804168406909849
 Critical Values: {'1%': -3.4623415245233145, '5%': -2.875606128263243, '10%': -2.574267439846904}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Matrix Multiplication:
-ADF Statistic: -0.12137015531867924
-p-value: 0.9472679438324565
-Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+ADF Statistic: 1.041096011050451
+p-value: 0.9946811788185356
+Critical Values: {'1%': -3.463476079125, '5%': -2.876102355, '10%': -2.574532225}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Coroutines (async and await syntax):
-ADF Statistic: 2.2998303490090297
-p-value: 0.9989550750489361
+ADF Statistic: 2.502706575905803
+p-value: 0.9990507180896916
 Critical Values: {'1%': -3.4645146202692527, '5%': -2.8765564361715534, '10%': -2.5747745328940375}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Formatted String Literals (f-strings):
-ADF Statistic: -2.3551018648103548
-p-value: 0.15481145142516117
+ADF Statistic: -2.1267288045678057
+p-value: 0.23390350568524199
 Critical Values: {'1%': -3.4646940755442612, '5%': -2.8766348847254934, '10%': -2.5748163958763994}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
@@ -34,43 +34,43 @@ Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Structural Pattern Matching:
-ADF Statistic: -0.5361904158450366
-p-value: 0.884758615232951
-Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+ADF Statistic: 1.593414738529431
+p-value: 0.9978376843079828
+Critical Values: {'1%': -3.4646940755442612, '5%': -2.8766348847254934, '10%': -2.5748163958763994}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Extended Iterable Unpacking:
-ADF Statistic: -2.107940340900647
-p-value: 0.24133376105963905
-Critical Values: {'1%': -3.4645146202692527, '5%': -2.8765564361715534, '10%': -2.5747745328940375}
+ADF Statistic: -1.5089368963588534
+p-value: 0.5290858426777143
+Critical Values: {'1%': -3.464161278384219, '5%': -2.876401960790147, '10%': -2.5746921001665974}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Additional Unpacking Generalizations:
-ADF Statistic: -2.3089204532088385
-p-value: 0.16910708676056163
-Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+ADF Statistic: -1.5670279608041164
+p-value: 0.5001320415702148
+Critical Values: {'1%': -3.4646940755442612, '5%': -2.8766348847254934, '10%': -2.5748163958763994}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Nonlocal Statements:
-ADF Statistic: -0.15779273418896558
-p-value: 0.9433691603723722
-Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+ADF Statistic: 0.18837515411382086
+p-value: 0.9716020028086985
+Critical Values: {'1%': -3.4645146202692527, '5%': -2.8765564361715534, '10%': -2.5747745328940375}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Function Annotations:
-ADF Statistic: -1.052749356911113
-p-value: 0.7335426554587909
+ADF Statistic: -1.1598607646106691
+p-value: 0.6906200155155529
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Keyword-only Arguments:
-ADF Statistic: 1.999989074247247
-p-value: 0.9986729370029338
+ADF Statistic: 1.9154029502820082
+p-value: 0.9985524012480179
 Critical Values: {'1%': -3.4636447617687436, '5%': -2.8761761179270766, '10%': -2.57457158581854}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
@@ -83,39 +83,46 @@ Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Yield From Expression:
-ADF Statistic: 4.814141596484912
+ADF Statistic: 4.60778574707902
 p-value: 1.0
 Critical Values: {'1%': -3.4623415245233145, '5%': -2.875606128263243, '10%': -2.574267439846904}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Assignment Expression:
-ADF Statistic: -0.7603605840179585
-p-value: 0.83048952716267
+ADF Statistic: -1.436458876140542
+p-value: 0.5646779199546895
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for Suppressing Exception Context:
-ADF Statistic: 3.392120717351898
+ADF Statistic: 3.5811563512545956
 p-value: 1.0
 Critical Values: {'1%': -3.462980134086401, '5%': -2.875885461947131, '10%': -2.5744164898444515}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
-Kendall Coefficient: 0.7038743894414122
+ADF Test for Variable Annotation:
+ADF Statistic: -1.2128927845319748
+p-value: 0.6680251170952529
+Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+Kendall Coefficient: 0.7033852729810156
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Asynchronous Comprehensions.
-Kendall Coefficient: 0.7872441592862751
+Kendall Coefficient: 0.7860959010065619
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Matrix Multiplication.
-Kendall Coefficient: 0.8760333526047307
+Kendall Coefficient: 0.8774055687028484
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Coroutines (async and await syntax).
-Kendall Coefficient: 0.8623490507710927
+Kendall Coefficient: 0.8630463531127409
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Formatted String Literals (f-strings).
@@ -123,27 +130,27 @@ Kendall Coefficient: 0.5114809706645144
 p-value: 0.0000000000000000002444927
 Significance Level: 0.05
 Increasing Trend in the Time Series for Exception Groups (except *).
-Kendall Coefficient: 0.5928747792233258
+Kendall Coefficient: 0.5915033379460021
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Structural Pattern Matching.
-Kendall Coefficient: 0.9367291131845426
+Kendall Coefficient: 0.9376603373691417
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Extended Iterable Unpacking.
-Kendall Coefficient: 0.8551788609898768
+Kendall Coefficient: 0.8545820075153026
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Additional Unpacking Generalizations.
-Kendall Coefficient: 0.952908019784339
+Kendall Coefficient: 0.9412054462065541
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Nonlocal Statements.
-Kendall Coefficient: 0.9448000952795755
+Kendall Coefficient: 0.9410966762015868
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Function Annotations.
-Kendall Coefficient: 0.956074885146035
+Kendall Coefficient: 0.9582812486997758
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Keyword-only Arguments.
@@ -151,15 +158,19 @@ Kendall Coefficient: 0.39956544585600834
 p-value: 0.0000000000019261590489413
 Significance Level: 0.05
 Increasing Trend in the Time Series for Type Parameter Syntax.
-Kendall Coefficient: 0.9341474145404949
+Kendall Coefficient: 0.9321910264961838
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Yield From Expression.
-Kendall Coefficient: 0.7019313421979799
+Kendall Coefficient: 0.7020635700103937
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Assignment Expression.
-Kendall Coefficient: 0.8770209857874482
+Kendall Coefficient: 0.876736757008034
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for Suppressing Exception Context.
+Kendall Coefficient: 0.8403573777391188
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for Variable Annotation.

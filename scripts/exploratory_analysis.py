@@ -49,10 +49,10 @@ df = df.drop(columns=['commit_hash', 'errors',
     'type_vars_constraints_files',
     'type_param_spec_files',
     'type_var_tuple_files',
-    'type_alias_files',
     'yield_from_files',
     'assignment_expression_files',
-    'suppressing_exception_context_files'
+    'suppressing_exception_context_files',
+    'variable_annotation_files'
     ])
 
 # Convert the 'date' column to datetime format
@@ -128,10 +128,10 @@ features = [
     # 'type_vars_constraints',
     # 'type_param_spec',
     # 'type_var_tuple',
-    'type_alias',
     'yield_from',
     'assignment_expression',
-    'suppressing_exception_context'
+    'suppressing_exception_context',
+    'variable_annotation'
 ]
 
 # Output folder for decomposition plots

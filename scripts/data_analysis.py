@@ -48,10 +48,10 @@ columns_to_drop = [
     'type_vars_constraints_files',
     'type_param_spec_files',
     'type_var_tuple_files',
-    'type_alias_files',
     'yield_from_files',
     'assignment_expression_files',
-    'suppressing_exception_context_files'
+    'suppressing_exception_context_files',
+    'variable_annotation_files'
 ]
 
 df = df.drop(columns=columns_to_drop)
@@ -232,7 +232,8 @@ features_mapping = {
     'type_alias': 'Type Aliases',
     'yield_from': 'Yield From',
     'assignment_expression': 'Assignment Expression',
-    'suppressing_exception_context': 'Suppressing Exception Context'
+    'suppressing_exception_context': 'Suppressing Exception Context',
+    'variable_annotation': 'Variable Annotation'
 }
 
 # Renomear as colunas

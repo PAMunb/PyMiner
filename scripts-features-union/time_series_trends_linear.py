@@ -50,8 +50,7 @@ columns_to_drop = [
     'yield_from',
     'assignment_expression',
     'suppressing_exception_context',
-    'type_alias',
-    'type_alias_files'
+    'variable_annotation'
 ]
 
 df = df.drop(columns=columns_to_drop)
@@ -101,7 +100,8 @@ features_mapping = {
     'type_var_tuple_files': 'Type Parameter Syntax',
     'yield_from_files': 'Yield From Expression',
     'assignment_expression_files': 'Assignment Expression',
-    'suppressing_exception_context_files': 'Suppressing Exception Context'
+    'suppressing_exception_context_files': 'Suppressing Exception Context',
+    'variable_annotation_files': 'Variable Annotation'
 }
 
 
@@ -150,7 +150,8 @@ features = [
     'Type Parameter Syntax',
     'Yield From Expression',
     'Assignment Expression',
-    'Suppressing Exception Context'
+    'Suppressing Exception Context',
+    'Variable Annotation'
 ]
 
 # Função para ajustar modelos de regressão e gerar gráficos de tendência
