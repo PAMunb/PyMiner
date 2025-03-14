@@ -110,7 +110,7 @@ class FeatureCounter:
 
     def _parse_code(self, file_content, file_path):
         try:
-            return ast.parse(file_content)
+            return ast.parse(file_content, type_comments=True)
         except SyntaxError:
             return None
 

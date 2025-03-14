@@ -38,6 +38,27 @@ class TestFunctionAnnotationsVisitor(unittest.TestCase):
         self.assertEqual(visitor.metrics['function_return_annotation'], 10)
         self.assertEqual(len(visitor.metrics['function_args_annotation_files']), 1)
         self.assertEqual(len(visitor.metrics['function_return_annotation_files']), 1)
+        
+        
+    def test_function_annotation_expression_count(self):
+        # Create an AST node representing the code with a single With statement
+        
+        code = loader('tests/resources/functions_annotations.py')
+        tree = ast.parse(code)
+
+        # Create a FunctionAnnotationsVisitor instance
+        visitor = FunctionAnnotationsVisitor()
+        
+        visitor.set_current_file('tests/resources/functions_annotations.py')
+
+        # Visit the AST tree
+        visitor.visit(tree)
+
+        # Assert that the feature_with count is correct
+        self.assertEqual(visitor.metrics['function_with_annotation'], 8)
+        self.assertEqual(visitor.metrics['function_without_annotation'], 2)
+        self.assertEqual(len(visitor.metrics['function_with_annotation_files']), 1)
+        self.assertEqual(len(visitor.metrics['function_without_annotation_files']), 1)
 
 
 if __name__ == '__main__':
