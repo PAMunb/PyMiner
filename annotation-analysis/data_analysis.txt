@@ -1,0 +1,26 @@
+                       feature  median  ...       max   min
+0                       assign  3764.0  ...  158036.0  28.0
+1     assign_with_type_comment     0.0  ...     695.0   0.0
+2        assignment_expression     0.0  ...     229.0   0.0
+3                   aug_assign    75.0  ...   10162.0   0.0
+4     function_with_annotation     4.0  ...   16677.0   0.0
+5  function_without_annotation  1015.0  ...   45292.0   0.0
+6          variable_annotation     1.0  ...   24599.0   0.0
+
+[7 rows x 6 columns]
+
+Total de projetos:  424
+
+\begin{tabular}{rrrr}
+\toprule
+                   Feature &   Total of Occurrences (\#) &   Projects Adoption (\%) &   First Occurrence \\
+\midrule
+                    Assign &                    4311603 &                     100 &            2007-06 \\
+     Traditional Functions &                    1145374 &                 99.0566 &            2007-06 \\
+                 AugAssign &                     111737 &                 99.0566 &            2007-06 \\
+ Function With Annotations &                     135175 &                 59.1981 &            2012-05 \\
+       Variable Annotation &                      84853 &                 52.5943 &            2017-01 \\
+     Assignment Expression &                       2770 &                 23.5849 &            2019-12 \\
+  Assign With Type Comment &                       1737 &                 8.96226 &            2011-12 \\
+\bottomrule
+\end{tabular}

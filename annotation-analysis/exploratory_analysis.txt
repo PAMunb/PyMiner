@@ -1,0 +1,77 @@
+ADF Test for assignment_expression:
+ADF Statistic: -1.4459341116318924
+p-value: 0.560067567491146
+Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for variable_annotation:
+ADF Statistic: 6.217349223647471
+p-value: 1.0
+Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for function_with_annotation:
+ADF Statistic: -1.7872264538613312
+p-value: 0.3868215911577896
+Critical Values: {'1%': -3.4646940755442612, '5%': -2.8766348847254934, '10%': -2.5748163958763994}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for function_without_annotation:
+ADF Statistic: -1.468741361570724
+p-value: 0.5489140044448565
+Critical Values: {'1%': -3.463476079125, '5%': -2.876102355, '10%': -2.574532225}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for assign_with_type_comment:
+ADF Statistic: -0.34546628678294644
+p-value: 0.9188135435188041
+Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for aug_assign:
+ADF Statistic: -0.8366301367370566
+p-value: 0.808124792815623
+Critical Values: {'1%': -3.4623415245233145, '5%': -2.875606128263243, '10%': -2.574267439846904}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+ADF Test for assign:
+ADF Statistic: -0.7999947944030419
+p-value: 0.8191235967359898
+Critical Values: {'1%': -3.463476079125, '5%': -2.876102355, '10%': -2.574532225}
+Test Results:
+The series is non-stationary (fails to reject the null hypothesis)
+----------------------------------------
+Kendall Coefficient: 0.7018982533584089
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for assignment_expression.
+Kendall Coefficient: 0.8412129931377595
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for variable_annotation.
+Kendall Coefficient: 0.9544387159351471
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for function_with_annotation.
+Kendall Coefficient: 0.9871794871794872
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for function_without_annotation.
+Kendall Coefficient: 0.802060030848814
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for assign_with_type_comment.
+Kendall Coefficient: 0.9906628895345275
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for aug_assign.
+Kendall Coefficient: 0.9969109281518334
+p-value: 0.0000000000000000000000000
+Significance Level: 0.05
+Increasing Trend in the Time Series for assign.

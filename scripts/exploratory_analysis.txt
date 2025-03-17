@@ -7,11 +7,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -0.145565
-2007-09-01   -1.741919
-2007-10-01   -2.429419
-2007-12-01   -3.708065
-2008-01-01   -5.351294
+2007-06-01    0.011910
+2007-09-01   -1.584444
+2007-10-01   -2.646944
+2007-12-01   -3.925590
+2008-01-01   -5.568819
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -73,11 +73,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01    2.388953
-2007-09-01   -1.342818
-2007-10-01   -0.842818
-2007-12-01   -0.087610
-2008-01-01   -5.413131
+2007-06-01    2.258949
+2007-09-01   -1.212406
+2007-10-01   -0.514489
+2007-12-01    0.501136
+2008-01-01   -4.688968
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -95,11 +95,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01     17.446104
-2007-09-01    -23.564313
-2007-10-01    -45.257021
-2007-12-01    -91.238792
-2008-01-01   -113.941917
+2007-06-01     15.907220
+2007-09-01    -24.358405
+2007-10-01    -46.368821
+2007-12-01    -91.538092
+2008-01-01   -113.736009
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -117,11 +117,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01     39.150761
-2007-09-01    -31.570593
-2007-10-01    -44.018510
-2007-12-01   -112.859656
-2008-01-01   -142.875281
+2007-06-01     36.040543
+2007-09-01    -33.243311
+2007-10-01    -47.316228
+2007-12-01   -114.777165
+2008-01-01   -143.657373
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -161,11 +161,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01    1.477418
-2007-09-01   -0.686645
-2007-10-01   -0.301228
-2007-12-01   -0.949666
-2008-01-01   -0.939249
+2007-06-01    1.412109
+2007-09-01   -0.642578
+2007-10-01   -0.210286
+2007-12-01   -0.811849
+2008-01-01   -0.754557
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -183,11 +183,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01     47.882353
-2007-09-01   -194.625460
-2007-10-01   -107.562960
-2007-12-01   -145.057751
-2008-01-01   -427.549939
+2007-06-01     50.051649
+2007-09-01   -200.448351
+2007-10-01   -126.115017
+2007-12-01   -154.646267
+2008-01-01   -419.737413
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -227,11 +227,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -0.686581
-2007-09-01   -0.782935
-2007-10-01   -1.639706
-2007-12-01   -3.183977
-2008-01-01   -4.056373
+2007-06-01   -0.756217
+2007-09-01   -0.698925
+2007-10-01   -1.592154
+2007-12-01   -3.235383
+2008-01-01   -4.081738
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -249,11 +249,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -0.629608
-2007-09-01   -0.718150
-2007-10-01   -1.262421
-2007-12-01   -2.913463
-2008-01-01   -3.983775
+2007-06-01   -0.633285
+2007-09-01   -0.742660
+2007-10-01   -1.307764
+2007-12-01   -2.979639
+2008-01-01   -4.008285
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -271,11 +271,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -0.247919
-2007-09-01   -0.276565
-2007-10-01   -0.438023
-2007-12-01   -0.729690
-2008-01-01   -0.828648
+2007-06-01   -0.390740
+2007-09-01   -0.205844
+2007-10-01   -0.403761
+2007-12-01   -0.731886
+2008-01-01   -0.804802
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -293,11 +293,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -0.863920
-2007-09-01   -0.410795
-2007-10-01   -0.522774
-2007-12-01   -1.358711
-2008-01-01   -2.100899
+2007-06-01   -0.871426
+2007-09-01   -0.423509
+2007-10-01   -0.540696
+2007-12-01   -1.381842
+2008-01-01   -2.129238
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -337,11 +337,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -0.251162
-2007-09-01   -0.290224
-2007-10-01   -0.337099
-2007-12-01   -0.503766
-2008-01-01   -0.680849
+2007-06-01   -0.249528
+2007-09-01   -0.288590
+2007-10-01   -0.335465
+2007-12-01   -0.502132
+2008-01-01   -0.679215
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -359,11 +359,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01    0.972860
-2007-09-01    0.933798
-2007-10-01   -0.808390
-2007-12-01   -3.748494
-2008-01-01   -5.777140
+2007-06-01    0.819610
+2007-09-01    1.543569
+2007-10-01   -0.443410
+2007-12-01   -3.753306
+2008-01-01   -5.651744
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -425,11 +425,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01    1.185113
-2007-09-01    1.138238
-2007-10-01   -0.632595
-2007-12-01   -0.270616
-2008-01-01   -0.731554
+2007-06-01    0.833423
+2007-09-01    0.911548
+2007-10-01   -0.807202
+2007-12-01   -0.083244
+2008-01-01   -0.544181
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -447,11 +447,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01    2.300871
-2007-09-01    0.321704
-2007-10-01    1.993579
-2007-12-01   -1.454338
-2008-01-01   -3.688713
+2007-06-01    1.651795
+2007-09-01    0.341899
+2007-10-01    2.076274
+2007-12-01   -1.348205
+2008-01-01   -4.186747
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -469,11 +469,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -0.067338
-2007-09-01   -0.650671
-2007-10-01   -0.687130
-2007-12-01   -0.150671
-2008-01-01   -1.538692
+2007-06-01   -0.479741
+2007-09-01   -0.794845
+2007-10-01   -0.925054
+2007-12-01   -0.289637
+2008-01-01   -1.445887
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -491,11 +491,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01    0.391353
-2007-09-01    0.143957
-2007-10-01    0.242915
-2007-12-01   -0.358647
-2008-01-01   -0.095627
+2007-06-01    0.315819
+2007-09-01    0.177798
+2007-10-01    0.136132
+2007-12-01   -0.418556
+2008-01-01   -0.046160
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -513,11 +513,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01    2.193742
-2007-09-01   -0.376570
-2007-10-01   -0.381778
-2007-12-01    0.899472
-2008-01-01    0.826555
+2007-06-01    2.325329
+2007-09-01   -0.323108
+2007-10-01    0.656059
+2007-12-01    1.413871
+2008-01-01    0.119600
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -535,11 +535,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -1.182598
-2007-09-01    0.361673
-2007-10-01   -0.338848
-2007-12-01   -0.268536
-2008-01-01    0.598652
+2007-06-01   -1.319764
+2007-09-01    0.352111
+2007-10-01   -0.351014
+2007-12-01   -0.160909
+2008-01-01    0.273986
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -557,11 +557,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01    0.803513
-2007-09-01    1.191534
-2007-10-01    0.746221
-2007-12-01    0.347784
-2008-01-01   -0.313674
+2007-06-01    0.677351
+2007-09-01    1.198185
+2007-10-01    0.825789
+2007-12-01    0.375268
+2008-01-01   -0.213274
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -579,11 +579,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01    0.901105
-2007-09-01    0.481835
-2007-10-01   -1.463478
-2007-12-01   -2.541603
-2008-01-01   -3.015561
+2007-06-01    1.010072
+2007-09-01    0.559551
+2007-10-01   -1.417011
+2007-12-01   -2.528991
+2008-01-01   -3.039407
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -601,11 +601,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01    -37.553296
-2007-09-01    -73.654859
-2007-10-01   -332.490796
-2007-12-01   -385.532463
-2008-01-01   -637.259025
+2007-06-01    -17.711525
+2007-09-01   -104.133400
+2007-10-01   -352.612566
+2007-12-01   -392.784441
+2008-01-01   -605.810483
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -623,11 +623,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01     -3.282195
-2007-09-01      6.790722
-2007-10-01   -103.865528
-2007-12-01   -147.000945
-2008-01-01   -274.782195
+2007-06-01     16.015357
+2007-09-01     -3.242456
+2007-10-01   -119.052351
+2007-12-01   -155.635685
+2008-01-01   -260.359643
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -645,11 +645,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -13.119204
-2007-09-01    12.836525
-2007-10-01   -22.684309
-2007-12-01    12.443296
-2008-01-01     1.990171
+2007-06-01    -0.592295
+2007-09-01     0.110830
+2007-10-01   -21.472503
+2007-12-01    16.431143
+2008-01-01     8.451976
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -667,11 +667,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -13.119204
-2007-09-01    12.836525
-2007-10-01   -22.684309
-2007-12-01    12.443296
-2008-01-01     1.990171
+2007-06-01    -0.592295
+2007-09-01     0.110830
+2007-10-01   -21.472503
+2007-12-01    16.431143
+2008-01-01     8.451976
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -711,11 +711,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -2.559896
-2007-09-01   -7.770833
-2007-10-01   -9.736979
-2007-12-01   -5.619792
-2008-01-01    2.713542
+2007-06-01   -2.548879
+2007-09-01   -8.793671
+2007-10-01   -9.671275
+2007-12-01   -5.715546
+2008-01-01    3.198517
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -733,11 +733,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -2.713580
-2007-09-01   -4.497434
-2007-10-01   -4.494830
-2007-12-01   -0.179726
-2008-01-01   -2.653684
+2007-06-01   -2.225873
+2007-09-01   -4.501915
+2007-10-01   -5.194623
+2007-12-01   -0.228477
+2008-01-01   -1.361290
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -755,11 +755,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -0.679113
-2007-09-01   -2.080155
-2007-10-01   -2.515051
-2007-12-01   -4.160884
-2008-01-01   -0.561926
+2007-06-01   -0.649689
+2007-09-01   -1.998647
+2007-10-01   -2.566355
+2007-12-01   -4.345001
+2008-01-01   -0.693959
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -777,11 +777,11 @@ date
 2008-01-01   NaN
 Name: trend, dtype: float64
 date
-2007-06-01   -389.737847
-2007-09-01   -158.865451
-2007-10-01   -134.422743
-2007-12-01    168.618924
-2008-01-01    -18.292535
+2007-06-01   -325.997638
+2007-09-01   -125.237222
+2007-10-01   -100.724201
+2007-12-01    198.705487
+2008-01-01     10.400799
 Name: seasonal, dtype: float64
 date
 2007-06-01   NaN
@@ -827,8 +827,8 @@ Autocorrelation Functions of assignment_expression:
 Autocorrelation Functions of suppressing_exception_context:
 Autocorrelation Functions of variable_annotation:
 ADF Test for async_list_comprehensions:
-ADF Statistic: 0.9097743121740889
-p-value: 0.9932165671256842
+ADF Statistic: 0.9099870301007857
+p-value: 0.9932192854285868
 Critical Values: {'1%': -3.4623415245233145, '5%': -2.875606128263243, '10%': -2.574267439846904}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
@@ -848,21 +848,21 @@ Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for matrix_multiplication:
-ADF Statistic: 1.0092209528670535
-p-value: 0.9943622937869662
+ADF Statistic: 0.9859449615835533
+p-value: 0.9941154155449061
 Critical Values: {'1%': -3.4633090972761744, '5%': -2.876029332045744, '10%': -2.5744932593252643}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for async_def:
-ADF Statistic: 3.707690636077108
+ADF Statistic: 3.7285584115518784
 p-value: 1.0
 Critical Values: {'1%': -3.4646940755442612, '5%': -2.8766348847254934, '10%': -2.5748163958763994}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for await_expressions:
-ADF Statistic: 4.49697336156471
+ADF Statistic: 4.557985353041279
 p-value: 1.0
 Critical Values: {'1%': -3.4646940755442612, '5%': -2.8766348847254934, '10%': -2.5748163958763994}
 Test Results:
@@ -876,15 +876,15 @@ Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for async_with:
-ADF Statistic: 4.437392759272216
+ADF Statistic: 4.505296357204382
 p-value: 1.0
 Critical Values: {'1%': -3.463987334463603, '5%': -2.8763259091636213, '10%': -2.5746515171738515}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for fstring:
-ADF Statistic: -4.0802951606946385
-p-value: 0.0010437657637283988
+ADF Statistic: -4.671529221511211
+p-value: 9.515018196668285e-05
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is stationary (rejects the null hypothesis)
@@ -897,28 +897,28 @@ Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for pattern_match:
-ADF Statistic: 0.23165997439749078
-p-value: 0.9739824380096438
+ADF Statistic: 7.770421544314148
+p-value: 1.0
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for pattern_as:
-ADF Statistic: 5.214505080938104
+ADF Statistic: 13.484222058161086
 p-value: 1.0
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for pattern_or:
-ADF Statistic: -6.263990314845179
-p-value: 4.1569513651111594e-08
+ADF Statistic: -9.344205657779433
+p-value: 8.633802275315223e-16
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is stationary (rejects the null hypothesis)
 ----------------------------------------
 ADF Test for pattern_sequence:
-ADF Statistic: 3.3875848093641925
+ADF Statistic: 3.7457692230518536
 p-value: 1.0
 Critical Values: {'1%': -3.463987334463603, '5%': -2.8763259091636213, '10%': -2.5746515171738515}
 Test Results:
@@ -932,15 +932,15 @@ Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for pattern_class:
-ADF Statistic: 1.295961455352066
-p-value: 0.9965862278651402
+ADF Statistic: 1.4653398917321658
+p-value: 0.9973916650504594
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for pattern_value:
-ADF Statistic: 3.384496670798399
-p-value: 1.0
+ADF Statistic: -1.2877664035061498
+p-value: 0.6347504487550382
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
@@ -960,86 +960,86 @@ Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for assign_unpack:
-ADF Statistic: -0.33746831614060074
-p-value: 0.9200275089250318
-Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+ADF Statistic: 0.47731310353059747
+p-value: 0.984166988169499
+Critical Values: {'1%': -3.464337030867007, '5%': -2.876478799035722, '10%': -2.574733103221565}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for list_unpack:
-ADF Statistic: 7.179924384242527
+ADF Statistic: 6.509200050074012
 p-value: 1.0
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for tuple_unpack:
-ADF Statistic: 2.7913757915274355
-p-value: 1.0
-Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+ADF Statistic: 2.497153406686404
+p-value: 0.999048926881897
+Critical Values: {'1%': -3.4646940755442612, '5%': -2.8766348847254934, '10%': -2.5748163958763994}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for set_unpack:
-ADF Statistic: 0.18704302130227884
-p-value: 0.9715254411526131
-Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+ADF Statistic: 2.1363527653447214
+p-value: 0.9988259160100497
+Critical Values: {'1%': -3.4645146202692527, '5%': -2.8765564361715534, '10%': -2.5747745328940375}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for dict_unpack:
-ADF Statistic: -1.7887214724518243
-p-value: 0.3860753713571143
+ADF Statistic: -2.171489669282556
+p-value: 0.21675527283028345
 Critical Values: {'1%': -3.4646940755442612, '5%': -2.8766348847254934, '10%': -2.5748163958763994}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for call_kwargs_unpack:
-ADF Statistic: 1.6517041794064324
-p-value: 0.9980046932704025
-Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
+ADF Statistic: 2.1620983763714703
+p-value: 0.9988498432576091
+Critical Values: {'1%': -3.4626576734812318, '5%': -2.8757444215841326, '10%': -2.5743412314098753}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for call_args_unpack:
-ADF Statistic: 4.178413767303905
-p-value: 1.0
-Critical Values: {'1%': -3.462818103072159, '5%': -2.8758145932936805, '10%': -2.574378674548251}
+ADF Statistic: 2.6297302681678896
+p-value: 0.999080064079933
+Critical Values: {'1%': -3.463987334463603, '5%': -2.8763259091636213, '10%': -2.5746515171738515}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for nonlocal:
-ADF Statistic: 2.616015338974244
-p-value: 0.999077945856887
+ADF Statistic: 2.4211031623537043
+p-value: 0.9990198974112686
 Critical Values: {'1%': -3.463987334463603, '5%': -2.8763259091636213, '10%': -2.5746515171738515}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for function_args_annotation:
-ADF Statistic: -1.7546888273086447
-p-value: 0.40317794332064416
+ADF Statistic: -1.7814367601374872
+p-value: 0.38971598970375676
 Critical Values: {'1%': -3.4646940755442612, '5%': -2.8766348847254934, '10%': -2.5748163958763994}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for function_return_annotation:
-ADF Statistic: -0.8505381618418889
-p-value: 0.8038244773173826
+ADF Statistic: -0.7637237392328315
+p-value: 0.8295464479893201
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for kw_defaults:
-ADF Statistic: 3.6606533044617833
+ADF Statistic: 5.981706057946471
 p-value: 1.0
-Critical Values: {'1%': -3.4633090972761744, '5%': -2.876029332045744, '10%': -2.5744932593252643}
+Critical Values: {'1%': -3.4626576734812318, '5%': -2.8757444215841326, '10%': -2.5743412314098753}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for kw_args:
-ADF Statistic: 3.6606533044617833
+ADF Statistic: 5.981706057946471
 p-value: 1.0
-Critical Values: {'1%': -3.4633090972761744, '5%': -2.876029332045744, '10%': -2.5744932593252643}
+Critical Values: {'1%': -3.4626576734812318, '5%': -2.8757444215841326, '10%': -2.5743412314098753}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
@@ -1051,28 +1051,28 @@ Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for yield_from:
-ADF Statistic: 3.603852659290382
+ADF Statistic: 3.604792201570545
 p-value: 1.0
 Critical Values: {'1%': -3.4623415245233145, '5%': -2.875606128263243, '10%': -2.574267439846904}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for assignment_expression:
-ADF Statistic: -1.6085920422874256
-p-value: 0.479276146611918
+ADF Statistic: -1.4459341116318924
+p-value: 0.560067567491146
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for suppressing_exception_context:
-ADF Statistic: 3.6606847070093504
+ADF Statistic: 3.649382712159983
 p-value: 1.0
 Critical Values: {'1%': -3.4631437906252636, '5%': -2.8759570379821047, '10%': -2.574454682874228}
 Test Results:
 The series is non-stationary (fails to reject the null hypothesis)
 ----------------------------------------
 ADF Test for variable_annotation:
-ADF Statistic: 7.690475025184455
+ADF Statistic: 6.217349223647471
 p-value: 1.0
 Critical Values: {'1%': -3.4648754262570978, '5%': -2.876714157488788, '10%': -2.574858699001736}
 Test Results:
@@ -1094,11 +1094,11 @@ Kendall Coefficient: 0.788863634769886
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for matrix_multiplication.
-Kendall Coefficient: 0.8792797295973235
+Kendall Coefficient: 0.879253270513301
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for async_def.
-Kendall Coefficient: 0.8791212294926022
+Kendall Coefficient: 0.8790947656220427
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for await_expressions.
@@ -1106,11 +1106,11 @@ Kendall Coefficient: 0.8712161049583059
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for async_for.
-Kendall Coefficient: 0.8453717491399967
+Kendall Coefficient: 0.8459472508213591
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for async_with.
-Kendall Coefficient: 0.8646834620141455
+Kendall Coefficient: 0.8646566014032545
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for fstring.
@@ -1118,19 +1118,19 @@ Kendall Coefficient: 0.5114809706645144
 p-value: 0.0000000000000000002444927
 Significance Level: 0.05
 Increasing Trend in the Time Series for except_star.
-Kendall Coefficient: 0.5917768918401755
+Kendall Coefficient: 0.5934214277123502
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for pattern_match.
-Kendall Coefficient: 0.5907555981270087
+Kendall Coefficient: 0.5921686729783091
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for pattern_as.
-Kendall Coefficient: 0.43496735654698665
-p-value: 0.0000000000000065957296560
+Kendall Coefficient: 0.46450673882690735
+p-value: 0.0000000000000000571147951
 Significance Level: 0.05
 Increasing Trend in the Time Series for pattern_or.
-Kendall Coefficient: 0.5866941957120703
+Kendall Coefficient: 0.588117578109698
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for pattern_sequence.
@@ -1138,11 +1138,11 @@ Kendall Coefficient: 0.27091639666128203
 p-value: 0.0000019131702660919205286
 Significance Level: 0.05
 Increasing Trend in the Time Series for pattern_mapping.
-Kendall Coefficient: 0.48115879349685226
-p-value: 0.0000000000000000041081348
+Kendall Coefficient: 0.48139965924813816
+p-value: 0.0000000000000000039249932
 Significance Level: 0.05
 Increasing Trend in the Time Series for pattern_class.
-Kendall Coefficient: 0.5904815753604057
+Kendall Coefficient: 0.593304001864529
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for pattern_value.
@@ -1154,43 +1154,43 @@ Kendall Coefficient: 0.5634249936157435
 p-value: 0.0000000000000000000000080
 Significance Level: 0.05
 Increasing Trend in the Time Series for pattern_star.
-Kendall Coefficient: 0.9376452138431934
+Kendall Coefficient: 0.9430637241048057
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for assign_unpack.
-Kendall Coefficient: 0.8499461489978193
+Kendall Coefficient: 0.8500007219311317
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for list_unpack.
-Kendall Coefficient: 0.8303784650206417
+Kendall Coefficient: 0.8306011393809473
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for tuple_unpack.
-Kendall Coefficient: 0.7855984019588202
+Kendall Coefficient: 0.7865911711429487
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for set_unpack.
-Kendall Coefficient: 0.8491574512537808
+Kendall Coefficient: 0.8498935098421065
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for dict_unpack.
-Kendall Coefficient: 0.7755399823571697
+Kendall Coefficient: 0.7771697507545343
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for call_kwargs_unpack.
-Kendall Coefficient: 0.7941751435021965
+Kendall Coefficient: 0.794204104255646
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for call_args_unpack.
-Kendall Coefficient: 0.9549741848476053
+Kendall Coefficient: 0.9538361174859633
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for nonlocal.
-Kendall Coefficient: 0.9223769087762573
+Kendall Coefficient: 0.9544875170241602
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for function_args_annotation.
-Kendall Coefficient: 0.9303941216832988
+Kendall Coefficient: 0.9542441013221205
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for function_return_annotation.
@@ -1206,15 +1206,15 @@ Kendall Coefficient: 0.39956544585600834
 p-value: 0.0000000000019261590489413
 Significance Level: 0.05
 Increasing Trend in the Time Series for type_vars_bounds.
-Kendall Coefficient: 0.9429048337096315
+Kendall Coefficient: 0.9455006422509918
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for yield_from.
-Kendall Coefficient: 0.701766019324242
+Kendall Coefficient: 0.7018982533584089
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for assignment_expression.
-Kendall Coefficient: 0.8727622003138436
+Kendall Coefficient: 0.872735608566265
 p-value: 0.0000000000000000000000000
 Significance Level: 0.05
 Increasing Trend in the Time Series for suppressing_exception_context.

@@ -1,0 +1,21 @@
+                     feature       mean     median        std         max   min
+0                     Assign  93.224633  95.691819   8.377180  100.000000  40.0
+1   Assign With Type Comment   0.411681   0.000000   2.807764   48.514851   0.0
+2      Assignment Expression   0.886697   0.000000   3.375562   36.697248   0.0
+3                  AugAssign  21.335590  18.842782  14.063657   79.069767   0.0
+4  Function With Annotations  13.289585   1.396169  22.713203   98.591549   0.0
+5      Traditional Functions  76.205189  82.758621  20.644358  100.000000   0.0
+6        Variable Annotation   7.642378   0.327220  14.277016   89.655172   0.0
+\begin{tabular}{rrr}
+\toprule
+    &                   Feature &   median Usage (\%) \\
+\midrule
+  4 &                    Assign &           95.6918  \\
+  3 &     Traditional Functions &           82.7586  \\
+  6 &                 AugAssign &           18.8428  \\
+  2 & Function With Annotations &            1.39617 \\
+  1 &       Variable Annotation &            0.32722 \\
+  0 &     Assignment Expression &            0       \\
+  5 &  Assign With Type Comment &            0       \\
+\bottomrule
+\end{tabular}

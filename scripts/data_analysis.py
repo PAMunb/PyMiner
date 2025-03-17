@@ -51,7 +51,8 @@ columns_to_drop = [
     'yield_from_files',
     'assignment_expression_files',
     'suppressing_exception_context_files',
-    'variable_annotation_files'
+    'variable_annotation_files',
+    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files'
 ]
 
 df = df.drop(columns=columns_to_drop)

@@ -46,10 +46,10 @@ features_columns = [
     'type_vars_constraints_files',
     'type_param_spec_files',
     'type_var_tuple_files',
-    'type_alias_files',
     'yield_from_files',
     'assignment_expression_files',
-    'suppressing_exception_context_files'
+    'suppressing_exception_context_files',
+    'variable_annotation_files',
 ]
 
 df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
@@ -108,10 +108,11 @@ df_summary = df_last_revision.drop(columns=[
     'type_vars_constraints',
     'type_param_spec',
     'type_var_tuple',
-    'type_alias',
     'yield_from',
+    'variable_annotation',
     'assignment_expression',
-    'suppressing_exception_context'
+    'suppressing_exception_context',
+    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files'
 ])
 
 df_summary = df_summary.drop(columns=[
@@ -152,9 +153,9 @@ df_summary = df_summary.drop(columns=[
     'type_vars_constraints_files',
     'type_param_spec_files',
     'type_var_tuple_files',
-    'type_alias_files',
     'yield_from_files',
     'assignment_expression_files',
+    'variable_annotation_files',
     'suppressing_exception_context_files'])
 
 df_summary.to_csv('last_revision_files_occurrences_percentage.csv', index=False)
@@ -208,10 +209,10 @@ features_mapping = {
     'type_vars_constraints_files_percentage': 'Type Variables Constraints',
     'type_param_spec_files_percentage': 'Type Parameter Specification',
     'type_var_tuple_files_percentage': 'Type Variable Tuple',
-    'type_alias_files_percentage': 'Type Aliases',
     'yield_from_files_percentage': 'Yield From',
     'assignment_expression_files_percentage': 'Assignment Expression',
-    'suppressing_exception_context_files_percentage': 'Suppressing Exception Context'
+    'suppressing_exception_context_files_percentage': 'Suppressing Exception Context',
+    'variable_annotation_files_percentage': 'Variable Annotations'
 }
 
 summary = melted_df.groupby('feature')['total'].agg(['mean', 'median', 'std', 'max', 'min']).reset_index()

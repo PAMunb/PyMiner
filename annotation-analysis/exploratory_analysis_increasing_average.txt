@@ -1,0 +1,7 @@
+function_with_annotation 653.0193236714975
+function_without_annotation 5528.405797101449
+assignment_expression 13.381642512077295
+variable_annotation 409.9178743961353
+assign 20819.6038647343
+assign_with_type_comment 8.391304347826088
+aug_assign 539.512077294686

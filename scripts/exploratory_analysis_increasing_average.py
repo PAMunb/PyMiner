@@ -49,10 +49,11 @@ df = df.drop(columns=['commit_hash', 'errors',
     'type_vars_constraints_files',
     'type_param_spec_files',
     'type_var_tuple_files',
-    'type_alias_files',
     'yield_from_files',
     'assignment_expression_files',
-    'suppressing_exception_context_files'
+    'variable_annotation_files',
+    'suppressing_exception_context_files',
+        'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files'
     ])
 
 # Convert the 'date' column to datetime format
@@ -128,10 +129,10 @@ features_mapping = {
     'type_vars_constraints': 'Type Variables Constraints',
     'type_param_spec': 'Type Parameter Specification',
     'type_var_tuple': 'Type Variable Tuple',
-    'type_alias': 'Type Aliases',
     'yield_from': 'Yield From',
     'assignment_expression': 'Assignment Expression',
-    'suppressing_exception_context': 'Suppressing Exception Context'
+    'suppressing_exception_context': 'Suppressing Exception Context',
+    'variable_annotation' : 'Variable Annotation',
 }
 
 for feature in features_mapping:

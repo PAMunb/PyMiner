@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 # Carregue os dados
 df = pd.read_csv('results-without-gaps.csv')
 
+df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
+
 # Lista de colunas a serem removidas
 columns_to_drop = [
     'commit_hash', 'errors',
@@ -49,63 +51,52 @@ columns_to_drop = [
     'yield_from_files',
     'assignment_expression_files',
     'suppressing_exception_context_files',
-    'variable_annotation_files'
+    'variable_annotation_files',
+    'function_with_annotation_files','function_without_annotation_files','assign_files','assign_with_type_comment_files','aug_assign_files',
+        'async_list_comprehensions',
+    'async_set_comprehensions',
+    'async_dict_comprehensions',
+    'async_generator_expressions',
+    'matrix_multiplication',
+    'async_def',
+    'await_expressions',
+    'async_for',
+    'async_with',
+    'fstring',
+    'except_star',
+    'pattern_match',
+    'pattern_as',
+    'pattern_or',
+    'pattern_sequence',
+    'pattern_mapping',
+    'pattern_class',
+    'pattern_value',
+    'pattern_singleton',
+    'pattern_star',
+    'assign_unpack',
+    'list_unpack',
+    'tuple_unpack',
+    'set_unpack',
+    'dict_unpack',
+    'call_kwargs_unpack',
+    'call_args_unpack',
+    'nonlocal',
+    'function_args_annotation',
+    'function_return_annotation',
+    'kw_defaults',
+    'kw_args',
+    'type_vars_bounds',
+    'type_vars_constraints',
+    'type_param_spec',
+    'type_var_tuple',
+    'yield_from',
+    'suppressing_exception_context'
 ]
 
 df = df.drop(columns=columns_to_drop)
 
+
 df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
-
-# Dicionário de mapeamento de features
-features_mapping = {
-    'async_list_comprehensions': 'Asynchronous Comprehensions',
-    'async_set_comprehensions': 'Asynchronous Comprehensions',
-    'async_dict_comprehensions': 'Asynchronous Comprehensions',
-    'async_generator_expressions': 'Asynchronous Generators',
-    'matrix_multiplication': 'Matrix Multiplication',
-    'async_def': 'Coroutines (async and await syntax)',
-    'await_expressions': 'Coroutines (async and await syntax)',
-    'async_for': 'Coroutines (async and await syntax)',
-    'async_with': 'Coroutines (async and await syntax)',
-    'fstring': 'Formatted String Literals (f-strings)',
-    'except_star': 'Exception Groups (except *)',
-    'pattern_match': 'Structural Pattern Matching',
-    'pattern_as': 'Structural Pattern Matching',
-    'pattern_or': 'Structural Pattern Matching',
-    'pattern_sequence': 'Structural Pattern Matching',
-    'pattern_mapping': 'Structural Pattern Matching',
-    'pattern_class': 'Structural Pattern Matching',
-    'pattern_value': 'Structural Pattern Matching',
-    'pattern_singleton': 'Structural Pattern Matching',
-    'pattern_star': 'Structural Pattern Matching',
-    'assign_unpack': 'Extended Iterable Unpacking',
-    'list_unpack': 'Additional Unpacking Generalizations',
-    'tuple_unpack': 'Additional Unpacking Generalizations',
-    'set_unpack': 'Additional Unpacking Generalizations',
-    'dict_unpack': 'Additional Unpacking Generalizations',
-    'call_kwargs_unpack': 'Additional Unpacking Generalizations',
-    'call_args_unpack': 'Additional Unpacking Generalizations',
-    'nonlocal': 'Nonlocal Statements',
-    'function_args_annotation': 'Function Annotations',
-    'function_return_annotation': 'Function Annotations',
-    'kw_defaults': 'Keyword-only Arguments',
-    'kw_args': 'Keyword-only Arguments',
-    'type_vars_bounds': 'Type Parameter Syntax',
-    'type_vars_constraints': 'Type Parameter Syntax',
-    'type_param_spec': 'Type Parameter Syntax',
-    'type_var_tuple': 'Type Parameter Syntax',
-    'yield_from': 'Yield From Expression',
-    'assignment_expression': 'Assignment Expression',
-    'suppressing_exception_context': 'Suppressing Exception Context',
-    'variable_annotation': 'Variable Annotation'
-}
-
-
-df.rename(columns=features_mapping, inplace=True)
-
-# Visualizar as novas colunas
-# print(df.columns)
-
 
 last_revision_idx = df.groupby(['project'])['date'].idxmax()
 
@@ -119,10 +110,6 @@ var_name = "feature"
 # Derreta o DataFrame para o formato apropriado
 melted_df = pd.melt(df_last_revision, id_vars=id_vars, value_name=value_name, var_name=var_name)
 
-
-# Mapear as features para suas categorias
-# melted_df['feature'] = melted_df['feature'].map(features_mapping)
-
 # Converta a coluna 'date' para datetime
 melted_df['date'] = melted_df['date'].apply(lambda x: pd.to_datetime(x, format='%Y-%m-%d', errors='coerce'))
 
@@ -131,11 +118,8 @@ melted_df['total'] = pd.to_numeric(melted_df['total'], errors='coerce')
 
 melted_df = melted_df.sort_values(by='date')
 
-
 summary = melted_df.groupby('feature')['total'].agg(['median', 'mean', 'std', 'max', 'min']).reset_index()
-
-summary['feature'] = summary['feature'].replace(features_mapping)
-
+print(summary)
 
 tablefmt = 'latex_booktabs'  # Formato LaTeX
 colalign = ("l", "r", "r", "r", "r", "r")
@@ -143,7 +127,7 @@ colalign = ("l", "r", "r", "r", "r", "r")
 # Agora você pode continuar com a criação da tabela LaTeX
 table_summary = tabulate(summary, headers='keys', tablefmt=tablefmt, colalign=colalign)
 
-print(table_summary)
+# print(table_summary)
 # sys.exit()
 # Filter out features with median equal to 0
 nonzero_median_summary = summary[summary['median'] != 0]
@@ -206,8 +190,6 @@ var_name = "feature"
 
 df_first_revision = pd.melt(df, id_vars=id_vars, value_name=value_name, var_name=var_name)
 
-# df_first_revision['feature'] = df_first_revision['feature'].map(features_mapping)
-
 # Converta a coluna 'date' para datetime
 df_first_revision['date'] = df_first_revision['date'].apply(lambda x: pd.to_datetime(x, format='%Y-%m-%d', errors='coerce'))
 
@@ -248,21 +230,27 @@ merged_df.index.name = 'Feature'
 # Crie uma lista com os novos nomes das colunas na ordem desejada
 table_columns = ['Total of Occurrences (#)', 'Projects Adoption (%)', 'First Occurrence']
 
-
+# Dicionário de mapeamento de features
+features_mapping = {
+        'function_with_annotation': 'Function With Annotations',
+        'function_without_annotation': 'Traditional Functions',
+        'assignment_expression': 'Assignment Expression',
+        'variable_annotation': 'Variable Annotation',
+        'assign': 'Assign',
+        'assign_with_type_comment': 'Assign With Type Comment',
+        'aug_assign': 'AugAssign',
+}
 
 # Renomear as colunas
 merged_df.columns = table_columns
 
-# print(merged_df)
-
 # Renomear os valores na coluna 'Feature' usando o mapeamento
-# merged_df.index = merged_df.index.map(features_mapping)
+merged_df.index = merged_df.index.map(features_mapping)
 
 merged_df = merged_df.sort_values(by='Projects Adoption (%)',ascending=False)
 
 tablefmt = 'latex_booktabs'  # Formato LaTeX
 colalign = ("right", "right", "right", "right")
-
 
 # Agora você pode continuar com a criação da tabela LaTeX
 table = tabulate(merged_df, headers='keys', tablefmt=tablefmt, colalign=colalign)

@@ -44,10 +44,10 @@ df = df.drop(columns=['commit_hash', 'errors',
     'type_vars_constraints',
     'type_param_spec',
     'type_var_tuple',
-    'type_alias',
     'yield_from',
     'assignment_expression',
-    'suppressing_exception_context'
+    'suppressing_exception_context',
+        'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files','variable_annotation',
     ])
 
 df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
@@ -121,7 +121,8 @@ features = [
     # 'type_alias_files',
     # 'yield_from_files',
     # 'assignment_expression_files',
-    # 'suppressing_exception_context_files'
+    # 'suppressing_exception_context_files',
+    # 'variable_annotation'
 ]
 
 plt.figure(figsize=(16, 8))
