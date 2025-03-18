@@ -1,0 +1,46 @@
+\begin{tabular}{llllllr}
+\toprule
+    &                               feature &   median &       mean &       std &   max &   min \\
+\midrule
+ 0  & Additional Unpacking Generalizations  & 0        & 1.58333    & 13.3827   & 523   &     0 \\
+ 1  & Assignment Expression                 & 0        & 6.53302    & 27.5174   & 229   &     0 \\
+ 2  & Asynchronous Comprehensions           & 0        & 0.282233   & 7.10147   & 248   &     0 \\
+ 3  & Asynchronous Generators               & 0        & 0          & 0         & 0     &     0 \\
+ 4  & Coroutines (async and await syntax)   & 0        & 23.286     & 213.726   & 4170  &     0 \\
+ 5  & Exception Groups (except *)           & 0        & 0.00235849 & 0.0485643 & 1     &     0 \\
+ 6  & Extended Iterable Unpacking           & 0        & 0.978774   & 4.0746    & 45    &     0 \\
+ 7  & Formatted String Literals (f-strings) & 31.5     & 293.502    & 966.395   & 13188 &     0 \\
+ 8  & Function Annotations                  & 3        & 361.096    & 1452.81   & 26605 &     0 \\
+ 9  & Keyword-only Arguments                & 0        & 58.5401    & 291.555   & 3497  &     0 \\
+ 10 & Matrix Multiplication                 & 0        & 5.43396    & 49.6853   & 924   &     0 \\
+ 11 & Nonlocal Statements                   & 0        & 1.38208    & 5.8758    & 64    &     0 \\
+ 12 & Structural Pattern Matching           & 0        & 0.53826    & 9.24849   & 345   &     0 \\
+ 13 & Suppressing Exception Context         & 0        & 2.20283    & 15.0862   & 265   &     0 \\
+ 14 & Type Parameter Syntax                 & 0        & 0.00294811 & 0.0875267 & 3     &     0 \\
+ 15 & Variable Annotation                   & 1        & 200.125    & 1332.99   & 24599 &     0 \\
+ 16 & Yield From Expression                 & 0        & 4.94104    & 19.7942   & 289   &     0 \\
+\bottomrule
+\end{tabular}
+Total de projetos:  424
+\begin{tabular}{rrrr}
+\toprule
+                               Feature &   Total of Occurrences (\#) &   Projects Adoption (\%) &   First Occurrence \\
+\midrule
+ Formatted String Literals (f-strings) &                     124445 &                 80.1887 &            2016-05 \\
+                  Function Annotations &                     306209 &                 59.1981 &            2012-05 \\
+                   Variable Annotation &                      84853 &                 52.5943 &            2017-01 \\
+                Keyword-only Arguments &                      49642 &                 47.1698 &            2011-11 \\
+  Additional Unpacking Generalizations &                       4028 &                 42.6887 &            2015-09 \\
+                 Yield From Expression &                       2095 &                 36.3208 &            2012-05 \\
+                 Assignment Expression &                       2770 &                 23.5849 &            2019-12 \\
+                   Nonlocal Statements &                        586 &                  20.283 &            2010-12 \\
+   Coroutines (async and await syntax) &                      39493 &                 19.5755 &            2015-12 \\
+           Extended Iterable Unpacking &                        415 &                 19.3396 &            2009-12 \\
+         Suppressing Exception Context &                        934 &                 17.9245 &            2015-03 \\
+                 Matrix Multiplication &                       2304 &                 8.25472 &            2018-05 \\
+           Structural Pattern Matching &                       2054 &                 4.48113 &            2021-05 \\
+           Asynchronous Comprehensions &                        359 &                 2.59434 &            2019-11 \\
+                 Type Parameter Syntax &                          5 &                0.471698 &            2023-07 \\
+           Exception Groups (except *) &                          1 &                0.235849 &            2022-05 \\
+\bottomrule
+\end{tabular}
