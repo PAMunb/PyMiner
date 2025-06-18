@@ -33,8 +33,15 @@ class TestExceptionGroupsVisitor(unittest.TestCase):
         visitor.visit(tree)   
 
         # Assert that the feature_with count is correct
-        self.assertEqual(visitor.metrics['except_star'], 6)
+        self.assertEqual(visitor.metrics['except_star'], 4)
+        self.assertEqual(visitor.metrics['except_star_with_group'], 3)
+        self.assertEqual(visitor.metrics['except_star_without_group'], 1)
+        self.assertEqual(visitor.metrics['raised_exception_group'], 5)
+        self.assertEqual(visitor.metrics['caught_exception_group'], 2)
+        self.assertEqual(visitor.metrics['exception_groups'], 10)
+        
         self.assertEqual(len(visitor.metrics['except_star_files']), 1)
+        self.assertEqual(len(visitor.metrics['exception_group_files']), 1)
 
 
 if __name__ == '__main__':
