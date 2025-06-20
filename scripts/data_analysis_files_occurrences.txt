@@ -1,89 +1,91 @@
                                   feature       mean  ...        max  min
-0                    Assignment Unpacking   0.256406  ...  11.475410  0.0
-1                   Assignment Expression   0.886697  ...  36.697248  0.0
-2              Async Function Definitions   2.062748  ...  90.163934  0.0
+0                    Assignment Unpacking   0.259014  ...  12.021858  0.0
+1                   Assignment Expression   0.867236  ...  32.110092  0.0
+2              Async Function Definitions   2.028933  ...  88.524590  0.0
 3         Async Dictionary Comprehensions   0.001396  ...   0.591716  0.0
-4                         Async For Loops   0.104019  ...   5.882353  0.0
+4                         Async For Loops   0.103070  ...   6.302521  0.0
 5             Async Generator Expressions   0.000000  ...   0.000000  0.0
-6               Async List Comprehensions   0.165177  ...  51.077586  0.0
+6               Async List Comprehensions   0.168508  ...  51.077586  0.0
 7                Async Set Comprehensions   0.000480  ...   0.203666  0.0
-8                   Async With Statements   0.230072  ...  13.488372  0.0
-9                       Await Expressions   1.806260  ...  86.885246  0.0
-10    Call Positional Arguments Unpacking   0.060494  ...   3.225806  0.0
-11       Call Keyword Arguments Unpacking   0.068473  ...   4.878049  0.0
-12                   Dictionary Unpacking   0.464977  ...  19.565217  0.0
-13            Exception Groups (except *)   0.004450  ...   1.886792  0.0
-14  Formatted String Literals (f-strings)  18.210568  ...  95.348837  0.0
-15          Function Argument Annotations  11.527863  ...  95.238095  0.0
-16            Function Return Annotations  12.019944  ...  98.591549  0.0
-17                      Keyword Arguments   2.206967  ...  35.714286  0.0
-18                       Keyword Defaults   2.206967  ...  35.714286  0.0
-19                         List Unpacking   0.766980  ...  33.333333  0.0
-20                  Matrix Multiplication   0.199173  ...   9.926082  0.0
-21                    Nonlocal Statements   0.307430  ...  12.403101  0.0
-22                    Pattern As Bindings   0.028372  ...   1.886792  0.0
-23                          Pattern Class   0.009229  ...   1.818182  0.0
-24                        Pattern Mapping   0.001168  ...   0.495050  0.0
-25                       Pattern Matching   0.035648  ...   1.886792  0.0
-26                             Pattern Or   0.008933  ...   1.149425  0.0
-27                       Pattern Sequence   0.011885  ...   1.886792  0.0
-28                      Pattern Singleton   0.003566  ...   0.833333  0.0
-29                           Pattern Star   0.006193  ...   1.886792  0.0
-30                          Pattern Value   0.027667  ...   1.886792  0.0
-31                          Set Unpacking   0.040635  ...   5.349794  0.0
-32          Suppressing Exception Context   0.478489  ...  25.842697  0.0
-33                        Tuple Unpacking   0.463808  ...  16.939891  0.0
-34           Type Parameter Specification   0.000000  ...   0.000000  0.0
-35                    Type Variable Tuple   0.000000  ...   0.000000  0.0
-36                  Type Variables Bounds   0.004538  ...   1.886792  0.0
-37             Type Variables Constraints   0.000000  ...   0.000000  0.0
-38                   Variable Annotations   7.642378  ...  89.655172  0.0
-39                             Yield From   0.981477  ...  33.233533  0.0
+8                   Async With Statements   0.228820  ...  14.186047  0.0
+9                       Await Expressions   1.776918  ...  83.606557  0.0
+10    Call Positional Arguments Unpacking   0.063770  ...   3.225806  0.0
+11       Call Keyword Arguments Unpacking   0.067382  ...   4.878049  0.0
+12                   Dictionary Unpacking   0.456197  ...  19.565217  0.0
+13                             Except (*)   0.004450  ...   1.886792  0.0
+14                       Exception Groups   0.005695  ...   1.851852  0.0
+15  Formatted String Literals (f-strings)  17.917979  ...  95.348837  0.0
+16          Function Argument Annotations  11.364812  ...  95.238095  0.0
+17            Function Return Annotations  11.822681  ...  97.183099  0.0
+18                      Keyword Arguments   2.240630  ...  37.500000  0.0
+19                       Keyword Defaults   2.240630  ...  37.500000  0.0
+20                         List Unpacking   0.791015  ...  50.000000  0.0
+21                  Matrix Multiplication   0.205167  ...  10.454065  0.0
+22                    Nonlocal Statements   0.305248  ...  14.728682  0.0
+23                    Pattern As Bindings   0.029309  ...   1.886792  0.0
+24                          Pattern Class   0.009229  ...   1.818182  0.0
+25                        Pattern Mapping   0.001751  ...   0.742574  0.0
+26                       Pattern Matching   0.036218  ...   1.886792  0.0
+27                             Pattern Or   0.008933  ...   1.149425  0.0
+28                       Pattern Sequence   0.011885  ...   1.886792  0.0
+29                      Pattern Singleton   0.003566  ...   0.833333  0.0
+30                           Pattern Star   0.006193  ...   1.886792  0.0
+31                          Pattern Value   0.028237  ...   1.886792  0.0
+32                          Set Unpacking   0.040102  ...   5.349794  0.0
+33          Suppressing Exception Context   0.478983  ...  26.404494  0.0
+34                        Tuple Unpacking   0.442301  ...  16.666667  0.0
+35           Type Parameter Specification   0.000000  ...   0.000000  0.0
+36                    Type Variable Tuple   0.000000  ...   0.000000  0.0
+37                  Type Variables Bounds   0.004538  ...   1.886792  0.0
+38             Type Variables Constraints   0.000000  ...   0.000000  0.0
+39                   Variable Annotations   7.616826  ...  90.086207  0.0
+40                             Yield From   0.970492  ...  32.035928  0.0
 
-[40 rows x 6 columns]
+[41 rows x 6 columns]
 \begin{tabular}{rrr}
 \toprule
     &                               Feature &   median Usage (\%) \\
 \midrule
-  9 & Formatted String Literals (f-strings) &          11.4937   \\
- 28 &         Function Argument Annotations &           1.06108  \\
- 29 &           Function Return Annotations &           0.641131 \\
- 39 &                  Variable Annotations &           0.32722  \\
-  0 &             Async List Comprehensions &           0        \\
+  9 & Formatted String Literals (f-strings) &          11.4172   \\
+ 27 &         Function Argument Annotations &           1.06108  \\
+ 28 &           Function Return Annotations &           0.641131 \\
+ 38 &                  Variable Annotations &           0.348703 \\
+  4 &                 Matrix Multiplication &           0        \\
   1 &              Async Set Comprehensions &           0        \\
   2 &       Async Dictionary Comprehensions &           0        \\
   3 &           Async Generator Expressions &           0        \\
+  0 &             Async List Comprehensions &           0        \\
+  8 &                 Async With Statements &           0        \\
   7 &                       Async For Loops &           0        \\
   6 &                     Await Expressions &           0        \\
   5 &            Async Function Definitions &           0        \\
-  4 &                 Matrix Multiplication &           0        \\
- 12 &                   Pattern As Bindings &           0        \\
-  8 &                 Async With Statements &           0        \\
- 10 &           Exception Groups (except *) &           0        \\
- 11 &                      Pattern Matching &           0        \\
- 16 &                         Pattern Class &           0        \\
- 17 &                         Pattern Value &           0        \\
- 18 &                     Pattern Singleton &           0        \\
- 19 &                          Pattern Star &           0        \\
- 20 &                  Assignment Unpacking &           0        \\
- 13 &                            Pattern Or &           0        \\
- 14 &                      Pattern Sequence &           0        \\
- 15 &                       Pattern Mapping &           0        \\
- 23 &                         Set Unpacking &           0        \\
- 22 &                       Tuple Unpacking &           0        \\
- 21 &                        List Unpacking &           0        \\
- 24 &                  Dictionary Unpacking &           0        \\
- 27 &                   Nonlocal Statements &           0        \\
- 26 &   Call Positional Arguments Unpacking &           0        \\
- 30 &                      Keyword Defaults &           0        \\
- 25 &      Call Keyword Arguments Unpacking &           0        \\
- 31 &                     Keyword Arguments &           0        \\
- 32 &                 Type Variables Bounds &           0        \\
- 34 &          Type Parameter Specification &           0        \\
- 33 &            Type Variables Constraints &           0        \\
- 35 &                   Type Variable Tuple &           0        \\
- 36 &                            Yield From &           0        \\
- 37 &                 Assignment Expression &           0        \\
- 38 &         Suppressing Exception Context &           0        \\
+ 13 &                      Pattern Sequence &           0        \\
+ 10 &                      Pattern Matching &           0        \\
+ 11 &                   Pattern As Bindings &           0        \\
+ 12 &                            Pattern Or &           0        \\
+ 17 &                     Pattern Singleton &           0        \\
+ 18 &                          Pattern Star &           0        \\
+ 19 &                  Assignment Unpacking &           0        \\
+ 20 &                        List Unpacking &           0        \\
+ 21 &                       Tuple Unpacking &           0        \\
+ 14 &                       Pattern Mapping &           0        \\
+ 15 &                         Pattern Class &           0        \\
+ 16 &                         Pattern Value &           0        \\
+ 24 &      Call Keyword Arguments Unpacking &           0        \\
+ 23 &                  Dictionary Unpacking &           0        \\
+ 22 &                         Set Unpacking &           0        \\
+ 26 &                   Nonlocal Statements &           0        \\
+ 29 &                      Keyword Defaults &           0        \\
+ 30 &                     Keyword Arguments &           0        \\
+ 31 &                 Type Variables Bounds &           0        \\
+ 25 &   Call Positional Arguments Unpacking &           0        \\
+ 32 &            Type Variables Constraints &           0        \\
+ 33 &          Type Parameter Specification &           0        \\
+ 35 &                            Yield From &           0        \\
+ 34 &                   Type Variable Tuple &           0        \\
+ 36 &                 Assignment Expression &           0        \\
+ 37 &         Suppressing Exception Context &           0        \\
+ 39 &                            Except (*) &           0        \\
+ 40 &                      Exception Groups &           0        \\
 \bottomrule
 \end{tabular}

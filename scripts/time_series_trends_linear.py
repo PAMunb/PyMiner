@@ -19,7 +19,6 @@ df = df.drop(columns=['commit_hash', 'errors',
     'async_for',
     'async_with',
     'fstring',
-    'except_star',
     'pattern_match',
     'pattern_as',
     'pattern_or',
@@ -49,7 +48,13 @@ df = df.drop(columns=['commit_hash', 'errors',
     'assignment_expression',
     'suppressing_exception_context',
     'variable_annotation',
-    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files'
+    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files',
+    'except_star',
+    'except_star_with_group',
+    'except_star_without_group',
+    'raised_exception_group',
+    'caught_exception_group',
+    'exception_groups',
     ])
 
 
@@ -123,7 +128,9 @@ features = [
     'yield_from_files',
     'assignment_expression_files',
     'suppressing_exception_context_files',
-    'variable_annotation_files'
+    'variable_annotation_files',
+    'except_star_files',
+    'exception_group_files'
 ]
 
 # Função para ajustar modelos de regressão e gerar gráficos de tendência

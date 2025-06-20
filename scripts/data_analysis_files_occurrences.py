@@ -20,7 +20,6 @@ features_columns = [
     'async_for_files',
     'async_with_files',
     'fstring_files',
-    'except_star_files',
     'pattern_match_files',
     'pattern_as_files',
     'pattern_or_files',
@@ -50,6 +49,8 @@ features_columns = [
     'assignment_expression_files',
     'suppressing_exception_context_files',
     'variable_annotation_files',
+    'except_star_files',
+    'exception_group_files'
 ]
 
 df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
@@ -82,7 +83,6 @@ df_summary = df_last_revision.drop(columns=[
     'async_for',
     'async_with',
     'fstring',
-    'except_star',
     'pattern_match',
     'pattern_as',
     'pattern_or',
@@ -112,7 +112,15 @@ df_summary = df_last_revision.drop(columns=[
     'variable_annotation',
     'assignment_expression',
     'suppressing_exception_context',
-    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files'
+    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files',
+    'except_star',
+    'except_star_with_group',
+    'except_star_without_group',
+    'raised_exception_group',
+    'caught_exception_group',
+    'exception_groups',
+    'except_star_files',
+    'exception_group_files'
 ])
 
 df_summary = df_summary.drop(columns=[
@@ -127,7 +135,6 @@ df_summary = df_summary.drop(columns=[
     'async_for_files',
     'async_with_files',
     'fstring_files',
-    'except_star_files',
     'pattern_match_files',
     'pattern_as_files',
     'pattern_or_files',
@@ -183,7 +190,6 @@ features_mapping = {
     'async_for_files_percentage': 'Async For Loops',
     'async_with_files_percentage': 'Async With Statements',
     'fstring_files_percentage': 'Formatted String Literals (f-strings)',
-    'except_star_files_percentage': 'Exception Groups (except *)',
     'pattern_match_files_percentage': 'Pattern Matching',
     'pattern_as_files_percentage': 'Pattern As Bindings',
     'pattern_or_files_percentage': 'Pattern Or',
@@ -212,7 +218,9 @@ features_mapping = {
     'yield_from_files_percentage': 'Yield From',
     'assignment_expression_files_percentage': 'Assignment Expression',
     'suppressing_exception_context_files_percentage': 'Suppressing Exception Context',
-    'variable_annotation_files_percentage': 'Variable Annotations'
+    'variable_annotation_files_percentage': 'Variable Annotations',
+    'except_star_files_percentage': 'Except (*)',
+    'exception_group_files_percentage': 'Exception Groups'
 }
 
 summary = melted_df.groupby('feature')['total'].agg(['mean', 'median', 'std', 'max', 'min']).reset_index()

@@ -22,7 +22,6 @@ columns_to_drop = [
     'async_for_files',
     'async_with_files',
     'fstring_files',
-    'except_star_files',
     'pattern_match_files',
     'pattern_as_files',
     'pattern_or_files',
@@ -52,7 +51,9 @@ columns_to_drop = [
     'assignment_expression_files',
     'suppressing_exception_context_files',
     'variable_annotation_files',
-    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files'
+    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files',
+        'except_star_files',
+    'exception_group_files'
 ]
 
 df = df.drop(columns=columns_to_drop)
@@ -204,7 +205,6 @@ features_mapping = {
     'async_for': 'Async For Loops',
     'async_with': 'Async With Statements',
     'fstring': 'Formatted String Literals (f-strings)',
-    'except_star': 'Exception Groups (except *)',
     'pattern_match': 'Pattern Matching',
     'pattern_as': 'Pattern As Bindings',
     'pattern_or': 'Pattern Or',
@@ -234,7 +234,13 @@ features_mapping = {
     'yield_from': 'Yield From',
     'assignment_expression': 'Assignment Expression',
     'suppressing_exception_context': 'Suppressing Exception Context',
-    'variable_annotation': 'Variable Annotation'
+    'variable_annotation': 'Variable Annotation',
+    'except_star': 'Except (*)',
+    'except_star_with_group': 'Except (*) + ExceptionGroup',
+    'except_star_without_group': 'Except (*) - ExceptionGroup',
+    'raised_exception_group': 'Raised ExceptionGroup',
+    'caught_exception_group': 'Caught ExceptionGroup',
+    'exception_groups': 'ExceptionGroup',
 }
 
 # Renomear as colunas

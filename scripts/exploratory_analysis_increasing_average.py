@@ -53,7 +53,9 @@ df = df.drop(columns=['commit_hash', 'errors',
     'assignment_expression_files',
     'variable_annotation_files',
     'suppressing_exception_context_files',
-        'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files'
+        'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files',
+        'except_star_files',
+        'exception_group_files'
     ])
 
 # Convert the 'date' column to datetime format
@@ -133,6 +135,12 @@ features_mapping = {
     'assignment_expression': 'Assignment Expression',
     'suppressing_exception_context': 'Suppressing Exception Context',
     'variable_annotation' : 'Variable Annotation',
+    'except_star': 'Except (*)',
+    'except_star_with_group': 'Except (*) + ExceptionGroup',
+    'except_star_without_group': 'Except (*) - ExceptionGroup',
+    'raised_exception_group': 'Raised ExceptionGroup',
+    'caught_exception_group': 'Caught ExceptionGroup',
+    'exception_groups': 'ExceptionGroup',
 }
 
 for feature in features_mapping:
