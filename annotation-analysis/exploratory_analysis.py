@@ -23,7 +23,6 @@ df = df.drop(columns=['commit_hash', 'errors',
     'async_for_files',
     'async_with_files',
     'fstring_files',
-    'except_star_files',
     'pattern_match_files',
     'pattern_as_files',
     'pattern_or_files',
@@ -57,7 +56,9 @@ df = df.drop(columns=['commit_hash', 'errors',
     'function_without_annotation_files',
     'assign_files',
     'assign_with_type_comment_files',
-    'aug_assign_files'
+    'aug_assign_files',
+	'except_star_files',
+	'exception_group_files'
     ])
 
 # Convert the 'date' column to datetime format

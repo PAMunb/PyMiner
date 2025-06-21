@@ -2,47 +2,47 @@
 \toprule
     &                               feature &   median &       mean &       std &   max &   min \\
 \midrule
- 0  & Additional Unpacking Generalizations  & 0        & 0.851808   & 5.83739   & 212   &     0 \\
- 1  & Assignment Expression                 & 0        & 2.74528    & 11.4043   & 96    &     0 \\
- 2  & Asynchronous Comprehensions           & 0        & 0.220126   & 6.66168   & 237   &     0 \\
+ 0  & Additional Unpacking Generalizations  & 0        & 0.83923    & 5.76875   & 213   &     0 \\
+ 1  & Assignment Expression                 & 0        & 2.71226    & 11.2392   & 96    &     0 \\
+ 2  & Asynchronous Comprehensions           & 0        & 0.220126   & 6.66097   & 237   &     0 \\
  3  & Asynchronous Generators               & 0        & 0          & 0         & 0     &     0 \\
- 4  & Coroutines (async and await syntax)   & 0        & 2.48821    & 18.6506   & 378   &     0 \\
- 5  & Exception Groups (except *)           & 0        & 0.00235849 & 0.0485643 & 1     &     0 \\
- 6  & Extended Iterable Unpacking           & 0        & 0.643868   & 2.33952   & 23    &     0 \\
- 7  & Formatted String Literals (f-strings) & 11       & 51.2146    & 141.36    & 1679  &     0 \\
- 8  & Function Annotations                  & 1        & 30.0342    & 137.918   & 2642  &     0 \\
- 9  & Keyword-only Arguments                & 0        & 6.32547    & 21.1558   & 180   &     0 \\
- 10 & Matrix Multiplication                 & 0        & 0.992925   & 6.48967   & 94    &     0 \\
- 11 & Nonlocal Statements                   & 0        & 0.658019   & 2.37272   & 31    &     0 \\
- 12 & Structural Pattern Matching           & 0        & 0.0547694  & 0.477969  & 9     &     0 \\
- 13 & Suppressing Exception Context         & 0        & 1.13915    & 7.53946   & 138   &     0 \\
- 14 & Type Parameter Syntax                 & 0        & 0.00176887 & 0.0542837 & 2     &     0 \\
- 15 & Variable Annotation                   & 1        & 20.8726    & 83.0617   & 1363  &     0 \\
- 16 & Yield From Expression                 & 0        & 2.24528    & 7.4091    & 111   &     0 \\
+ 4  & Coroutines (async and await syntax)   & 0        & 2.46403    & 18.5416   & 381   &     0 \\
+ 5  & Except (*)                            & 0        & 0.00235849 & 0.0485643 & 1     &     0 \\
+ 6  & ExceptionGroup                        & 0        & 0.00943396 & 0.118723  & 2     &     0 \\
+ 7  & Extended Iterable Unpacking           & 0        & 0.653302   & 2.37004   & 22    &     0 \\
+ 8  & Formatted String Literals (f-strings) & 11       & 51.0472    & 142.351   & 1694  &     0 \\
+ 9  & Function Annotations                  & 1        & 29.7983    & 137.783   & 2640  &     0 \\
+ 10 & Keyword-only Arguments                & 0        & 6.38443    & 21.4618   & 183   &     0 \\
+ 11 & Matrix Multiplication                 & 0        & 1.01179    & 6.74895   & 99    &     0 \\
+ 12 & Nonlocal Statements                   & 0        & 0.667453   & 2.44278   & 32    &     0 \\
+ 13 & Structural Pattern Matching           & 0        & 0.0560797  & 0.49214   & 9     &     0 \\
+ 14 & Suppressing Exception Context         & 0        & 1.14151    & 7.6615    & 141   &     0 \\
+ 15 & Type Parameter Syntax                 & 0        & 0.00176887 & 0.0542837 & 2     &     0 \\
+ 16 & Variable Annotation                   & 1        & 20.8443    & 83.476    & 1375  &     0 \\
+ 17 & Yield From Expression                 & 0        & 2.2217     & 7.24726   & 107   &     0 \\
 \bottomrule
 \end{tabular}
-
 Total de projetos:  424
-
 \begin{tabular}{rrrr}
 \toprule
                                Feature &   Total of Occurrences (\#) &   Projects Adoption (\%) &   First Occurrence \\
 \midrule
- Formatted String Literals (f-strings) &                      21715 &                 80.1887 &            2016-05 \\
-                  Function Annotations &                      25469 &                 59.1981 &            2012-05 \\
-                   Variable Annotation &                       8850 &                 52.5943 &            2017-01 \\
-                Keyword-only Arguments &                       5364 &                 47.1698 &            2011-11 \\
-  Additional Unpacking Generalizations &                       2167 &                 42.6887 &            2015-09 \\
-                 Yield From Expression &                        952 &                 36.3208 &            2012-05 \\
-                 Assignment Expression &                       1164 &                 23.5849 &            2019-12 \\
-                   Nonlocal Statements &                        279 &                  20.283 &            2010-12 \\
-   Coroutines (async and await syntax) &                       4220 &                 19.5755 &            2015-12 \\
-           Extended Iterable Unpacking &                        273 &                 19.3396 &            2009-12 \\
-         Suppressing Exception Context &                        483 &                 17.9245 &            2015-03 \\
-                 Matrix Multiplication &                        421 &                 8.25472 &            2018-05 \\
-           Structural Pattern Matching &                        209 &                 4.48113 &            2021-05 \\
+ Formatted String Literals (f-strings) &                      21644 &                  79.717 &            2016-05 \\
+                  Function Annotations &                      25269 &                 58.9623 &            2012-05 \\
+                   Variable Annotation &                       8838 &                 52.5943 &            2017-01 \\
+                Keyword-only Arguments &                       5414 &                 47.1698 &            2011-11 \\
+  Additional Unpacking Generalizations &                       2135 &                 42.9245 &            2015-09 \\
+                 Yield From Expression &                        942 &                 36.0849 &            2012-05 \\
+                 Assignment Expression &                       1150 &                 23.5849 &            2019-12 \\
+                   Nonlocal Statements &                        283 &                  20.283 &            2010-12 \\
+   Coroutines (async and await syntax) &                       4179 &                 19.5755 &            2015-12 \\
+           Extended Iterable Unpacking &                        277 &                 19.3396 &            2009-12 \\
+         Suppressing Exception Context &                        484 &                 17.6887 &            2015-03 \\
+                 Matrix Multiplication &                        429 &                 8.25472 &            2018-05 \\
+           Structural Pattern Matching &                        214 &                 4.48113 &            2021-05 \\
            Asynchronous Comprehensions &                        280 &                 2.59434 &            2019-11 \\
+                        ExceptionGroup &                          4 &                0.707547 &            2022-05 \\
                  Type Parameter Syntax &                          3 &                0.471698 &            2023-07 \\
-           Exception Groups (except *) &                          1 &                0.235849 &            2022-05 \\
+                            Except (*) &                          1 &                0.235849 &            2022-05 \\
 \bottomrule
 \end{tabular}

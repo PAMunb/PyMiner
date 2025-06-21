@@ -45,7 +45,6 @@ df_summary = df_last_revision.drop(columns=[
     'async_for',
     'async_with',
     'fstring',
-    'except_star',
     'pattern_match',
     'pattern_as',
     'pattern_or',
@@ -75,7 +74,13 @@ df_summary = df_last_revision.drop(columns=[
     'variable_annotation',
     'assignment_expression',
     'suppressing_exception_context',
-    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files'
+    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files',
+	'except_star',
+	'except_star_with_group',
+	'except_star_without_group',
+	'raised_exception_group',
+	'caught_exception_group',
+	'exception_groups',
 ])
 
 df_summary = df_summary.drop(columns=[
@@ -90,7 +95,6 @@ df_summary = df_summary.drop(columns=[
     'async_for_files',
     'async_with_files',
     'fstring_files',
-    'except_star_files',
     'pattern_match_files',
     'pattern_as_files',
     'pattern_or_files',
@@ -120,6 +124,8 @@ df_summary = df_summary.drop(columns=[
     'assignment_expression_files',
     'variable_annotation_files',
     'suppressing_exception_context_files',
+	'except_star_files',
+	'exception_group_files'
     ])
 
 df_summary.to_csv('last_revision_files_occurrences_percentage.csv', index=False)

@@ -22,7 +22,6 @@ columns_to_drop = [
     'async_for_files',
     'async_with_files',
     'fstring_files',
-    'except_star_files',
     'pattern_match_files',
     'pattern_as_files',
     'pattern_or_files',
@@ -63,7 +62,6 @@ columns_to_drop = [
     'async_for',
     'async_with',
     'fstring',
-    'except_star',
     'pattern_match',
     'pattern_as',
     'pattern_or',
@@ -90,7 +88,15 @@ columns_to_drop = [
     'type_param_spec',
     'type_var_tuple',
     'yield_from',
-    'suppressing_exception_context'
+    'suppressing_exception_context',
+	'except_star',
+	'except_star_with_group',
+	'except_star_without_group',
+	'raised_exception_group',
+	'caught_exception_group',
+	'exception_groups',
+	'except_star_files',
+	'exception_group_files'
 ]
 
 df = df.drop(columns=columns_to_drop)

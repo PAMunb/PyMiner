@@ -20,7 +20,6 @@ columns_to_drop = [
     'async_for',
     'async_with',
     'fstring',
-    'except_star',
     'pattern_match',
     'pattern_as',
     'pattern_or',
@@ -50,7 +49,13 @@ columns_to_drop = [
     'assignment_expression',
     'suppressing_exception_context',
     'variable_annotation',
-    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files'
+    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files',
+ 	'except_star',
+	'except_star_with_group',
+	'except_star_without_group',
+	'raised_exception_group',
+	'caught_exception_group',
+	'exception_groups',
 ]
 
 df = df.drop(columns=columns_to_drop)
@@ -69,7 +74,6 @@ features_mapping = {
     'async_for_files': 'Coroutines (async and await syntax)',
     'async_with_files': 'Coroutines (async and await syntax)',
     'fstring_files': 'Formatted String Literals (f-strings)',
-    'except_star_files': 'Exception Groups (except *)',
     'pattern_match_files': 'Structural Pattern Matching',
     'pattern_as_files': 'Structural Pattern Matching',
     'pattern_or_files': 'Structural Pattern Matching',
@@ -98,7 +102,9 @@ features_mapping = {
     'yield_from_files': 'Yield From Expression',
     'assignment_expression_files': 'Assignment Expression',
     'suppressing_exception_context_files': 'Suppressing Exception Context',
-    'variable_annotation_files': 'Variable Annotation'
+    'variable_annotation_files': 'Variable Annotation',
+	'except_star_files': 'Except (*)',
+	'exception_group_files': 'ExceptionGroup',
 }
 
 

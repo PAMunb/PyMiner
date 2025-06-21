@@ -50,7 +50,13 @@ columns_to_drop = [
     'assignment_expression_files',
     'suppressing_exception_context_files',
     'variable_annotation_files',
-    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files'
+    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files',
+    'except_star_files',
+	'exception_group_files',
+ 	'except_star_with_group',
+	'except_star_without_group',
+	'raised_exception_group',
+	'caught_exception_group',
 ]
 
 df = df.drop(columns=columns_to_drop)
@@ -98,7 +104,9 @@ features_mapping = {
     'yield_from': 'Yield From Expression',
     'assignment_expression': 'Assignment Expression',
     'suppressing_exception_context': 'Suppressing Exception Context',
-    'variable_annotation': 'Variable Annotation'
+    'variable_annotation': 'Variable Annotation',
+	'except_star': 'Except (*)',
+	'exception_groups': 'ExceptionGroup',
 }
 
 

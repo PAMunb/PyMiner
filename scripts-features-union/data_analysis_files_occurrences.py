@@ -20,7 +20,6 @@ features_columns = [
     'async_for_files',
     'async_with_files',
     'fstring_files',
-    'except_star_files',
     'pattern_match_files',
     'pattern_as_files',
     'pattern_or_files',
@@ -50,6 +49,8 @@ features_columns = [
     'assignment_expression_files',
     'suppressing_exception_context_files',
     'variable_annotation_files',
+    'except_star_files',
+    'exception_group_files'
 ]
 
 df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
@@ -82,7 +83,6 @@ df_summary = df_last_revision.drop(columns=[
     'async_for',
     'async_with',
     'fstring',
-    'except_star',
     'pattern_match',
     'pattern_as',
     'pattern_or',
@@ -113,6 +113,12 @@ df_summary = df_last_revision.drop(columns=[
     'suppressing_exception_context',
     'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files',
     'variable_annotation',
+    'except_star',
+    'except_star_with_group',
+    'except_star_without_group',
+    'raised_exception_group',
+    'caught_exception_group',
+    'exception_groups',
 ])
 
 df_summary = df_summary.drop(columns=[
@@ -127,7 +133,6 @@ df_summary = df_summary.drop(columns=[
     'async_for_files',
     'async_with_files',
     'fstring_files',
-    'except_star_files',
     'pattern_match_files',
     'pattern_as_files',
     'pattern_or_files',
@@ -156,7 +161,9 @@ df_summary = df_summary.drop(columns=[
     'yield_from_files',
     'assignment_expression_files',
     'suppressing_exception_context_files',
-    'variable_annotation_files'])
+    'variable_annotation_files',
+    'except_star_files',
+	'exception_group_files'])
 
 # print(df_summary.columns)
 
@@ -172,7 +179,6 @@ features_mapping = {
     'async_for_files_percentage': 'Coroutines (async and await syntax)',
     'async_with_files_percentage': 'Coroutines (async and await syntax)',
     'fstring_files_percentage': 'Formatted String Literals (f-strings)',
-    'except_star_files_percentage': 'Exception Groups (except *)',
     'pattern_match_files_percentage': 'Structural Pattern Matching',
     'pattern_as_files_percentage': 'Structural Pattern Matching',
     'pattern_or_files_percentage': 'Structural Pattern Matching',
@@ -201,7 +207,9 @@ features_mapping = {
     'yield_from_files_percentage': 'Yield From Expression',
     'assignment_expression_files_percentage': 'Assignment Expression',
     'suppressing_exception_context_files_percentage': 'Suppressing Exception Context',
-    'variable_annotation_files_percentage': 'Variable Annotation'
+    'variable_annotation_files_percentage': 'Variable Annotation',
+    'except_star_files_percentage': 'Except (*)',
+    'exception_group_files_percentage': 'ExceptionGroup',
 }
 
 features_union_columns = {
@@ -210,7 +218,6 @@ features_union_columns = {
     'Matrix Multiplication',
     'Coroutines (async and await syntax)',
     'Formatted String Literals (f-strings)',
-    'Exception Groups (except *)',
     'Structural Pattern Matching',
     'Extended Iterable Unpacking',
     'Additional Unpacking Generalizations',
@@ -221,7 +228,9 @@ features_union_columns = {
     'Yield From Expression',
     'Assignment Expression',
     'Suppressing Exception Context',
-    'Variable Annotation'
+    'Variable Annotation',
+    'ExceptionGroup',
+    'Except (*)'
 }
 
 df_summary.rename(columns=features_mapping, inplace=True)

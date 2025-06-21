@@ -1,43 +1,45 @@
                                   feature       mean  ...        max  min
-0    Additional Unpacking Generalizations   0.310894  ...  33.333333  0.0
-1                   Assignment Expression   0.886697  ...  36.697248  0.0
-2             Asynchronous Comprehensions   0.055684  ...  51.077586  0.0
+0    Additional Unpacking Generalizations   0.310128  ...  50.000000  0.0
+1                   Assignment Expression   0.867236  ...  32.110092  0.0
+2             Asynchronous Comprehensions   0.056795  ...  51.077586  0.0
 3                 Asynchronous Generators   0.000000  ...   0.000000  0.0
-4     Coroutines (async and await syntax)   1.050775  ...  90.163934  0.0
-5             Exception Groups (except *)   0.004450  ...   1.886792  0.0
-6             Extended Iterable Unpacking   0.256406  ...  11.475410  0.0
-7   Formatted String Literals (f-strings)  18.210568  ...  95.348837  0.0
-8                    Function Annotations  11.773904  ...  98.591549  0.0
-9                  Keyword-only Arguments   2.206967  ...  35.714286  0.0
-10                  Matrix Multiplication   0.199173  ...   9.926082  0.0
-11                    Nonlocal Statements   0.307430  ...  12.403101  0.0
-12            Structural Pattern Matching   0.014740  ...   1.886792  0.0
-13          Suppressing Exception Context   0.478489  ...  25.842697  0.0
-14                  Type Parameter Syntax   0.001134  ...   1.886792  0.0
-15                    Variable Annotation   7.642378  ...  89.655172  0.0
-16                  Yield From Expression   0.981477  ...  33.233533  0.0
+4     Coroutines (async and await syntax)   1.034435  ...  88.524590  0.0
+5                              Except (*)   0.004450  ...   1.886792  0.0
+6                          ExceptionGroup   0.005695  ...   1.851852  0.0
+7             Extended Iterable Unpacking   0.259014  ...  12.021858  0.0
+8   Formatted String Literals (f-strings)  17.917979  ...  95.348837  0.0
+9                    Function Annotations  11.593747  ...  97.183099  0.0
+10                 Keyword-only Arguments   2.240630  ...  37.500000  0.0
+11                  Matrix Multiplication   0.205167  ...  10.454065  0.0
+12                    Nonlocal Statements   0.305248  ...  14.728682  0.0
+13            Structural Pattern Matching   0.015036  ...   1.886792  0.0
+14          Suppressing Exception Context   0.478983  ...  26.404494  0.0
+15                  Type Parameter Syntax   0.001134  ...   1.886792  0.0
+16                    Variable Annotation   7.616826  ...  90.086207  0.0
+17                  Yield From Expression   0.970492  ...  32.035928  0.0
 
-[17 rows x 6 columns]
+[18 rows x 6 columns]
 \begin{tabular}{rrr}
 \toprule
     &                               Feature &   median Usage (\%) \\
 \midrule
-  0 & Formatted String Literals (f-strings) &           11.4937  \\
-  7 &                  Function Annotations &            1.94427 \\
- 10 &                   Variable Annotation &            0.32722 \\
-  3 &                 Assignment Expression &            0       \\
-  1 &           Extended Iterable Unpacking &            0       \\
-  4 &  Additional Unpacking Generalizations &            0       \\
-  5 &               Asynchronous Generators &            0       \\
-  6 &         Suppressing Exception Context &            0       \\
-  2 &                 Type Parameter Syntax &            0       \\
-  8 &   Coroutines (async and await syntax) &            0       \\
-  9 &                Keyword-only Arguments &            0       \\
- 11 &           Structural Pattern Matching &            0       \\
- 12 &                 Matrix Multiplication &            0       \\
- 13 &                   Nonlocal Statements &            0       \\
- 14 &           Asynchronous Comprehensions &            0       \\
- 15 &                 Yield From Expression &            0       \\
- 16 &           Exception Groups (except *) &            0       \\
+ 13 & Formatted String Literals (f-strings) &          11.4172   \\
+ 14 &                  Function Annotations &           1.86801  \\
+  9 &                   Variable Annotation &           0.348703 \\
+  0 &   Coroutines (async and await syntax) &           0        \\
+  1 &  Additional Unpacking Generalizations &           0        \\
+  2 &               Asynchronous Generators &           0        \\
+  5 &           Extended Iterable Unpacking &           0        \\
+  6 &         Suppressing Exception Context &           0        \\
+  4 &           Asynchronous Comprehensions &           0        \\
+  3 &                 Assignment Expression &           0        \\
+  8 &           Structural Pattern Matching &           0        \\
+  7 &                Keyword-only Arguments &           0        \\
+ 11 &                 Matrix Multiplication &           0        \\
+ 10 &                            Except (*) &           0        \\
+ 12 &                        ExceptionGroup &           0        \\
+ 15 &                 Yield From Expression &           0        \\
+ 16 &                 Type Parameter Syntax &           0        \\
+ 17 &                   Nonlocal Statements &           0        \\
 \bottomrule
 \end{tabular}
