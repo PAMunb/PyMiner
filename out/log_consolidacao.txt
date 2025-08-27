@@ -1,0 +1,38 @@
+# Log da consolidação de matches
+Projetos filtrados (pattern_match>0): 23
+Projetos filtrados: astropy_astropy, beetbox_beets, bruvellu_cifonauta, ceph_teuthology, cython_cython, frappe_frappe, gaphor_gaphor, geekcomputers_python, getsentry_sentry, hasgeek_funnel, indico_indico, inducer_pymbolic, internetarchive_openlibrary, kliment_printrun, mitmproxy_mitmproxy, mopidy_mopidy, mozilla_kitsune, nixos_nixops, pandas-dev_pandas, payu-org_payu, pycqa_pycodestyle, scipy_scipy, shedskin_shedskin
+CSVs de match considerados: 23
+ - results/astropy_astropy_matches.csv
+ - results/beetbox_beets_matches.csv
+ - results/bruvellu_cifonauta_matches.csv
+ - results/ceph_teuthology_matches.csv
+ - results/cython_cython_matches.csv
+ - results/frappe_frappe_matches.csv
+ - results/gaphor_gaphor_matches.csv
+ - results/geekcomputers_python_matches.csv
+ - results/getsentry_sentry_matches.csv
+ - results/hasgeek_funnel_matches.csv
+ - results/indico_indico_matches.csv
+ - results/inducer_pymbolic_matches.csv
+ - results/internetarchive_openlibrary_matches.csv
+ - results/kliment_printrun_matches.csv
+ - results/mitmproxy_mitmproxy_matches.csv
+ - results/mopidy_mopidy_matches.csv
+ - results/mozilla_kitsune_matches.csv
+ - results/nixos_nixops_matches.csv
+ - results/pandas-dev_pandas_matches.csv
+ - results/payu-org_payu_matches.csv
+ - results/pycqa_pycodestyle_matches.csv
+ - results/scipy_scipy_matches.csv
+ - results/shedskin_shedskin_matches.csv
+Projetos consolidados: 23
+Projetos consolidados: astropy_astropy, beetbox_beets, bruvellu_cifonauta, ceph_teuthology, cython_cython, frappe_frappe, gaphor_gaphor, geekcomputers_python, getsentry_sentry, hasgeek_funnel, indico_indico, inducer_pymbolic, internetarchive_openlibrary, kliment_printrun, mitmproxy_mitmproxy, mopidy_mopidy, mozilla_kitsune, nixos_nixops, pandas-dev_pandas, payu-org_payu, pycqa_pycodestyle, scipy_scipy, shedskin_shedskin
+Repositórios clonados/atualizados (23): astropy_astropy, beetbox_beets, bruvellu_cifonauta, ceph_teuthology, cython_cython, frappe_frappe, gaphor_gaphor, geekcomputers_python, getsentry_sentry, hasgeek_funnel, indico_indico, inducer_pymbolic, internetarchive_openlibrary, kliment_printrun, mitmproxy_mitmproxy, mopidy_mopidy, mozilla_kitsune, nixos_nixops, pandas-dev_pandas, payu-org_payu, pycqa_pycodestyle, scipy_scipy, shedskin_shedskin
+Repositórios já presentes (0): 
+Repositórios pulados (0): 
+Saídas geradas:
+ - out/commits_timeline.csv
+ - out/projetos_consolidados.csv
+ - out/insercoes_match_unicas.csv
+ - out/projetos_comentados.csv
+ - out/rejuvenescimentos.csv

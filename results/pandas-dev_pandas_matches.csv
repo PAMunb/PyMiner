@@ -1,0 +1,221 @@
+commit,file,lineno,code
+224c6ff2c3a93779d994fe9a6dcdc2b5a3dc4ad6,pandas/core/computation/parsing.py,214,"match char:
+            case ""`"":
+                # start of a backtick-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    if substr:
+                        substrings.append((False, """".join(substr)))
+
+                    substr = [char]
+                    i += 1
+                    parse_state = ParseState.IN_BACKTICK
+                    continue
+
+                elif parse_state == ParseState.IN_BACKTICK:
+                    # escaped backtick inside a backtick-quoted string
+                    next_char = s[i + 1] if (i != len(s) - 1) else None
+                    if next_char == ""`"":
+                        substr.append(char)
+                        substr.append(next_char)
+                        i += 2
+                        continue
+
+                    # end of the backtick-quoted string
+                    else:
+                        substr.append(char)
+                        substrings.append((True, """".join(substr)))
+
+                        substr = []
+                        i += 1
+                        parse_state = ParseState.DEFAULT
+                        continue
+            case ""'"":
+                # start of a single-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    parse_state = ParseState.IN_SINGLE_QUOTE
+                # end of a single-quoted string
+                elif (parse_state == ParseState.IN_SINGLE_QUOTE) and (s[i - 1] != ""\\""):
+                    parse_state = ParseState.DEFAULT
+            case '""':
+                # start of a double-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    parse_state = ParseState.IN_DOUBLE_QUOTE
+                # end of a double-quoted string
+                elif (parse_state == ParseState.IN_DOUBLE_QUOTE) and (s[i - 1] != ""\\""):
+                    parse_state = ParseState.DEFAULT"
+2cdb97e2f806d83965c7dee8fb5fcf164a340379,pandas/core/computation/parsing.py,214,"match char:
+            case ""`"":
+                # start of a backtick-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    if substr:
+                        substrings.append((False, """".join(substr)))
+
+                    substr = [char]
+                    i += 1
+                    parse_state = ParseState.IN_BACKTICK
+                    continue
+
+                elif parse_state == ParseState.IN_BACKTICK:
+                    # escaped backtick inside a backtick-quoted string
+                    next_char = s[i + 1] if (i != len(s) - 1) else None
+                    if next_char == ""`"":
+                        substr.append(char)
+                        substr.append(next_char)
+                        i += 2
+                        continue
+
+                    # end of the backtick-quoted string
+                    else:
+                        substr.append(char)
+                        substrings.append((True, """".join(substr)))
+
+                        substr = []
+                        i += 1
+                        parse_state = ParseState.DEFAULT
+                        continue
+            case ""'"":
+                # start of a single-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    parse_state = ParseState.IN_SINGLE_QUOTE
+                # end of a single-quoted string
+                elif (parse_state == ParseState.IN_SINGLE_QUOTE) and (s[i - 1] != ""\\""):
+                    parse_state = ParseState.DEFAULT
+            case '""':
+                # start of a double-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    parse_state = ParseState.IN_DOUBLE_QUOTE
+                # end of a double-quoted string
+                elif (parse_state == ParseState.IN_DOUBLE_QUOTE) and (s[i - 1] != ""\\""):
+                    parse_state = ParseState.DEFAULT"
+6d4ba801893a76cdd22da3e373ce7986ac98cda1,pandas/core/computation/parsing.py,214,"match char:
+            case ""`"":
+                # start of a backtick-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    if substr:
+                        substrings.append((False, """".join(substr)))
+
+                    substr = [char]
+                    i += 1
+                    parse_state = ParseState.IN_BACKTICK
+                    continue
+
+                elif parse_state == ParseState.IN_BACKTICK:
+                    # escaped backtick inside a backtick-quoted string
+                    next_char = s[i + 1] if (i != len(s) - 1) else None
+                    if next_char == ""`"":
+                        substr.append(char)
+                        substr.append(next_char)
+                        i += 2
+                        continue
+
+                    # end of the backtick-quoted string
+                    else:
+                        substr.append(char)
+                        substrings.append((True, """".join(substr)))
+
+                        substr = []
+                        i += 1
+                        parse_state = ParseState.DEFAULT
+                        continue
+            case ""'"":
+                # start of a single-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    parse_state = ParseState.IN_SINGLE_QUOTE
+                # end of a single-quoted string
+                elif (parse_state == ParseState.IN_SINGLE_QUOTE) and (s[i - 1] != ""\\""):
+                    parse_state = ParseState.DEFAULT
+            case '""':
+                # start of a double-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    parse_state = ParseState.IN_DOUBLE_QUOTE
+                # end of a double-quoted string
+                elif (parse_state == ParseState.IN_DOUBLE_QUOTE) and (s[i - 1] != ""\\""):
+                    parse_state = ParseState.DEFAULT"
+a2ceb52a9b3f8a3bb1ec6ad9729acca3ff1f6707,pandas/core/computation/parsing.py,214,"match char:
+            case ""`"":
+                # start of a backtick-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    if substr:
+                        substrings.append((False, """".join(substr)))
+
+                    substr = [char]
+                    i += 1
+                    parse_state = ParseState.IN_BACKTICK
+                    continue
+
+                elif parse_state == ParseState.IN_BACKTICK:
+                    # escaped backtick inside a backtick-quoted string
+                    next_char = s[i + 1] if (i != len(s) - 1) else None
+                    if next_char == ""`"":
+                        substr.append(char)
+                        substr.append(next_char)
+                        i += 2
+                        continue
+
+                    # end of the backtick-quoted string
+                    else:
+                        substr.append(char)
+                        substrings.append((True, """".join(substr)))
+
+                        substr = []
+                        i += 1
+                        parse_state = ParseState.DEFAULT
+                        continue
+            case ""'"":
+                # start of a single-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    parse_state = ParseState.IN_SINGLE_QUOTE
+                # end of a single-quoted string
+                elif (parse_state == ParseState.IN_SINGLE_QUOTE) and (s[i - 1] != ""\\""):
+                    parse_state = ParseState.DEFAULT
+            case '""':
+                # start of a double-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    parse_state = ParseState.IN_DOUBLE_QUOTE
+                # end of a double-quoted string
+                elif (parse_state == ParseState.IN_DOUBLE_QUOTE) and (s[i - 1] != ""\\""):
+                    parse_state = ParseState.DEFAULT"
+59b3a1a1a770ff1bd8311e7c1f1d4b1f918dcd4c,pandas/core/computation/parsing.py,214,"match char:
+            case ""`"":
+                # start of a backtick-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    if substr:
+                        substrings.append((False, """".join(substr)))
+
+                    substr = [char]
+                    i += 1
+                    parse_state = ParseState.IN_BACKTICK
+                    continue
+
+                elif parse_state == ParseState.IN_BACKTICK:
+                    # escaped backtick inside a backtick-quoted string
+                    next_char = s[i + 1] if (i != len(s) - 1) else None
+                    if next_char == ""`"":
+                        substr.append(char)
+                        substr.append(next_char)
+                        i += 2
+                        continue
+
+                    # end of the backtick-quoted string
+                    else:
+                        substr.append(char)
+                        substrings.append((True, """".join(substr)))
+
+                        substr = []
+                        i += 1
+                        parse_state = ParseState.DEFAULT
+                        continue
+            case ""'"":
+                # start of a single-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    parse_state = ParseState.IN_SINGLE_QUOTE
+                # end of a single-quoted string
+                elif (parse_state == ParseState.IN_SINGLE_QUOTE) and (s[i - 1] != ""\\""):
+                    parse_state = ParseState.DEFAULT
+            case '""':
+                # start of a double-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    parse_state = ParseState.IN_DOUBLE_QUOTE
+                # end of a double-quoted string
+                elif (parse_state == ParseState.IN_DOUBLE_QUOTE) and (s[i - 1] != ""\\""):
+                    parse_state = ParseState.DEFAULT"

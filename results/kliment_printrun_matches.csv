@@ -1,0 +1,19 @@
+commit,file,lineno,code
+f652640c0342d737a2315136ed8be0ef03cb9303,printrun/gui/widgets.py,22,"match a:
+        case 'major': #e.g. outer border of dialog boxes
+            return 12
+        case 'minor': #e.g. border of inner elements
+            return 8
+        case 'mini':
+            return 4
+        case 'stddlg':
+            # Differentiation is necessary because wxPyhton behaves slightly differently on different systems.
+            platformname = platform.system()
+            if platformname == 'Windows':
+                return 8
+            elif platformname == 'Darwin':
+                return 4
+            else:
+                return 4 # Not sure yet which value should be used for linux systems
+        case 'none':
+            return 0"

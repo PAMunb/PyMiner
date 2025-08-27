@@ -1,0 +1,129 @@
+commit,file,lineno,code
+fd199ccd7cc674d532d042d5f8224e48a9e16ebc,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+a19d722ee9d18a9a791274686727e18092a4091c,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+b50a225d1d2ff288dae1450dd1390767f39c5967,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+6e9c0a491c9aa7e1bdb9a2f0637db180a408f288,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+a2cf0e8adababe0cdadde352e9cd787d2dad7b42,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+d748b3af2b8ac60cb40920e74823f13ac6bf02e5,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+aa9059fc0d14b07289dda5abeb60c86cb0bb03a2,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+861cf75fbbccbfe373dc7d950a5b2913dc3d85ea,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+570e9a8e2118055bed3bfab7b78a88bca237037d,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+40442f02f4292b6bbc1ac32df2bbc5c15d7d7b57,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+9b3ae4acb753a664866a5d8bfd24cc645692622b,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+9feb80b54e89da073256531da6bc4c865fb9fade,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+861367f7d5f4837db1140458b06d67182c9e61d8,test/test_pattern_match.py,33,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+deecb6528032b58e5b507ac2c046abd5f9a6168c,test/test_pattern_match.py,36,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+6f5227944c1c3e6fa5304af12fc1b159594ed8a5,test/test_pattern_match.py,36,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+67b6e09afde425bae8146631ebef5177e58bdb7f,test/test_pattern_match.py,36,"match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"

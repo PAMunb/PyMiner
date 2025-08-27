@@ -1,0 +1,511 @@
+commit,file,lineno,code
+e2ebb356246615e1749a5366592e4523bb8752ec,testsuite/python310.py,3,"match (var, var2):
+    #: Okay
+    case [2, 3]:
+        pass
+    #: Okay
+    case (1, 2):
+        pass
+    #: Okay
+    case _:
+        print(""Default"")"
+52ac6c6f97e778b4716ea28959940b97148e7ae0,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+52ac6c6f97e778b4716ea28959940b97148e7ae0,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+327c3697d3a46699441238a092e500959f9b323b,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+327c3697d3a46699441238a092e500959f9b323b,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+302d1ddb383eac42d27d18ee3d69d312c90f2569,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+302d1ddb383eac42d27d18ee3d69d312c90f2569,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+a6c3f2f86dab22debd1b1b8cf8842ae9d6aec7a0,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+a6c3f2f86dab22debd1b1b8cf8842ae9d6aec7a0,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+49a2f88c96af5c94f5e9aa2c02411ef44fc8a4ff,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+49a2f88c96af5c94f5e9aa2c02411ef44fc8a4ff,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+52513b30195fe0d985a64e972c1218489cae7042,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+52513b30195fe0d985a64e972c1218489cae7042,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+e72afc551f1fa178cb753e1ec164803655ba5692,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+e72afc551f1fa178cb753e1ec164803655ba5692,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+856115397248db361a430ae3d6065342288248d1,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+856115397248db361a430ae3d6065342288248d1,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+776a71cb39beccf989fa2c92f5e14094ee8ad182,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+776a71cb39beccf989fa2c92f5e14094ee8ad182,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+b88a4c348ea88fd6489cbdc2f68ca05fcd644004,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+b88a4c348ea88fd6489cbdc2f68ca05fcd644004,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+8b6d8471f3530ac94969bdbf18adb29c523f962d,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+8b6d8471f3530ac94969bdbf18adb29c523f962d,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+9c7d93f7cf9445ed0d8f62e29989b60fed408bec,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+9c7d93f7cf9445ed0d8f62e29989b60fed408bec,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+f43be155bda895d2cc0a9369c0b8c816ba123c9c,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+f43be155bda895d2cc0a9369c0b8c816ba123c9c,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+18cf7a27bca5af03bff67f22759867dd6f1372c8,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+18cf7a27bca5af03bff67f22759867dd6f1372c8,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+2326e168e0a667fd847f2a06f9a303131e081b60,testsuite/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+2326e168e0a667fd847f2a06f9a303131e081b60,testsuite/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+6b6c75c073a5cff56d872252b8eb08512162ca57,testing/data/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+6b6c75c073a5cff56d872252b8eb08512162ca57,testing/data/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+75ad6a95fdb920559a3112b35dc8391938216897,testing/data/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+75ad6a95fdb920559a3112b35dc8391938216897,testing/data/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+9dc066bc792ef2b58e87ef2fd5b5e0203c520c30,testing/data/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+9dc066bc792ef2b58e87ef2fd5b5e0203c520c30,testing/data/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+2a612c15c24afaf09fe585fcb5038a3cac54c3f5,testing/data/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+2a612c15c24afaf09fe585fcb5038a3cac54c3f5,testing/data/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+72668f67e94d58e69914dd4b139907956ef79575,testing/data/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+72668f67e94d58e69914dd4b139907956ef79575,testing/data/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+04f579dd76aa0294db65c3dbbbd110c80609137e,testing/data/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+04f579dd76aa0294db65c3dbbbd110c80609137e,testing/data/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+53591a50faf21c27d9ffaeda75dd869fbec19a20,testing/data/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+53591a50faf21c27d9ffaeda75dd869fbec19a20,testing/data/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+28aeabb3cbd13154ce0171c2c2d2c02ff577493c,testing/data/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+28aeabb3cbd13154ce0171c2c2d2c02ff577493c,testing/data/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+6a19e1ff9357e8e02c07b22050dfb99dc048f770,testing/data/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+6a19e1ff9357e8e02c07b22050dfb99dc048f770,testing/data/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"
+bf4c16d2891150d0d43df3a6e9f7f5b6361544ca,testing/data/python310.py,3,"match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")"
+bf4c16d2891150d0d43df3a6e9f7f5b6361544ca,testing/data/python310.py,12,"match var:
+    case *_, 1, 2:
+        pass
+    case 0, *_, 2:
+        pass
+    case 0, 1, *_:
+        pass
+    case (*_, 1, 2):
+        pass
+    case (0, *_, 2):
+        pass
+    case (0, 1, *_):
+        pass"

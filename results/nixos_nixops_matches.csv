@@ -1,0 +1,70 @@
+commit,file,lineno,code
+053668e849bb369973cf265b7e8f38e66ef70138,nixops/util.py,157,"match typing.get_origin(ann):
+
+                case collections.abc.Sequence:
+                    sequence: List = []
+                    for v in value:
+                        for subann in typing.get_args(ann):
+                            if isclass(subann) and issubclass(
+                                subann, ImmutableValidatedObject
+                            ):
+                                sequence.append(subann(**v))
+                            else:
+                                sequence.append(v)
+                    value = tuple(sequence)
+
+                case collections.abc.Mapping:
+                    _, value_ann = typing.get_args(ann)
+                    if isclass(value_ann) and issubclass(
+                        value_ann, ImmutableValidatedObject
+                    ):
+                        mapping: Dict = {}
+                        for k, v in value.items():
+                            mapping[k] = value_ann(**v)
+                        value = mapping"
+0d8e2d568c5d9e9e4601a900cc7df37604e46c87,nixops/util.py,157,"match typing.get_origin(ann):
+
+                case collections.abc.Sequence:
+                    sequence: List = []
+                    for v in value:
+                        for subann in typing.get_args(ann):
+                            if isclass(subann) and issubclass(
+                                subann, ImmutableValidatedObject
+                            ):
+                                sequence.append(subann(**v))
+                            else:
+                                sequence.append(v)
+                    value = tuple(sequence)
+
+                case collections.abc.Mapping:
+                    _, value_ann = typing.get_args(ann)
+                    if isclass(value_ann) and issubclass(
+                        value_ann, ImmutableValidatedObject
+                    ):
+                        mapping: Dict = {}
+                        for k, v in value.items():
+                            mapping[k] = value_ann(**v)
+                        value = mapping"
+38f21debbc13f6880114715ec14556acaf6aa3c1,nixops/util.py,157,"match typing.get_origin(ann):
+
+                case collections.abc.Sequence:
+                    sequence: List = []
+                    for v in value:
+                        for subann in typing.get_args(ann):
+                            if isclass(subann) and issubclass(
+                                subann, ImmutableValidatedObject
+                            ):
+                                sequence.append(subann(**v))
+                            else:
+                                sequence.append(v)
+                    value = tuple(sequence)
+
+                case collections.abc.Mapping:
+                    _, value_ann = typing.get_args(ann)
+                    if isclass(value_ann) and issubclass(
+                        value_ann, ImmutableValidatedObject
+                    ):
+                        mapping: Dict = {}
+                        for k, v in value.items():
+                            mapping[k] = value_ann(**v)
+                        value = mapping"

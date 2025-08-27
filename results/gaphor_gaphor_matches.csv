@@ -1,0 +1,607 @@
+commit,file,lineno,code
+3a6979a966c6443ba718cd5040cb235d9ff58871,gaphor/SysML/drop.py,15,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+df52cb0127b8131c72581e6930c6c61c0d19debf,gaphor/SysML/drop.py,15,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+29c3e24f9b180d7522a8ac6fd82eebe8b55e3037,gaphor/SysML/drop.py,15,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+4f84811ea222560102a783bedf4610d186cd7b36,gaphor/SysML/drop.py,15,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+69efb754810dac598f887628c2d6199e7529ebe6,gaphor/SysML/drop.py,16,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+d6717c5439f9d4eb4cc9da8d6614b49f13f423c0,gaphor/SysML/drop.py,16,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+2fcbc7db2d3eb29020c054a265cf4e6ea57a6225,gaphor/SysML/drop.py,16,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+2fcbc7db2d3eb29020c054a265cf4e6ea57a6225,gaphor/storage/recovery.py,451,"match event:
+            case (""c"", type, element_id, None):
+                element_factory.create_as(
+                    modeling_language.lookup_element(type), element_id
+                )
+            case (""c"", type, element_id, diagram_id):
+                diagram = element_factory.lookup(diagram_id)
+                diagram.create_as(modeling_language.lookup_element(type), element_id)
+            case (""u"", element_id, _diagram_id):
+                element_factory.lookup(element_id).unlink()
+            case (""a"", element_id, prop, value):
+                element = element_factory.lookup(element_id)
+                setattr(element, prop, value)
+            case (""s"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                setattr(element, prop, other_element)
+            case (""d"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                del getattr(element, prop)[other_element]
+            case (""mu"", element_id, matrix):
+                element = element_factory.lookup(element_id)
+                element.matrix.set(*matrix)
+            case (""hp"", element_id, handle_index, pos):
+                element = element_factory.lookup(element_id)
+                element.handles()[handle_index].pos = pos
+            case (""ic"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""id"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemConnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ir"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemTemporaryDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ls"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineMergeSegmentEvent(element, segment, count).revert(element)
+            case (""lm"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineSplitSegmentEvent(element, segment, count).revert(element)
+            case _:
+                assert NotImplementedError(f""Event {event} not implemented"")"
+1f4f4dd568ab22567f5118ac05f0e840fd97f450,gaphor/storage/recovery.py,451,"match event:
+            case (""c"", type, element_id, None):
+                element_factory.create_as(
+                    modeling_language.lookup_element(type), element_id
+                )
+            case (""c"", type, element_id, diagram_id):
+                diagram = element_factory.lookup(diagram_id)
+                diagram.create_as(modeling_language.lookup_element(type), element_id)
+            case (""u"", element_id, _diagram_id):
+                element_factory.lookup(element_id).unlink()
+            case (""a"", element_id, prop, value):
+                element = element_factory.lookup(element_id)
+                setattr(element, prop, value)
+            case (""s"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                setattr(element, prop, other_element)
+            case (""d"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                del getattr(element, prop)[other_element]
+            case (""mu"", element_id, matrix):
+                element = element_factory.lookup(element_id)
+                element.matrix.set(*matrix)
+            case (""hp"", element_id, handle_index, pos):
+                element = element_factory.lookup(element_id)
+                element.handles()[handle_index].pos = pos
+            case (""ic"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""id"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemConnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ir"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemTemporaryDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ls"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineMergeSegmentEvent(element, segment, count).revert(element)
+            case (""lm"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineSplitSegmentEvent(element, segment, count).revert(element)
+            case _:
+                assert NotImplementedError(f""Event {event} not implemented"")"
+1f4f4dd568ab22567f5118ac05f0e840fd97f450,gaphor/SysML/drop.py,16,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+9752db45b22d226d8962b737f68c9e4b7b30be84,gaphor/SysML/drop.py,16,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+9752db45b22d226d8962b737f68c9e4b7b30be84,gaphor/storage/recovery.py,459,"match event:
+            case (""c"", type, element_id, None):
+                element_factory.create_as(
+                    modeling_language.lookup_element(type), element_id
+                )
+            case (""c"", type, element_id, diagram_id):
+                diagram = element_factory.lookup(diagram_id)
+                diagram.create_as(modeling_language.lookup_element(type), element_id)
+            case (""u"", element_id, _diagram_id):
+                element_factory.lookup(element_id).unlink()
+            case (""a"", element_id, prop, value):
+                element = element_factory.lookup(element_id)
+                setattr(element, prop, value)
+            case (""s"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                setattr(element, prop, other_element)
+            case (""d"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                del getattr(element, prop)[other_element]
+            case (""mu"", element_id, matrix):
+                element = element_factory.lookup(element_id)
+                element.matrix.set(*matrix)
+            case (""hp"", element_id, handle_index, pos):
+                element = element_factory.lookup(element_id)
+                element.handles()[handle_index].pos = pos
+            case (""ic"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""id"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemConnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ir"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemTemporaryDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ls"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineMergeSegmentEvent(element, segment, count).revert(element)
+            case (""lm"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineSplitSegmentEvent(element, segment, count).revert(element)
+            case (""ts"", element_id, type):
+                element = element_factory.lookup(element_id)
+                swap_element_type(element, modeling_language.lookup_element(type))
+            case _:
+                assert NotImplementedError(f""Event {event} not implemented"")"
+15a78091643bc991edc546ada784928b644f92c4,gaphor/storage/recovery.py,459,"match event:
+            case (""c"", type, element_id, None):
+                element_factory.create_as(
+                    modeling_language.lookup_element(type), element_id
+                )
+            case (""c"", type, element_id, diagram_id):
+                diagram = element_factory.lookup(diagram_id)
+                diagram.create_as(modeling_language.lookup_element(type), element_id)
+            case (""u"", element_id, _diagram_id):
+                element_factory.lookup(element_id).unlink()
+            case (""a"", element_id, prop, value):
+                element = element_factory.lookup(element_id)
+                setattr(element, prop, value)
+            case (""s"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                setattr(element, prop, other_element)
+            case (""d"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                del getattr(element, prop)[other_element]
+            case (""mu"", element_id, matrix):
+                element = element_factory.lookup(element_id)
+                element.matrix.set(*matrix)
+            case (""hp"", element_id, handle_index, pos):
+                element = element_factory.lookup(element_id)
+                element.handles()[handle_index].pos = pos
+            case (""ic"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""id"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemConnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ir"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemTemporaryDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ls"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineMergeSegmentEvent(element, segment, count).revert(element)
+            case (""lm"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineSplitSegmentEvent(element, segment, count).revert(element)
+            case (""ts"", element_id, type):
+                element = element_factory.lookup(element_id)
+                swap_element_type(element, modeling_language.lookup_element(type))
+            case _:
+                assert NotImplementedError(f""Event {event} not implemented"")"
+15a78091643bc991edc546ada784928b644f92c4,gaphor/SysML/drop.py,16,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+15a78091643bc991edc546ada784928b644f92c4,gaphor/ui/styling.py,28,"match sys.platform:
+        case ""win32"":
+            css += (
+                importlib.resources.files(""gaphor.ui"") / ""styling-windows.css""
+            ).read_text(encoding=""utf-8"")
+        case ""darwin"":
+            css += (
+                importlib.resources.files(""gaphor.ui"") / ""styling-macos.css""
+            ).read_text(encoding=""utf-8"")"
+af3f3db23b7c4e0793a5185fe300d9bd57eda49a,gaphor/storage/recovery.py,459,"match event:
+            case (""c"", type, element_id, None):
+                element_factory.create_as(
+                    modeling_language.lookup_element(type), element_id
+                )
+            case (""c"", type, element_id, diagram_id):
+                diagram = element_factory.lookup(diagram_id)
+                diagram.create_as(modeling_language.lookup_element(type), element_id)
+            case (""u"", element_id, _diagram_id):
+                element_factory.lookup(element_id).unlink()
+            case (""a"", element_id, prop, value):
+                element = element_factory.lookup(element_id)
+                setattr(element, prop, value)
+            case (""s"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                setattr(element, prop, other_element)
+            case (""d"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                del getattr(element, prop)[other_element]
+            case (""mu"", element_id, matrix):
+                element = element_factory.lookup(element_id)
+                element.matrix.set(*matrix)
+            case (""hp"", element_id, handle_index, pos):
+                element = element_factory.lookup(element_id)
+                element.handles()[handle_index].pos = pos
+            case (""ic"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""id"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemConnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ir"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemTemporaryDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ls"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineMergeSegmentEvent(element, segment, count).revert(element)
+            case (""lm"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineSplitSegmentEvent(element, segment, count).revert(element)
+            case (""ts"", element_id, type):
+                element = element_factory.lookup(element_id)
+                swap_element_type(element, modeling_language.lookup_element(type))
+            case _:
+                assert NotImplementedError(f""Event {event} not implemented"")"
+af3f3db23b7c4e0793a5185fe300d9bd57eda49a,gaphor/SysML/drop.py,16,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+af3f3db23b7c4e0793a5185fe300d9bd57eda49a,gaphor/ui/styling.py,28,"match sys.platform:
+        case ""win32"":
+            css += (
+                importlib.resources.files(""gaphor.ui"") / ""styling-windows.css""
+            ).read_text(encoding=""utf-8"")
+        case ""darwin"":
+            css += (
+                importlib.resources.files(""gaphor.ui"") / ""styling-macos.css""
+            ).read_text(encoding=""utf-8"")"
+013823748bf40f853d5f6655b46ae7f35e0c0c62,gaphor/storage/recovery.py,460,"match event:
+            case (""c"", ns, type, element_id, None):
+                element_factory.create_as(
+                    modeling_language.lookup_element(type, ns), element_id
+                )
+            case (""c"", ns, type, element_id, diagram_id):
+                diagram = element_factory.lookup(diagram_id)
+                diagram.create_as(
+                    modeling_language.lookup_element(type, ns), element_id
+                )
+            case (""u"", element_id, _diagram_id):
+                element_factory.lookup(element_id).unlink()
+            case (""a"", element_id, prop, value):
+                element = element_factory.lookup(element_id)
+                setattr(element, prop, value)
+            case (""s"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                setattr(element, prop, other_element)
+            case (""d"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                del getattr(element, prop)[other_element]
+            case (""mu"", element_id, matrix):
+                element = element_factory.lookup(element_id)
+                element.matrix.set(*matrix)
+            case (""hp"", element_id, handle_index, pos):
+                element = element_factory.lookup(element_id)
+                element.handles()[handle_index].pos = pos
+            case (""ic"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""id"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemConnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ir"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemTemporaryDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ls"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineMergeSegmentEvent(element, segment, count).revert(element)
+            case (""lm"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineSplitSegmentEvent(element, segment, count).revert(element)
+            case (""ts"", element_id, type):
+                element = element_factory.lookup(element_id)
+                swap_element_type(element, modeling_language.lookup_element(type))
+            case _:
+                assert NotImplementedError(f""Event {event} not implemented"")"
+013823748bf40f853d5f6655b46ae7f35e0c0c62,gaphor/SysML/drop.py,16,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+013823748bf40f853d5f6655b46ae7f35e0c0c62,gaphor/ui/styling.py,28,"match sys.platform:
+        case ""win32"":
+            css += (
+                importlib.resources.files(""gaphor.ui"") / ""styling-windows.css""
+            ).read_text(encoding=""utf-8"")
+        case ""darwin"":
+            css += (
+                importlib.resources.files(""gaphor.ui"") / ""styling-macos.css""
+            ).read_text(encoding=""utf-8"")"
+7615ad0430fa68fe33a49a063447f9b602936581,gaphor/SysML/drop.py,16,"match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:
+                return False"
+7615ad0430fa68fe33a49a063447f9b602936581,gaphor/storage/recovery.py,460,"match event:
+            case (""c"", ns, type, element_id, None):
+                element_factory.create_as(
+                    modeling_language.lookup_element(type, ns), element_id
+                )
+            case (""c"", ns, type, element_id, diagram_id):
+                diagram = element_factory.lookup(diagram_id)
+                diagram.create_as(
+                    modeling_language.lookup_element(type, ns), element_id
+                )
+            case (""u"", element_id, _diagram_id):
+                element_factory.lookup(element_id).unlink()
+            case (""a"", element_id, prop, value):
+                element = element_factory.lookup(element_id)
+                setattr(element, prop, value)
+            case (""s"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                setattr(element, prop, other_element)
+            case (""d"", element_id, prop, other_element_id):
+                element = element_factory.lookup(element_id)
+                other_element = element_factory.lookup(other_element_id)
+                del getattr(element, prop)[other_element]
+            case (""mu"", element_id, matrix):
+                element = element_factory.lookup(element_id)
+                element.matrix.set(*matrix)
+            case (""hp"", element_id, handle_index, pos):
+                element = element_factory.lookup(element_id)
+                element.handles()[handle_index].pos = pos
+            case (""ic"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""id"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemConnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ir"", element_id, handle_index, connected_id, port_index):
+                element = element_factory.lookup(element_id)
+                connected = element_factory.lookup(connected_id)
+                ItemTemporaryDisconnected(
+                    element,
+                    element.handles()[handle_index],
+                    connected,
+                    connected.ports()[port_index],
+                ).revert(element)
+            case (""ls"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineMergeSegmentEvent(element, segment, count).revert(element)
+            case (""lm"", element_id, segment, count):
+                element = element_factory.lookup(element_id)
+                LineSplitSegmentEvent(element, segment, count).revert(element)
+            case (""ts"", element_id, type):
+                element = element_factory.lookup(element_id)
+                swap_element_type(element, modeling_language.lookup_element(type))
+            case _:
+                assert NotImplementedError(f""Event {event} not implemented"")"
+7615ad0430fa68fe33a49a063447f9b602936581,gaphor/ui/styling.py,28,"match sys.platform:
+        case ""win32"":
+            css += (
+                importlib.resources.files(""gaphor.ui"") / ""styling-windows.css""
+            ).read_text(encoding=""utf-8"")
+        case ""darwin"":
+            css += (
+                importlib.resources.files(""gaphor.ui"") / ""styling-macos.css""
+            ).read_text(encoding=""utf-8"")"

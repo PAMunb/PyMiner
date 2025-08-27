@@ -1,0 +1,3541 @@
+project,file,method,commit_insert,commit_insert_date,window_commit,window_commit_date,hunk_index,subject_expr,removed_if_count,added_case_count,before_lineno_min,after_lineno_min,code_before,code_after
+astropy_astropy,astropy/coordinates/angles/formats.py,direct,124b0803b225284a6558dfc32cc6ab68d603203d,2024-10-18T16:59:07+02:00,124b0803b225284a6558dfc32cc6ab68d603203d,2024-10-18T16:59:07+02:00,4,,4,3,218,218,"-        def p_colon(p):
+-            """"""
+-            colon : UINT COLON ufloat
+-                  | UINT COLON UINT COLON ufloat
+-            """"""
+-            if len(p) == 4:
+-                p[0] = (p[1], p[3])
+-            elif len(p) == 6:
+-                p[0] = (p[1], p[3], p[5])
+-
+-        def p_spaced(p):
+-            """"""
+-            spaced : UINT ufloat
+-                   | UINT UINT ufloat
+-            """"""
+-            if len(p) == 3:
+-                p[0] = (p[1], p[2])
+-            elif len(p) == 4:
+-                p[0] = (p[1], p[2], p[3])
+-
+-            generic : colon
+-                    | spaced
+-                    | ufloat
+-            p[0] = p[1]","+            generic : ufloat
++                    | UINT ufloat
++                    | UINT COLON ufloat
++                    | UINT UINT ufloat
++                    | UINT COLON UINT COLON ufloat
++            match p[1:]:
++                case [p1]:
++                    p[0] = p1
++                case [p1, p2] | [p1, "":"", p2]:
++                    p[0] = (p1, p2)
++                case [p1, p2, p3] | [p1, _, p2, _, p3]:
++                    p[0] = (p1, p2, p3)"
+astropy_astropy,astropy/units/format/ogip.py,direct,89eaa1178c468c83a613898baa94eb848f3fba07,2024-09-27T18:18:43+02:00,89eaa1178c468c83a613898baa94eb848f3fba07,2024-09-27T18:18:43+02:00,4,list(p),6,3,223,236,"-            bad_function_message = (
+-                ""The function '{}' is valid in OGIP, but not understood ""
+-                ""by astropy.units.""
+-            )
+-                if p[1] == ""sqrt"":
+-                    p[0] = p[3] ** (0.5 * p[6])
+-                elif p[1] in cls._functions:
+-                    raise ValueError(bad_function_message.format(p[1]))
+-                else:
+-                    raise ValueError(
+-                        bad_multiplication_message.format(p[1], f""({p[3]})**{p[6]}"")
+-                    )
+-                if p[1] == ""sqrt"":
+-                    p[0] = p[3] ** 0.5
+-                elif p[1] in cls._functions:
+-                    raise ValueError(bad_function_message.format(p[1]))
+-                else:
+-                    raise ValueError(
+-                        bad_multiplication_message.format(p[1], f""({p[3]})"")
+-                    )","+                raise ValueError(
++                    bad_multiplication_message.format(p[1], f""({p[3]})**{p[6]}"")
++                )
++                raise ValueError(bad_multiplication_message.format(p[1], f""({p[3]})""))
++        def p_function(p):
++            """"""
++            function : FUNCNAME OPEN_PAREN complete_expression CLOSE_PAREN
++                     | FUNCNAME OPEN_PAREN complete_expression CLOSE_PAREN power numeric_power
++            """"""
++            match list(p):
++                case [_, ""sqrt"", _, unit, _]:
++                    p[0] = unit**0.5
++                case [_, ""sqrt"", _, unit, _, _, numeric_power]:
++                    p[0] = unit ** (0.5 * numeric_power)
++                case [_, func, *_]:
++                    raise ValueError(
++                        f""The function '{func}' is valid in OGIP, but not understood ""
++                        ""by astropy.units.""
++                    )
++"
+beetbox_beets,beetsplug/substitute.py,window,913d51af5cce3702a5ba0e04c41069f644a9fbfb,2024-10-05T15:51:41+02:00,ffdc3f73abb27b48e4fdcee7273f66f7f259c0d7,2024-10-14T22:54:38+02:00,1,self.config.get(),2,2,55,,"-        self.substitute_rules = []
+-
+-        if isinstance(self.config.get(), dict):
+-            self._log.warning(
+-                ""Unordered configuration is deprecated, as it leads to""
+-                + "" unpredictable behaviour on overlapping rules.\n""
+-                + textwrap.dedent(
+-                    """"""
+-                    Old syntax:
+-                      substitute:
+-                        a: b
+-                        c: d
+-
+-                    New syntax:
+-                      substitute:
+-                      - a: b
+-                      - c: d
+-                    """"""
+-                )
+-            )
+-            pairs = self.config.flatten().items()
+-        else:
+-            pairs = self.config.as_pairs()
+-
+-        for key, value in pairs:
+-            pattern = re.compile(key, flags=re.IGNORECASE)
+-            self.substitute_rules.append((pattern, value))","+        match self.config.get():
++            case list():
++                pairs = self.config.as_pairs()
++            case dict():
++                pairs = [
++                    (key, view.as_str()) for key, view in self.config.items()
++                ]
++                self._log.warning(
++                    ""Unordered configuration is deprecated, as it leads to""
++                    + "" unpredictable behaviour on overlapping rules.\n""
++                    + textwrap.dedent(
++                        """"""
++                        Old syntax:
++                          substitute:
++                            a: b
++                            c: d
++
++                        New syntax:
++                          substitute:
++                          - a: b
++                          - c: d
++                        """"""
++                    )
++                )
++        for key, value in pairs:"
+frappe_frappe,frappe/api.py,direct,98dd7b0616692f2af2273da31c6e9c3d95ae89fd,2022-10-12T15:18:39+05:30,98dd7b0616692f2af2273da31c6e9c3d95ae89fd,2022-10-12T15:18:39+05:30,1,self.call,21,10,52,67,"-	if call == ""method"":
+-		frappe.local.form_dict.cmd = doctype
+-		return frappe.handler.handle()
+-	elif call == ""resource"":
+-		if ""run_method"" in frappe.local.form_dict:
+-			method = frappe.local.form_dict.pop(""run_method"")
+-			doc = frappe.get_doc(doctype, name)
+-			doc.is_whitelisted(method)
+-			if frappe.local.request.method == ""GET"":
+-				if not doc.has_permission(""read""):
+-					frappe.throw(_(""Not permitted""), frappe.PermissionError)
+-				frappe.local.response.update({""data"": doc.run_method(method, **frappe.local.form_dict)})
+-			if frappe.local.request.method == ""POST"":
+-				if not doc.has_permission(""write""):
+-					frappe.throw(_(""Not permitted""), frappe.PermissionError)
+-				frappe.local.response.update({""data"": doc.run_method(method, **frappe.local.form_dict)})
+-				frappe.db.commit()
+-			if name:
+-				if frappe.local.request.method == ""GET"":
+-					doc = frappe.get_doc(doctype, name)
+-					if not doc.has_permission(""read""):
+-						raise frappe.PermissionError
+-					frappe.local.response.update({""data"": doc})
+-				if frappe.local.request.method == ""PUT"":
+-					data = get_request_form_data()
+-					doc = frappe.get_doc(doctype, name, for_update=True)
+-					if ""flags"" in data:
+-						del data[""flags""]
+-					# Not checking permissions here because it's checked in doc.save
+-					doc.update(data)
+-					frappe.local.response.update({""data"": doc.save().as_dict()})
+-					# check for child table doctype
+-					if doc.get(""parenttype""):
+-						frappe.get_doc(doc.parenttype, doc.parent).save()
+-					frappe.db.commit()
+-				if frappe.local.request.method == ""DELETE"":
+-					# Not checking permissions here because it's checked in delete_doc
+-					frappe.delete_doc(doctype, name, ignore_missing=False)
+-					frappe.local.response.http_status_code = 202
+-					frappe.local.response.message = ""ok""
+-					frappe.db.commit()
+-			elif doctype:
+-				if frappe.local.request.method == ""GET"":
+-					# set fields for frappe.get_list
+-					if frappe.local.form_dict.get(""fields""):
+-						frappe.local.form_dict[""fields""] = json.loads(frappe.local.form_dict[""fields""])
+-					# set limit of records for frappe.get_list
+-					frappe.local.form_dict.setdefault(
+-						""limit_page_length"",
+-						frappe.local.form_dict.limit or frappe.local.form_dict.limit_page_length or 20,
+-					)
+-					# convert strings to native types - only as_dict and debug accept bool
+-					for param in [""as_dict"", ""debug""]:
+-						param_val = frappe.local.form_dict.get(param)
+-						if param_val is not None:
+-							frappe.local.form_dict[param] = sbool(param_val)
+-					# evaluate frappe.get_list
+-					data = frappe.call(frappe.client.get_list, doctype, **frappe.local.form_dict)
+-					# set frappe.get_list result to response
+-					frappe.local.response.update({""data"": data})
+-				if frappe.local.request.method == ""POST"":
+-					# fetch data from from dict
+-					data = get_request_form_data()
+-					data.update({""doctype"": doctype})
+-					# insert document from request data
+-					doc = frappe.get_doc(data).insert()
+-					# set response data
+-					frappe.local.response.update({""data"": doc.as_dict()})
+-					# commit for POST requests
+-					frappe.db.commit()
+-			else:
+-				raise frappe.DoesNotExistError
+-	else:
+-		raise frappe.DoesNotExistError
+-	return build_response(""json"")","+	return _RESTAPIHandler(call, doctype, name).get_response()
++class _RESTAPIHandler:
++	def __init__(self, call: Literal[""method"", ""resource""], doctype: str | None, name: str | None):
++		self.call = call
++		self.doctype = doctype
++		self.name = name
++
++	def get_response(self):
++		""""""Prepare and get response based on URL and form body.
++
++		Note: most methods of this class directly operate on the response local.
++		""""""
++		match self.call:
++			case ""method"":
++				return self.handle_method()
++			case ""resource"":
++				self.handle_resource()
++			case _:
++				raise frappe.DoesNotExistError
++		return build_response(""json"")
++	def handle_method(self):
++		frappe.local.form_dict.cmd = self.doctype
++		return frappe.handler.handle()
++	def handle_resource(self):
++		if self.doctype and self.name:
++			self.handle_document_resource()
++		elif self.doctype:
++			self.handle_doctype_resource()
++			raise frappe.DoesNotExistError
++
++	def handle_document_resource(self):
++		if ""run_method"" in frappe.local.form_dict:
++			self.execute_doc_method()
++			return
++
++		match frappe.local.request.method:
++			case ""GET"":
++				self.get_doc()
++			case ""PUT"":
++				self.update_doc()
++			case ""DELETE"":
++				self.delete_doc()
++			case _:
++				raise frappe.DoesNotExistError
++	def handle_doctype_resource(self):
++		match frappe.local.request.method:
++			case ""GET"":
++				self.get_doc_list()
++			case ""POST"":
++				self.create_doc()
++			case _:
++				raise frappe.DoesNotExistError
++	def execute_doc_method(self):
++		method = frappe.local.form_dict.pop(""run_method"")
++		doc = frappe.get_doc(self.doctype, self.name)
++		doc.is_whitelisted(method)
++		if frappe.local.request.method == ""GET"":
++			if not doc.has_permission(""read""):
++				frappe.throw(_(""Not permitted""), frappe.PermissionError)
++			frappe.local.response.update({""data"": doc.run_method(method, **frappe.local.form_dict)})
++		elif frappe.local.request.method == ""POST"":
++			if not doc.has_permission(""write""):
++				frappe.throw(_(""Not permitted""), frappe.PermissionError)
++			frappe.local.response.update({""data"": doc.run_method(method, **frappe.local.form_dict)})
++			frappe.db.commit()
++	def get_doc(self):
++		doc = frappe.get_doc(self.doctype, self.name)
++		if not doc.has_permission(""read""):
++			raise frappe.PermissionError
++		frappe.local.response.update({""data"": doc})
++	def update_doc(self):
++		data = get_request_form_data()
++		doc = frappe.get_doc(self.doctype, self.name, for_update=True)
++		if ""flags"" in data:
++			del data[""flags""]
++		# Not checking permissions here because it's checked in doc.save
++		doc.update(data)
++		frappe.local.response.update({""data"": doc.save().as_dict()})
++		# check for child table doctype
++		if doc.get(""parenttype""):
++			frappe.get_doc(doc.parenttype, doc.parent).save()
++		frappe.db.commit()
++	def delete_doc(self):
++		# Not checking permissions here because it's checked in delete_doc
++		frappe.delete_doc(self.doctype, self.name, ignore_missing=False)
++		frappe.local.response.http_status_code = 202
++		frappe.local.response.message = ""ok""
++		frappe.db.commit()
++	def get_doc_list(self):
++		if frappe.local.form_dict.get(""fields""):
++			frappe.local.form_dict[""fields""] = json.loads(frappe.local.form_dict[""fields""])
++		# set limit of records for frappe.get_list
++		frappe.local.form_dict.setdefault(
++			""limit_page_length"",
++			frappe.local.form_dict.limit or frappe.local.form_dict.limit_page_length or 20,
++		)
++		# convert strings to native types - only as_dict and debug accept bool
++		for param in [""as_dict"", ""debug""]:
++			param_val = frappe.local.form_dict.get(param)
++			if param_val is not None:
++				frappe.local.form_dict[param] = sbool(param_val)
++		# evaluate frappe.get_list
++		data = frappe.call(frappe.client.get_list, self.doctype, **frappe.local.form_dict)
++		# set frappe.get_list result to response
++		frappe.local.response.update({""data"": data})
++
++	def create_doc(self):
++		data = get_request_form_data()
++		data.update({""doctype"": self.doctype})
++
++		# insert document from request data
++		doc = frappe.get_doc(data).insert()
++
++		# set response data
++		frappe.local.response.update({""data"": doc.as_dict()})
++		# commit for POST requests
++		frappe.db.commit()"
+frappe_frappe,frappe/commands/scheduler.py,direct,6b84c9ccf5fc3c389223f37cf4fb1865be430448,2023-02-10T14:38:50+05:30,6b84c9ccf5fc3c389223f37cf4fb1865be430448,2023-02-10T14:38:50+05:30,0,state,5,3,84,88,"-@click.argument(""state"", type=click.Choice([""pause"", ""resume"", ""disable"", ""enable""]))
+-def scheduler(context, state, site=None):
+-	if not site:
+-		site = get_site(context)
+-
+-	try:
+-		frappe.init(site=site)
+-
+-		if state == ""pause"":
+-			update_site_config(""pause_scheduler"", 1)
+-		elif state == ""resume"":
+-			update_site_config(""pause_scheduler"", 0)
+-		elif state == ""disable"":
+-			frappe.connect()
+-			frappe.utils.scheduler.disable_scheduler()
+-			frappe.db.commit()
+-		elif state == ""enable"":
+-			frappe.connect()
+-			frappe.utils.scheduler.enable_scheduler()
+-			frappe.db.commit()
+-	finally:
+-		frappe.destroy()
+-","+@click.argument(""state"", type=click.Choice([""pause"", ""resume"", ""disable"", ""enable"", ""status""]))
++def scheduler(context, state: str, site: str | None = None):
++	import frappe
++	site = site or get_site(context)
++
++	with frappe.init_site(site=site):
++		match state:
++			case ""status"":
++				frappe.connect()
++				status = ""disabled"" if frappe.utils.scheduler.is_scheduler_inactive(verbose=verbose) else ""enabled""
++				return print(output[format].format(status=status, site=site))
++			case ""pause"" | ""resume"":
++				update_site_config(""pause_scheduler"", state == ""pause"")
++			case ""enable"" | ""disable"":
++				frappe.connect()
++				frappe.utils.scheduler.toggle_scheduler(state == ""enable"")
++				frappe.db.commit()"
+frappe_frappe,frappe/desk/form/load.py,direct,d20e436e0f49659a2ad3cb512c8386ac07884731,2023-09-18T11:16:20+05:30,d20e436e0f49659a2ad3cb512c8386ac07884731,2023-09-18T11:16:20+05:30,0,c.comment_type,7,7,156,156,"-		if c.comment_type == ""Comment"":
+-			c.content = frappe.utils.markdown(c.content)
+-			docinfo.comments.append(c)
+-
+-		elif c.comment_type in (""Shared"", ""Unshared""):
+-			docinfo.shared.append(c)
+-
+-		elif c.comment_type in (""Assignment Completed"", ""Assigned""):
+-			docinfo.assignment_logs.append(c)
+-
+-		elif c.comment_type in (""Attachment"", ""Attachment Removed""):
+-			docinfo.attachment_logs.append(c)
+-
+-		elif c.comment_type in (""Info"", ""Edit"", ""Label""):
+-			docinfo.info_logs.append(c)
+-
+-		elif c.comment_type == ""Like"":
+-			docinfo.like_logs.append(c)
+-
+-		elif c.comment_type == ""Workflow"":
+-			docinfo.workflow_logs.append(c)
+-
+-		frappe.utils.add_user_info(c.owner, docinfo.user_info)","+		match c.comment_type:
++			case ""Comment"":
++				c.content = frappe.utils.markdown(c.content)
++				docinfo.comments.append(c)
++			case ""Shared"" | ""Unshared"":
++				docinfo.shared.append(c)
++			case ""Assignment Completed"" | ""Assigned"":
++				docinfo.assignment_logs.append(c)
++			case ""Attachment"" | ""Attachment Removed"":
++				docinfo.attachment_logs.append(c)
++			case ""Info"" | ""Edit"" | ""Label"":
++				docinfo.info_logs.append(c)
++			case ""Like"":
++				docinfo.like_logs.append(c)
++			case ""Workflow"":
++				docinfo.workflow_logs.append(c)"
+frappe_frappe,frappe/modules/utils.py,direct,526ff3b5769dd54cf8d3998c1f4fe63cb75b03ab,2024-04-11T18:04:30+05:30,526ff3b5769dd54cf8d3998c1f4fe63cb75b03ab,2024-04-11T18:04:30+05:30,0,custom_doctype,4,3,133,133,"-			if custom_doctype != ""Custom Field"":
+-				frappe.db.delete(custom_doctype, {doctype_fieldname: doc_type})
+-
+-				for d in data[key]:
+-					_insert(d)
+-
+-			else:
+-				for d in data[key]:
+-					field = frappe.db.get_value(""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]})
+-					if not field:
+-						d[""owner""] = ""Administrator""
+-					else:
+-						custom_field = frappe.get_doc(""Custom Field"", field)
+-						custom_field.flags.ignore_validate = True
+-						custom_field.update(d)
+-						custom_field.db_update()","+			match custom_doctype:
++				case ""Custom Field"":
++					for d in data[key]:
++						field = frappe.db.get_value(
++							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
++						)
++						if not field:
++							d[""owner""] = ""Administrator""
++							_insert(d)
++						else:
++							custom_field = frappe.get_doc(""Custom Field"", field)
++							custom_field.flags.ignore_validate = True
++							custom_field.update(d)
++							custom_field.db_update()
++				case ""Property Setter"":
++					# Property setter implement their own deduplication, we can just sync them as is
++					for d in data[key]:
++						if d.get(doctype_fieldname) == doc_type:
++							d[""doctype""] = custom_doctype
++							doc = frappe.get_doc(d)
++							doc.insert()
++				case ""Custom DocPerm"":
++					# Docperm have no ""sync"" as of now.
++					frappe.db.delete(""Custom DocPerm"", {""parent"": doc_type})
++
++					for d in data[key]:"
+frappe_frappe,frappe/utils/data.py,direct,a88819230a8967cf50fde1d831f39771e44369d0,2022-08-16T10:53:28+05:30,a88819230a8967cf50fde1d831f39771e44369d0,2022-08-16T10:53:28+05:30,0,timespan,1,18,779,730,"-def get_timespan_date_range(timespan: str) -> tuple[datetime.datetime, datetime.datetime]:
+-	date_range_map = {
+-		""last week"": lambda: (
+-			get_first_day_of_week(add_to_date(today, days=-7)),
+-			get_last_day_of_week(add_to_date(today, days=-7)),
+-		),
+-		""last month"": lambda: (
+-			get_first_day(add_to_date(today, months=-1)),
+-			get_last_day(add_to_date(today, months=-1)),
+-		),
+-		""last quarter"": lambda: (
+-			get_quarter_start(add_to_date(today, months=-3)),
+-			get_quarter_ending(add_to_date(today, months=-3)),
+-		),
+-		""last 6 months"": lambda: (
+-			get_quarter_start(add_to_date(today, months=-6)),
+-			get_quarter_ending(add_to_date(today, months=-3)),
+-		),
+-		""last year"": lambda: (
+-			get_year_start(add_to_date(today, years=-1)),
+-			get_year_ending(add_to_date(today, years=-1)),
+-		),
+-		""yesterday"": lambda: (add_to_date(today, days=-1),) * 2,
+-		""today"": lambda: (today, today),
+-		""tomorrow"": lambda: (add_to_date(today, days=1),) * 2,
+-		""this week"": lambda: (get_first_day_of_week(today), get_last_day_of_week(today)),
+-		""this month"": lambda: (get_first_day(today), get_last_day(today)),
+-		""this quarter"": lambda: (get_quarter_start(today), get_quarter_ending(today)),
+-		""this year"": lambda: (get_year_start(today), get_year_ending(today)),
+-		""next week"": lambda: (
+-			get_first_day_of_week(add_to_date(today, days=7)),
+-			get_last_day_of_week(add_to_date(today, days=7)),
+-		),
+-		""next month"": lambda: (
+-			get_first_day(add_to_date(today, months=1)),
+-			get_last_day(add_to_date(today, months=1)),
+-		),
+-		""next quarter"": lambda: (
+-			get_quarter_start(add_to_date(today, months=3)),
+-			get_quarter_ending(add_to_date(today, months=3)),
+-		),
+-		""next 6 months"": lambda: (
+-			get_quarter_start(add_to_date(today, months=3)),
+-			get_quarter_ending(add_to_date(today, months=6)),
+-		),
+-		""next year"": lambda: (
+-			get_year_start(add_to_date(today, years=1)),
+-			get_year_ending(add_to_date(today, years=1)),
+-		),
+-	}
+-	if timespan in date_range_map:
+-		return date_range_map[timespan]()","+def get_timespan_date_range(timespan: str) -> tuple[datetime.datetime, datetime.datetime] | None:
++	match timespan:
++		case ""last week"":
++			return (
++				get_first_day_of_week(add_to_date(today, days=-7)),
++				get_last_day_of_week(add_to_date(today, days=-7)),
++			)
++		case ""last month"":
++			return (
++				get_first_day(add_to_date(today, months=-1)),
++				get_last_day(add_to_date(today, months=-1)),
++			)
++		case ""last quarter"":
++			return (
++				get_quarter_start(add_to_date(today, months=-3)),
++				get_quarter_ending(add_to_date(today, months=-3)),
++			)
++		case ""last 6 months"":
++			return (
++				get_quarter_start(add_to_date(today, months=-6)),
++				get_quarter_ending(add_to_date(today, months=-3)),
++			)
++		case ""last year"":
++			return (
++				get_year_start(add_to_date(today, years=-1)),
++				get_year_ending(add_to_date(today, years=-1)),
++			)
++
++		case ""yesterday"":
++			return (add_to_date(today, days=-1),) * 2
++		case ""today"":
++			return (today, today)
++		case ""tomorrow"":
++			return (add_to_date(today, days=1),) * 2
++		case ""this week"":
++			return (get_first_day_of_week(today), get_last_day_of_week(today))
++		case ""this month"":
++			return (get_first_day(today), get_last_day(today))
++		case ""this quarter"":
++			return (get_quarter_start(today), get_quarter_ending(today))
++		case ""this year"":
++			return (get_year_start(today), get_year_ending(today))
++		case ""next week"":
++			return (
++				get_first_day_of_week(add_to_date(today, days=7)),
++				get_last_day_of_week(add_to_date(today, days=7)),
++			)
++		case ""next month"":
++			return (
++				get_first_day(add_to_date(today, months=1)),
++				get_last_day(add_to_date(today, months=1)),
++			)
++		case ""next quarter"":
++			return (
++				get_quarter_start(add_to_date(today, months=3)),
++				get_quarter_ending(add_to_date(today, months=3)),
++			)
++		case ""next 6 months"":
++			return (
++				get_quarter_start(add_to_date(today, months=3)),
++				get_quarter_ending(add_to_date(today, months=6)),
++			)
++		case ""next year"":
++			return (
++				get_year_start(add_to_date(today, years=1)),
++				get_year_ending(add_to_date(today, years=1)),
++			)
++		case _:
++			return"
+frappe_frappe,frappe/utils/oauth.py,direct,d13c3778481b42aef8d3fa1de894cf5ef7e235ff,2022-12-27T19:25:43+05:30,d13c3778481b42aef8d3fa1de894cf5ef7e235ff,2022-12-27T19:25:43+05:30,7,provider,15,6,241,273,"-def update_oauth_user(user, data, provider):
+-	if isinstance(data.get(""location""), dict):
+-		data[""location""] = data.get(""location"").get(""name"")
+-	save = False
+-	if not frappe.db.exists(""User"", user):
+-		# is signup disabled?
+-		if frappe.utils.cint(frappe.db.get_single_value(""Website Settings"", ""disable_signup"")):
+-			raise SignupDisabledError
+-		save = True
+-		user = frappe.new_doc(""User"")
+-
+-		gender = data.get(""gender"", """").title()
+-
+-		if gender and not frappe.db.exists(""Gender"", gender):
+-			doc = frappe.new_doc(""Gender"", {""gender"": gender})
+-			doc.insert(ignore_permissions=True)
+-
+-		user.update(
+-			{
+-				""doctype"": ""User"",
+-				""first_name"": get_first_name(data),
+-				""last_name"": get_last_name(data),
+-				""email"": get_email(data),
+-				""gender"": gender,
+-				""enabled"": 1,
+-				""new_password"": frappe.generate_hash(),
+-				""location"": data.get(""location""),
+-				""user_type"": ""Website User"",
+-				""user_image"": data.get(""picture"") or data.get(""avatar_url""),
+-			}
+-		)
+-	else:
+-		user = frappe.get_doc(""User"", user)
+-		if not user.enabled:
+-			frappe.respond_as_web_page(_(""Not Allowed""), _(""User {0} is disabled"").format(user.email))
+-			return False
+-
+-	if provider == ""facebook"" and not user.get_social_login_userid(provider):
+-		save = True
+-		user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+-		user.update({""user_image"": ""https://graph.facebook.com/{id}/picture"".format(id=data[""id""])})
+-
+-	elif provider == ""google"" and not user.get_social_login_userid(provider):
+-		save = True
+-		user.set_social_login_userid(provider, userid=data[""id""])
+-
+-	elif provider == ""github"" and not user.get_social_login_userid(provider):
+-		save = True
+-		user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+-
+-	elif provider == ""frappe"" and not user.get_social_login_userid(provider):
+-		save = True
+-		user.set_social_login_userid(provider, userid=data[""sub""])
+-
+-	elif provider == ""office_365"" and not user.get_social_login_userid(provider):
+-		save = True
+-		user.set_social_login_userid(provider, userid=data[""sub""])
+-
+-	elif provider == ""salesforce"" and not user.get_social_login_userid(provider):
+-		save = True
+-		user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+-
+-	elif not user.get_social_login_userid(provider):
+-		save = True
+-		user_id_property = frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+-		user.set_social_login_userid(provider, userid=data[user_id_property])
+-
+-	if save:
+-		# set default signup role as per Portal Settings
+-		default_role = frappe.db.get_single_value(""Portal Settings"", ""default_role"")
+-		if default_role:
+-def get_first_name(data):
+-def get_last_name(data):
+-def get_email(data):
+-def redirect_post_login(desk_user, redirect_to=None, provider=None):
+-	# redirect!
+-		# the #desktop is added to prevent a facebook redirect bug
+-		redirect_to = desk_uri if desk_user else ""/me""
+-		redirect_to = frappe.utils.get_url(redirect_to)","+def get_user_record(user: str, data: dict) -> ""User"":
++	try:
++		return frappe.get_doc(""User"", user)
++	except frappe.DoesNotExistError:
++		if frappe.get_website_settings(""disable_signup""):
++			raise SignupDisabledError
++	user: ""User"" = frappe.new_doc(""User"")
++	if gender := data.get(""gender"", """").title():
++		frappe.get_doc({""doctype"": ""Gender"", ""gender"": gender}).insert(
++			ignore_permissions=True, ignore_if_duplicate=True
++		)
++	user.update(
++		{
++			""doctype"": ""User"",
++			""first_name"": get_first_name(data),
++			""last_name"": get_last_name(data),
++			""email"": get_email(data),
++			""gender"": gender,
++			""enabled"": 1,
++			""new_password"": frappe.generate_hash(),
++			""location"": data.get(""location""),
++			""user_type"": ""Website User"",
++			""user_image"": data.get(""picture"") or data.get(""avatar_url""),
++		}
++	)
++	return user
++
++def update_oauth_user(user: str, data: dict, provider: str):
++	if isinstance(data.get(""location""), dict):
++		data[""location""] = data[""location""].get(""name"")
++
++	user: ""User"" = get_user_record(user, data)
++	update_user_record = user.is_new()
++
++	if not user.enabled:
++		frappe.respond_as_web_page(_(""Not Allowed""), _(""User {0} is disabled"").format(user.email))
++		return False
++
++	if not user.get_social_login_userid(provider):
++		update_user_record = True
++		match provider:
++			case ""facebook"":
++				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
++				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
++			case ""google"":
++				user.set_social_login_userid(provider, userid=data[""id""])
++			case ""github"":
++				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
++			case ""frappe"" | ""office_365"":
++				user.set_social_login_userid(provider, userid=data[""sub""])
++			case ""salesforce"":
++				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
++			case _:
++				user_id_property = (
++					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
++				)
++				user.set_social_login_userid(provider, userid=data[user_id_property])
++
++	if update_user_record:
++		if default_role := frappe.db.get_single_value(""Portal Settings"", ""default_role""):
++def get_first_name(data: dict) -> str:
++def get_last_name(data: dict) -> str:
++def get_email(data: dict) -> str:
++def redirect_post_login(desk_user: bool, redirect_to: str | None = None, provider: str = None):
++		redirect_to = frappe.utils.get_url(desk_uri if desk_user else ""/me"")"
+frappe_frappe,frappe/utils/response.py,direct,411819ef81b5a9ab24bbbe0163e847e9802ee978,2023-10-16T18:13:50+05:30,411819ef81b5a9ab24bbbe0163e847e9802ee978,2023-10-16T18:13:50+05:30,3,get_api_version(),1,2,133,134,"-def make_logs(response=None):
+-	# TODO: v2 API
+-	if not response:
+-		response = frappe.local.response","+def make_logs():
++
++	from frappe.api import ApiVersion, get_api_version
++
++	match get_api_version():
++		case ApiVersion.V1:
++			_make_logs_v1()
++		case ApiVersion.V2:
++			_make_logs_v2()
++
++
++def _make_logs_v1():
++	response = frappe.local.response"
+gaphor_gaphor,gaphor/storage/recovery.py,window,18b384b7b86d6e265721b4a65db898dcf31fe3b7,2024-05-25T13:40:56+02:00,1b173429d750039a6128a3cb1f4f7feab7eb4516,2024-05-25T13:40:56+02:00,4,event,1,7,129,,"-        if isinstance(event, DerivedUpdated):","+from pathlib import Path
++
++from gaphor.abc import Service
++from gaphor.core import event_handler
++from gaphor.core.modeling.event import (
++    AssociationAdded,
++    AssociationDeleted,
++    AssociationSet,
++    AttributeUpdated,
++    DerivedUpdated,
++    ElementCreated,
++    ElementDeleted,
++    RevertibleEvent,
++)
++from gaphor.event import ModelSaved, SessionCreated
++from gaphor.services.properties import file_hash, get_cache_dir
++
++
++def recovery_file_name(filename: str) -> Path:
++    return (get_cache_dir() / file_hash(filename)).with_suffix("".recovery"")
++
++
++class Recovery(Service):
++    def __init__(self, event_manager, element_factory):
++        self.event_manager = event_manager
++        self.element_factory = element_factory
++        self.filename: Path = recovery_file_name("""")
++        self.events = []
++
++        event_manager.subscribe(self.on_model_loaded)
++        event_manager.subscribe(self.on_model_saved)
++
++        event_manager.subscribe(self.on_reversible_event)
++        event_manager.subscribe(self.on_create_element_event)
++        event_manager.subscribe(self.on_delete_element_event)
++        event_manager.subscribe(self.on_attribute_change_event)
++        event_manager.subscribe(self.on_association_set_event)
++        event_manager.subscribe(self.on_association_delete_event)
++
++    def shutdown(self):
++        self.event_manager.unsubscribe(self.on_model_loaded)
++        self.event_manager.unsubscribe(self.on_model_saved)
++
++        self.event_manager.unsubscribe(self.on_reversible_event)
++        self.event_manager.unsubscribe(self.on_create_element_event)
++        self.event_manager.unsubscribe(self.on_delete_element_event)
++        self.event_manager.unsubscribe(self.on_attribute_change_event)
++        self.event_manager.unsubscribe(self.on_association_set_event)
++        self.event_manager.unsubscribe(self.on_association_delete_event)
++
++    def replay(self, element_factory, modeling_language):
++        for event in list(self.events):
++            match event:
++                case (""c"", type, element_id, None):
++                    element_factory.create_as(
++                        modeling_language.lookup_element(type), element_id
++                    )
++                case (""c"", type, element_id, diagram_id):
++                    diagram = element_factory.lookup(diagram_id)
++                    diagram.create_as(
++                        modeling_language.lookup_element(type), element_id
++                    )
++                case (""u"", element_id, _diagram_id):
++                    element_factory.lookup(element_id).unlink()
++                case (""a"", element_id, prop, value):
++                    element = element_factory.lookup(element_id)
++                    setattr(element, prop, value)
++                case (""s"", element_id, prop, other_element_id):
++                    element = element_factory.lookup(element_id)
++                    other_element = element_factory.lookup(other_element_id)
++                    setattr(element, prop, other_element)
++                case (""d"", element_id, prop, other_element_id):
++                    element = element_factory.lookup(element_id)
++                    other_element = element_factory.lookup(other_element_id)
++                    del getattr(element, prop)[other_element]
++                case _:
++                    assert NotImplementedError(f""Event {event} not implemented"")
++
++    def truncate(self):
++        del self.events[:]
++
++    @event_handler(SessionCreated)
++    def on_model_loaded(self, event):
++        self.filename = recovery_file_name(event.filename or """")
++
++    @event_handler(ModelSaved)
++    def on_model_saved(self, event):
++        self.filename = recovery_file_name(event.filename or """")
++        self.truncate()
++
++    @event_handler(RevertibleEvent)
++    def on_reversible_event(self, event: RevertibleEvent):
++        # We should handle all RevertibleEvent subtypes separately:
++        # gaphor.core.modeling.presentation.MatrixUpdated
++        # gaphor.diagram.connectors.ItemConnected
++        # gaphor.diagram.connectors.ItemDisconnected
++        # ignore: gaphor.diagram.connectors.ItemTemporaryDisconnected
++        # gaphor.diagram.connectors.ItemReconnected
++        # gaphor.diagram.presentation.HandlePositionEvent
++        # gaphor.diagram.tools.segment.LineSplitSegmentEvent
++        # gaphor.diagram.tools.segment.LineMergeSegmentEvent
++        ...
++
++    @event_handler(ElementCreated)
++    def on_create_element_event(self, event: ElementCreated):
++        self.events.append(
++            (
++                ""c"",
++                type(event.element).__name__,
++                event.element.id,
++                event.diagram and event.diagram.id,
++            )
++        )
++
++    @event_handler(ElementDeleted)
++    def on_delete_element_event(self, event: ElementDeleted):
++        self.events.append((""u"", event.element.id, event.diagram and event.diagram.id))
++
++    @event_handler(AttributeUpdated)
++    def on_attribute_change_event(self, event: AttributeUpdated):
++        self.events.append(
++            (""a"", event.element.id, event.property.name, event.new_value)
++        )
++
++    @event_handler(AssociationAdded, AssociationSet)
++    def on_association_set_event(self, event: AssociationSet | AssociationAdded):
++        if isinstance(event, DerivedUpdated):
++            return
++        self.events.append(
++            (
++                ""s"",
++                event.element.id,
++                event.property.name,
++                event.new_value and event.new_value.id,
++            )
++        )
++
++    @event_handler(AssociationDeleted)
++    def on_association_delete_event(self, event: AssociationDeleted):
++        if isinstance(event, DerivedUpdated):
++            return
++        self.events.append(
++            (
++                ""d"",
++                event.element.id,
++                event.property.name,
++                event.old_value and event.old_value.id,
++            )
++        )"
+gaphor_gaphor,gaphor/storage/recovery.py,window,18b384b7b86d6e265721b4a65db898dcf31fe3b7,2024-05-25T13:40:56+02:00,1b173429d750039a6128a3cb1f4f7feab7eb4516,2024-05-25T13:40:56+02:00,5,event,1,7,142,,"-        if isinstance(event, DerivedUpdated):","+from pathlib import Path
++
++from gaphor.abc import Service
++from gaphor.core import event_handler
++from gaphor.core.modeling.event import (
++    AssociationAdded,
++    AssociationDeleted,
++    AssociationSet,
++    AttributeUpdated,
++    DerivedUpdated,
++    ElementCreated,
++    ElementDeleted,
++    RevertibleEvent,
++)
++from gaphor.event import ModelSaved, SessionCreated
++from gaphor.services.properties import file_hash, get_cache_dir
++
++
++def recovery_file_name(filename: str) -> Path:
++    return (get_cache_dir() / file_hash(filename)).with_suffix("".recovery"")
++
++
++class Recovery(Service):
++    def __init__(self, event_manager, element_factory):
++        self.event_manager = event_manager
++        self.element_factory = element_factory
++        self.filename: Path = recovery_file_name("""")
++        self.events = []
++
++        event_manager.subscribe(self.on_model_loaded)
++        event_manager.subscribe(self.on_model_saved)
++
++        event_manager.subscribe(self.on_reversible_event)
++        event_manager.subscribe(self.on_create_element_event)
++        event_manager.subscribe(self.on_delete_element_event)
++        event_manager.subscribe(self.on_attribute_change_event)
++        event_manager.subscribe(self.on_association_set_event)
++        event_manager.subscribe(self.on_association_delete_event)
++
++    def shutdown(self):
++        self.event_manager.unsubscribe(self.on_model_loaded)
++        self.event_manager.unsubscribe(self.on_model_saved)
++
++        self.event_manager.unsubscribe(self.on_reversible_event)
++        self.event_manager.unsubscribe(self.on_create_element_event)
++        self.event_manager.unsubscribe(self.on_delete_element_event)
++        self.event_manager.unsubscribe(self.on_attribute_change_event)
++        self.event_manager.unsubscribe(self.on_association_set_event)
++        self.event_manager.unsubscribe(self.on_association_delete_event)
++
++    def replay(self, element_factory, modeling_language):
++        for event in list(self.events):
++            match event:
++                case (""c"", type, element_id, None):
++                    element_factory.create_as(
++                        modeling_language.lookup_element(type), element_id
++                    )
++                case (""c"", type, element_id, diagram_id):
++                    diagram = element_factory.lookup(diagram_id)
++                    diagram.create_as(
++                        modeling_language.lookup_element(type), element_id
++                    )
++                case (""u"", element_id, _diagram_id):
++                    element_factory.lookup(element_id).unlink()
++                case (""a"", element_id, prop, value):
++                    element = element_factory.lookup(element_id)
++                    setattr(element, prop, value)
++                case (""s"", element_id, prop, other_element_id):
++                    element = element_factory.lookup(element_id)
++                    other_element = element_factory.lookup(other_element_id)
++                    setattr(element, prop, other_element)
++                case (""d"", element_id, prop, other_element_id):
++                    element = element_factory.lookup(element_id)
++                    other_element = element_factory.lookup(other_element_id)
++                    del getattr(element, prop)[other_element]
++                case _:
++                    assert NotImplementedError(f""Event {event} not implemented"")
++
++    def truncate(self):
++        del self.events[:]
++
++    @event_handler(SessionCreated)
++    def on_model_loaded(self, event):
++        self.filename = recovery_file_name(event.filename or """")
++
++    @event_handler(ModelSaved)
++    def on_model_saved(self, event):
++        self.filename = recovery_file_name(event.filename or """")
++        self.truncate()
++
++    @event_handler(RevertibleEvent)
++    def on_reversible_event(self, event: RevertibleEvent):
++        # We should handle all RevertibleEvent subtypes separately:
++        # gaphor.core.modeling.presentation.MatrixUpdated
++        # gaphor.diagram.connectors.ItemConnected
++        # gaphor.diagram.connectors.ItemDisconnected
++        # ignore: gaphor.diagram.connectors.ItemTemporaryDisconnected
++        # gaphor.diagram.connectors.ItemReconnected
++        # gaphor.diagram.presentation.HandlePositionEvent
++        # gaphor.diagram.tools.segment.LineSplitSegmentEvent
++        # gaphor.diagram.tools.segment.LineMergeSegmentEvent
++        ...
++
++    @event_handler(ElementCreated)
++    def on_create_element_event(self, event: ElementCreated):
++        self.events.append(
++            (
++                ""c"",
++                type(event.element).__name__,
++                event.element.id,
++                event.diagram and event.diagram.id,
++            )
++        )
++
++    @event_handler(ElementDeleted)
++    def on_delete_element_event(self, event: ElementDeleted):
++        self.events.append((""u"", event.element.id, event.diagram and event.diagram.id))
++
++    @event_handler(AttributeUpdated)
++    def on_attribute_change_event(self, event: AttributeUpdated):
++        self.events.append(
++            (""a"", event.element.id, event.property.name, event.new_value)
++        )
++
++    @event_handler(AssociationAdded, AssociationSet)
++    def on_association_set_event(self, event: AssociationSet | AssociationAdded):
++        if isinstance(event, DerivedUpdated):
++            return
++        self.events.append(
++            (
++                ""s"",
++                event.element.id,
++                event.property.name,
++                event.new_value and event.new_value.id,
++            )
++        )
++
++    @event_handler(AssociationDeleted)
++    def on_association_delete_event(self, event: AssociationDeleted):
++        if isinstance(event, DerivedUpdated):
++            return
++        self.events.append(
++            (
++                ""d"",
++                event.element.id,
++                event.property.name,
++                event.old_value and event.old_value.id,
++            )
++        )"
+gaphor_gaphor,gaphor/ui/styling.py,direct,b6ef6f6e2f8c736eaaaded221b9b4714d41be1ca,2024-08-26T10:06:38+02:00,b6ef6f6e2f8c736eaaaded221b9b4714d41be1ca,2024-08-26T10:06:38+02:00,0,sys.platform,1,2,26,26,"-    if sys.platform in (""darwin"", ""win32""):
+-        css += (
+-            importlib.resources.files(""gaphor.ui"") / ""styling-box-shadow.css""
+-        ).read_text(encoding=""utf-8"")","+    match sys.platform:
++        case ""win32"":
++            css += (
++                importlib.resources.files(""gaphor.ui"") / ""styling-windows.css""
++            ).read_text(encoding=""utf-8"")
++        case ""darwin"":
++            css += (
++                importlib.resources.files(""gaphor.ui"") / ""styling-macos.css""
++            ).read_text(encoding=""utf-8"")
++"
+geekcomputers_python,Assembler/assembler.py,direct,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,0,state,184,100,73,73,"-        if state == 0:
+-            if ch == ""m"":  # catch mov-command
+-                state = 1
+-                token += ""m""
+-            elif ch == ""e"":  # catch register
+-                state = 4
+-                token += ""e""
+-            elif (ch >= ""1"" and ch <= ""9"") or ch == ""-"":  # catch a number
+-                state = 6
+-                token += ch
+-            elif ch == ""0"":  # catch a number or hex-code
+-                state = 17
+-                token += ch
+-            elif ch == ""a"":  # catch add-command
+-                state = 7
+-                token += ch
+-            elif ch == ""s"":  # catch sub command
+-                state = 10
+-                token += ch
+-            elif ch == ""i"":  # capture int command
+-                state = 14
+-                token += ch
+-            elif ch == ""p"":  # capture push or pop command
+-                state = 19
+-                token += ch
+-            elif ch == ""l"":  # capture label
+-                state = 25
+-                token += ch
+-            elif ch == ""j"":  # capture jmp command
+-                state = 26
+-                token += ch
+-            elif ch == ""c"":  # catch cmp-command
+-                state = 29
+-                token += ch
+-            elif ch == "";"":  # capture comment
+-                state = 33
+-            elif ch == '""':  # catch a string
+-                state = 34
+-                # without ""
+-            elif ch.isupper():  # capture identifier
+-                state = 35
+-                token += ch
+-            elif ch == ""d"":  # capture db keyword
+-                state = 36
+-                token += ch
+-            elif ch == ""$"":  # catch variable with prefix $
+-                state = 38
+-                # not catching $
+-            elif ch == ""_"":  # catch label for subprogram
+-                state = 40
+-                # not catches the character _
+-            elif ch == ""r"":  # catch ret-command
+-                state = 44
+-                token += ch
+-            else:  # other characters like space-characters etc.
+-                state = 0
+-                token = """"
+-        elif state == 1:  # state 1
+-            if ch == ""o"":
+-                state = 2
+-                token += ch
+-            elif ch == ""u"":
+-                state = 47
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 2:  # state 2
+-            if ch == ""v"":
+-                state = 3
+-                token += ""v""
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 3:  # state 3
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 4:  # state 4
+-            if ch >= ""a"" and ch <= ""d"":
+-                state = 5
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 5:  # state 5
+-            if ch == ""x"":
+-                state = 13
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 6:  # state 6
+-            if ch.isdigit():
+-                state = 6
+-                token += ch
+-            elif ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""value""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 7:  # state 7
+-            if ch == ""d"":
+-                state = 8
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 8:  # state 8
+-            if ch == ""d"":
+-                state = 9
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 9:  # state 9
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 10:  # state 10
+-            if ch == ""u"":
+-                state = 11
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 11:  # state 11
+-            if ch == ""b"":
+-                state = 12
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 12:  # state 12
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 13:  # state 13
+-            if ch == "","" or ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""register""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 14:  # state 14
+-            if ch == ""n"":
+-                state = 15
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 15:  # state 15
+-            if ch == ""t"":
+-                state = 16
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 16:  # state 16
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 17:  # state 17
+-            if ch == ""x"":
+-                state = 18
+-                token += ch
+-            elif ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""value""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 18:  # state 18
+-            if ch.isdigit() or (ch >= ""a"" and ch <= ""f""):
+-                state = 18
+-                token += ch
+-            elif ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""value""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 19:  # state 19
+-            if ch == ""u"":
+-                state = 20
+-                token += ch
+-            elif ch == ""o"":
+-                state = 23
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 20:  # state 20
+-            if ch == ""s"":
+-                state = 21
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 21:  # state 21
+-            if ch == ""h"":
+-                state = 22
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 22:  # state 22
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 23:  # state 23
+-            if ch == ""p"":
+-                state = 24
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 24:  # state 24
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 25:  # state 25
+-            if ch.isdigit():
+-                state = 25
+-                token += ch
+-            elif ch == "":"" or ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""label""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 26:  # state 26
+-            if ch == ""m"":
+-                state = 27
+-                token += ch
+-            elif ch == ""e"":  # catch je command
+-                state = 32
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 27:  # state 27
+-            if ch == ""p"":
+-                state = 28
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 28:  # state 28
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 29:  # state 29
+-            if ch == ""m"":
+-                state = 30
+-                token += ch
+-            elif ch == ""a"":  # catch call-command
+-                state = 41
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 30:  # state 30
+-            if ch == ""p"":
+-                state = 31
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 31:  # state 31
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 32:  # state 32
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 33:  # state 33
+-            if (
+-                ch.isdigit()
+-                or ch.isalpha()
+-                or (ch.isspace() and ch != ""\n"")
+-                or ch == '""'
+-            ):
+-                state = 33
+-            elif ch == ""\n"":
+-                state = 0
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 34:  # state 34
+-            if ch.isdigit() or ch.isalpha() or ch.isspace():
+-                state = 34
+-                token += ch
+-            elif ch == '""':
+-                state = 0
+-                tokens.append(Token(token, ""string""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 35:  # state 35
+-            if ch.isdigit() or ch.isupper():
+-                state = 35
+-                token += ch
+-            elif ch == "" "" or ch == ""\n"":
+-                state = 0
+-                tokens.append(Token(token, ""identifier""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 36:  # state 36
+-            if ch == ""b"":
+-                state = 37
+-                token += ch
+-            elif ch == ""i"":
+-                state = 49
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 37:  # state 37
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 38:  # state 38
+-            if ch.isalpha():
+-                state = 39
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 39:  # state 39
+-            if ch.isalpha() or ch.isdigit():
+-                state = 39
+-                token += ch
+-            elif ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""identifier""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 40:  # state 40
+-            if (
+-                (ch >= ""a"" and ch <= ""z"")
+-                or (ch >= ""A"" and ch <= ""Z"")
+-                or (ch >= ""0"" and ch <= ""9"")
+-            ):
+-                state = 40
+-                token += ch
+-            elif ch == "":"" or ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""subprogram""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 41:  # state 41
+-            if ch == ""l"":
+-                state = 42
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 42:  # state 42
+-            if ch == ""l"":
+-                state = 43
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 43:  # state 43
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 44:  # state 44
+-            if ch == ""e"":
+-                state = 45
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 45:  # state 45
+-            if ch == ""t"":
+-                state = 46
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 46:  # state 46
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 47:  # state 47
+-            if ch == ""l"":
+-                state = 48
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 48:  # state 48
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 49:  # state 49
+-            if ch == ""v"":
+-                state = 50
+-                token += ch
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()
+-        elif state == 50:  # state 50
+-            if ch.isspace():
+-                state = 0
+-                tokens.append(Token(token, ""command""))
+-                token = """"
+-            else:  # error case
+-                state = 0
+-                token = """"
+-                raise InvalidSyntax()","+        match state:
++            case 0:
++            
++                match ch:
++                    case ""m"":  # catch mov-command
++                        state = 1
++                        token += ""m""
++                    case ""e"":  # catch register
++                        state = 4
++                        token += ""e""
++                    case ""1"":  # catch a number
++                        if ch <= ""9"" or ch == ""-"":
++                            state = 6
++                            token += ch
++                    case ""0"":  # catch a number or hex-code
++                        state = 17
++                        token += ch
++                    case ""a"":  # catch add-command
++                        state = 7
++                        token += ch
++                    case ""s"":  # catch sub command
++                        state = 10
++                        token += ch
++                    case ""i"":  # capture int command
++                        state = 14
++                        token += ch
++                    case ""p"":  # capture push or pop command
++                        state = 19
++                        token += ch
++                    case ""l"":  # capture label
++                        state = 25
++                        token += ch
++                    case ""j"":  # capture jmp command
++                        state = 26
++                        token += ch
++                    case ""c"":  # catch cmp-command
++                        state = 29
++                        token += ch
++                    case "";"":  # capture comment
++                        state = 33
++                    case '""':  # catch a string
++                        state = 34
++                        # without ""
++                    case ch.isupper():  # capture identifier
++                        state = 35
++                        token += ch
++                    case ""d"":  # capture db keyword
++                        state = 36
++                        token += ch
++                    case ""$"":  # catch variable with prefix $
++                        state = 38
++                        # not catching $
++                    case ""_"":  # catch label for subprogram
++                        state = 40
++                        # not catches the character _
++                    case ""r"":  # catch ret-command
++                        state = 44
++                        token += ch
++                    case _:  # other characters like space-characters etc
++                        state = 0
++                        token = """"
++            case 1:  # state 1
++                match ch:
++                    case ""o"":
++                        state = 2
++                        token += ch
++                    case ""u"":
++                        state = 47
++                        token += ch
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            
++            case 2:  # state 2
++                match ch:
++                    case ""v"":
++                        state = 3
++                        token += ""v""
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 3:  # state 3
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 4:  # state 4
++                if ch >= ""a"" and ch <= ""d"":
++                    state = 5
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 5:  # state 5
++                match ch:
++                    case ""x"":
++                        state = 13
++                        token += ch
++                    case _:
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 6:  # state 6
++            
++                if ch.isdigit():
++                    state = 6
++                    token += ch
++                elif ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""value""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 7:  # state 7
++            
++                match ch:
++                    case ""d"":
++                        state = 8
++                        token += ch
++                    case _: # error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 8:  # state 8
++                match ch:
++                    case ""d"":
++                        state = 9
++                        token += ch
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 9:  # state 9
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 10:  # state 10
++                match ch:
++                    case ""u"":
++                        state = 11
++                        token += ch
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 11:  # state 11
++                match ch:
++                    case ""b"":
++                        state = 12
++                        token += ch
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 12:  # state 12
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 13:  # state 13
++                if ch == "","" or ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""register""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 14:  # state 14
++                if ch == ""n"":
++                    state = 15
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 15:  # state 15
++                if ch == ""t"":
++                    state = 16
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 16:  # state 16
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 17:  # state 17
++                if ch == ""x"":
++                    state = 18
++                    token += ch
++                elif ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""value""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 18:  # state 18
++                if ch.isdigit() or (ch >= ""a"" and ch <= ""f""):
++                    state = 18
++                    token += ch
++                elif ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""value""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 19:  # state 19
++                if ch == ""u"":
++                    state = 20
++                    token += ch
++                elif ch == ""o"":
++                    state = 23
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 20:  # state 20
++                if ch == ""s"":
++                    state = 21
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 21:  # state 21
++                if ch == ""h"":
++                    state = 22
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 22:  # state 22
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 23:  # state 23
++                if ch == ""p"":
++                    state = 24
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 24:  # state 24
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 25:  # state 25
++                if ch.isdigit():
++                    state = 25
++                    token += ch
++                elif ch == "":"" or ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""label""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 26:  # state 26
++                if ch == ""m"":
++                    state = 27
++                    token += ch
++                elif ch == ""e"":  # catch je command
++                    state = 32
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 27:  # state 27
++                if ch == ""p"":
++                    state = 28
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 28:  # state 28
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 29:  # state 29
++                
++                match ch:
++                    case ""m"":
++                        state = 30
++                        token += ch
++                    case ""a"":  # catch call-command
++                        state = 41
++                        token += ch
++                    case _:  # error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 30:  # state 30
++                if ch == ""p"":
++                    state = 31
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 31:  # state 31
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                else:  # error case
++                    state = 0
++                    raise InvalidSyntax()
++            case 32:  # state 32
++                token = """"
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                else:  # error case
++                    state = 0
++                    raise InvalidSyntax()
++            case 33:  # state 33
++                if (
++                    ch.isdigit()
++                    or ch.isalpha()
++                    or (ch.isspace() and ch != ""\n"")
++                    or ch == '""'
++                ):
++                    state = 33
++                elif ch == ""\n"":
++                    state = 0
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 34:  # state 34
++                if ch.isdigit() or ch.isalpha() or ch.isspace():
++                    state = 34
++                    token += ch
++                elif ch == '""':
++                    state = 0
++                    tokens.append(Token(token, ""string""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 35:  # state 35
++                if ch.isdigit() or ch.isupper():
++                    state = 35
++                    token += ch
++                elif ch == "" "" or ch == ""\n"":
++                    state = 0
++                    tokens.append(Token(token, ""identifier""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 36:  # state 36
++                if ch == ""b"":
++                    state = 37
++                    token += ch
++                elif ch == ""i"":
++                    state = 49
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 37:  # state 37
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 38:  # state 38
++                if ch.isalpha():
++                    state = 39
++                    token += ch
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 39:  # state 39
++                if ch.isalpha() or ch.isdigit():
++                    state = 39
++                    token += ch
++                elif ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""identifier""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 40:  # state 40
++                if (
++                    (ch >= ""a"" and ch <= ""z"")
++                    or (ch >= ""A"" and ch <= ""Z"")
++                    or (ch >= ""0"" and ch <= ""9"")
++                ):
++                    state = 40
++                    token += ch
++                elif ch == "":"" or ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""subprogram""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 41:  # state 41
++                match ch:
++                    case ""l"":
++                        state = 42
++                        token += ch
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 42:  # state 42
++                match ch:
++                    case ""l"":
++                        state = 43
++                        token += ch
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 43:  # state 43
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 44:  # state 44
++                match ch:
++                    case ""e"":
++                        state = 45
++                        token += ch
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 45:  # state 45
++                match ch:
++                    case ""t"":
++                        state = 46
++                        token += ch
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 46:  # state 46
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 47:  # state 47
++                match ch:
++                    case ""l"":
++                        state = 48
++                        token += ch
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 48:  # state 48
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++                else:  # error case
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()
++            case 49:  # state 49
++                match ch:
++                    case ""v"":
++                        state = 50
++                        token += ch
++                    case _:# error case
++                        state = 0
++                        token = """"
++                        raise InvalidSyntax()
++            case 50:  # state 50
++                if ch.isspace():
++                    state = 0
++                    tokens.append(Token(token, ""command""))
++                    token = """"
++
++                else:  # error case
++
++                    state = 0
++                    token = """"
++                    raise InvalidSyntax()"
+geekcomputers_python,Assembler/assembler.py,direct,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,1,token.token,8,8,990,1011,"-                    if token.token == ""eax"":
+-                        token.token = eax
+-                    elif token.token == ""ebx"":
+-                        token.token = ebx
+-                    elif token.token == ""ecx"":
+-                        token.token = ecx
+-                    elif token.token == ""edx"":
+-                        token.token = edx
+-
+-                if tmpToken.token == ""eax"":
+-                    eax = token.token
+-                elif tmpToken.token == ""ebx"":
+-                    ebx = token.token
+-                elif tmpToken.token == ""ecx"":
+-                    ecx = token.token
+-                elif tmpToken.token == ""edx"":
+-                    edx = token.token","+                    match token.token:
++                        case ""eax"":
++                            token.token = eax
++                        case ""ebx"":
++                            token.token = ebx
++                        case ""ecx"":
++                            token.token = ecx
++                        case ""edx"":
++                            token.token = edx
++
++                match tmpToken.token:
++                    case ""eax"":
++                        eax = token.token
++                    case ""ebx"":
++                        ebx = token.token
++                    case ""ecx"":
++                        ecx = token.token
++                    case ""edx"":
++                        edx = token.token"
+geekcomputers_python,Assembler/assembler.py,direct,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,2,token.token,4,4,1033,1056,"-                    if token.token == ""eax"":
+-                        token.token = eax
+-                    elif token.token == ""ebx"":
+-                        token.token = ebx
+-                    elif token.token == ""ecx"":
+-                        token.token = ecx
+-                    elif token.token == ""edx"":
+-                        token.token = edx","+                    match token.token:
++                        case ""eax"":
++                            token.token = eax
++                        case ""ebx"":
++                            token.token = ebx
++                        case ""ecx"":
++                            token.token = ecx
++                        case ""edx"":
++                            token.token = edx"
+geekcomputers_python,Assembler/assembler.py,direct,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,3,tmpToken.token,12,4,1051,1075,"-                if tmpToken.token == ""eax"":
+-                    eax += token.token
+-                    # update zero flag
+-                    if eax == 0:
+-                        zeroFlag = True
+-                    else:
+-                elif tmpToken.token == ""ebx"":
+-                    ebx += token.token
+-                    # update zero flag
+-                    if ebx == 0:
+-                        zeroFlag = True
+-                    else:
+-                elif tmpToken.token == ""ecx"":
+-                    ecx += token.token
+-                    # update zero flag
+-                    if ecx == 0:
+-                        zeroFlag = True
+-                    else:
+-                elif tmpToken.token == ""edx"":
+-                    edx += token.token
+-                    # update zero flag
+-                    if edx == 0:
+-                        zeroFlag = True
+-                    else:","+                match tmpToken.token:
++                    case ""eax"":
++                        eax += token.token
++
++                        # update zero flag
++                        if eax == 0:
++                            zeroFlag = True
++                    
++                    case ""ebx"":
++                        ebx += token.token
++                        # update zero flag
++                        if ebx == 0:
++                            zeroFlag = True
++                    
++                    case ""ecx"":
++                        ecx += token.token
++                        # update zero flag
++                        if ecx == 0:
++                            zeroFlag = True
++                    
++                    case ""edx"":
++                        edx += token.token
++                        # update zero flag
++                        if edx == 0:
++                            zeroFlag = True"
+geekcomputers_python,Assembler/assembler.py,direct,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,5,token.token,4,4,1239,1250,"-            if token.token == ""eax"":
+-
+-                eax = stack.pop()
+-
+-            elif token.token == ""ebx"":
+-
+-                ebx = stack.pop()
+-
+-            elif token.token == ""ecx"":
+-
+-                ecx = stack.pop()
+-
+-            elif token.token == ""edx"":
+-
+-                edx = stack.pop()","+            match token.token:
++                case ""eax"":
++                    eax = stack.pop()
++                case ""ebx"":
++                    ebx = stack.pop()
++                case ""ecx"":
++                    ecx = stack.pop()
++                case ""edx"":
++                    edx = stack.pop()"
+geekcomputers_python,Assembler/assembler.py,direct,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,7,token.token,4,4,1568,1452,"-                if token.token == ""eax"":
+-                    eax /= eax
+-                elif token.token == ""ebx"":
+-
+-                    eax /= ebx
+-
+-                elif token.token == ""ecx"":
+-
+-                    eax /= ecx
+-
+-                elif token.token == ""edx"":
+-
+-                    eax /= edx","+                
++                match token.token:
++                    case ""eax"":
++                        eax /= eax
++                    case ""ebx"":
++                        eax /= ebx
++                    case ""ecx"":
++                        eax /= ecx
++                    case ""edx"":
++                        eax /= edx"
+geekcomputers_python,Caesar Cipher Encoder  & Decoder.py,direct,483b4ba7c0a03c22f68fdf9a2e89805510eb2039,2023-10-05T07:32:59+04:00,483b4ba7c0a03c22f68fdf9a2e89805510eb2039,2023-10-05T07:32:59+04:00,0,,18,3,17,27,"-#PROJECT1
+-#CAESAR CIPHER DECODER 
+-#Author: InTruder
+-#Cloned from: https://github.com/InTruder-Sec/caesar-cipher
+-    try:
+-        func = int(input(""Choose one of the above(example for encode enter 1): ""))
+-    except:
+-        print(""\n[>] Invalid input"")
+-        exit()
+-    if func == 2:
+-        decode()
+-    else:
+-        if func == 1:
+-        else:
+-            print(""\n[>] Invalid input"")
+-        exit()
+-    text = input(""Enter text to encode: "")
+-    key = input(""Enter number of characters you want to shift: "")
+-    try:
+-        key = int(key)
+-    except:
+-        print(""Only intigers between 0 to 25 are allowed. Try again :)"")
+-        exit()
+-    if key > 25:
+-        print(""Only intigers between 0 to 25 are allowed. Try again :)"")
+-        exit()
+-    else:
+-        key = key
+-    text = text.upper()
+-        ascii = ord(char)
+-        if ascii > 90:
+-            new_ascii = ascii
+-        else:
+-            if ascii < 65:
+-                new_ascii = ascii
+-            else:
+-                new_ascii = ascii + key
+-                if  new_ascii > 90:
+-                    new_ascii = new_ascii - 26
+-                else:
+-                    new_ascii = new_ascii
+-        encoded = chr(new_ascii)
+-        encoded_cipher = encoded_cipher + encoded
+-    print(""Encoded text: "" + encoded_cipher)
+-    print(""Posiblities of cipher text are: \n"")
+-    cipher = cipher.lower()
+-    for i in range(1, 26):
+-        decoded = """"
+-        decoded_cipher = """"
+-        for char in cipher:
+-            ascii = ord(char)
+-            if ascii < 97:
+-                new_ascii = ascii
+-            else:
+-                if ascii > 122:
+-                    new_ascii = ascii
+-                else:
+-                    new_ascii = ascii - int(i)
+-                    if new_ascii < 97:
+-                      new_ascii = new_ascii + 26
+-                    else:
+-                        new_ascii = new_ascii
+-            decoded = chr(new_ascii)
+-            decoded_cipher = decoded_cipher + decoded
+-        print(""\n"" + decoded_cipher)","+# PROJECT1
++# CAESAR CIPHER ENCODER/DECODER
++# Author: InTruder
++# Cloned from: https://github.com/InTruder-Sec/caesar-cipher
++# Improved by: OfficialAhmed (https://github.com/OfficialAhmed)
++
++def get_int() -> int:
++    """"""
++    Get integer, otherwise redo
++    """"""
++
++    try:
++        key = int(input(""Enter number of characters you want to shift: ""))
++    except:
++        print(""Enter an integer"")
++        key = get_int()
++
++    return key
++
++    match input(""Choose one of the above(example for encode enter 1): ""):
++
++        case ""1"":
++
++        case ""2"":
++            decode()
++
++        case _:
++            print(""\n[>] Invalid input. Choose 1 or 2"")
++            main()
++
++
++    text = input(""Enter text to encode: "")
++    key = get_int()
++        
++        
++        ascii = ord(char) + key
++        encoded_cipher += chr(ascii)
++    print(f""Encoded text: {encoded_cipher}"")
++
++    decoded_cipher = """"
++    key = get_int()
++
++    for character in cipher:
++        ascii = ord(character) - key
++        decoded_cipher += chr(ascii)
++
++    print(decoded_cipher)"
+geekcomputers_python,Hotel-Management.py,direct,f1cd5021720c6d194b1fbfb0d8f8db12c4dd66ae,2023-07-30T05:11:43+04:00,f1cd5021720c6d194b1fbfb0d8f8db12c4dd66ae,2023-07-30T05:11:43+04:00,0,Room_Type,10,4,18,59,"-def menu():
+-    print("""")
+-    print("""")
+-    print(""                         Welcome to Hotel Database Management Software"")
+-    print("""")
+-    print("""")
+-
+-    print(""1-Add new customer details"")
+-    print(""2-Modify already existing customer details"")
+-    print(""3-Search customer details"")
+-    print(""4-View all customer details"")
+-    print(""5-Delete customer details"")
+-    print(""6-Exit the program"")
+-    print("""")
+-
+-    user_input = int(input(""Enter your choice(1-6): ""))
+-
+-    if user_input == 1:
+-        add()
+-    elif user_input == 2:
+-        modify()
+-    elif user_input == 3:
+-        search()
+-    elif user_input == 4:
+-        view()
+-    elif user_input == 5:
+-        remove()
+-    elif user_input == 6:
+-        exit()
+-    print("""")
+-    Name1 = input(""Enter your first name: "")
+-    print("""")
+-
+-    Name2 = input(""Enter your last name: "")
+-    print("""")
+-
+-    Phone_Num = input(""Enter your phone number(without +91): "")
+-    print("""")
+-    print("""")
+-    Room_Type = int(input(""Which type you want(1-4): ""))
+-    print("""")
+-    if Room_Type == 1:
+-        x = 500
+-        Room_Type = ""Normal""
+-    elif Room_Type == 2:
+-        x = 1000
+-        Room_Type = ""Deluxe""
+-    elif Room_Type == 3:
+-        x = 1500
+-        Room_Type = ""Super Deluxe""
+-    elif Room_Type == 4:
+-        x = 2000
+-        Room_Type = ""Premium""","+def menu():
++    options = {
++        1 : {
++            ""title"" : ""Add new customer details"", 
++            ""method"": lambda : add()
++            },
++
++        2 : {
++            ""title"" : ""Modify already existing customer details"", 
++            ""method"": lambda : modify()
++            },
++
++        3 : {
++            ""title"" : ""Search customer details"", 
++            ""method"": lambda : search()
++            },
++
++        4 : {
++            ""title"" : ""View all customer details"", 
++            ""method"": lambda : view()
++            },
++
++        5 : {
++            ""title"" : ""Delete customer details"", 
++            ""method"": lambda : remove()
++            },
++
++        6 : {
++            ""title"" : ""Exit the program"", 
++            ""method"": lambda : exit()
++            }
++    }
++    print(f""\n\n{' '*25}Welcome to Hotel Database Management Software\n\n"")
++    for num, option in options.items():
++        print(f""{num}: {option.get('title')}"")
++    print()
++    options.get( int(input(""Enter your choice(1-6): "")) ).get(""method"")()
++    Name1 = input(""\nEnter your first name: \n"")
++    Name2 = input(""\nEnter your last name: \n"")
++    Phone_Num = input(""\nEnter your phone number(without +91): \n"")
++    Room_Type = int(input(""\nWhich type you want(1-4): \n""))
++
++    match Room_Type:
++        case 1:
++            x = 500
++            Room_Type = ""Normal""
++        case 2:
++            x = 1000
++            Room_Type = ""Deluxe""
++        case 3:
++            x = 1500
++            Room_Type = ""Super Deluxe""
++        case 4:
++            x = 2000
++            Room_Type = ""Premium"""
+geekcomputers_python,Hotel-Management.py,direct,f1cd5021720c6d194b1fbfb0d8f8db12c4dd66ae,2023-07-30T05:11:43+04:00,f1cd5021720c6d194b1fbfb0d8f8db12c4dd66ae,2023-07-30T05:11:43+04:00,3,choice,4,3,131,171,"-if filecheck == False:
+-    File = open(""Management.txt"", ""a"", encoding=""utf-8"")
+-    temp1 = {
+-        ""First_Name"": [],
+-        ""Last_Name"": [],
+-        ""Phone_num"": [],
+-        ""Room_Type"": [],
+-        ""Days"": [],
+-        ""Price"": [],
+-        ""Room"": [],
+-    }
+-    File.write(str(temp1))
+-    File.close()
+-    File = open(""Management.txt"", ""r"")
+-    string = File.read()
+-    string = string.replace(""'"", '""')
+-    dictionary = json.loads(string)
+-    File.close()
+-        print("""")
+-        print(""There is no data in our database"")
+-        print("""")
+-        print("""")
+-        Room = input(""Enter your Room Number: "")
+-        print("""")
+-        print(""1-Change your first name"")
+-        print("""")
+-        choice = input(""Enter your choice: "")
+-        print("""")
+-
+-        File = open(""Management.txt"", ""w"", encoding=""utf-8"")
+-
+-        if choice == str(1):
+-            user_input = input(""Enter New First Name: "")
+-            listt1 = dictionary[""First_Name""]
+-            dictionary[""First_Name""] = None
+-            dictionary[""First_Name""] = listt1
+-            File.write(str(dictionary))
+-            File.close()
+-        elif choice == str(2):
+-            user_input = input(""Enter New Last Name: "")
+-            listt1 = dictionary[""Last_Name""]
+-            listt1[index] = user_input
+-            dictionary[""Last_Name""] = None
+-            dictionary[""Last_Name""] = listt1
+-            File.close()
+-
+-        elif choice == str(3):
+-            user_input = input(""Enter New Phone Number: "")
+-            listt1 = dictionary[""Phone_num""]
+-            listt1[index] = user_input
+-            dictionary[""Phone_num""] = None
+-            dictionary[""Phone_num""] = listt1
+-            File.write(str(dictionary))
+-            File.close()
+-
+-        print("""")
+-        print(""Your data has been successfully updated"")
+-    File = open(""Management.txt"", ""r"")
+-    string = File.read()
+-    string = string.replace(""'"", '""')
+-    dictionary = json.loads(string)
+-    File.close()
+-        print("""")
+-        print(""There is no data in our database"")
+-        print("""")
+-        print("""")
+-        Room = input(""Enter your Room Number: "")
+-        print("""")
+-        listt = dictionary[""Room""]
+-        index = int(listt.index(Room))","+if not filecheck:
++    with open(""Management.txt"", ""a"", encoding=""utf-8"") as File:
++        temp1 = {
++            ""First_Name"": [],
++            ""Last_Name"": [],
++            ""Phone_num"": [],
++            ""Room_Type"": [],
++            ""Days"": [],
++            ""Price"": [],
++            ""Room"": [],
++        }
++        File.write(str(temp1))
++    with open(""Management.txt"", ""r"") as File:
++        string = File.read()
++        string = string.replace(""'"", '""')
++        dictionary = json.loads(string)
++        print(""\nThere is no data in our database\n"")
++        Room = input(""\nEnter your Room Number: "")
++        print(""\n1-Change your first name"")
++        choice = int(input(""\nEnter your choice: ""))
++        print()
++
++        with open(""Management.txt"", ""w"", encoding=""utf-8"") as File:
++            
++            match choice:
++                case 1:
++                    category = ""First_Name""
++                case 2:
++                    category = ""Last_Name""
++                case 3:
++                    category = ""Phone_num""
++
++            user_input = input(f""Enter New {category.replace('_', ' ')}"")
++            listt1 = dictionary[category]
++            dictionary[category] = None
++            dictionary[category] = listt1
++        print(""\nYour data has been successfully updated"")
++    with open(""Management.txt"") as File:
++        dictionary = json.loads(File.read().replace(""'"", '""'))
++
++        print(""\nThere is no data in our database\n"")
++        Room = input(""\nEnter your Room Number: "")
++        listt_num = dictionary.get(""Room"")
++        index = int(listt_num.index(Room))"
+geekcomputers_python,image2pdf/image2pdf.py,direct,5761e7934118f3b1634cc3e995b00caa6eee8f3b,2023-07-24T07:15:33+04:00,5761e7934118f3b1634cc3e995b00caa6eee8f3b,2023-07-24T07:15:33+04:00,0,user,1,3,21,124,"-        self.files = os.listdir()
+-        self.convertPictures()
+-        input(""Done ..... (Press Any Key To Exit)"")
+-        return sorted(self.files)
+-        if self.isEmpty(pictures):
+-            print("" [Error] there are no pictrues in the directory ! "")
+-            raise Exception("" [Error] there are no pictrues in the directory !"")
+-        print(""pictures are : \n {}"".format(pictures))
+-    def isEmpty(self, items):
+-        return True if len(items) == 0 else False
+-        for picture in self.getPictures():
+-            self.pictures.append(Image.open(picture).convert(""RGB""))
+-        self.save()
+-    def save(self):
+-        self.pictures[0].save(
+-            ""result.pdf"", save_all=True, append_images=self.pictures[1:]
+-        )
+-    image2pdf()","+        
++        self.directory = """"
++        self.isMergePDF = True 
++
++    def getUserDir(self):
++        """""" Allow user to choose image directory """"""
++
++        msg = ""\n1. Current directory\n2. Custom directory\nEnter a number: ""
++        user_option = int(input(msg))
++
++        # Restrict input to either (1 or 2)
++        while user_option <= 0 or user_option >= 3:
++            user_option = int(input(f""\n*Invalid input*\n{msg}""))
++
++        self.directory = os.getcwd() if user_option == 1 else input(""\nEnter custom directory: "")
++        
++        return sorted(os.listdir(self.directory))
++
++        if not pictures:
++            print(f"" [Error] there are no pictures in the directory: {self.directory} "")
++            return False
++        
++        print(f""Found picture(s) :"")
++    def selectPictures(self, pictures):
++        """""" Allow user to manually pick each picture or merge all """"""
++
++        listedPictures = {}
++        for index, pic in enumerate(pictures):
++            listedPictures[index+1] = pic
++            print(f""{index+1}: {pic}"")
++        
++        userInput = input(""\n Enter the number(s) - (comma seperated/no spaces) or (A or a) to merge All \nChoice: "").strip().lower()
++        
++        if userInput != ""a"":
++            # Convert user input (number) into corresponding (image title)
++            pictures = (
++                listedPictures.get(int(number)) for number in userInput.split(',')
++            )
++
++            self.isMergePDF = False
++
++        return pictures
++    
++        """"""
++            Convert pictures according the following:
++            * If pictures = 0 -> Skip 
++            * If pictures = 1 -> use all 
++            * Else            -> allow user to pick pictures
++            Then determine to merge all or one pdf
++        """"""
++
++        pictures = self.getPictures()
++        totalPictures = len(pictures) if pictures else 0
++        
++        if totalPictures == 0:
++            return
++        
++        elif totalPictures >= 2:
++            pictures = self.selectPictures(pictures)
++        
++        if self.isMergePDF:
++            # All pics in one pdf. 
++            for picture in pictures:
++                self.pictures.append(Image.open(f""{self.directory}\\{picture}"").convert(""RGB""))
++            self.save()
++
++        else:
++            # Each pic in seperate pdf. 
++            for picture in pictures:
++                self.save(Image.open(f""{self.directory}\\{picture}"").convert(""RGB""), picture, False)
++
++        # Reset to default value for next run
++        self.isMergePDF = True
++        self.pictures = []
++        print(f""\n{'#'*30}"")
++        print(""            Done! "")
++        print(f""{'#'*30}\n"")
++
++    def save(self, image=None, title=""All-PDFs"", isMergeAll=True):
++        # Save all to one pdf or each in seperate file
++
++        if isMergeAll:
++            self.pictures[0].save(
++                f""{self.directory}\\{title}.pdf"", 
++                save_all=True, 
++                append_images=self.pictures[1:]
++            )
++        
++        else:
++            image.save(f""{self.directory}\\{title}.pdf"")
++    
++    # Get user directory only once
++    process = image2pdf()
++    process.getUserDir()
++    process.convertPictures()
++
++    # Allow user to rerun any process
++    while True:
++        user = input(""Press (R or r) to Run again\nPress (C or c) to change directory\nPress (Any Key) To Exit\nchoice:"").lower()
++        match user:
++            case ""r"":
++                process.convertPictures()
++            case ""c"":
++                process.getUserDir()
++                process.convertPictures()
++            case _:
++                break
++                
++"
+hasgeek_funnel,funnel/forms/account.py,direct,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,2,reason,5,5,389,390,"-def raise_username_error(reason: str) -> str:
+-    if reason == 'blank':
+-        raise forms.validators.ValidationError(_(""This is required""))
+-    if reason == 'long':
+-        raise forms.validators.ValidationError(_(""This is too long""))
+-    if reason == 'invalid':
+-        raise forms.validators.ValidationError(
+-            _(""Usernames can only have alphabets, numbers and underscores"")
+-        )
+-    if reason == 'reserved':
+-        raise forms.validators.ValidationError(_(""This username is reserved""))
+-    if reason in ('user', 'org'):
+-        raise forms.validators.ValidationError(_(""This username has been taken""))
+-    raise forms.validators.ValidationError(_(""This username is not available""))","+def raise_username_error(reason: AccountNameProblem) -> NoReturn:
++    match reason:
++        case AccountNameProblem.BLANK:
++            raise forms.validators.ValidationError(_(""This is required""))
++        case AccountNameProblem.LONG:
++            raise forms.validators.ValidationError(_(""This is too long""))
++        case AccountNameProblem.INVALID:
++            raise forms.validators.ValidationError(
++                _(""Usernames can only have alphabets, numbers and underscores"")
++            )
++        case AccountNameProblem.RESERVED:
++            raise forms.validators.ValidationError(_(""This username is reserved""))
++        case (
++            AccountNameProblem.ACCOUNT
++            | AccountNameProblem.USER
++            | AccountNameProblem.ORG
++            | AccountNameProblem.PLACEHOLDER
++        ):
++            raise forms.validators.ValidationError(_(""This username is taken""))"
+hasgeek_funnel,funnel/forms/organization.py,direct,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,1,reason,6,5,58,61,"-        """"""Validate name is valid and available for this organization.""""""
+-        reason = Account.validate_name_candidate(field.data)
+-        if reason == 'invalid':
+-            raise forms.validators.ValidationError(
+-                _(""Names can only have alphabets, numbers and underscores"")
+-            )
+-        if reason == 'reserved':
+-            raise forms.validators.ValidationError(_(""This name is reserved""))
+-        if (
+-            self.edit_obj
+-            and self.edit_obj.name
+-            and field.data.lower() == self.edit_obj.name.lower()
+-        ):
+-            # Name has only changed case from previous name. This is a validation pass
+-            return
+-        if reason == 'user':
+-            if (
+-                self.edit_user.username
+-                and field.data.lower() == self.edit_user.username.lower()
+-            ):
+-                    Markup(
+-                        _(
+-                            ""This is <em>your</em> current username.""
+-                            ' You must change it first from <a href=""{account}"">your'
+-                            "" account</a> before you can assign it to an organization""
+-                        ).format(account=url_for('account'))
+-            raise forms.validators.ValidationError(
+-                _(""This name has been taken by another user"")
+-            )
+-        if reason == 'org':
+-            raise forms.validators.ValidationError(
+-                _(""This name has been taken by another organization"")
+-            )
+-        # We're not supposed to get an unknown reason. Flag error to developers.
+-        raise ValueError(f""Unknown account name validation failure reason: {reason}"")","+        """"""Validate name is valid and available for this account.""""""
++        if self.edit_obj:
++            reason = self.edit_obj.validate_new_name(field.data)
++        else:
++            reason = Account.validate_name_candidate(field.data)
++        match reason:
++            case AccountNameProblem.INVALID:
++                    _(""Names can only have alphabets, numbers and underscores"")
++                )
++            case AccountNameProblem.RESERVED:
++                raise forms.validators.ValidationError(_(""This name is reserved""))
++            case AccountNameProblem.USER:
++                if self.edit_user.name_is(field.data):
++                    raise forms.validators.ValidationError(
++                        Markup(
++                            _(
++                                'This is <em>your</em> current username.'
++                                ' You must change it first from <a href=""'
++                                '{account}"">your account</a> before you can assign it'
++                                ' to an organization'
++                            ).format(account=url_for('account'))
++                        )
++                raise forms.validators.ValidationError(
++                    _(""This name has been taken by another user"")
++                )
++            case AccountNameProblem.ORG:
++                raise forms.validators.ValidationError(
++                    _(""This name has been taken by another organization"")
++                )
++            case _:
++                raise forms.validators.ValidationError(
++                    _(""This name has been taken by another account"")"
+hasgeek_funnel,funnel/models/account.py,direct,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,6,existing,5,4,1767,1801,"-    def validate_name_candidate(cls, name: str) -> str | None:
+-        Returns one of several error codes, or `None` if all is okay:
+-
+-        * ``blank``: No name supplied
+-        * ``reserved``: Name is reserved
+-        * ``invalid``: Invalid characters in name
+-        * ``long``: Name is longer than allowed size
+-        * ``user``: Name is assigned to a user
+-        * ``org``: Name is assigned to an organization
+-        if not name:
+-            return 'blank'
+-            return 'reserved'
+-            return 'invalid'
+-            return 'long'
+-            Account.query.filter(sa.func.lower(Account.name) == sa.func.lower(name))
+-            if isinstance(existing, Placeholder):
+-                return 'reserved'
+-            if isinstance(existing, User):
+-                return 'user'
+-            if isinstance(existing, Organization):
+-                return 'org'
+-    def validate_new_name(self, name: str) -> str | None:
+-        if self.name and name.lower() == self.name.lower():","+    def validate_name_candidate(cls, name: str) -> AccountNameProblem | None:
++        Returns ``None`` if all is okay, or :enum:`AccountNameProblem`.
++        if not name or not name.strip():
++            return AccountNameProblem.BLANK
++            return AccountNameProblem.RESERVED
++            return AccountNameProblem.INVALID
++            return AccountNameProblem.LONG
++            Account.query.filter(Account.name_is(name))
++            match existing:
++                case User():
++                    return AccountNameProblem.USER
++                case Organization():
++                    return AccountNameProblem.ORG
++                case Placeholder():
++                    return AccountNameProblem.PLACEHOLDER
++                case _:
++                    return AccountNameProblem.ACCOUNT
++    def validate_new_name(self, name: str) -> AccountNameProblem | None:
++        if self.name_is(name):"
+hasgeek_funnel,funnel/views/account.py,direct,9f0498bff711835b66013f6e0049632d2c4e1842,2024-05-04T02:03:23+05:30,9f0498bff711835b66013f6e0049632d2c4e1842,2024-05-04T02:03:23+05:30,1,client_hints.get('sec-ch-ua-mobile'),9,2,220,266,"-def user_agent_details(obj: LoginSession) -> dict[str, str]:
+-    ua = user_agents.parse(obj.user_agent)
+-    if ua.browser.family:
+-        browser = f""{ua.browser.family or ''} {ua.browser.version_string or ''}"".strip()
+-    else:
+-        browser = _(""Unknown browser"")
+-    if ua.is_pc or ua.device.brand == ""Generic"":
+-        device = ''
+-    elif (
+-        ua.device.model
+-        and ua.device.brand
+-        and ua.device.model.startswith(ua.device.brand)
+-    ):
+-        device = ua.device.model
+-    else:
+-        device = f""{ua.device.brand or ''} {ua.device.model or ''}"".strip()
+-    if ua.os.family == ""Mac OS X"":
+-        if ua.os.version_string.startswith('10.15.'):
+-            # Safari, Firefox and Chrome report outdated version 10.15.7
+-            os = ""macOS""
+-            # Microsoft Edge appears to report the correct version number
+-            os = f""macOS {ua.os.version_string}""
+-    else:
+-        os = f""{ ua.os.family or ''} {ua.os.version_string or ''}"".strip()
+-        os_device = f'{device} ({os})'
+-    elif os:
+-        os_device = os
+-        os_device = _(""Unknown device"")
+-    return {'browser': browser, 'os_device': os_device}","+_quoted_str_re = re.compile('""(.*?)""')
++_quoted_ua_re = re.compile(r'""(.*?)""\s*;\s*v\s*=\s*""(.*?)"",?\s*')
++_fake_ua_re = re.compile(
++    r'\s*.?Not.A.Brand.?\s*|\s*.?Not.Your.Browser.?\s*', re.IGNORECASE
++)
++
++
++def get_ch_ua_string(ch_ua_str: str | None) -> str | None:
++    """"""Parse Sec-CH-UA-* single value header.""""""
++    if not ch_ua_str:
++        return None
++    match = _quoted_str_re.match(ch_ua_str)
++    if match:
++        return match[1] or None
++    return None
++
++
++def get_ch_ua(ch_ua: str | None) -> tuple[str, str] | None:
++    """"""Parse Sec-CH-UA or Sec-CH-UA-Full-Version-List header.""""""
++    if not ch_ua:
++        return None
++    results = [
++        (browser, version)
++        for browser, version in _quoted_ua_re.findall(ch_ua)
++        if not _fake_ua_re.match(browser)
++    ]
++    if len(results) > 1:
++        # Find and remove Chromium from results as it's duplicated
++        results = [
++            (browser, version)
++            for browser, version in results
++            if browser.lower() != 'chromium'
++        ]
++    if results:
++        return results[0]
++    return None
++
++
++def user_agent_details(obj: LoginSession) -> dict[str, Any]:
++    mobile: bool | None = None
++    browser: str = ''
++    device: str = ''
++    platform: str = ''
++
++    # Process client hints if available
++    client_hints = obj.user_agent_client_hints
++    if client_hints:
++        match client_hints.get('sec-ch-ua-mobile'):
++            case '?0':
++                mobile = False
++            case '?1':
++                mobile = True
++        device = get_ch_ua_string(client_hints.get('sec-ch-ua-model')) or ''
++        platform = get_ch_ua_string(client_hints.get('sec-ch-ua-platform')) or ''
++        platform_version = get_ch_ua_string(
++            client_hints.get('sec-ch-ua-platform-version')
++        )
++        if platform_version:
++            if platform == ""Windows"":
++                # Windows platform version numbers are API versions, so remap
++                # https://learn.microsoft.com/en-us/microsoft-edge/web-platform/how-to-detect-win11#detecting-specific-windows-versions
++                windows_api_version: str | int
++                windows_api_version = platform_version.split('.')[0]
++                platform_version = ''
++                if windows_api_version.isdigit():
++                    windows_api_version = int(windows_api_version)
++                    if windows_api_version == 0:
++                        platform_version = '7/8/8.1'
++                    elif 1 <= int(windows_api_version) <= 10:
++                        platform_version = '10'
++                    elif windows_api_version >= 13:
++                        platform_version = '11'
++            platform = f'{platform} {platform_version}'.strip()
++        browser_version = get_ch_ua(
++            client_hints.get('sec-ch-ua-full-version-list')
++            or client_hints.get('sec-ch-ua')
++        )
++        if browser_version:
++            browser = f'{browser_version[0]} {browser_version[1]}'.strip()
++    ua = user_agents.parse(obj.user_agent)
++    if mobile is None:
++        mobile = ua.is_mobile
++    if not browser:
++        if ua.browser.family:
++            browser = (
++                f""{ua.browser.family or ''} {ua.browser.version_string or ''}"".strip()
++            )
++            browser = _(""Unknown browser"")
++    if not device:
++        if ua.is_pc or (
++            ua.device.brand
++            and (
++                ua.device.brand == ""Generic""
++                or ua.device.brand.startswith(""Generic_Android"")
++            )
++        ):
++            device = ''
++        elif (
++            ua.device.model
++            and ua.device.brand
++            and ua.device.model.startswith(ua.device.brand)
++        ):
++            device = ua.device.model
++        else:
++            device = f""{ua.device.brand or ''} {ua.device.model or ''}"".strip()
++
++    if not platform:
++        if ua.os.family == ""Mac OS X"":
++            if (
++                ua.os.version_string.startswith('10.15.')
++                or ua.os.version_string == '10.15'
++            ):
++                # Safari, Firefox and Chrome report outdated version 10.15.7
++                platform = ""macOS""
++            else:
++                # Microsoft Edge appears to report the correct version number
++                platform = f""macOS {ua.os.version_string}""
++        elif ua.os.family == ""Android"" and ua.os.version_string == ""10"":
++            # Android > 10 is usually reported as 10
++            platform = ""Android""
++        elif ua.os.family == ""Windows"" and ua.os.version_string == ""10"":
++            # Windows 11 is reported as Windows 10
++            platform = ""Windows""
++        else:
++            platform = f""{ ua.os.family or ''} {ua.os.version_string or ''}"".strip()
++        device_platform = f'{device} ({platform})'
++    elif platform:
++        device_platform = platform
++        device_platform = _(""Unknown device"")
++    return {'browser': browser, 'device_platform': device_platform, 'mobile': mobile}"
+hasgeek_funnel,funnel/views/helpers.py,direct,2623572f145a1becf0b79c0602cdb318b7681d35,2024-02-18T20:44:04+05:30,2623572f145a1becf0b79c0602cdb318b7681d35,2024-02-18T20:44:04+05:30,1,algorithm,6,6,488,492,"-def compress(data: bytes, algorithm: str) -> bytes:
+-    :param algorithm: One of ``gzip``, ``deflate`` or ``br``
+-    if algorithm == 'gzip':
+-        return gzip.compress(data)
+-    if algorithm == 'deflate':
+-        return zlib.compress(data)
+-    if algorithm == 'br':
+-        return brotli.compress(data)
+-    raise ValueError(""Unknown compression algorithm"")
+-def decompress(data: bytes, algorithm: str) -> bytes:
+-    :param algorithm: One of ``gzip``, ``deflate`` or ``br``
+-    if algorithm == 'gzip':
+-        return gzip.decompress(data)
+-    if algorithm == 'deflate':
+-        return zlib.decompress(data)
+-    if algorithm == 'br':
+-        return brotli.decompress(data)
+-    raise ValueError(""Unknown compression algorithm"")","+# `compress` and `decompress` are typed to accept ``| str`` because `compress_response`
++# calls with an `str` type, not a literal string
++
++
++def compress(data: bytes, algorithm: Literal['br', 'gzip', 'deflate'] | str) -> bytes:
++    :param algorithm: One of ``br``, ``gzip`` or ``deflate``
++    match algorithm:
++        case 'gzip':
++            return gzip.compress(data)
++        case 'deflate':
++            return zlib.compress(data)
++        case 'br':
++            return brotli.compress(data)
++    raise ValueError(f""Unknown compression algorithm: {algorithm}"")
++def decompress(data: bytes, algorithm: Literal['br', 'gzip', 'deflate'] | str) -> bytes:
++    :param algorithm: One of ``br``, ``gzip`` or ``deflate``
++    match algorithm:
++        case 'gzip':
++            return gzip.decompress(data)
++        case 'deflate':
++            return zlib.decompress(data)
++        case 'br':
++            return brotli.decompress(data)
++    raise ValueError(f""Unknown compression algorithm: {algorithm}"")"
+hasgeek_funnel,migrations/versions/41b3af7e4449_migrating_preview_video_to_video_field.py,direct,8226d4a82ff134c133f245e5ccd5f7132214fdd9,2024-04-29T16:25:07+05:30,8226d4a82ff134c133f245e5ccd5f7132214fdd9,2024-04-29T16:25:07+05:30,0,video_source,4,5,120,120,"-def make_video_url(video_source: str, video_id: str):
+-    if video_source == 'youtube':
+-        return f'https://www.youtube.com/watch?v={video_id}'
+-    elif video_source == 'vimeo':
+-        return f'https://vimeo.com/{video_id}'
+-    elif video_source == 'googledrive':
+-        return f'https://drive.google.com/file/d/{video_id}/view'
+-    elif video_source == 'raw':
+-        return video_id
+-    raise ValueError(""Unknown video source"")","+def make_video_url(video_source: str, video_id: str) -> str:
++    match video_source:
++        case 'youtube':
++            return f'https://www.youtube.com/watch?v={video_id}'
++        case 'vimeo':
++            return f'https://vimeo.com/{video_id}'
++        case 'googledrive':
++            return f'https://drive.google.com/file/d/{video_id}/view'
++        case 'raw':
++            return video_id
++        case _:
++            raise ValueError(""Unknown video source"")"
+internetarchive_openlibrary,openlibrary/plugins/openlibrary/lists.py,direct,1c8abe4547abbf09eb1526e0a03e82b841f30c2b,2023-12-30T00:06:02-05:00,1c8abe4547abbf09eb1526e0a03e82b841f30c2b,2023-12-30T00:06:02-05:00,1,key.split('/')[1],5,9,130,131,"-    if doc.key.startswith(""/subjects/""):
+-        seed = subject_key_to_seed(doc.key)
+-        seed_type = ""subject""
+-        title = doc.name
+-    else:
+-        seed = {""key"": doc.key}
+-        if doc.key.startswith(""/authors/""):
+-            seed_type = ""author""
+-            title = doc.get('name', 'name missing')
+-        elif doc.key.startswith(""/works""):
+-            seed_type = ""work""
+-            title = doc.get(""title"", ""untitled"")
+-        else:
+-            seed_type = ""edition""","+SeedType = Literal['subject', 'author', 'work', 'edition']
++
++
++def seed_key_to_seed_type(key: str) -> SeedType:
++    match key.split('/')[1]:
++        case 'subjects':
++            return 'subject'
++        case 'authors':
++            return 'author'
++        case 'works':
++            return 'work'
++        case 'books':
++            return 'edition'
++        case _:
++            raise ValueError(f'Invalid seed key: {key}')
++
++
++    seed_type = seed_key_to_seed_type(doc.key)
++    match seed_type:
++        case 'subject':
++            seed = subject_key_to_seed(doc.key)
++            title = doc.name
++        case 'work' | 'edition':
++            seed = {""key"": doc.key}
++        case 'author':
++            seed = {""key"": doc.key}
++            title = doc.get('name', 'name missing')
++        case _:
++            raise ValueError(f'Invalid seed type: {seed_type}')"
+kliment_printrun,printrun/gui/widgets.py,direct,67750ad9b939a6cbdfe3d9c41cfd3ecb73196137,2023-03-28T12:48:35+02:00,67750ad9b939a6cbdfe3d9c41cfd3ecb73196137,2023-03-28T12:48:35+02:00,0,a,3,5,62,22,"-        title = ""  macro %s""
+-        self.panel = wx.Panel(self, -1)
+-        self.titletext = wx.StaticText(self.panel, -1, ""              _"")  # title%macro_name)
+-        titlesizer.Add(self.titletext, 1)
+-        self.findb = wx.Button(self.panel, -1, _(""Find""), style = wx.BU_EXACTFIT)  # New button for ""Find"" (Jezmy)
+-        self.findb.Bind(wx.EVT_BUTTON, self.find)
+-        self.okb = wx.Button(self.panel, -1, _(""Save""), style = wx.BU_EXACTFIT)
+-        self.okb.Bind(wx.EVT_BUTTON, self.save)
+-        titlesizer.Add(self.findb)
+-        titlesizer.Add(self.okb)
+-        self.cancelb = wx.Button(self.panel, -1, _(""Cancel""), style = wx.BU_EXACTFIT)
+-        self.cancelb.Bind(wx.EVT_BUTTON, self.close)
+-        titlesizer.Add(self.cancelb)
+-        topsizer = wx.BoxSizer(wx.VERTICAL)
+-        topsizer.Add(titlesizer, 0, wx.EXPAND)
+-        self.e = wx.TextCtrl(self.panel, style = wx.HSCROLL | wx.TE_MULTILINE | wx.TE_RICH2, size = (400, 400))
+-        topsizer.Add(self.e, 1, wx.ALL | wx.EXPAND)
+-        self.panel.SetSizer(topsizer)
+-        topsizer.Layout()
+-    def find(self, ev):
+-        S = self.e.GetStringSelection()
+-        if not S:
+-            S = ""Z""
+-        FindValue = wx.GetTextFromUser('Please enter a search string:', caption = ""Search"", default_value = S, parent = None)
+-        somecode = self.e.GetValue()
+-        position = somecode.find(FindValue, self.e.GetInsertionPoint())
+-        if position == -1:
+-            self.titletext.SetLabel(_(""Not Found!""))
+-        else:
+-            self.titletext.SetLabel(str(position))
+-            # ananswer = wx.MessageBox(str(numLines)+"" Lines detected in file\n""+str(position), ""OK"")
+-            self.e.SetFocus()
+-            self.e.SetInsertionPoint(position)
+-            self.e.SetSelection(position, position + len(FindValue))
+-            self.e.ShowPosition(position)","+import platform
++
++def getSpace(a):
++    # This method is used to de-hardcode and unify the borders and gaps of the interface.
++    match a:
++        case 'major': #e.g. outer border of dialog boxes
++            return 12
++        case 'minor': #e.g. border of inner elements
++            return 8
++        case 'mini':
++            return 4
++        case 'stddlg':
++            # Differentiation is necessary because wxPyhton behaves slightly differently on different systems.
++            platformname = platform.system()
++            if platformname == 'Windows':
++                return 8
++            elif platformname == 'Darwin':
++                return 4
++            else:
++                return 4 # Not sure yet which value should be used for linux systems
++        case 'none':
++            return 0
++        title = ""  Macro %s""
++        panel = wx.Panel(self)
++        panelsizer = wx.BoxSizer(wx.VERTICAL)
++        self.titletext = wx.StaticText(panel, -1, ""              _"")  # title%macro_name)
++        titlesizer.Add(self.titletext, 1, wx.ALIGN_CENTER_VERTICAL)
++        self.findbtn = wx.Button(panel, -1, _("" Find ""), style = wx.BU_EXACTFIT)  # New button for ""Find"" (Jezmy)
++        self.findbtn.Bind(wx.EVT_BUTTON, self.on_find)
++        self.Bind(wx.EVT_FIND, self.on_find_find)
++        self.Bind(wx.EVT_FIND_NEXT, self.on_find_find)
++        self.Bind(wx.EVT_FIND_CLOSE, self.on_find_cancel)
++        titlesizer.Add(self.findbtn, 0, wx.ALIGN_CENTER_VERTICAL)
++        panelsizer.Add(titlesizer, 0, wx.EXPAND | wx.ALL, getSpace('minor'))
++        self.e = wx.TextCtrl(panel, style = wx.HSCROLL | wx.TE_MULTILINE | wx.TE_RICH2, size = (400, 400)) #style = wx.HSCROLL | 
++        panelsizer.Add(self.e, 1, wx.EXPAND)
++        panel.SetSizer(panelsizer)
++        topsizer = wx.BoxSizer(wx.VERTICAL)
++        topsizer.Add(panel, 1, wx.EXPAND | wx.ALL, getSpace('none'))
++        # No StaticLine in this case bc the TextCtrl acts as a divider
++        #topsizer.Add(wx.StaticLine(self, -1, style = wx.LI_HORIZONTAL), 0, wx.EXPAND)
++        btnsizer = wx.StdDialogButtonSizer()
++        self.savebtn = wx.Button(self, wx.ID_SAVE)
++        self.savebtn.SetDefault()
++        self.savebtn.Bind(wx.EVT_BUTTON, self.save)
++        self.cancelbtn = wx.Button(self, wx.ID_CANCEL)
++        self.cancelbtn.Bind(wx.EVT_BUTTON, self.close)
++        btnsizer.AddButton(self.savebtn)
++        btnsizer.AddButton(self.cancelbtn)
++        btnsizer.Realize()
++        topsizer.Add(btnsizer, 0, wx.ALIGN_RIGHT | wx.ALL, getSpace('stddlg'))
++        self.SetSizer(topsizer)
++        self.SetMinClientSize((230,150))
++        self.CentreOnParent()
++    def on_find(self, ev):
++        self.findbtn.Disable()
++        self.finddata = wx.FindReplaceData(wx.FR_DOWN)   # initializes and holds search parameters #wx.FR_DOWN
++        selection = self.e.GetStringSelection()
++        if selection:
++            self.finddata.SetFindString(selection)
++        self.finddialog = wx.FindReplaceDialog(self.e, self.finddata, _(""Find...""), wx.FR_NOWHOLEWORD) #wx.FR_REPLACEDIALOG
++        # TODO: Setup ReplaceDialog, Setup WholeWord Search, deactivated for now...
++        self.finddialog.Show()
++    def on_find_cancel(self, ev):
++        self.findbtn.Enable()
++        self.titletext.SetLabel(""              _"")
++        self.finddialog.Destroy()
++    
++    def on_find_find(self, ev):
++        findstring = self.finddata.GetFindString()
++        macrocode = self.e.GetValue()
++        
++        if self.e.GetStringSelection().lower() == findstring.lower():
++            # If the desired string is already selected, change the position to jump to the next one.
++            if self.finddata.GetFlags() % 2 == 1:
++                self.e.SetInsertionPoint(self.e.GetInsertionPoint() + len(findstring))
++            else:
++                self.e.SetInsertionPoint(self.e.GetInsertionPoint() - len(findstring))
++        
++        if int(self.finddata.GetFlags() / 4) != 1:
++            # When search is not case-sensitve, convert the whole string to lowercase
++            findstring = findstring.casefold()
++            macrocode = macrocode.casefold()
++
++        # The user can choose to search upwards or downwards
++        if self.finddata.GetFlags() % 2 == 1:
++            stringpos = macrocode.find(findstring, self.e.GetInsertionPoint())
++        else:
++            stringpos = macrocode.rfind(findstring, 0, self.e.GetInsertionPoint())
++        
++        if stringpos == -1 and self.finddata.GetFlags() % 2 == 1:
++            self.titletext.SetLabel(_(""End of macro, jumped to first line""))
++            stringpos = 0 #jump to the beginning
++            self.e.SetInsertionPoint(stringpos)
++            self.e.ShowPosition(stringpos)
++        elif stringpos == -1 and self.finddata.GetFlags() % 2 == 0:
++            self.titletext.SetLabel(_(""Begin of macro, jumped to last line""))
++            stringpos = self.e.GetLastPosition() #jump to the end
++            self.e.SetInsertionPoint(stringpos)
++            self.e.ShowPosition(stringpos)
++        else:
++            # TODO: Implement a Not Found state when no single match was found
++            self.titletext.SetLabel(_(""Found!""))
++            self.e.SetSelection(stringpos, stringpos + len(findstring))
++            self.e.ShowPosition(stringpos)"
+mitmproxy_mitmproxy,mitmproxy/addons/next_layer.py,direct,edb85d4af1c4ac71caf578d6ce016644434c062d,2023-03-05T19:55:24+01:00,edb85d4af1c4ac71caf578d6ce016644434c062d,2023-03-05T19:55:24+01:00,3,context.client.transport_protocol,2,13,153,249,"-    def setup_tls_layer(
+-        self,
+-        context: context.Context,
+-        client_layer_cls: ClientSecurityLayerCls = layers.ClientTLSLayer,
+-        server_layer_cls: ServerSecurityLayerCls = layers.ServerTLSLayer,
+-    ) -> layer.Layer:
+-        def s(*layers):
+-            return stack_match(context, layers)
+-        # client tls usually requires a server tls layer as parent layer, except:
+-        #  - a secure web proxy doesn't have a server part.
+-        #  - an upstream proxy uses the mode spec
+-        #  - reverse proxy mode manages this itself.
+-        if (
+-            s(modes.HttpProxy)
+-            or s(modes.HttpUpstreamProxy)
+-            or s(modes.ReverseProxy)
+-            or s(modes.ReverseProxy, server_layer_cls)
+-        ):
+-            return client_layer_cls(context)
+-        else:
+-            # We already assign the next layer here so that the server layer
+-            # knows that it can safely wait for a ClientHello.
+-            ret = server_layer_cls(context)
+-            ret.child_layer = client_layer_cls(context)
+-            return ret
+-
+-    def is_destination_in_hosts(
+-        self, context: context.Context, hosts: Iterable[re.Pattern]","+    def _get_client_hello(
++        self, context: Context, data_client: bytes
++    ) -> ClientHello | None:
++        """"""
++        Try to read a TLS/DTLS/QUIC ClientHello from data_client.
++        Returns:
++            A complete ClientHello, or None, if no ClientHello was found.
++
++        Raises:
++            NeedsMoreData, if the ClientHello is incomplete.
++        """"""
++        match context.client.transport_protocol:
++            case ""tcp"":
++                if starts_like_tls_record(data_client):
++                    try:
++                        ch = parse_client_hello(data_client)
++                    except ValueError:
++                        pass
++                    else:
++                        if ch is None:
++                            raise NeedsMoreData
++                        return ch
++                return None
++            case ""udp"":
++                try:
++                    return quic_parse_client_hello(data_client)
++                except ValueError:
++                    pass
++
++                try:
++                    ch = dtls_parse_client_hello(data_client)
++                except ValueError:
++                    pass
++                else:
++                    if ch is None:
++                        raise NeedsMoreData
++                    return ch
++                return None
++            case _:
++                assert_never(context.client.transport_protocol)
++
++    def _setup_reverse_proxy(self, context: Context, data_client: bytes) -> Layer:
++        spec = cast(mode_specs.ReverseMode, context.client.proxy_mode)
++        stack = tunnel.LayerStack()
++
++        match spec.scheme:
++            case ""http"":
++                if starts_like_tls_record(data_client):
++                    stack /= ClientTLSLayer(context)
++                stack /= HttpLayer(context, HTTPMode.transparent)
++            case ""https"":
++                stack /= ServerTLSLayer(context)
++                if starts_like_tls_record(data_client):
++                    stack /= ClientTLSLayer(context)
++                stack /= HttpLayer(context, HTTPMode.transparent)
++
++            case ""tcp"":
++                if starts_like_tls_record(data_client):
++                    stack /= ClientTLSLayer(context)
++                stack /= TCPLayer(context)
++            case ""tls"":
++                stack /= ServerTLSLayer(context)
++                if starts_like_tls_record(data_client):
++                    stack /= ClientTLSLayer(context)
++                stack /= TCPLayer(context)
++
++            case ""udp"":
++                if starts_like_dtls_record(data_client):
++                    stack /= ClientTLSLayer(context)
++                stack /= UDPLayer(context)
++            case ""dtls"":
++                stack /= ServerTLSLayer(context)
++                if starts_like_dtls_record(data_client):
++                    stack /= ClientTLSLayer(context)
++                stack /= UDPLayer(context)
++
++            case ""dns"":
++                # TODO: DNS-over-TLS / DNS-over-DTLS
++                # is_tls_or_dtls = (
++                #     context.client.transport_protocol == ""tcp"" and starts_like_tls_record(data_client)
++                #     or
++                #     context.client.transport_protocol == ""udp"" and starts_like_dtls_record(data_client)
++                # )
++                # if is_tls_or_dtls:
++                #     stack /= ClientTLSLayer(context)
++                stack /= DNSLayer(context)
++
++            case ""http3"":
++                stack /= ServerQuicLayer(context)
++                stack /= ClientQuicLayer(context)
++                stack /= HttpLayer(context, HTTPMode.transparent)
++            case ""quic"":
++                stack /= ServerQuicLayer(context)
++                stack /= ClientQuicLayer(context)
++                stack /= RawQuicLayer(context)
++
++            case _:
++                assert_never(spec.scheme)
++
++        return stack[0]
++
++    def _setup_explicit_http_proxy(self, context: Context, data_client: bytes) -> Layer:
++        stack = tunnel.LayerStack()
++
++        if context.client.transport_protocol == ""udp"":
++            stack /= layers.ClientQuicLayer(context)
++        elif starts_like_tls_record(data_client):
++            stack /= layers.ClientTLSLayer(context)
++
++        stack /= layers.HttpLayer(context, HTTPMode.regular)
++
++        return stack[0]
++
++    def _is_destination_in_hosts(
++        self, context: Context, hosts: Iterable[re.Pattern]"
+mitmproxy_mitmproxy,mitmproxy/proxy/layers/modes.py,direct,edb85d4af1c4ac71caf578d6ce016644434c062d,2023-03-05T19:55:24+01:00,edb85d4af1c4ac71caf578d6ce016644434c062d,2023-03-05T19:55:24+01:00,1,spec.scheme,6,3,68,75,"-        if spec.scheme in (""http3"", ""quic""):
+-            if not self.context.options.keep_host_header:
+-                self.context.server.sni = spec.address[0]
+-            self.child_layer = quic.ServerQuicLayer(self.context)
+-        elif spec.scheme in (""https"", ""tls"", ""dtls""):
+-            if not self.context.options.keep_host_header:
+-                self.context.server.sni = spec.address[0]
+-            self.child_layer = tls.ServerTLSLayer(self.context)
+-        elif spec.scheme in (""tcp"", ""http"", ""udp"", ""dns""):
+-            self.child_layer = layer.NextLayer(self.context)
+-        else:
+-            raise AssertionError(spec.scheme)  # pragma: no cover","+        self.child_layer = layer.NextLayer(self.context)
++
++        # For secure protocols, set SNI if keep_host_header is false
++        match spec.scheme:
++            case ""http3"" | ""quic"" | ""https"" | ""tls"" | ""dtls"":
++                if not self.context.options.keep_host_header:
++                    self.context.server.sni = spec.address[0]
++            case ""tcp"" | ""http"" | ""udp"" | ""dns"":
++                pass
++            case _:
++                assert_never(spec.scheme)"
+mopidy_mopidy,src/mopidy/internal/path.py,window,802e077cf0e823615d64a3c53f7de2b6f67b0036,2023-11-01T01:12:07+01:00,2bde99499b287a010314af4b194e659079fcd229,2024-02-23T10:52:04+01:00,2,,3,0,30,,"-def get_or_create_file(file_path, mkdir=True, content=None):
+-    if isinstance(content, str):
+-        content = content.encode()
+-    if not file_path.is_file():
+-        logger.info(f""Creating file {file_path.as_uri()}"")
+-        file_path.touch(exist_ok=False)
+-        if content is not None:
+-def get_unix_socket_path(socket_path):
+-    return match.group(1)",
+mozilla_kitsune,kitsune/community/views.py,direct,a2ee9d0148be88350c7195a33d2676ac01fe9e33,2023-03-28T11:11:22-07:00,a2ee9d0148be88350c7195a33d2676ac01fe9e33,2023-03-28T11:11:22-07:00,0,area,4,4,115,115,"-    if area == ""questions"":
+-        results, total = top_contributors_questions(
+-            locale=locale, product=product, count=page_size, page=page
+-        )
+-        locales = QuestionLocale.objects.locales_list()
+-    elif area == ""kb"":
+-        results, total = top_contributors_kb(product=product, count=page_size, page=page)
+-        locales = None
+-    elif area == ""l10n"":
+-        results, total = top_contributors_l10n(
+-            locale=locale, product=product, count=page_size, page=page
+-        )
+-        locales = settings.SUMO_LANGUAGES
+-    else:
+-        raise Http404","+    match area:
++        case ""questions"":
++            results, total = top_contributors_questions(
++                locale=locale, product=product, count=page_size, page=page
++            )
++            locales = QuestionLocale.objects.locales_list()
++        case ""kb"":
++            results, total = top_contributors_kb(product=product, count=page_size, page=page)
++            locales = None
++        case ""l10n"":
++            results, total = top_contributors_l10n(
++                locale=locale, product=product, count=page_size, page=page
++            )
++            locales = settings.SUMO_LANGUAGES
++        case _:
++            raise Http404"
+mozilla_kitsune,kitsune/questions/views.py,direct,a2ee9d0148be88350c7195a33d2676ac01fe9e33,2023-03-28T11:11:22-07:00,a2ee9d0148be88350c7195a33d2676ac01fe9e33,2023-03-28T11:11:22-07:00,0,filter_,11,8,165,165,"-    if filter_ == ""new"":
+-        question_qs = question_qs.new()
+-    elif filter_ == ""unhelpful-answers"":
+-        question_qs = question_qs.unhelpful_answers()
+-    elif filter_ == ""needsinfo"":
+-        question_qs = question_qs.needs_info()
+-    elif filter_ == ""solution-provided"":
+-        question_qs = question_qs.solution_provided()
+-    elif filter_ == ""solved"":
+-        question_qs = question_qs.solved()
+-    elif filter_ == ""locked"":
+-        question_qs = question_qs.locked()
+-    elif filter_ == ""recently-unanswered"":
+-        question_qs = question_qs.recently_unanswered()
+-    else:
+-        if show == ""needs-attention"":
+-            question_qs = question_qs.needs_attention()
+-        if show == ""responded"":
+-            question_qs = question_qs.responded()
+-        if show == ""done"":
+-            question_qs = question_qs.done()","+    match filter_:
++        case ""new"":
++            question_qs = question_qs.new()
++        case ""unhelpful-answers"":
++            question_qs = question_qs.unhelpful_answers()
++        case ""needsinfo"":
++            question_qs = question_qs.needs_info()
++        case ""solution-provided"":
++            question_qs = question_qs.solution_provided()
++        case ""solved"":
++            question_qs = question_qs.solved()
++        case ""locked"":
++            question_qs = question_qs.locked()
++        case ""recently-unanswered"":
++            question_qs = question_qs.recently_unanswered()
++        case _:
++            if show == ""needs-attention"":
++                question_qs = question_qs.needs_attention()
++            if show == ""responded"":
++                question_qs = question_qs.responded()
++            if show == ""done"":
++                question_qs = question_qs.done()"
+nixos_nixops,nixops/util.py,direct,e43c82fb7ed2c210199e95753b6f7c9ad8b6faea,2023-12-06T19:50:12+01:00,e43c82fb7ed2c210199e95753b6f7c9ad8b6faea,2023-12-06T19:50:12+01:00,1,typing.get_origin(ann),4,2,152,157,"-            if inspect.isclass(ann) and issubclass(ann, ImmutableValidatedObject):
+-            # Support Sequence[ImmutableValidatedObject]
+-            if isinstance(value, tuple) and not isinstance(ann, str):
+-                new_value = []
+-                for v in value:
+-                    for subann in ann.__args__:  # type: ignore
+-                        if inspect.isclass(subann) and issubclass(
+-                            subann, ImmutableValidatedObject
+-                        ):
+-                            new_value.append(subann(**v))
+-                        else:
+-                            new_value.append(v)
+-                value = tuple(new_value)","+            if isclass(ann) and issubclass(ann, ImmutableValidatedObject):
++            # Support containers of ImmutableValidatedObjects
++            match typing.get_origin(ann):
++
++                case collections.abc.Sequence:
++                    sequence: List = []
++                    for v in value:
++                        for subann in typing.get_args(ann):
++                            if isclass(subann) and issubclass(
++                                subann, ImmutableValidatedObject
++                            ):
++                                sequence.append(subann(**v))
++                            else:
++                                sequence.append(v)
++                    value = tuple(sequence)
++
++                case collections.abc.Mapping:
++                    _, value_ann = typing.get_args(ann)
++                    if isclass(value_ann) and issubclass(
++                        value_ann, ImmutableValidatedObject
++                    ):
++                        mapping: Dict = {}
++                        for k, v in value.items():
++                            mapping[k] = value_ann(**v)
++                        value = mapping"
+scipy_scipy,scipy/_lib/tests/test_warnings.py,direct,0b949514128c3790666862229d0f956009d63ed1,2024-04-21T12:20:21+01:00,0b949514128c3790666862229d0f956009d63ed1,2024-04-21T12:20:21+01:00,0,node.args[0],1,3,43,44,"-            if node.args[0].value == ""ignore"":","+            # get first argument of the `args` node of the filter call
++            match node.args[0]:
++                case ast.Constant() as c:
++                    argtext = c.value
++                case ast.JoinedStr() as js:
++                    # if we get an f-string, discard the templated pieces, which
++                    # are likely the type or specific message; we're interested
++                    # in the action, which is less likely to use a template
++                    argtext = """".join(
++                        x.value for x in js.values if isinstance(x, ast.Constant)
++                    )
++                case _:
++                    raise ValueError(""unknown ast node type"")
++            # check if filter is set to ignore
++            if argtext == ""ignore"":"

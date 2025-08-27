@@ -1,0 +1,29 @@
+commit,file,lineno,code
+cfa94c3dd2e3adfaae7e28c852ad6d6f2574cfd3,src/mopidy/internal/path.py,42,"match content:
+        case str():
+            file_path.write_text(content)
+        case bytes():
+            file_path.write_bytes(content)
+        case None:
+            pass"
+1cfd46502dabcca89385948064e85894d1d0515b,src/mopidy/internal/path.py,42,"match content:
+        case str():
+            file_path.write_text(content)
+        case bytes():
+            file_path.write_bytes(content)
+        case None:
+            pass"
+4e7cced0956469c69db14319f5cfc862554ec06f,src/mopidy/internal/path.py,43,"match content:
+        case str():
+            file_path.write_text(content)
+        case bytes():
+            file_path.write_bytes(content)
+        case None:
+            pass"
+d89a79e9f4bde82c04ab43227968003ce74dd5b6,src/mopidy/internal/path.py,43,"match content:
+        case str():
+            file_path.write_text(content)
+        case bytes():
+            file_path.write_bytes(content)
+        case None:
+            pass"

@@ -1,0 +1,3854 @@
+commit,file,lineno,code
+364366ae99d4fd1c1cf324917bb3a7dccfac256e,frappe/utils/data.py,728,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+359f0c3dcbb27e4747fc694474cab5e9bfeb04ad,frappe/utils/data.py,728,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+20593f155dae8a9e19deeb8879fe9c275b1fb931,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+20593f155dae8a9e19deeb8879fe9c275b1fb931,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+20593f155dae8a9e19deeb8879fe9c275b1fb931,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+20593f155dae8a9e19deeb8879fe9c275b1fb931,frappe/utils/data.py,733,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+9bbac0f84fdc9df852240ef4ba354168d6694879,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+9bbac0f84fdc9df852240ef4ba354168d6694879,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+9bbac0f84fdc9df852240ef4ba354168d6694879,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+9bbac0f84fdc9df852240ef4ba354168d6694879,frappe/utils/data.py,739,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+80da745cf62bf5309f810dcb18f5298d69064b69,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+80da745cf62bf5309f810dcb18f5298d69064b69,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+80da745cf62bf5309f810dcb18f5298d69064b69,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+80da745cf62bf5309f810dcb18f5298d69064b69,frappe/utils/data.py,739,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+555b88ffd9c3a42e27697a10343d4cef173670c4,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+555b88ffd9c3a42e27697a10343d4cef173670c4,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+555b88ffd9c3a42e27697a10343d4cef173670c4,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+555b88ffd9c3a42e27697a10343d4cef173670c4,frappe/utils/oauth.py,273,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+555b88ffd9c3a42e27697a10343d4cef173670c4,frappe/utils/data.py,739,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+24d76375382db510b756eedc268b1a73f1921aa7,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+24d76375382db510b756eedc268b1a73f1921aa7,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+24d76375382db510b756eedc268b1a73f1921aa7,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+24d76375382db510b756eedc268b1a73f1921aa7,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+24d76375382db510b756eedc268b1a73f1921aa7,frappe/utils/oauth.py,273,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+24d76375382db510b756eedc268b1a73f1921aa7,frappe/utils/data.py,739,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+24d76375382db510b756eedc268b1a73f1921aa7,frappe/utils/boilerplate.py,227,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+98006eb5fb3c74b42e8252052807c06667556ab1,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+98006eb5fb3c74b42e8252052807c06667556ab1,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+98006eb5fb3c74b42e8252052807c06667556ab1,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+98006eb5fb3c74b42e8252052807c06667556ab1,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+98006eb5fb3c74b42e8252052807c06667556ab1,frappe/utils/oauth.py,273,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+98006eb5fb3c74b42e8252052807c06667556ab1,frappe/utils/data.py,740,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+98006eb5fb3c74b42e8252052807c06667556ab1,frappe/utils/boilerplate.py,227,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+e5b26b77db6e3f31bcac6f70184667932b761e1a,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+e5b26b77db6e3f31bcac6f70184667932b761e1a,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+e5b26b77db6e3f31bcac6f70184667932b761e1a,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+e5b26b77db6e3f31bcac6f70184667932b761e1a,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+e5b26b77db6e3f31bcac6f70184667932b761e1a,frappe/utils/oauth.py,273,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+e5b26b77db6e3f31bcac6f70184667932b761e1a,frappe/utils/data.py,740,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+e5b26b77db6e3f31bcac6f70184667932b761e1a,frappe/utils/boilerplate.py,227,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+a0fe38ecff1fd1519092cb857d40ce6a3c8e6e89,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+a0fe38ecff1fd1519092cb857d40ce6a3c8e6e89,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+a0fe38ecff1fd1519092cb857d40ce6a3c8e6e89,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+a0fe38ecff1fd1519092cb857d40ce6a3c8e6e89,frappe/utils/oauth.py,273,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+a0fe38ecff1fd1519092cb857d40ce6a3c8e6e89,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+a0fe38ecff1fd1519092cb857d40ce6a3c8e6e89,frappe/utils/data.py,740,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+a0fe38ecff1fd1519092cb857d40ce6a3c8e6e89,frappe/utils/boilerplate.py,227,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+62a3a70bf8d81445648928003f335e532e92ad7c,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+62a3a70bf8d81445648928003f335e532e92ad7c,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+62a3a70bf8d81445648928003f335e532e92ad7c,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+62a3a70bf8d81445648928003f335e532e92ad7c,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+62a3a70bf8d81445648928003f335e532e92ad7c,frappe/utils/oauth.py,273,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+62a3a70bf8d81445648928003f335e532e92ad7c,frappe/utils/data.py,739,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+62a3a70bf8d81445648928003f335e532e92ad7c,frappe/utils/boilerplate.py,228,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+df3f6b3a9fca47666078b2865ba886ec9025c149,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+df3f6b3a9fca47666078b2865ba886ec9025c149,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+df3f6b3a9fca47666078b2865ba886ec9025c149,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+df3f6b3a9fca47666078b2865ba886ec9025c149,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+df3f6b3a9fca47666078b2865ba886ec9025c149,frappe/utils/oauth.py,274,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+df3f6b3a9fca47666078b2865ba886ec9025c149,frappe/utils/data.py,727,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+df3f6b3a9fca47666078b2865ba886ec9025c149,frappe/utils/boilerplate.py,228,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+513f74ffa6f0319fd3fdd35554879359d77a181c,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+513f74ffa6f0319fd3fdd35554879359d77a181c,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+513f74ffa6f0319fd3fdd35554879359d77a181c,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+513f74ffa6f0319fd3fdd35554879359d77a181c,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+513f74ffa6f0319fd3fdd35554879359d77a181c,frappe/utils/oauth.py,275,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+513f74ffa6f0319fd3fdd35554879359d77a181c,frappe/utils/boilerplate.py,222,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+513f74ffa6f0319fd3fdd35554879359d77a181c,frappe/utils/data.py,727,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+2f1119bfcca75c634cf57dfa3448b6785389453e,frappe/api.py,67,"match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError"
+2f1119bfcca75c634cf57dfa3448b6785389453e,frappe/api.py,94,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc()
+			case ""PUT"":
+				self.update_doc()
+			case ""DELETE"":
+				self.delete_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+2f1119bfcca75c634cf57dfa3448b6785389453e,frappe/api.py,105,"match frappe.local.request.method:
+			case ""GET"":
+				self.get_doc_list()
+			case ""POST"":
+				self.create_doc()
+			case _:
+				raise frappe.DoesNotExistError"
+2f1119bfcca75c634cf57dfa3448b6785389453e,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+2f1119bfcca75c634cf57dfa3448b6785389453e,frappe/utils/data.py,727,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+2f1119bfcca75c634cf57dfa3448b6785389453e,frappe/utils/oauth.py,275,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+2f1119bfcca75c634cf57dfa3448b6785389453e,frappe/utils/boilerplate.py,257,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+d845c54994016146aaf4f82ac0b78a2c4201ccb9,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+d845c54994016146aaf4f82ac0b78a2c4201ccb9,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+d845c54994016146aaf4f82ac0b78a2c4201ccb9,frappe/utils/data.py,727,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+d845c54994016146aaf4f82ac0b78a2c4201ccb9,frappe/utils/oauth.py,277,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+d845c54994016146aaf4f82ac0b78a2c4201ccb9,frappe/utils/boilerplate.py,257,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+d845c54994016146aaf4f82ac0b78a2c4201ccb9,frappe/utils/response.py,44,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+d845c54994016146aaf4f82ac0b78a2c4201ccb9,frappe/utils/response.py,158,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+95311a986a7fd19dc3912762eba3cd49dbc1326b,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+95311a986a7fd19dc3912762eba3cd49dbc1326b,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+95311a986a7fd19dc3912762eba3cd49dbc1326b,frappe/utils/oauth.py,277,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+95311a986a7fd19dc3912762eba3cd49dbc1326b,frappe/utils/data.py,727,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+95311a986a7fd19dc3912762eba3cd49dbc1326b,frappe/utils/boilerplate.py,257,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+95311a986a7fd19dc3912762eba3cd49dbc1326b,frappe/utils/response.py,44,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+95311a986a7fd19dc3912762eba3cd49dbc1326b,frappe/utils/response.py,158,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+d5ccb512512cf050bd0c7526c78b5e5469f38089,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+d5ccb512512cf050bd0c7526c78b5e5469f38089,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+d5ccb512512cf050bd0c7526c78b5e5469f38089,frappe/utils/data.py,729,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+d5ccb512512cf050bd0c7526c78b5e5469f38089,frappe/utils/oauth.py,277,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+d5ccb512512cf050bd0c7526c78b5e5469f38089,frappe/utils/response.py,44,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+d5ccb512512cf050bd0c7526c78b5e5469f38089,frappe/utils/response.py,160,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+d5ccb512512cf050bd0c7526c78b5e5469f38089,frappe/utils/boilerplate.py,257,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+53c5383f52f77df9563444f70a946c37bf2bd819,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+53c5383f52f77df9563444f70a946c37bf2bd819,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+53c5383f52f77df9563444f70a946c37bf2bd819,frappe/utils/oauth.py,277,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+53c5383f52f77df9563444f70a946c37bf2bd819,frappe/utils/data.py,912,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+53c5383f52f77df9563444f70a946c37bf2bd819,frappe/utils/boilerplate.py,257,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+53c5383f52f77df9563444f70a946c37bf2bd819,frappe/utils/response.py,44,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+53c5383f52f77df9563444f70a946c37bf2bd819,frappe/utils/response.py,161,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+c2eff72f022ef20567ca8895d3dbe53a52418357,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+c2eff72f022ef20567ca8895d3dbe53a52418357,frappe/commands/scheduler.py,95,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+c2eff72f022ef20567ca8895d3dbe53a52418357,frappe/utils/oauth.py,277,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+c2eff72f022ef20567ca8895d3dbe53a52418357,frappe/utils/data.py,729,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+c2eff72f022ef20567ca8895d3dbe53a52418357,frappe/utils/response.py,44,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+c2eff72f022ef20567ca8895d3dbe53a52418357,frappe/utils/response.py,160,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+c2eff72f022ef20567ca8895d3dbe53a52418357,frappe/utils/boilerplate.py,257,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+21cc09e28a7f0d10b30eeeadd49774e9f900cd14,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+21cc09e28a7f0d10b30eeeadd49774e9f900cd14,frappe/commands/scheduler.py,93,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+21cc09e28a7f0d10b30eeeadd49774e9f900cd14,frappe/utils/oauth.py,270,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+21cc09e28a7f0d10b30eeeadd49774e9f900cd14,frappe/utils/data.py,894,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+21cc09e28a7f0d10b30eeeadd49774e9f900cd14,frappe/utils/boilerplate.py,273,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+21cc09e28a7f0d10b30eeeadd49774e9f900cd14,frappe/utils/response.py,45,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+21cc09e28a7f0d10b30eeeadd49774e9f900cd14,frappe/utils/response.py,166,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+bb68908fe9e23d23bff917009202184836525ff1,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+bb68908fe9e23d23bff917009202184836525ff1,frappe/modules/utils.py,135,"match custom_doctype:
+				case ""Custom Field"":
+					for d in data[key]:
+						field = frappe.db.get_value(
+							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
+						)
+						if not field:
+							d[""owner""] = ""Administrator""
+							_insert(d)
+						else:
+							custom_field = frappe.get_doc(""Custom Field"", field)
+							custom_field.flags.ignore_validate = True
+							custom_field.update(d)
+							custom_field.db_update()
+				case ""Property Setter"":
+					# Property setter implement their own deduplication, we can just sync them as is
+					for d in data[key]:
+						if d.get(""doc_type"") == doc_type:
+							d[""doctype""] = ""Property Setter""
+							doc = frappe.get_doc(d)
+							doc.flags.validate_fields_for_doctype = False
+							doc.insert()
+				case ""Custom DocPerm"":
+					# TODO/XXX: Docperm have no ""sync"" as of now. They get OVERRIDDEN on sync.
+					frappe.db.delete(""Custom DocPerm"", {""parent"": doc_type})
+
+					for d in data[key]:
+						_insert(d)"
+bb68908fe9e23d23bff917009202184836525ff1,frappe/commands/scheduler.py,93,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+bb68908fe9e23d23bff917009202184836525ff1,frappe/utils/oauth.py,270,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+bb68908fe9e23d23bff917009202184836525ff1,frappe/utils/data.py,894,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+bb68908fe9e23d23bff917009202184836525ff1,frappe/utils/response.py,45,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+bb68908fe9e23d23bff917009202184836525ff1,frappe/utils/response.py,166,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+bb68908fe9e23d23bff917009202184836525ff1,frappe/utils/boilerplate.py,273,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+9986ea8171b3b02a97c0644cb34bc6f2e1167924,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+9986ea8171b3b02a97c0644cb34bc6f2e1167924,frappe/modules/utils.py,135,"match custom_doctype:
+				case ""Custom Field"":
+					for d in data[key]:
+						field = frappe.db.get_value(
+							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
+						)
+						if not field:
+							d[""owner""] = ""Administrator""
+							_insert(d)
+						else:
+							custom_field = frappe.get_doc(""Custom Field"", field)
+							custom_field.flags.ignore_validate = True
+							custom_field.update(d)
+							custom_field.db_update()
+				case ""Property Setter"":
+					# Property setter implement their own deduplication, we can just sync them as is
+					for d in data[key]:
+						if d.get(""doc_type"") == doc_type:
+							d[""doctype""] = ""Property Setter""
+							doc = frappe.get_doc(d)
+							doc.flags.validate_fields_for_doctype = False
+							doc.insert()
+				case ""Custom DocPerm"":
+					# TODO/XXX: Docperm have no ""sync"" as of now. They get OVERRIDDEN on sync.
+					frappe.db.delete(""Custom DocPerm"", {""parent"": doc_type})
+
+					for d in data[key]:
+						_insert(d)"
+9986ea8171b3b02a97c0644cb34bc6f2e1167924,frappe/commands/scheduler.py,93,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+9986ea8171b3b02a97c0644cb34bc6f2e1167924,frappe/utils/oauth.py,270,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+9986ea8171b3b02a97c0644cb34bc6f2e1167924,frappe/utils/data.py,894,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+9986ea8171b3b02a97c0644cb34bc6f2e1167924,frappe/utils/boilerplate.py,273,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+9986ea8171b3b02a97c0644cb34bc6f2e1167924,frappe/utils/response.py,45,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+9986ea8171b3b02a97c0644cb34bc6f2e1167924,frappe/utils/response.py,166,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+639e3409e818a3cd48b5f2a23dd5af44b66bc625,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+639e3409e818a3cd48b5f2a23dd5af44b66bc625,frappe/modules/utils.py,135,"match custom_doctype:
+				case ""Custom Field"":
+					for d in data[key]:
+						field = frappe.db.get_value(
+							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
+						)
+						if not field:
+							d[""owner""] = ""Administrator""
+							_insert(d)
+						else:
+							custom_field = frappe.get_doc(""Custom Field"", field)
+							custom_field.flags.ignore_validate = True
+							custom_field.update(d)
+							custom_field.db_update()
+				case ""Property Setter"":
+					# Property setter implement their own deduplication, we can just sync them as is
+					for d in data[key]:
+						if d.get(""doc_type"") == doc_type:
+							d[""doctype""] = ""Property Setter""
+							doc = frappe.get_doc(d)
+							doc.flags.validate_fields_for_doctype = False
+							doc.insert()
+				case ""Custom DocPerm"":
+					# TODO/XXX: Docperm have no ""sync"" as of now. They get OVERRIDDEN on sync.
+					frappe.db.delete(""Custom DocPerm"", {""parent"": doc_type})
+
+					for d in data[key]:
+						_insert(d)"
+639e3409e818a3cd48b5f2a23dd5af44b66bc625,frappe/commands/scheduler.py,93,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+639e3409e818a3cd48b5f2a23dd5af44b66bc625,frappe/utils/data.py,887,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+639e3409e818a3cd48b5f2a23dd5af44b66bc625,frappe/utils/oauth.py,270,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+639e3409e818a3cd48b5f2a23dd5af44b66bc625,frappe/utils/boilerplate.py,273,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+639e3409e818a3cd48b5f2a23dd5af44b66bc625,frappe/utils/response.py,45,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+639e3409e818a3cd48b5f2a23dd5af44b66bc625,frappe/utils/response.py,166,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+259870536450cab45337a8a2b94f407f32895efc,frappe/modules/utils.py,135,"match custom_doctype:
+				case ""Custom Field"":
+					for d in data[key]:
+						field = frappe.db.get_value(
+							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
+						)
+						if not field:
+							d[""owner""] = ""Administrator""
+							_insert(d)
+						else:
+							custom_field = frappe.get_doc(""Custom Field"", field)
+							custom_field.flags.ignore_validate = True
+							custom_field.update(d)
+							custom_field.db_update()
+				case ""Property Setter"":
+					# Property setter implement their own deduplication, we can just sync them as is
+					for d in data[key]:
+						if d.get(""doc_type"") == doc_type:
+							d[""doctype""] = ""Property Setter""
+							doc = frappe.get_doc(d)
+							doc.flags.validate_fields_for_doctype = False
+							doc.insert()
+				case ""Custom DocPerm"":
+					# TODO/XXX: Docperm have no ""sync"" as of now. They get OVERRIDDEN on sync.
+					frappe.db.delete(""Custom DocPerm"", {""parent"": doc_type})
+
+					for d in data[key]:
+						_insert(d)"
+259870536450cab45337a8a2b94f407f32895efc,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+259870536450cab45337a8a2b94f407f32895efc,frappe/commands/scheduler.py,93,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+259870536450cab45337a8a2b94f407f32895efc,frappe/utils/oauth.py,270,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+259870536450cab45337a8a2b94f407f32895efc,frappe/utils/data.py,887,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+259870536450cab45337a8a2b94f407f32895efc,frappe/utils/boilerplate.py,273,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+259870536450cab45337a8a2b94f407f32895efc,frappe/utils/response.py,45,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+259870536450cab45337a8a2b94f407f32895efc,frappe/utils/response.py,166,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+9d5ad5ad2ecc3a601b46ef6924adc9cbd10934f7,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+9d5ad5ad2ecc3a601b46ef6924adc9cbd10934f7,frappe/modules/utils.py,139,"match custom_doctype:
+				case ""Custom Field"":
+					for d in data[key]:
+						field = frappe.db.get_value(
+							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
+						)
+						if not field:
+							d[""owner""] = ""Administrator""
+							_insert(d)
+						else:
+							custom_field = frappe.get_doc(""Custom Field"", field)
+							custom_field.flags.ignore_validate = True
+							custom_field.update(d)
+							custom_field.db_update()
+				case ""Property Setter"":
+					# Property setter implement their own deduplication, we can just sync them as is
+					for d in data[key]:
+						if d.get(""doc_type"") == doc_type:
+							d[""doctype""] = ""Property Setter""
+							doc = frappe.get_doc(d)
+							doc.flags.validate_fields_for_doctype = False
+							doc.insert()
+				case ""Custom DocPerm"":
+					# TODO/XXX: Docperm have no ""sync"" as of now. They get OVERRIDDEN on sync.
+					frappe.db.delete(""Custom DocPerm"", {""parent"": doc_type})
+
+					for d in data[key]:
+						_insert(d)"
+9d5ad5ad2ecc3a601b46ef6924adc9cbd10934f7,frappe/commands/scheduler.py,93,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+9d5ad5ad2ecc3a601b46ef6924adc9cbd10934f7,frappe/utils/oauth.py,271,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+9d5ad5ad2ecc3a601b46ef6924adc9cbd10934f7,frappe/utils/data.py,887,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+9d5ad5ad2ecc3a601b46ef6924adc9cbd10934f7,frappe/utils/boilerplate.py,273,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+9d5ad5ad2ecc3a601b46ef6924adc9cbd10934f7,frappe/utils/response.py,45,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+9d5ad5ad2ecc3a601b46ef6924adc9cbd10934f7,frappe/utils/response.py,166,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+a87de09e795a5529fec2784ee4ab8c769d6c0a31,frappe/desk/form/load.py,156,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+a87de09e795a5529fec2784ee4ab8c769d6c0a31,frappe/modules/utils.py,139,"match custom_doctype:
+				case ""Custom Field"":
+					for d in data[key]:
+						field = frappe.db.get_value(
+							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
+						)
+						if not field:
+							d[""owner""] = ""Administrator""
+							_insert(d)
+						else:
+							custom_field = frappe.get_doc(""Custom Field"", field)
+							custom_field.flags.ignore_validate = True
+							custom_field.update(d)
+							custom_field.db_update()
+				case ""Property Setter"":
+					# Property setter implement their own deduplication, we can just sync them as is
+					for d in data[key]:
+						if d.get(""doc_type"") == doc_type:
+							d[""doctype""] = ""Property Setter""
+							doc = frappe.get_doc(d)
+							doc.flags.validate_fields_for_doctype = False
+							doc.insert()
+				case ""Custom DocPerm"":
+					# TODO/XXX: Docperm have no ""sync"" as of now. They get OVERRIDDEN on sync.
+					frappe.db.delete(""Custom DocPerm"", {""parent"": doc_type})
+
+					for d in data[key]:
+						_insert(d)"
+a87de09e795a5529fec2784ee4ab8c769d6c0a31,frappe/commands/scheduler.py,93,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+a87de09e795a5529fec2784ee4ab8c769d6c0a31,frappe/utils/oauth.py,271,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+a87de09e795a5529fec2784ee4ab8c769d6c0a31,frappe/utils/data.py,902,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+a87de09e795a5529fec2784ee4ab8c769d6c0a31,frappe/utils/boilerplate.py,273,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+a87de09e795a5529fec2784ee4ab8c769d6c0a31,frappe/utils/response.py,45,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+a87de09e795a5529fec2784ee4ab8c769d6c0a31,frappe/utils/response.py,166,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+50c6760cf132595575aa5b9f180a56f02dd0991b,frappe/desk/form/load.py,158,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+50c6760cf132595575aa5b9f180a56f02dd0991b,frappe/modules/utils.py,139,"match custom_doctype:
+				case ""Custom Field"":
+					for d in data[key]:
+						field = frappe.db.get_value(
+							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
+						)
+						if not field:
+							d[""owner""] = ""Administrator""
+							_insert(d)
+						else:
+							custom_field = frappe.get_doc(""Custom Field"", field)
+							custom_field.flags.ignore_validate = True
+							custom_field.update(d)
+							custom_field.db_update()
+				case ""Property Setter"":
+					# Property setter implement their own deduplication, we can just sync them as is
+					for d in data[key]:
+						if d.get(""doc_type"") == doc_type:
+							d[""doctype""] = ""Property Setter""
+							doc = frappe.get_doc(d)
+							doc.flags.validate_fields_for_doctype = False
+							doc.insert()
+				case ""Custom DocPerm"":
+					# TODO/XXX: Docperm have no ""sync"" as of now. They get OVERRIDDEN on sync.
+					frappe.db.delete(""Custom DocPerm"", {""parent"": doc_type})
+
+					for d in data[key]:
+						_insert(d)"
+50c6760cf132595575aa5b9f180a56f02dd0991b,frappe/commands/scheduler.py,94,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+50c6760cf132595575aa5b9f180a56f02dd0991b,frappe/utils/oauth.py,276,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+50c6760cf132595575aa5b9f180a56f02dd0991b,frappe/utils/data.py,901,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+50c6760cf132595575aa5b9f180a56f02dd0991b,frappe/utils/boilerplate.py,280,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+50c6760cf132595575aa5b9f180a56f02dd0991b,frappe/utils/response.py,46,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+50c6760cf132595575aa5b9f180a56f02dd0991b,frappe/utils/response.py,167,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+f0cb96dc3d588cc614adebf8d66647b282d5c082,frappe/desk/form/load.py,158,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+f0cb96dc3d588cc614adebf8d66647b282d5c082,frappe/modules/utils.py,139,"match custom_doctype:
+				case ""Custom Field"":
+					for d in data[key]:
+						field = frappe.db.get_value(
+							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
+						)
+						if not field:
+							d[""owner""] = ""Administrator""
+							_insert(d)
+						else:
+							custom_field = frappe.get_doc(""Custom Field"", field)
+							custom_field.flags.ignore_validate = True
+							custom_field.update(d)
+							custom_field.db_update()
+				case ""Property Setter"":
+					# Property setter implement their own deduplication, we can just sync them as is
+					for d in data[key]:
+						if d.get(""doc_type"") == doc_type:
+							d[""doctype""] = ""Property Setter""
+							doc = frappe.get_doc(d)
+							doc.flags.validate_fields_for_doctype = False
+							doc.insert()
+				case ""Custom DocPerm"":
+					# TODO/XXX: Docperm have no ""sync"" as of now. They get OVERRIDDEN on sync.
+					frappe.db.delete(""Custom DocPerm"", {""parent"": doc_type})
+
+					for d in data[key]:
+						_insert(d)"
+f0cb96dc3d588cc614adebf8d66647b282d5c082,frappe/testing/discovery.py,131,"match test:
+			case IntegrationTestCase():
+				category = ""integration""
+			case UnitTestCase():
+				category = ""unit""
+			case _:
+				from frappe.deprecation_dumpster import deprecation_warning
+
+				deprecation_warning(
+					""2024-20-08"",
+					""v17"",
+					""discovery and categorization of FrappeTestCase will be removed from this runner"",
+				)
+				category = ""deprecated-old-style-unspecified"""
+f0cb96dc3d588cc614adebf8d66647b282d5c082,frappe/commands/scheduler.py,94,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+f0cb96dc3d588cc614adebf8d66647b282d5c082,frappe/utils/oauth.py,276,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+f0cb96dc3d588cc614adebf8d66647b282d5c082,frappe/utils/data.py,901,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+f0cb96dc3d588cc614adebf8d66647b282d5c082,frappe/utils/boilerplate.py,280,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"
+f0cb96dc3d588cc614adebf8d66647b282d5c082,frappe/utils/response.py,46,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+f0cb96dc3d588cc614adebf8d66647b282d5c082,frappe/utils/response.py,167,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+1d31663f4b4b5e6a6283998484d926dfa762bcc4,frappe/modules/utils.py,140,"match custom_doctype:
+				case ""Custom Field"":
+					for d in data[key]:
+						field = frappe.db.get_value(
+							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
+						)
+						if not field:
+							d[""owner""] = ""Administrator""
+							_insert(d)
+						else:
+							custom_field = frappe.get_doc(""Custom Field"", field)
+							custom_field.flags.ignore_validate = True
+							custom_field.update(d)
+							custom_field.db_update()
+				case ""Property Setter"":
+					# Property setter implement their own deduplication, we can just sync them as is
+					for d in data[key]:
+						if d.get(""doc_type"") == doc_type:
+							d[""doctype""] = ""Property Setter""
+							doc = frappe.get_doc(d)
+							doc.flags.validate_fields_for_doctype = False
+							doc.insert()
+				case ""Custom DocPerm"":
+					# TODO/XXX: Docperm have no ""sync"" as of now. They get OVERRIDDEN on sync.
+					frappe.db.delete(""Custom DocPerm"", {""parent"": doc_type})
+
+					for d in data[key]:
+						_insert(d)"
+1d31663f4b4b5e6a6283998484d926dfa762bcc4,frappe/desk/form/load.py,153,"match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)
+			case ""Attachment"" | ""Attachment Removed"":
+				docinfo.attachment_logs.append(c)
+			case ""Info"" | ""Edit"" | ""Label"":
+				docinfo.info_logs.append(c)
+			case ""Like"":
+				docinfo.like_logs.append(c)
+			case ""Workflow"":
+				docinfo.workflow_logs.append(c)"
+1d31663f4b4b5e6a6283998484d926dfa762bcc4,frappe/testing/discovery.py,131,"match test:
+			case IntegrationTestCase():
+				category = ""integration""
+			case UnitTestCase():
+				category = ""unit""
+			case _:
+				category = ""unspecified-category""
+				if any(b.__name__ == ""FrappeTestCase"" for b in test.__class__.__bases__):
+					from frappe.deprecation_dumpster import deprecation_warning
+
+					deprecation_warning(
+						""2024-20-08"",
+						""v17"",
+						""accurate categorization of FrappeTestCase will be removed from this runner"",
+					)
+					category = ""old-frappe-test-class-category"""
+1d31663f4b4b5e6a6283998484d926dfa762bcc4,frappe/commands/scheduler.py,94,"match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				from frappe.installer import update_site_config
+
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":
+				frappe.connect()
+				toggle_scheduler(state == ""enable"")
+				frappe.db.commit()"
+1d31663f4b4b5e6a6283998484d926dfa762bcc4,frappe/utils/oauth.py,275,"match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))
+			case ""frappe"" | ""office_365"":
+				user.set_social_login_userid(provider, userid=data[""sub""])
+			case ""salesforce"":
+				user.set_social_login_userid(provider, userid=""/"".join(data[""sub""].split(""/"")[-2:]))
+			case _:
+				user_id_property = (
+					frappe.db.get_value(""Social Login Key"", provider, ""user_id_property"") or ""sub""
+				)
+				user.set_social_login_userid(provider, userid=data[user_id_property])"
+1d31663f4b4b5e6a6283998484d926dfa762bcc4,frappe/utils/typing_validations.py,83,"match e.code:
+			case ""type-adapter-config-unused"":
+				# Unless they set their custom __pydantic_config__, this will be the case on BaseModule, TypedDict and dataclass - ignore
+				return PyTypeAdapter(type_)
+			case _:
+				raise e"
+1d31663f4b4b5e6a6283998484d926dfa762bcc4,frappe/utils/data.py,891,"match timespan:
+		case ""last week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=-7)),
+				get_last_day_of_week(add_to_date(today, days=-7)),
+			)
+		case ""last month"":
+			return (
+				get_first_day(add_to_date(today, months=-1)),
+				get_last_day(add_to_date(today, months=-1)),
+			)
+		case ""last quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=-3)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=-6)),
+				get_quarter_ending(add_to_date(today, months=-3)),
+			)
+		case ""last year"":
+			return (
+				get_year_start(add_to_date(today, years=-1)),
+				get_year_ending(add_to_date(today, years=-1)),
+			)
+
+		case ""yesterday"":
+			return (add_to_date(today, days=-1),) * 2
+		case ""today"":
+			return (today, today)
+		case ""tomorrow"":
+			return (add_to_date(today, days=1),) * 2
+		case ""this week"":
+			return (get_first_day_of_week(today), get_last_day_of_week(today))
+		case ""this month"":
+			return (get_first_day(today), get_last_day(today))
+		case ""this quarter"":
+			return (get_quarter_start(today), get_quarter_ending(today))
+		case ""this year"":
+			return (get_year_start(today), get_year_ending(today))
+		case ""next week"":
+			return (
+				get_first_day_of_week(add_to_date(today, days=7)),
+				get_last_day_of_week(add_to_date(today, days=7)),
+			)
+		case ""next month"":
+			return (
+				get_first_day(add_to_date(today, months=1)),
+				get_last_day(add_to_date(today, months=1)),
+			)
+		case ""next quarter"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=3)),
+			)
+		case ""next 6 months"":
+			return (
+				get_quarter_start(add_to_date(today, months=3)),
+				get_quarter_ending(add_to_date(today, months=6)),
+			)
+		case ""next year"":
+			return (
+				get_year_start(add_to_date(today, years=1)),
+				get_year_ending(add_to_date(today, years=1)),
+			)
+		case _:
+			return"
+1d31663f4b4b5e6a6283998484d926dfa762bcc4,frappe/utils/response.py,46,"match get_api_version():
+		case ApiVersion.V1:
+			if allow_traceback:
+				frappe.errprint(traceback)
+				frappe.response.exception = traceback.splitlines()[-1]
+			frappe.response[""exc_type""] = exc_type.__name__
+		case ApiVersion.V2:
+			error_log = {""type"": exc_type.__name__}
+			if allow_traceback:
+				error_log[""exception""] = traceback
+			_link_error_with_message_log(error_log, exc_value, frappe.message_log)
+			frappe.local.response.errors = [error_log]"
+1d31663f4b4b5e6a6283998484d926dfa762bcc4,frappe/utils/response.py,167,"match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()"
+1d31663f4b4b5e6a6283998484d926dfa762bcc4,frappe/utils/boilerplate.py,286,"match name.partition("".""):
+				case filename, ""."", ""py"" if filename.isidentifier():
+					return True
+				case _:
+					click.echo(f""{name} is not a valid python file name"")"

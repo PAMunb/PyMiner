@@ -1,0 +1,40 @@
+commit,file,lineno,code
+fe2c77d576dbc56778988ec23055116498756649,teuthology/util/time.py,40,"match unit:
+        case 's':
+            return timedelta(seconds=num)
+        case 'm':
+            return timedelta(minutes=num)
+        case 'h':
+            return timedelta(hours=num)
+        case 'd':
+            return timedelta(days=num)
+        case 'w':
+            return timedelta(weeks=num)
+        case _:
+            raise ValueError(err_msg)"
+6f10f906be9902618382fdef2adf9ad609cdc512,teuthology/util/time.py,40,"match unit:
+        case 's':
+            return timedelta(seconds=num)
+        case 'm':
+            return timedelta(minutes=num)
+        case 'h':
+            return timedelta(hours=num)
+        case 'd':
+            return timedelta(days=num)
+        case 'w':
+            return timedelta(weeks=num)
+        case _:
+            raise ValueError(err_msg)"
+8aa35231626c6ecbac35b361f00b7fb9f4d1fa25,teuthology/util/time.py,40,"match unit:
+        case 's':
+            return timedelta(seconds=num)
+        case 'm':
+            return timedelta(minutes=num)
+        case 'h':
+            return timedelta(hours=num)
+        case 'd':
+            return timedelta(days=num)
+        case 'w':
+            return timedelta(weeks=num)
+        case _:
+            raise ValueError(err_msg)"

@@ -1,0 +1,1016 @@
+commit,file,lineno,code
+a244a911d529270feeda4a81fc048d6920a4eafa,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+a244a911d529270feeda4a81fc048d6920a4eafa,kitsune/questions/views.py,165,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+9ffb829a990cb53b7e34e0735e3ffa51bbb14d97,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+9ffb829a990cb53b7e34e0735e3ffa51bbb14d97,kitsune/questions/views.py,165,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+f4e8abe2cb33e72daed5e43a91775dc1ec47f763,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+f4e8abe2cb33e72daed5e43a91775dc1ec47f763,kitsune/questions/views.py,165,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+94710f653eefbd48820717831bab9baa4c62fc81,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+94710f653eefbd48820717831bab9baa4c62fc81,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+94710f653eefbd48820717831bab9baa4c62fc81,kitsune/questions/views.py,165,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+02ec5146204adbf149ed425dc5c9553b01897a2e,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+02ec5146204adbf149ed425dc5c9553b01897a2e,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+02ec5146204adbf149ed425dc5c9553b01897a2e,kitsune/questions/views.py,165,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+4726ede37bf4d4fe8c7f979147246030062f205f,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+4726ede37bf4d4fe8c7f979147246030062f205f,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+4726ede37bf4d4fe8c7f979147246030062f205f,kitsune/questions/views.py,165,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+9403ad180f055e9e0532085645061c12fc777be7,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+9403ad180f055e9e0532085645061c12fc777be7,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+9403ad180f055e9e0532085645061c12fc777be7,kitsune/questions/views.py,173,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+11c1284e2c2f79fe83feae1f383b99b2cc08ccc2,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+11c1284e2c2f79fe83feae1f383b99b2cc08ccc2,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+11c1284e2c2f79fe83feae1f383b99b2cc08ccc2,kitsune/questions/views.py,174,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+4853c52c6bc0f7d1e4863b5b5bea14c202c8f303,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+4853c52c6bc0f7d1e4863b5b5bea14c202c8f303,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+4853c52c6bc0f7d1e4863b5b5bea14c202c8f303,kitsune/questions/views.py,174,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+5deed9ffda3c109c3d05eab9635408ad48e3ac46,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+5deed9ffda3c109c3d05eab9635408ad48e3ac46,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+5deed9ffda3c109c3d05eab9635408ad48e3ac46,kitsune/questions/views.py,174,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+c629cf7d2dc2332fe10116db8dfea3c16f43fcda,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+c629cf7d2dc2332fe10116db8dfea3c16f43fcda,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+c629cf7d2dc2332fe10116db8dfea3c16f43fcda,kitsune/questions/views.py,174,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+9b1fc5bab0f3a8f59595321f423609b1336ed0c0,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+9b1fc5bab0f3a8f59595321f423609b1336ed0c0,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+9b1fc5bab0f3a8f59595321f423609b1336ed0c0,kitsune/questions/views.py,174,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+cc64429e17bb7dfb5e2b043ae7e4fede78de746a,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+cc64429e17bb7dfb5e2b043ae7e4fede78de746a,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+cc64429e17bb7dfb5e2b043ae7e4fede78de746a,kitsune/questions/views.py,174,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+889d1c8e433db4b8c8f6fb73e3e48a40a7ca2f76,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+889d1c8e433db4b8c8f6fb73e3e48a40a7ca2f76,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+889d1c8e433db4b8c8f6fb73e3e48a40a7ca2f76,kitsune/questions/views.py,174,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+25b007afc18f040dce413c5fd1df25d1462dddf9,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+25b007afc18f040dce413c5fd1df25d1462dddf9,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+25b007afc18f040dce413c5fd1df25d1462dddf9,kitsune/questions/views.py,185,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+25b007afc18f040dce413c5fd1df25d1462dddf9,kitsune/products/migrations/0010_auto_20240624_0616.py,95,"match target_slug:
+            case ""install-and-update"":
+                title = ""Install and update""
+            case ""troubleshooting"":
+                title = ""Troubleshooting""
+            case ""protect-your-privacy"":
+                title = ""Protect your privacy""
+            case ""emails"":
+                title = ""Emails""
+            case ""customize-settings-and-preferences"":
+                title = ""Customize settings and preferences""
+            case ""install-and-manage-add-ons"":
+                title = ""Install and manage add-ons""
+            case _:
+                pass"
+464f34d24e0a493b2d5b2007c46aaef1d6c77685,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+464f34d24e0a493b2d5b2007c46aaef1d6c77685,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+464f34d24e0a493b2d5b2007c46aaef1d6c77685,kitsune/questions/views.py,182,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+464f34d24e0a493b2d5b2007c46aaef1d6c77685,kitsune/products/migrations/0010_auto_20240624_0616.py,95,"match target_slug:
+            case ""install-and-update"":
+                title = ""Install and update""
+            case ""troubleshooting"":
+                title = ""Troubleshooting""
+            case ""protect-your-privacy"":
+                title = ""Protect your privacy""
+            case ""emails"":
+                title = ""Emails""
+            case ""customize-settings-and-preferences"":
+                title = ""Customize settings and preferences""
+            case ""install-and-manage-add-ons"":
+                title = ""Install and manage add-ons""
+            case _:
+                pass"
+6f8798e249fe026218446a4976528fe92fcb7d11,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = AAQConfig.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+6f8798e249fe026218446a4976528fe92fcb7d11,kitsune/sumo/parser.py,464,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+6f8798e249fe026218446a4976528fe92fcb7d11,kitsune/questions/migrations/0015_auto_20240802_0524.py,23,"match product.slug:
+                case ""firefox"":
+                    aaq_config.extra_fields = [""troubleshooting"", ""ff_version"", ""os""]
+                case ""mobile"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""ios"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""firefox-enterprise"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""focus-firefox"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case _:
+                    pass"
+6f8798e249fe026218446a4976528fe92fcb7d11,kitsune/questions/views.py,186,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+6f8798e249fe026218446a4976528fe92fcb7d11,kitsune/questions/views.py,500,"match product_slug:
+        case ""desktop"":
+            product_slug = ""firefox""
+        case ""focus"":
+            product_slug = ""focus-firefox""
+        case _:
+            should_redirect = False"
+6f8798e249fe026218446a4976528fe92fcb7d11,kitsune/products/migrations/0010_auto_20240624_0616.py,93,"match target_slug:
+            case ""install-and-update"":
+                title = ""Install and update""
+            case ""troubleshooting"":
+                title = ""Troubleshooting""
+            case ""protect-your-privacy"":
+                title = ""Protect your privacy""
+            case ""emails"":
+                title = ""Emails""
+            case ""customize-settings-and-preferences"":
+                title = ""Customize settings and preferences""
+            case ""install-and-manage-add-ons"":
+                title = ""Install and manage add-ons""
+            case _:
+                pass"
+1219f6ac2505df32b80bcd31d6987ce110952e3e,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = AAQConfig.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+1219f6ac2505df32b80bcd31d6987ce110952e3e,kitsune/sumo/parser.py,466,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+1219f6ac2505df32b80bcd31d6987ce110952e3e,kitsune/questions/views.py,186,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+1219f6ac2505df32b80bcd31d6987ce110952e3e,kitsune/questions/views.py,500,"match product_slug:
+        case ""desktop"":
+            product_slug = ""firefox""
+        case ""focus"":
+            product_slug = ""focus-firefox""
+        case _:
+            should_redirect = False"
+1219f6ac2505df32b80bcd31d6987ce110952e3e,kitsune/questions/migrations/0015_auto_20240802_0524.py,23,"match product.slug:
+                case ""firefox"":
+                    aaq_config.extra_fields = [""troubleshooting"", ""ff_version"", ""os""]
+                case ""mobile"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""ios"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""firefox-enterprise"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""focus-firefox"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case _:
+                    pass"
+1219f6ac2505df32b80bcd31d6987ce110952e3e,kitsune/products/migrations/0010_auto_20240624_0616.py,93,"match target_slug:
+            case ""install-and-update"":
+                title = ""Install and update""
+            case ""troubleshooting"":
+                title = ""Troubleshooting""
+            case ""protect-your-privacy"":
+                title = ""Protect your privacy""
+            case ""emails"":
+                title = ""Emails""
+            case ""customize-settings-and-preferences"":
+                title = ""Customize settings and preferences""
+            case ""install-and-manage-add-ons"":
+                title = ""Install and manage add-ons""
+            case _:
+                pass"
+1a79af0eae6138e03c1a0669ad0af730634abd41,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = AAQConfig.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+1a79af0eae6138e03c1a0669ad0af730634abd41,kitsune/sumo/parser.py,466,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+1a79af0eae6138e03c1a0669ad0af730634abd41,kitsune/questions/views.py,189,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+1a79af0eae6138e03c1a0669ad0af730634abd41,kitsune/questions/views.py,503,"match product_slug:
+        case ""desktop"":
+            product_slug = ""firefox""
+        case ""focus"":
+            product_slug = ""focus-firefox""
+        case _:
+            should_redirect = False"
+1a79af0eae6138e03c1a0669ad0af730634abd41,kitsune/questions/migrations/0015_auto_20240802_0524.py,23,"match product.slug:
+                case ""firefox"":
+                    aaq_config.extra_fields = [""troubleshooting"", ""ff_version"", ""os""]
+                case ""mobile"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""ios"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""firefox-enterprise"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""focus-firefox"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case _:
+                    pass"
+1a79af0eae6138e03c1a0669ad0af730634abd41,kitsune/products/migrations/0001_squashed_0020_remove_sumoplaceholderpage_page_ptr_and_more.py,1284,"match target_slug:
+            case ""install-and-update"":
+                title = ""Install and update""
+            case ""troubleshooting"":
+                title = ""Troubleshooting""
+            case ""protect-your-privacy"":
+                title = ""Protect your privacy""
+            case ""emails"":
+                title = ""Emails""
+            case ""customize-settings-and-preferences"":
+                title = ""Customize settings and preferences""
+            case ""install-and-manage-add-ons"":
+                title = ""Install and manage add-ons""
+            case _:
+                pass"
+2b2da8deabcf6be941f39ea2c5b07d0ce33a780d,kitsune/community/views.py,115,"match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = AAQConfig.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)
+            locales = None
+        case ""l10n"":
+            results, total = top_contributors_l10n(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = settings.SUMO_LANGUAGES
+        case _:
+            raise Http404"
+2b2da8deabcf6be941f39ea2c5b07d0ce33a780d,kitsune/sumo/parser.py,466,"match name:
+        case ""details_start"":
+            return '<section class=""mzp-c-details"">'
+        case ""details_end"":
+            return ""</section>"""
+2b2da8deabcf6be941f39ea2c5b07d0ce33a780d,kitsune/questions/migrations/0015_auto_20240802_0524.py,23,"match product.slug:
+                case ""firefox"":
+                    aaq_config.extra_fields = [""troubleshooting"", ""ff_version"", ""os""]
+                case ""mobile"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""ios"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""firefox-enterprise"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""focus-firefox"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case _:
+                    pass"
+2b2da8deabcf6be941f39ea2c5b07d0ce33a780d,kitsune/questions/views.py,192,"match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":
+            question_qs = question_qs.solution_provided()
+        case ""solved"":
+            question_qs = question_qs.solved()
+        case ""locked"":
+            question_qs = question_qs.locked()
+        case ""recently-unanswered"":
+            question_qs = question_qs.recently_unanswered()
+        case _:
+            if show == ""needs-attention"":
+                question_qs = question_qs.needs_attention()
+            if show == ""responded"":
+                question_qs = question_qs.responded()
+            if show == ""done"":
+                question_qs = question_qs.done()"
+2b2da8deabcf6be941f39ea2c5b07d0ce33a780d,kitsune/questions/views.py,513,"match product_slug:
+        case ""desktop"":
+            product_slug = ""firefox""
+        case ""focus"":
+            product_slug = ""focus-firefox""
+        case _:
+            should_redirect = False"
+2b2da8deabcf6be941f39ea2c5b07d0ce33a780d,kitsune/products/migrations/0001_squashed_0020_remove_sumoplaceholderpage_page_ptr_and_more.py,1432,"match target_slug:
+            case ""install-and-update"":
+                title = ""Install and update""
+            case ""troubleshooting"":
+                title = ""Troubleshooting""
+            case ""protect-your-privacy"":
+                title = ""Protect your privacy""
+            case ""emails"":
+                title = ""Emails""
+            case ""customize-settings-and-preferences"":
+                title = ""Customize settings and preferences""
+            case ""install-and-manage-add-ons"":
+                title = ""Install and manage add-ons""
+            case _:
+                pass"

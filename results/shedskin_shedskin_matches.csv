@@ -1,0 +1,177 @@
+commit,file,lineno,code
+f30f43f28b2b4ec4b2b6bb83a0211c9fe492311b,tests/skip_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+9cef8eb6adad1fba21eb633c87d52e704e1b45c0,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+0aa13049788c13284240e07e2ed14261e3e07f4c,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+2fc70891f46c6179ccc1cea6584091373ee49af3,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+063829d7ac5681cea0e1f47ebc4b8e17b5b23894,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+ab7957a8ac73acb0e3f0b4fb787024e890475967,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+ade3e7682bff41625015288d1db87d9624ffed12,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+479416716438deed310f8e5081055c6736cf7b80,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+c91681d18fbbb4b2af51608ac3becc69fb867b7b,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+505147c933fcba46723f80f5e73cdec29e073d53,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+3af8539d743c68d40806710a529ca5866a27ef03,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+dea0169381144e9b7a87b11a5775ee5c9de193b5,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+775584e131b8ee5297369a06fa1f3fa903725b8b,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+d3d870c59adf97f88a108164932ffb9f452c3fb0,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+ef0e83ac9a85ad7ab2dde0ad53b6775e0d5bdc44,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""
+4ee7061f23b9ec065a631318406316490bfd235c,tests/skip_control_match/test_control_match.py,6,"match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet"""

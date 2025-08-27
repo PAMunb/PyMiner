@@ -1,0 +1,63 @@
+commit,file,lineno,code
+2faf9e7bb5f191633afa060019e4c2bd10cc7968,payu/models/cesm_cmeps.py,238,"match nc_type:
+                        case ""netcdf"":
+                            break
+                        case ""netcdf4p"" | ""pnetcdf"":
+                            niotasks = int(self.runconfig.get(io_section, ""pio_numiotasks""))
+                            iostride = int(self.runconfig.get(io_section, ""pio_stride""))
+                            if (niotasks <= 0):
+                                warn(f""The pio_numiotasks for {io_section} in {NUOPC_CONFIG} is ""
+                                     ""not set, using model default"")
+                            if (iostride <= 0):
+                                warn(f""The pio_stride for {io_section} in {NUOPC_CONFIG} is ""
+                                     ""not set, using model default"")
+                            if (all([
+                                    niotasks > 0, 
+                                    iostride > 0,
+                                    (ioroot + (niotasks-1)*iostride) >= npes
+                            ])):
+                                raise ValueError(
+                                    f""The iolayout for {io_section} in {NUOPC_CONFIG} is ""
+                                    ""requesting out of range cpus""
+                                )
+                        case ""netcdf4c"":
+                            raise ValueError(
+                                f""netcdf4c in {io_section} of {NUOPC_CONFIG} is deprecated, ""
+                                ""use netcdf4p""
+                            )
+                        case _:
+                            raise ValueError(
+                                f""The iotype for {io_section} in {NUOPC_CONFIG} is ""
+                                'invalid, valid options: ""netcdf"", ""pnetcdf"", ""netcdf4p""'
+                            )"
+2d4d016fd1d2267346ae472a125a95206a32da1a,payu/models/cesm_cmeps.py,238,"match nc_type:
+                        case ""netcdf"":
+                            break
+                        case ""netcdf4p"" | ""pnetcdf"":
+                            niotasks = int(self.runconfig.get(io_section, ""pio_numiotasks""))
+                            iostride = int(self.runconfig.get(io_section, ""pio_stride""))
+                            if (niotasks <= 0):
+                                warn(f""The pio_numiotasks for {io_section} in {NUOPC_CONFIG} is ""
+                                     ""not set, using model default"")
+                            if (iostride <= 0):
+                                warn(f""The pio_stride for {io_section} in {NUOPC_CONFIG} is ""
+                                     ""not set, using model default"")
+                            if (all([
+                                    niotasks > 0, 
+                                    iostride > 0,
+                                    (ioroot + (niotasks-1)*iostride) >= npes
+                            ])):
+                                raise ValueError(
+                                    f""The iolayout for {io_section} in {NUOPC_CONFIG} is ""
+                                    ""requesting out of range cpus""
+                                )
+                        case ""netcdf4c"":
+                            raise ValueError(
+                                f""netcdf4c in {io_section} of {NUOPC_CONFIG} is deprecated, ""
+                                ""use netcdf4p""
+                            )
+                        case _:
+                            raise ValueError(
+                                f""The iotype for {io_section} in {NUOPC_CONFIG} is ""
+                                'invalid, valid options: ""netcdf"", ""pnetcdf"", ""netcdf4p""'
+                            )"

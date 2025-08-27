@@ -1,0 +1,24 @@
+project,url
+cython_cython,https://github.com/cython/cython.git
+astropy_astropy,https://github.com/astropy/astropy.git
+frappe_frappe,https://github.com/frappe/frappe.git
+pandas-dev_pandas,https://github.com/pandas-dev/pandas.git
+mopidy_mopidy,https://github.com/mopidy/mopidy.git
+bruvellu_cifonauta,https://github.com/bruvellu/cifonauta.git
+indico_indico,https://github.com/indico/indico.git
+shedskin_shedskin,https://github.com/shedskin/shedskin.git
+payu-org_payu,https://github.com/payu-org/payu.git
+ceph_teuthology,https://github.com/ceph/teuthology.git
+getsentry_sentry,https://github.com/getsentry/sentry.git
+internetarchive_openlibrary,https://github.com/internetarchive/openlibrary.git
+hasgeek_funnel,https://github.com/hasgeek/funnel.git
+gaphor_gaphor,https://github.com/gaphor/gaphor.git
+scipy_scipy,https://github.com/scipy/scipy.git
+mozilla_kitsune,https://github.com/mozilla/kitsune.git
+mitmproxy_mitmproxy,https://github.com/mitmproxy/mitmproxy.git
+pycqa_pycodestyle,https://github.com/PyCQA/pycodestyle
+geekcomputers_python,https://github.com/geekcomputers/Python
+beetbox_beets, https://github.com/beetbox/beets
+kliment_printrun,https://github.com/kliment/Printrun 
+nixos_nixops,https://github.com/nixos/nixops.git
+inducer_pymbolic,https://github.com/inducer/pymbolic.git

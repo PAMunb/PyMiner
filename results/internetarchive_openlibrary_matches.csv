@@ -1,0 +1,585 @@
+commit,file,lineno,code
+51f29488b3bd9adfc502d5c4e1f3d8fc25ef4c9c,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+78707552d2ff8d51c914e1ef02868b2f4197d79b,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+47b508ca2a2cf2ed562dfd0f59aa7c03f80df66f,openlibrary/plugins/admin/code.py,268,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+47b508ca2a2cf2ed562dfd0f59aa7c03f80df66f,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+5e6b98bd7510b1b1ddf5f1fd27fab598bc4e312c,openlibrary/plugins/admin/code.py,268,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+5e6b98bd7510b1b1ddf5f1fd27fab598bc4e312c,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+722741f6f45cd4ba297704a5bec205d5f487c99a,openlibrary/plugins/admin/code.py,268,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+722741f6f45cd4ba297704a5bec205d5f487c99a,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+a8796b4952b13b6f12138c3de8e1af0efdea85d7,openlibrary/plugins/admin/code.py,268,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+a8796b4952b13b6f12138c3de8e1af0efdea85d7,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+73dcb6851f04fa5262ce987057e5b21a184f3068,openlibrary/plugins/admin/code.py,268,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+73dcb6851f04fa5262ce987057e5b21a184f3068,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+82a7d7db3aae7501373f64a9bf4e6c2e3e4cf254,openlibrary/plugins/admin/code.py,268,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+82a7d7db3aae7501373f64a9bf4e6c2e3e4cf254,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+6f8aadc91f4088bd6c2ebec60a69b4d434df390e,openlibrary/plugins/admin/code.py,271,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+6f8aadc91f4088bd6c2ebec60a69b4d434df390e,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+156ebf337eb23f8b49147d9736d2bf31d0fae10b,openlibrary/plugins/admin/code.py,272,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+156ebf337eb23f8b49147d9736d2bf31d0fae10b,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+56ee05ed77c4ba2c8712babd94a10e7d9d6fe8b5,openlibrary/solr/updater/list.py,41,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seeds)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seeds)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+56ee05ed77c4ba2c8712babd94a10e7d9d6fe8b5,openlibrary/plugins/admin/code.py,272,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+56ee05ed77c4ba2c8712babd94a10e7d9d6fe8b5,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+56ee05ed77c4ba2c8712babd94a10e7d9d6fe8b5,openlibrary/plugins/openlibrary/lists.py,160,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+56ee05ed77c4ba2c8712babd94a10e7d9d6fe8b5,openlibrary/plugins/openlibrary/lists.py,177,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+fdb82818a08a58769cd813427b4c68682c115c0f,openlibrary/solr/updater/list.py,41,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seeds)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seeds)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+fdb82818a08a58769cd813427b4c68682c115c0f,openlibrary/plugins/admin/code.py,272,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+fdb82818a08a58769cd813427b4c68682c115c0f,openlibrary/plugins/openlibrary/lists.py,160,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+fdb82818a08a58769cd813427b4c68682c115c0f,openlibrary/plugins/openlibrary/lists.py,177,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+fdb82818a08a58769cd813427b4c68682c115c0f,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+c0dd17559edda61c7119dad3072b9099851a576e,openlibrary/solr/updater/list.py,41,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seeds)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seeds)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+c0dd17559edda61c7119dad3072b9099851a576e,openlibrary/plugins/openlibrary/lists.py,161,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+c0dd17559edda61c7119dad3072b9099851a576e,openlibrary/plugins/openlibrary/lists.py,178,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+c0dd17559edda61c7119dad3072b9099851a576e,openlibrary/plugins/admin/code.py,280,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+c0dd17559edda61c7119dad3072b9099851a576e,openlibrary/utils/isbn.py,114,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+c5b379b3e99b7b1b6556e753a7a5bbbe3316f79c,openlibrary/solr/updater/list.py,41,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seeds)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seeds)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+c5b379b3e99b7b1b6556e753a7a5bbbe3316f79c,openlibrary/plugins/openlibrary/lists.py,161,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+c5b379b3e99b7b1b6556e753a7a5bbbe3316f79c,openlibrary/plugins/openlibrary/lists.py,178,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+c5b379b3e99b7b1b6556e753a7a5bbbe3316f79c,openlibrary/plugins/admin/code.py,280,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+c5b379b3e99b7b1b6556e753a7a5bbbe3316f79c,openlibrary/utils/isbn.py,140,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+cdedda272e53dd3538732efcac248392acf500aa,openlibrary/solr/updater/list.py,41,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seeds)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seeds)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+cdedda272e53dd3538732efcac248392acf500aa,openlibrary/plugins/openlibrary/lists.py,161,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+cdedda272e53dd3538732efcac248392acf500aa,openlibrary/plugins/openlibrary/lists.py,178,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+cdedda272e53dd3538732efcac248392acf500aa,openlibrary/plugins/admin/code.py,355,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+cdedda272e53dd3538732efcac248392acf500aa,openlibrary/utils/isbn.py,140,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+c9e42c03d1551b46bd23457504111a5a2ff4d43f,openlibrary/solr/updater/list.py,41,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seeds)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seeds)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+c9e42c03d1551b46bd23457504111a5a2ff4d43f,openlibrary/plugins/openlibrary/lists.py,161,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+c9e42c03d1551b46bd23457504111a5a2ff4d43f,openlibrary/plugins/openlibrary/lists.py,178,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+c9e42c03d1551b46bd23457504111a5a2ff4d43f,openlibrary/plugins/admin/code.py,354,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+c9e42c03d1551b46bd23457504111a5a2ff4d43f,openlibrary/utils/isbn.py,140,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+fcef3e593d27c065bf6b0da2a1273a15da419d1d,openlibrary/solr/updater/list.py,41,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seed_values)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seed_values)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+fcef3e593d27c065bf6b0da2a1273a15da419d1d,openlibrary/plugins/admin/code.py,354,"match i.get('action', ''):
+            case 'remove':
+                self.remove_ocaid(edition)
+            case 'modify':
+                self.modify_ocaid(edition, i.get('ocaid'))
+            case '_':
+                raise web.badrequest('Unknown action')"
+fcef3e593d27c065bf6b0da2a1273a15da419d1d,openlibrary/plugins/openlibrary/lists.py,161,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+fcef3e593d27c065bf6b0da2a1273a15da419d1d,openlibrary/plugins/openlibrary/lists.py,178,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+fcef3e593d27c065bf6b0da2a1273a15da419d1d,openlibrary/utils/isbn.py,140,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+ea0cc872a088469b8e23eea5d1ce66a8973f2028,openlibrary/solr/updater/list.py,40,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seed_values)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seed_values)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+ea0cc872a088469b8e23eea5d1ce66a8973f2028,openlibrary/plugins/openlibrary/lists.py,161,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+ea0cc872a088469b8e23eea5d1ce66a8973f2028,openlibrary/plugins/openlibrary/lists.py,178,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+ea0cc872a088469b8e23eea5d1ce66a8973f2028,openlibrary/utils/isbn.py,140,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+90bc4b24266912b2aab3b4c7080be5807530a093,openlibrary/solr/updater/list.py,40,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seed_values)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seed_values)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+90bc4b24266912b2aab3b4c7080be5807530a093,openlibrary/plugins/openlibrary/lists.py,161,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+90bc4b24266912b2aab3b4c7080be5807530a093,openlibrary/plugins/openlibrary/lists.py,178,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+90bc4b24266912b2aab3b4c7080be5807530a093,openlibrary/utils/isbn.py,140,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+d446cbc794612b53a6cffe44b8f8f12c947a472d,openlibrary/solr/updater/list.py,40,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seed_values)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seed_values)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+d446cbc794612b53a6cffe44b8f8f12c947a472d,openlibrary/plugins/openlibrary/lists.py,161,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+d446cbc794612b53a6cffe44b8f8f12c947a472d,openlibrary/plugins/openlibrary/lists.py,178,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+d446cbc794612b53a6cffe44b8f8f12c947a472d,openlibrary/utils/isbn.py,140,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"
+f20a00f50511cb4c03a4f25c885b6fcea4a5688e,openlibrary/solr/updater/list.py,41,"match seed_type:
+            case 'edition' | 'author':
+                edition_olids = "" OR "".join(key.split('/')[-1] for key in seed_values)
+                query.append(f'edition_key:( {edition_olids} )')
+            case 'work':
+                seed_keys = "" OR "".join(f'""{key}""' for key in seed_values)
+                query.append(f'key:( {seed_keys} )')
+            case 'subject':
+                pass
+            case _:
+                raise NotImplementedError(f'Unknown seed type {seed_type}')"
+f20a00f50511cb4c03a4f25c885b6fcea4a5688e,openlibrary/plugins/openlibrary/lists.py,161,"match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':
+            return 'edition'
+        case _:
+            raise ValueError(f'Invalid seed key: {key}')"
+f20a00f50511cb4c03a4f25c885b6fcea4a5688e,openlibrary/plugins/openlibrary/lists.py,178,"match seed_type:
+        case 'subject':
+            seed = subject_key_to_seed(doc.key)
+            title = doc.name
+        case 'work' | 'edition':
+            seed = {""key"": doc.key}
+            title = doc.get(""title"", ""untitled"")
+        case 'author':
+            seed = {""key"": doc.key}
+            title = doc.get('name', 'name missing')
+        case _:
+            raise ValueError(f'Invalid seed type: {seed_type}')"
+f20a00f50511cb4c03a4f25c885b6fcea4a5688e,openlibrary/utils/isbn.py,141,"match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)"

@@ -1,0 +1,11 @@
+commit,file,lineno,code
+01e54e9c358bc047dcbc4fca974d0aae1429726a,meta/views.py,77,"match taxon_update.status:
+            case 'accepted':
+                curadory, _ = Curadoria.objects.get_or_create(name='Todos os Táxons')
+                curadory.taxons.add(taxon_update.taxon)
+            case 'invalid':
+                curadory, _ = Curadoria.objects.get_or_create(name='Todos os Táxons')
+                curadory.taxons.add(taxon_update.taxon)
+            case 'not_exist':
+                curadory, _ = Curadoria.objects.get_or_create(name='Não está na Worms')
+                curadory.taxons.add(taxon_update.taxon)"

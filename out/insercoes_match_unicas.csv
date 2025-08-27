@@ -1,0 +1,650 @@
+project,file,commit_insert,commit_date,lineno_guess,code_snippet
+astropy_astropy,astropy/coordinates/angles/formats.py,124b0803b225284a6558dfc32cc6ab68d603203d,2024-10-18T16:59:07+02:00,218,"                    | UINT COLON UINT COLON ufloat
+            """"""
+            match p[1:]:
+                case [p1]:
+                    p[0] = p1
+                case [p1, p2] | [p1, "":"", p2]:
+                    p[0] = (p1, p2)
+                case [p1, p2, p3] | [p1, _, p2, _, p3]:
+                    p[0] = (p1, p2, p3)
+"
+astropy_astropy,astropy/units/format/ogip.py,89eaa1178c468c83a613898baa94eb848f3fba07,2024-09-27T18:18:43+02:00,236,"                     | FUNCNAME OPEN_PAREN complete_expression CLOSE_PAREN power numeric_power
+            """"""
+            match list(p):
+                case [_, ""sqrt"", _, unit, _]:
+                    p[0] = unit**0.5
+                case [_, ""sqrt"", _, unit, _, _, numeric_power]:
+                    p[0] = unit ** (0.5 * numeric_power)
+                case [_, func, *_]:
+                    raise ValueError(
+                        f""The function '{func}' is valid in OGIP, but not understood """
+astropy_astropy,astropy/units/quantity_helper/function_helpers.py,10da0ee06e7451d02d3e64bf0d7a36536f947da4,2024-09-28T08:52:10-04:00,463,"    # following the (complex) logic of np.arange
+    assert len(args) <= 4
+    match args:
+        case pos1,:
+            assert stop is None or start is None
+            if stop is None:
+                stop = pos1
+            elif start is None:
+                start = pos1
+        case start, stop, *rest:"
+beetbox_beets,beetsplug/substitute.py,913d51af5cce3702a5ba0e04c41069f644a9fbfb,2024-10-05T15:51:41+02:00,55,"        self.template_funcs[""substitute""] = self.tmpl_substitute
+
+        match self.config.get():
+            case list():
+                pairs = self.config.as_pairs()
+            case dict():
+                pairs = [
+                    (key, view.as_str()) for key, view in self.config.items()
+                ]
+                self._log.warning("
+bruvellu_cifonauta,meta/views.py,01e54e9c358bc047dcbc4fca974d0aae1429726a,2024-03-16T00:56:05-03:00,77,"            taxon_update = TaxonUpdater(taxon_name)
+        Taxon.objects.rebuild()
+        match taxon_update.status:
+            case 'accepted':
+                curadory, _ = Curadoria.objects.get_or_create(name='Todos os Táxons')
+                curadory.taxons.add(taxon_update.taxon)
+            case 'invalid':
+                curadory, _ = Curadoria.objects.get_or_create(name='Todos os Táxons')
+                curadory.taxons.add(taxon_update.taxon)
+            case 'not_exist':"
+ceph_teuthology,teuthology/util/time.py,1a958e39fb781141d24125bc2e7555df8f53a910,2024-08-07T18:05:15-06:00,17,"    err_msg = ""Offsets must either be an ISO 8601-formatted timestamp or "" \
+        f""a relative value like '2w', '1d', '7h', '45m', '90s'. Got: {offset}""
+    match = re.match(r'(\d+)(s|m|h|d|w)$', offset)
+    if match is None:
+        raise ValueError(err_msg)
+    num = int(match.groups()[0])
+    unit = match.groups()[1]
+    match unit:
+        case 's':
+            return timedelta(seconds=num)"
+cython_cython,tests/run/test_patma.py,12ac748fe70b1e8140ae5d3536223935da27155e,2024-02-14T20:08:53+00:00,35,"        y: int
+else:
+    # predates dataclasses with match args
+    class Point:
+        __match_args__ = (""x"", ""y"")
+        x: int
+        y: int
+
+# TestCompiler removed - it's very CPython-specific
+"""""""
+frappe_frappe,frappe/api.py,98dd7b0616692f2af2273da31c6e9c3d95ae89fd,2022-10-12T15:18:39+05:30,67,"		Note: most methods of this class directly operate on the response local.
+		""""""
+		match self.call:
+			case ""method"":
+				return self.handle_method()
+			case ""resource"":
+				self.handle_resource()
+			case _:
+				raise frappe.DoesNotExistError
+"
+frappe_frappe,frappe/commands/scheduler.py,6b84c9ccf5fc3c389223f37cf4fb1865be430448,2023-02-10T14:38:50+05:30,88,"
+	with frappe.init_site(site=site):
+		match state:
+			case ""status"":
+				frappe.connect()
+				status = ""disabled"" if frappe.utils.scheduler.is_scheduler_inactive(verbose=verbose) else ""enabled""
+				return print(output[format].format(status=status, site=site))
+			case ""pause"" | ""resume"":
+				update_site_config(""pause_scheduler"", state == ""pause"")
+			case ""enable"" | ""disable"":"
+frappe_frappe,frappe/desk/form/load.py,d20e436e0f49659a2ad3cb512c8386ac07884731,2023-09-18T11:16:20+05:30,156,"
+	for c in comments:
+		match c.comment_type:
+			case ""Comment"":
+				c.content = frappe.utils.markdown(c.content)
+				docinfo.comments.append(c)
+			case ""Shared"" | ""Unshared"":
+				docinfo.shared.append(c)
+			case ""Assignment Completed"" | ""Assigned"":
+				docinfo.assignment_logs.append(c)"
+frappe_frappe,frappe/modules/utils.py,526ff3b5769dd54cf8d3998c1f4fe63cb75b03ab,2024-04-11T18:04:30+05:30,133,"					doc.db_insert()
+
+			match custom_doctype:
+				case ""Custom Field"":
+					for d in data[key]:
+						field = frappe.db.get_value(
+							""Custom Field"", {""dt"": doc_type, ""fieldname"": d[""fieldname""]}
+						)
+						if not field:
+							d[""owner""] = ""Administrator"""
+frappe_frappe,frappe/testing/discovery.py,4000cba810163893d64f59ca5f57ea5f75ff2a13,2024-11-05T18:16:22+01:00,131,"		if runner.cfg.tests and test._testMethodName not in runner.cfg.tests:
+			continue
+		match test:
+			case IntegrationTestCase():
+				category = ""integration""
+			case UnitTestCase():
+				category = ""unit""
+			case _:
+				from frappe.deprecation_dumpster import deprecation_warning
+"
+frappe_frappe,frappe/utils/boilerplate.py,87561940a4cc70032cfc22ee8b5e5d21287e42c9,2023-01-23T15:04:43+05:30,76,"
+def is_valid_title(title) -> bool:
+	if not APP_TITLE_PATTERN.match(title):
+		print(
+			""App Title should start with a letter and it can only consist of letters, numbers, spaces and underscores""
+		)
+		return False
+	return True
+
+"
+frappe_frappe,frappe/utils/data.py,a88819230a8967cf50fde1d831f39771e44369d0,2022-08-16T10:53:28+05:30,708,"
+def validate_duration_format(duration):
+	if not DURATION_PATTERN.match(duration):
+		frappe.throw(
+			frappe._(""Value {0} must be in the valid duration format: d h m s"").format(
+				frappe.bold(duration)
+			)
+		)
+
+"
+frappe_frappe,frappe/utils/oauth.py,d13c3778481b42aef8d3fa1de894cf5ef7e235ff,2022-12-27T19:25:43+05:30,273,"	if not user.get_social_login_userid(provider):
+		update_user_record = True
+		match provider:
+			case ""facebook"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""username""))
+				user.update({""user_image"": f""https://graph.facebook.com/{data['id']}/picture""})
+			case ""google"":
+				user.set_social_login_userid(provider, userid=data[""id""])
+			case ""github"":
+				user.set_social_login_userid(provider, userid=data[""id""], username=data.get(""login""))"
+frappe_frappe,frappe/utils/response.py,411819ef81b5a9ab24bbbe0163e847e9802ee978,2023-10-16T18:13:50+05:30,134,"	from frappe.api import ApiVersion, get_api_version
+
+	match get_api_version():
+		case ApiVersion.V1:
+			_make_logs_v1()
+		case ApiVersion.V2:
+			_make_logs_v2()
+
+
+def _make_logs_v1():"
+frappe_frappe,frappe/utils/typing_validations.py,9edd44de012a885779e4f40226dc008dbfbb4cbc,2024-11-28T15:11:30+00:00,78,"		return PyTypeAdapter(type_, config=FrappePydanticConfig)
+	except PydanticUserError as e:
+		match e.code:
+			case ""type-adapter-config-unused"":
+				# Unless they set their custom __pydantic_config__, this will be the case on BaseModule, TypedDict and dataclass - ignore
+				return PyTypeAdapter(type_)
+			case _:
+				raise e
+
+"
+gaphor_gaphor,gaphor/SysML/drop.py,23e23fcf848e49c4d2c54bebac886653a0d65aa1,2023-11-21T19:26:11+02:00,16,"
+    def port_owning_item_block(item):
+        match item.subject:
+            case Property():
+                block = (
+                    item.subject.type if isinstance(item.subject.type, Block) else None
+                )
+            case Block():
+                block = item.subject
+            case _:"
+gaphor_gaphor,gaphor/storage/recovery.py,18b384b7b86d6e265721b4a65db898dcf31fe3b7,2024-05-25T13:40:56+02:00,53,"    def replay(self, element_factory, modeling_language):
+        for event in list(self.events):
+            match event:
+                case (""c"", type, element_id, None):
+                    element_factory.create_as(
+                        modeling_language.lookup_element(type), element_id
+                    )
+                case (""c"", type, element_id, diagram_id):
+                    diagram = element_factory.lookup(diagram_id)
+                    diagram.create_as("
+gaphor_gaphor,gaphor/ui/styling.py,b6ef6f6e2f8c736eaaaded221b9b4714d41be1ca,2024-08-26T10:06:38+02:00,26,"        encoding=""utf-8""
+    )
+    match sys.platform:
+        case ""win32"":
+            css += (
+                importlib.resources.files(""gaphor.ui"") / ""styling-windows.css""
+            ).read_text(encoding=""utf-8"")
+        case ""darwin"":
+            css += (
+                importlib.resources.files(""gaphor.ui"") / ""styling-macos.css"""
+geekcomputers_python,Assembler/assembler.py,8322645f41785eedc3457f9506333a865e27c70d,2023-07-25T02:11:05+04:00,73,"    for ch in string:
+
+        match state:
+
+            case 0:
+            
+                match ch:
+
+                    case ""m"":  # catch mov-command
+"
+geekcomputers_python,Caesar Cipher Encoder  & Decoder.py,483b4ba7c0a03c22f68fdf9a2e89805510eb2039,2023-10-05T07:32:59+04:00,27,"    print(""[1] Encrypt\n[2] Decrypt"")
+
+    match input(""Choose one of the above(example for encode enter 1): ""):
+
+        case ""1"":
+            encode()
+
+        case ""2"":
+            decode()
+"
+geekcomputers_python,Hotel-Management.py,f1cd5021720c6d194b1fbfb0d8f8db12c4dd66ae,2023-07-30T05:11:43+04:00,59,"    Room_Type = int(input(""\nWhich type you want(1-4): \n""))
+
+    match Room_Type:
+        case 1:
+            x = 500
+            Room_Type = ""Normal""
+        case 2:
+            x = 1000
+            Room_Type = ""Deluxe""
+        case 3:"
+geekcomputers_python,Patterns/half triangle pattern.py,a7bf2fe6721ad2622c51451a6ba6c4741998a5ed,2023-08-01T06:54:05+04:00,26,"    part = input(""u: upper part or l: lower part: "").lower()
+
+    match pattern:
+        case ""i"":
+            if part == ""u"":
+                upper_half_incremental_pattern(lines)
+            else:
+                lower_half_incremental_pattern(lines)
+
+        case ""r"":"
+geekcomputers_python,image2pdf/image2pdf.py,5761e7934118f3b1634cc3e995b00caa6eee8f3b,2023-07-24T07:15:33+04:00,124,"    while True:
+        user = input(""Press (R or r) to Run again\nPress (C or c) to change directory\nPress (Any Key) To Exit\nchoice:"").lower()
+        match user:
+            case ""r"":
+                process.convertPictures()
+            case ""c"":
+                process.getUserDir()
+                process.convertPictures()
+            case _:
+                break"
+getsentry_sentry,src/sentry/flags/providers.py,163a6248668d1f0dea108789ef4867c492617f7c,2024-10-28T08:30:40-05:00,58,"    organization_id: int,
+) -> list[FlagAuditLogRow]:
+    match provider:
+        case ""launchdarkly"":
+            return handle_launchdarkly_event(request_data, organization_id)
+        case _:
+            raise InvalidProvider(provider)
+
+
+""""""LaunchDarkly provider."""""""
+getsentry_sentry,src/sentry/lang/native/symbolicator.py,c0fe8ea052ad5d820416bb26d86049666a5851d9,2024-10-31T13:04:41+01:00,65,"    the given platform.
+    """"""
+    match platform:
+        case SymbolicatorPlatform.native:
+            return SymbolicatorPools.default
+        case SymbolicatorPlatform.js:
+            return SymbolicatorPools.js
+        case SymbolicatorPlatform.jvm:
+            return SymbolicatorPools.jvm
+"
+getsentry_sentry,src/sentry/rules/conditions/event_frequency.py,97e7aed59f898df9dfc209c556ec4d0b8fe84e05,2024-10-23T09:49:43-04:00,708,"        lhs = f""tags[{condition['key']}]""
+        rhs = condition[""value""]
+        match condition[""match""]:
+            case ""eq"":
+                operator = Op.EQ
+            case ""ne"":
+                operator = Op.NEQ
+            case ""sw"":
+                operator = Op.LIKE
+                rhs = f""{rhs}%"""
+getsentry_sentry,src/sentry/workflow_engine/models/data_condition.py,77b3d3f4ed7d2ac1abbd1509156a5b2fb0cd12b9,2024-11-13T08:53:44-08:00,61,"
+    def get_condition_result(self) -> DataConditionResult:
+        match self.condition_result:
+            case float() | bool():
+                return self.condition_result
+            case int() | DetectorPriorityLevel():
+                try:
+                    return DetectorPriorityLevel(self.condition_result)
+                except ValueError:
+                    return self.condition_result"
+hasgeek_funnel,funnel/forms/account.py,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,138,"        # 2. Strip text on either side of the colon
+        # 3. Ensure the suffix is uppercase
+        # 4. If count is not a number, default it to 0 (ie, this is not a match)
+        matches: dict[str, int] = {
+            line_suffix.upper(): int(line_count) if line_count.isdigit() else 0
+            for line_suffix, line_count in (
+                (split1.strip(), split2.strip())
+                for split1, split2 in (
+                    (line + (':1' if ':' not in line else '')).split(':', 1)
+                    for line in rv.text.splitlines()"
+hasgeek_funnel,funnel/forms/organization.py,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,61,"        if not reason:
+            return  # name is available
+        match reason:
+            case AccountNameProblem.INVALID:
+                raise forms.validators.ValidationError(
+                    _(""Names can only have alphabets, numbers and underscores"")
+                )
+            case AccountNameProblem.RESERVED:
+                raise forms.validators.ValidationError(_(""This name is reserved""))
+            case AccountNameProblem.USER:"
+hasgeek_funnel,funnel/models/account.py,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,1753,"            )
+        elif '@' in prefix and not prefix.startswith('@'):
+            # Query has an @ in the middle. Match email address (exact match only).
+            # Use param `prefix` instead of `like_query` because it's not a LIKE query.
+            # Combine results with regular user search
+            email_filter = EmailAddress.get_filter(email=prefix)
+            if email_filter is not None:
+                users = (
+                    cls.query.join(AccountEmail)
+                    .join(EmailAddress)"
+hasgeek_funnel,funnel/models/update.py,53616e67351427f85100911472d2b3d397c37e94,2024-03-26T17:01:37+05:30,269,"        """"""Set visibility state (interim until visibility as state is resolved).""""""
+        # FIXME: Move to using an Enum so we don't reproduce the enumeration here
+        match value:
+            case 'public':
+                vstate = VISIBILITY_STATE.PUBLIC
+            case 'participants':
+                vstate = VISIBILITY_STATE.PARTICIPANTS
+            case 'members':
+                vstate = VISIBILITY_STATE.MEMBERS
+            case _:"
+hasgeek_funnel,funnel/views/account.py,9f0498bff711835b66013f6e0049632d2c4e1842,2024-05-04T02:03:23+05:30,228,"    if not ch_ua_str:
+        return None
+    match = _quoted_str_re.match(ch_ua_str)
+    if match:
+        return match[1] or None
+    return None
+
+
+def get_ch_ua(ch_ua: str | None) -> tuple[str, str] | None:
+    """"""Parse Sec-CH-UA or Sec-CH-UA-Full-Version-List header."""""""
+hasgeek_funnel,funnel/views/helpers.py,2623572f145a1becf0b79c0602cdb318b7681d35,2024-02-18T20:44:04+05:30,103,"    def crosscheck_session(self, response: ResponseType) -> ResponseType:
+        """"""Add timestamps to timed values in session, and remove expired values.""""""
+        # Process timestamps only if there is at least one match. Most requests will
+        # have no match.
+        if self.has_overlap_with(session):
+            now = utcnow()
+            for var, delta in self.items():
+                var_at = f'{var}_at'
+                if var in session:
+                    if var_at not in session:"
+hasgeek_funnel,migrations/versions/41b3af7e4449_migrating_preview_video_to_video_field.py,8226d4a82ff134c133f245e5ccd5f7132214fdd9,2024-04-29T16:25:07+05:30,120,"
+def make_video_url(video_source: str, video_id: str) -> str:
+    match video_source:
+        case 'youtube':
+            return f'https://www.youtube.com/watch?v={video_id}'
+        case 'vimeo':
+            return f'https://vimeo.com/{video_id}'
+        case 'googledrive':
+            return f'https://drive.google.com/file/d/{video_id}/view'
+        case 'raw':"
+indico_indico,indico/modules/events/registration/controllers/management/regforms.py,6d9ff1e2e88b7fd22531ad4950c98c67a377b4f7,2024-11-06T11:56:13+00:00,270,"    def _process(self, message, state):
+        self.commit = False
+        match state:
+            case RegistrationState.pending:
+                self.regform.message_pending = message
+            case RegistrationState.unpaid:
+                self.regform.message_unpaid = message
+            case RegistrationState.complete:
+                self.regform.message_complete = message
+            case _:"
+inducer_pymbolic,test/test_pattern_match.py,36af97d97ab944b7a049ef83843152111db0ae22,2022-11-03T10:41:33-05:00,33,"    u = xp1**5 + x
+
+    match u:
+        case p.Sum((p.Power(base, exp), other_term)):
+            assert base is xp1
+            assert exp == 5
+            assert other_term is x
+
+        case _:
+            raise AssertionError()"
+internetarchive_openlibrary,openlibrary/plugins/admin/code.py,9ada5d0ab36fe903833e139010df4dbfa519324f,2023-03-23T17:57:24-07:00,64,"
+        for t in admin_tasks:
+            m = web.re_compile('^' + t.path + '$').match(web.ctx.path)
+            if m:
+                return self.handle(t.cls, m.groups(), librarians=t.librarians)
+        raise web.notfound()
+
+    def handle(self, cls, args=(), librarians=False):
+        # Use admin theme
+        context.cssfile = ""admin"""
+internetarchive_openlibrary,openlibrary/plugins/openlibrary/lists.py,1c8abe4547abbf09eb1526e0a03e82b841f30c2b,2023-12-30T00:06:02-05:00,131,"
+def seed_key_to_seed_type(key: str) -> SeedType:
+    match key.split('/')[1]:
+        case 'subjects':
+            return 'subject'
+        case 'authors':
+            return 'author'
+        case 'works':
+            return 'work'
+        case 'books':"
+internetarchive_openlibrary,openlibrary/solr/updater/list.py,1c8abe4547abbf09eb1526e0a03e82b841f30c2b,2023-12-30T00:06:02-05:00,21,"
+    def key_test(self, key: str) -> bool:
+        return bool(re.match(r'^(/people/[^/]+)?/lists/[^/]+$', key))
+
+    async def update_key(self, list: dict) -> tuple[SolrUpdateRequest, list[str]]:
+        lst = ListSolrBuilder(list)
+        seeds = lst.seed
+        lst = ListSolrBuilder(list, await fetch_seeds_facets(seeds))
+        doc = lst.build()
+        return SolrUpdateRequest(adds=[doc]), []"
+internetarchive_openlibrary,openlibrary/utils/isbn.py,0a90f9f0256e4f933523e9842799e39f95ae29ce,2023-03-09T18:39:13-08:00,114,"    for isbn in isbns:
+        isbn = isbn.strip()
+        match len(isbn):
+            case 10:
+                isbn_10.append(isbn)
+            case 13:
+                isbn_13.append(isbn)
+
+    return (isbn_10, isbn_13)"
+kliment_printrun,printrun/gui/widgets.py,67750ad9b939a6cbdfe3d9c41cfd3ecb73196137,2023-03-28T12:48:35+02:00,22,"def getSpace(a):
+    # This method is used to de-hardcode and unify the borders and gaps of the interface.
+    match a:
+        case 'major': #e.g. outer border of dialog boxes
+            return 12
+        case 'minor': #e.g. border of inner elements
+            return 8
+        case 'mini':
+            return 4
+        case 'stddlg':"
+mitmproxy_mitmproxy,mitmproxy/addons/next_layer.py,edb85d4af1c4ac71caf578d6ce016644434c062d,2023-03-05T19:55:24+01:00,249,"            NeedsMoreData, if the ClientHello is incomplete.
+        """"""
+        match context.client.transport_protocol:
+            case ""tcp"":
+                if starts_like_tls_record(data_client):
+                    try:
+                        ch = parse_client_hello(data_client)
+                    except ValueError:
+                        pass
+                    else:"
+mitmproxy_mitmproxy,mitmproxy/addons/readhar.py,eacbb25e937dd290f4c5a5c76bb31d60a5561745,2023-07-29T18:32:23+02:00,103,"        )
+
+        # Change time to match HAR file
+        new_flow.request.timestamp_start = timestamp_start
+        new_flow.request.timestamp_end = timestamp_end
+
+        new_flow.response.timestamp_start = timestamp_start
+        new_flow.response.timestamp_end = timestamp_end
+
+        new_flow.client_conn.timestamp_start = timestamp_start"
+mitmproxy_mitmproxy,mitmproxy/io/har.py,b3272a3757c18548e5731c91adc1c7e0b222c6ad,2023-09-18T21:05:29+00:00,96,"    )
+
+    # Change time to match HAR file
+    new_flow.request.timestamp_start = timestamp_start
+    new_flow.request.timestamp_end = timestamp_end
+
+    new_flow.response.timestamp_start = timestamp_start
+    new_flow.response.timestamp_end = timestamp_end
+
+    new_flow.client_conn.timestamp_start = timestamp_start"
+mitmproxy_mitmproxy,mitmproxy/net/tls.py,262cadab75d377fbe3a79561e27e477757ee142c,2023-03-05T19:55:24+01:00,236,"    # http://www.moserware.com/2009/06/first-few-milliseconds-of-https.html#client-hello
+    # https://tls13.ulfheim.net/
+    match len(d):
+        case 0:
+            return True
+        case 1:
+            return d[0] == 0x16
+        case 2:
+            return d[0] == 0x16 and d[1] == 0x03
+        case _:"
+mitmproxy_mitmproxy,mitmproxy/proxy/layers/modes.py,edb85d4af1c4ac71caf578d6ce016644434c062d,2023-03-05T19:55:24+01:00,75,"
+        # For secure protocols, set SNI if keep_host_header is false
+        match spec.scheme:
+            case ""http3"" | ""quic"" | ""https"" | ""tls"" | ""dtls"":
+                if not self.context.options.keep_host_header:
+                    self.context.server.sni = spec.address[0]
+            case ""tcp"" | ""http"" | ""udp"" | ""dns"":
+                pass
+            case _:
+                assert_never(spec.scheme)"
+mitmproxy_mitmproxy,release/build.py,3872d33111d27430c4b5f1ae021e91e3522cc0e3,2022-07-25T01:22:57+02:00,91,"
+def operating_system() -> Literal[""windows"", ""linux"", ""macos"", ""unknown""]:
+    match platform.system():
+        case ""Windows"":
+            return ""windows""
+        case ""Linux"":
+            return ""linux""
+        case ""Darwin"":
+            return ""macos""
+        case _:"
+mopidy_mopidy,src/mopidy/internal/path.py,802e077cf0e823615d64a3c53f7de2b6f67b0036,2023-11-01T01:12:07+01:00,44,"
+def get_unix_socket_path(socket_path):
+    match = re.search(""^unix:(.*)"", socket_path)
+    if not match:
+        return None
+    return match.group(1)
+
+
+def path_to_uri(path: Union[str, PathLike[str]]) -> str:
+    """""""
+mozilla_kitsune,kitsune/community/views.py,a2ee9d0148be88350c7195a33d2676ac01fe9e33,2023-03-28T11:11:22-07:00,115,"        product = get_object_or_404(Product, slug=product)
+
+    match area:
+        case ""questions"":
+            results, total = top_contributors_questions(
+                locale=locale, product=product, count=page_size, page=page
+            )
+            locales = QuestionLocale.objects.locales_list()
+        case ""kb"":
+            results, total = top_contributors_kb(product=product, count=page_size, page=page)"
+mozilla_kitsune,kitsune/products/migrations/0001_squashed_0020_remove_sumoplaceholderpage_page_ptr_and_more.py,463ab47cd044cc99fc7472f5617e1196738d6c30,2024-10-31T15:36:56-07:00,1284,"    for target_slug in TOPICS_TO_MIGRATE.keys():
+
+        match target_slug:
+            case ""install-and-update"":
+                title = ""Install and update""
+            case ""troubleshooting"":
+                title = ""Troubleshooting""
+            case ""protect-your-privacy"":
+                title = ""Protect your privacy""
+            case ""emails"":"
+mozilla_kitsune,kitsune/products/migrations/0010_auto_20240624_0616.py,0b9ee727cbd2c3776b1ec7a5b099c44056d67aa7,2024-06-25T15:55:16+03:00,95,"    for target_slug in TOPICS_TO_MIGRATE.keys():
+
+        match target_slug:
+            case ""install-and-update"":
+                title = ""Install and Update""
+            case ""troubleshooting"":
+                title = ""Troubleshooting""
+            case ""protect-your-privacy"":
+                title = ""Protect your privacy""
+            case ""emails"":"
+mozilla_kitsune,kitsune/questions/migrations/0015_auto_20240802_0524.py,41cc8d6bc49248b2a99c188204103e172aad1501,2024-08-08T09:27:56-07:00,23,"                aaq_config.enabled_locales.add(question_locale)
+
+            match product.slug:
+                case ""firefox"":
+                    aaq_config.extra_fields = [""troubleshooting"", ""ff_version"", ""os""]
+                case ""mobile"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""ios"":
+                    aaq_config.extra_fields = [""ff_version"", ""os""]
+                case ""firefox-enterprise"":"
+mozilla_kitsune,kitsune/questions/views.py,a2ee9d0148be88350c7195a33d2676ac01fe9e33,2023-03-28T11:11:22-07:00,165,"        filter_ = None
+
+    match filter_:
+        case ""new"":
+            question_qs = question_qs.new()
+        case ""unhelpful-answers"":
+            question_qs = question_qs.unhelpful_answers()
+        case ""needsinfo"":
+            question_qs = question_qs.needs_info()
+        case ""solution-provided"":"
+mozilla_kitsune,kitsune/sumo/parser.py,b3250b567d9948bcdefdf7781ca0068cc1cd886c,2023-07-26T16:36:02-07:00,132,"            d = d.redirect_document()
+
+        # The locale in the link urls should always match the current
+        # document's locale even if the document/slug being linked to
+        # is in the default locale.
+        url = reverse(""wiki.document"", locale=locale, args=[d.slug])
+        return {""found"": True, ""url"": url, ""text"": d.title}
+
+    # To avoid circular imports, wiki.models imports wiki_to_html
+    from kitsune.sumo.templatetags.jinja_helpers import urlparams"
+nixos_nixops,nixops/util.py,e43c82fb7ed2c210199e95753b6f7c9ad8b6faea,2023-12-06T19:50:12+01:00,157,"
+            # Support containers of ImmutableValidatedObjects
+            match typing.get_origin(ann):
+
+                case collections.abc.Sequence:
+                    sequence: List = []
+                    for v in value:
+                        for subann in typing.get_args(ann):
+                            if isclass(subann) and issubclass(
+                                subann, ImmutableValidatedObject"
+pandas-dev_pandas,pandas/core/computation/parsing.py,7c726e9997bcb3f2802a43047ab5564707deaa74,2024-08-20T16:08:18-04:00,214,"        char = s[i]
+
+        match char:
+            case ""`"":
+                # start of a backtick-quoted string
+                if parse_state == ParseState.DEFAULT:
+                    if substr:
+                        substrings.append((False, """".join(substr)))
+
+                    substr = [char]"
+payu-org_payu,payu/models/cesm_cmeps.py,eb8e8f8fa6db3fb164b468893345b2ee4c63d198,2024-09-24T10:57:24+10:00,238,"                    )
+                elif pio_async == "".false."":
+                    match nc_type:
+                        case ""netcdf"":
+                            break
+                        case ""netcdf4p"" | ""pnetcdf"":
+                            niotasks = int(self.runconfig.get(io_section, ""pio_numiotasks""))
+                            iostride = int(self.runconfig.get(io_section, ""pio_stride""))
+                            if (niotasks <= 0):
+                                warn(f""The pio_numiotasks for {io_section} in {NUOPC_CONFIG} is """
+pycqa_pycodestyle,testing/data/python310.py,7e94466850b3602256cf600ba30a59d1c1a78a23,2023-07-16T19:35:55-04:00,3,"#: Okay
+var, var2 = 1, 2
+match (var, var2):
+    case [2, 3]:
+        pass
+    case (1, 2):
+        pass
+    case _:
+        print(""Default"")
+#: Okay"
+pycqa_pycodestyle,testsuite/python310.py,e2ebb356246615e1749a5366592e4523bb8752ec,2021-05-02T18:42:29+02:00,3,"var, var2 = 1, 2
+#: Okay
+match (var, var2):
+    #: Okay
+    case [2, 3]:
+        pass
+    #: Okay
+    case (1, 2):
+        pass
+    #: Okay"
+scipy_scipy,scipy/_lib/tests/test_warnings.py,0b949514128c3790666862229d0f956009d63ed1,2024-04-21T12:20:21+01:00,44,"        if p.ls[-1] == 'simplefilter' or p.ls[-1] == 'filterwarnings':
+            # get first argument of the `args` node of the filter call
+            match node.args[0]:
+                case ast.Constant() as c:
+                    argtext = c.value
+                case ast.JoinedStr() as js:
+                    # if we get an f-string, discard the templated pieces, which
+                    # are likely the type or specific message; we're interested
+                    # in the action, which is less likely to use a template
+                    argtext = """".join("
+scipy_scipy,scipy/integrate/_lebedev.py,d8212712ff2525a6e418f7656e503724f6e73f24,2024-11-16T11:05:00+01:00,105,"    b = 0.0
+
+    match degree:
+
+        case 6:
+
+            v = 0.1666666666666667E+0
+            leb_tmp, start = get_lebedev_recurrence_points(1, start, a, b, v, leb_tmp)
+
+        case 14:"
+shedskin_shedskin,tests/skip_control_match.py,f30f43f28b2b4ec4b2b6bb83a0211c9fe492311b,2023-01-06T08:49:10+00:00,6,"    # example
+    # from: https://stackoverflow.com/questions/11479816/what-is-the-python-equivalent-for-a-case-switch-statement
+    match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+"
+shedskin_shedskin,tests/skip_control_match/test_control_match.py,8809aeccbc98c0007c6ebc5ab2596c350ce0def5,2023-01-15T23:57:27+00:00,6,"    # example
+    # from: https://stackoverflow.com/questions/11479816/what-is-the-python-equivalent-for-a-case-switch-statement
+    match status:
+        case 400:
+            return ""Bad request""
+        case 404:
+            return ""Not found""
+        case 418:
+            return ""I'm a teapot""
+"

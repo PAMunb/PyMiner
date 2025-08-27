@@ -1,9 +1,9 @@
 import ast
 
 class StructuralPatternMatchingVisitor(ast.NodeVisitor):
-    def __init__(self):
+    def __init__(self, source_code):
         self.metrics = {
-            'structural_pattern_match' : 0,
+            'pattern_match' : 0,
             'pattern_as' : 0,
             'pattern_or' : 0,
             'pattern_sequence' : 0,
@@ -12,7 +12,7 @@ class StructuralPatternMatchingVisitor(ast.NodeVisitor):
             'pattern_value' : 0,
             'pattern_singleton' : 0,
             'pattern_star' : 0,
-            'structural_pattern_match_files' : set(),
+            'pattern_match_files' : set(),
             'pattern_as_files' : set(),
             'pattern_or_files' : set(),
             'pattern_sequence_files' : set(),
@@ -25,22 +25,40 @@ class StructuralPatternMatchingVisitor(ast.NodeVisitor):
 
         self.visited_nodes = set()  # Conjunto para armazenar nós únicos já visitados
         self.current_file = ""  # Para armazenar o nome do arquivo atual
+        self.source_code = source_code
+        self.current_commit = None
+        self.matches_found = []  # 
 
     def set_current_file(self, file_name):
         # Método para setar o arquivo atual
         self.current_file = file_name
                 
+    def set_current_file(self, filename):
+        self.current_file = filename
+
+    def set_current_commit(self, commit_hash):
+        self.current_commit = commit_hash
+
     def visit_Match(self, node):
-        if node not in self.visited_nodes:
+        if node not in getattr(self, 'visited_nodes', set()):
+            if not hasattr(self, 'visited_nodes'):
+                self.visited_nodes = set()
             self.visited_nodes.add(node)
-            self.metrics['structural_pattern_match'] += 1
-            if self.current_file not in self.metrics['structural_pattern_match_files']:
-                self.metrics['structural_pattern_match_files'].add(self.current_file)
-            for case in node.cases:
-                if case not in self.visited_nodes:
-                    self.visited_nodes.add(case)
-                    self._visit_pattern(case.pattern)
+
+            self.metrics['pattern_match'] += 1
+            self.metrics['pattern_match_files'].add(self.current_file)
+
+            code = ast.get_source_segment(self.source_code, node)
+
+            self.matches_found.append({
+                'commit': self.current_commit,
+                'file': self.current_file,
+                'lineno': node.lineno,
+                'code': code
+            })
+
         self.generic_visit(node)
+
 
     def visit_MatchSequence(self, node):
         if node not in self.visited_nodes:
@@ -50,6 +68,9 @@ class StructuralPatternMatchingVisitor(ast.NodeVisitor):
                 self.metrics['pattern_sequence_files'].add(self.current_file)
             for pattern in node.patterns:
                 self._visit_pattern(pattern)
+            print(f"\n➡ MatchClass encontrado em: {self.current_file}:{node.lineno}")
+            print("Código:")
+            print(ast.get_source_segment(self.source_code, node))
         self.generic_visit(node)
         
     def visit_MatchMapping(self, node):

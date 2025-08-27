@@ -1,0 +1,117 @@
+commit,file,lineno,code
+13c42a37fb5555786db0204b5f78a20b8d9429f0,src/sentry/lang/native/symbolicator.py,65,"match platform:
+        case SymbolicatorPlatform.native:
+            return SymbolicatorPools.default
+        case SymbolicatorPlatform.js:
+            return SymbolicatorPools.js
+        case SymbolicatorPlatform.jvm:
+            return SymbolicatorPools.jvm"
+13c42a37fb5555786db0204b5f78a20b8d9429f0,src/sentry/flags/providers.py,58,"match provider:
+        case ""launchdarkly"":
+            return handle_launchdarkly_event(request_data, organization_id)
+        case _:
+            raise InvalidProvider(provider)"
+13c42a37fb5555786db0204b5f78a20b8d9429f0,src/sentry/rules/conditions/event_frequency.py,730,"match condition[""match""]:
+            case MatchType.EQUAL:
+                operator = Op.EQ
+            case MatchType.NOT_EQUAL:
+                operator = Op.NEQ
+            case MatchType.STARTS_WITH:
+                operator = Op.LIKE
+                rhs = f""{rhs}%""
+            case MatchType.NOT_STARTS_WITH:
+                operator = Op.NOT_LIKE
+                rhs = f""{rhs}%""
+            case MatchType.ENDS_WITH:
+                operator = Op.LIKE
+                rhs = f""%{rhs}""
+            case MatchType.NOT_ENDS_WITH:
+                operator = Op.NOT_LIKE
+                rhs = f""%{rhs}""
+            case MatchType.CONTAINS:
+                operator = Op.LIKE
+                rhs = f""%{rhs}%""
+            case MatchType.NOT_CONTAINS:
+                operator = Op.NOT_LIKE
+                rhs = f""%{rhs}%""
+            case MatchType.IS_SET:
+                operator = Op.IS_NOT_NULL
+                rhs = None
+            case MatchType.NOT_SET:
+                operator = Op.IS_NULL
+                rhs = None
+            case MatchType.IS_IN:
+                operator = Op.IN
+                rhs = rhs.split("","")
+            case MatchType.NOT_IN:
+                operator = Op.NOT_IN
+                rhs = rhs.split("","")
+            case _:
+                raise ValueError(f""Unsupported match type: {condition['match']}"")"
+ad2b920ec9e704bd1ea1905a1a43644a1569198f,src/sentry/workflow_engine/models/data_condition.py,61,"match self.condition_result:
+            case float() | bool():
+                return self.condition_result
+            case int() | DetectorPriorityLevel():
+                try:
+                    return DetectorPriorityLevel(self.condition_result)
+                except ValueError:
+                    return self.condition_result
+            case _:
+                logger.error(
+                    ""Invalid condition result"",
+                    extra={""condition_result"": self.condition_result, ""id"": self.id},
+                )"
+ad2b920ec9e704bd1ea1905a1a43644a1569198f,src/sentry/lang/native/symbolicator.py,65,"match platform:
+        case SymbolicatorPlatform.native:
+            return SymbolicatorPools.default
+        case SymbolicatorPlatform.js:
+            return SymbolicatorPools.js
+        case SymbolicatorPlatform.jvm:
+            return SymbolicatorPools.jvm"
+ad2b920ec9e704bd1ea1905a1a43644a1569198f,src/sentry/flags/providers.py,66,"match provider:
+        case ""launchdarkly"":
+            return handle_launchdarkly_event(request_data, organization_id)
+        case _:
+            raise InvalidProvider(provider)"
+ad2b920ec9e704bd1ea1905a1a43644a1569198f,src/sentry/flags/providers.py,79,"match provider:
+        case ""launchdarkly"":
+            return validate_launchdarkly_event(request_data, request_headers, organization_id)
+        case _:
+            raise InvalidProvider(provider)"
+ad2b920ec9e704bd1ea1905a1a43644a1569198f,src/sentry/rules/conditions/event_frequency.py,730,"match condition[""match""]:
+            case MatchType.EQUAL:
+                operator = Op.EQ
+            case MatchType.NOT_EQUAL:
+                operator = Op.NEQ
+            case MatchType.STARTS_WITH:
+                operator = Op.LIKE
+                rhs = f""{rhs}%""
+            case MatchType.NOT_STARTS_WITH:
+                operator = Op.NOT_LIKE
+                rhs = f""{rhs}%""
+            case MatchType.ENDS_WITH:
+                operator = Op.LIKE
+                rhs = f""%{rhs}""
+            case MatchType.NOT_ENDS_WITH:
+                operator = Op.NOT_LIKE
+                rhs = f""%{rhs}""
+            case MatchType.CONTAINS:
+                operator = Op.LIKE
+                rhs = f""%{rhs}%""
+            case MatchType.NOT_CONTAINS:
+                operator = Op.NOT_LIKE
+                rhs = f""%{rhs}%""
+            case MatchType.IS_SET:
+                operator = Op.IS_NOT_NULL
+                rhs = None
+            case MatchType.NOT_SET:
+                operator = Op.IS_NULL
+                rhs = None
+            case MatchType.IS_IN:
+                operator = Op.IN
+                rhs = rhs.split("","")
+            case MatchType.NOT_IN:
+                operator = Op.NOT_IN
+                rhs = rhs.split("","")
+            case _:
+                raise ValueError(f""Unsupported match type: {condition['match']}"")"

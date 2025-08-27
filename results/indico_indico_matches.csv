@@ -1,0 +1,19 @@
+commit,file,lineno,code
+10130470e11b045661628a863e22dcdf60c47bfd,indico/modules/events/registration/controllers/management/regforms.py,270,"match state:
+            case RegistrationState.pending:
+                self.regform.message_pending = message
+            case RegistrationState.unpaid:
+                self.regform.message_unpaid = message
+            case RegistrationState.complete:
+                self.regform.message_complete = message
+            case _:
+                raise ValidationError('Invalid state')"
+b73a958d615939ad172129f051a8b858bb0239f3,indico/modules/events/registration/controllers/management/regforms.py,270,"match state:
+            case RegistrationState.pending:
+                self.regform.message_pending = message
+            case RegistrationState.unpaid:
+                self.regform.message_unpaid = message
+            case RegistrationState.complete:
+                self.regform.message_complete = message
+            case _:
+                raise ValidationError('Invalid state')"

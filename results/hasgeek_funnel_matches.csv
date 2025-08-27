@@ -1,0 +1,767 @@
+commit,file,lineno,code
+4a410b25e966e7a71945db418312546212d6e788,funnel/views/helpers.py,492,"match algorithm:
+        case 'gzip':
+            return gzip.compress(data)
+        case 'deflate':
+            return zlib.compress(data)
+        case 'br':
+            return brotli.compress(data)"
+4a410b25e966e7a71945db418312546212d6e788,funnel/views/helpers.py,508,"match algorithm:
+        case 'gzip':
+            return gzip.decompress(data)
+        case 'deflate':
+            return zlib.decompress(data)
+        case 'br':
+            return brotli.decompress(data)"
+dea6dca24179c12b791b031d570044f7be01b07f,funnel/views/helpers.py,493,"match algorithm:
+        case 'gzip':
+            return gzip.compress(data)
+        case 'deflate':
+            return zlib.compress(data)
+        case 'br':
+            return brotli.compress(data)"
+dea6dca24179c12b791b031d570044f7be01b07f,funnel/views/helpers.py,509,"match algorithm:
+        case 'gzip':
+            return gzip.decompress(data)
+        case 'deflate':
+            return zlib.decompress(data)
+        case 'br':
+            return brotli.decompress(data)"
+dea6dca24179c12b791b031d570044f7be01b07f,funnel/forms/account.py,390,"match reason:
+        case AccountNameProblem.BLANK:
+            raise forms.validators.ValidationError(_(""This is required""))
+        case AccountNameProblem.LONG:
+            raise forms.validators.ValidationError(_(""This is too long""))
+        case AccountNameProblem.INVALID:
+            raise forms.validators.ValidationError(
+                _(""Usernames can only have alphabets, numbers and underscores"")
+            )
+        case AccountNameProblem.RESERVED:
+            raise forms.validators.ValidationError(_(""This username is reserved""))
+        case (
+            AccountNameProblem.ACCOUNT
+            | AccountNameProblem.USER
+            | AccountNameProblem.ORG
+            | AccountNameProblem.PLACEHOLDER
+        ):
+            raise forms.validators.ValidationError(_(""This username is taken""))"
+dea6dca24179c12b791b031d570044f7be01b07f,funnel/forms/organization.py,61,"match reason:
+            case AccountNameProblem.INVALID:
+                raise forms.validators.ValidationError(
+                    _(""Names can only have alphabets, numbers and underscores"")
+                )
+            case AccountNameProblem.RESERVED:
+                raise forms.validators.ValidationError(_(""This name is reserved""))
+            case AccountNameProblem.USER:
+                if self.edit_user.name_is(field.data):
+                    raise forms.validators.ValidationError(
+                        Markup(
+                            _(
+                                'This is <em>your</em> current username.'
+                                ' You must change it first from <a href=""'
+                                '{account}"">your account</a> before you can assign it'
+                                ' to an organization'
+                            ).format(account=url_for('account'))
+                        )
+                    )
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another user"")
+                )
+            case AccountNameProblem.ORG:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another organization"")
+                )
+            case _:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another account"")
+                )"
+dea6dca24179c12b791b031d570044f7be01b07f,funnel/models/account.py,1801,"match existing:
+                case User():
+                    return AccountNameProblem.USER
+                case Organization():
+                    return AccountNameProblem.ORG
+                case Placeholder():
+                    return AccountNameProblem.PLACEHOLDER
+                case _:
+                    return AccountNameProblem.ACCOUNT"
+dea6dca24179c12b791b031d570044f7be01b07f,funnel/models/update.py,269,"match value:
+            case 'public':
+                vstate = VISIBILITY_STATE.PUBLIC
+            case 'participants':
+                vstate = VISIBILITY_STATE.PARTICIPANTS
+            case 'members':
+                vstate = VISIBILITY_STATE.MEMBERS
+            case _:
+                raise ValueError(""Unknown visibility state"")"
+ef5e23422a13255054dfe106a5f7cde4e1543108,funnel/views/helpers.py,571,"match algorithm:
+        case 'gzip':
+            return gzip.compress(data)
+        case 'deflate':
+            return zlib.compress(data)
+        case 'br':
+            return brotli.compress(data)"
+ef5e23422a13255054dfe106a5f7cde4e1543108,funnel/views/helpers.py,587,"match algorithm:
+        case 'gzip':
+            return gzip.decompress(data)
+        case 'deflate':
+            return zlib.decompress(data)
+        case 'br':
+            return brotli.decompress(data)"
+ef5e23422a13255054dfe106a5f7cde4e1543108,funnel/views/account.py,266,"match client_hints.get('sec-ch-ua-mobile'):
+            case '?0':
+                mobile = False
+            case '?1':
+                mobile = True"
+ef5e23422a13255054dfe106a5f7cde4e1543108,funnel/forms/account.py,390,"match reason:
+        case AccountNameProblem.BLANK:
+            raise forms.validators.ValidationError(_(""This is required""))
+        case AccountNameProblem.LONG:
+            raise forms.validators.ValidationError(_(""This is too long""))
+        case AccountNameProblem.INVALID:
+            raise forms.validators.ValidationError(
+                _(""Usernames can only have alphabets, numbers and underscores"")
+            )
+        case AccountNameProblem.RESERVED:
+            raise forms.validators.ValidationError(_(""This username is reserved""))
+        case (
+            AccountNameProblem.ACCOUNT
+            | AccountNameProblem.USER
+            | AccountNameProblem.ORG
+            | AccountNameProblem.PLACEHOLDER
+        ):
+            raise forms.validators.ValidationError(_(""This username is taken""))"
+ef5e23422a13255054dfe106a5f7cde4e1543108,funnel/forms/organization.py,61,"match reason:
+            case AccountNameProblem.INVALID:
+                raise forms.validators.ValidationError(
+                    _(""Names can only have alphabets, numbers and underscores"")
+                )
+            case AccountNameProblem.RESERVED:
+                raise forms.validators.ValidationError(_(""This name is reserved""))
+            case AccountNameProblem.USER:
+                if self.edit_user.name_is(field.data):
+                    raise forms.validators.ValidationError(
+                        Markup(
+                            _(
+                                'This is <em>your</em> current username.'
+                                ' You must change it first from <a href=""'
+                                '{account}"">your account</a> before you can assign it'
+                                ' to an organization'
+                            ).format(account=url_for('account'))
+                        )
+                    )
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another user"")
+                )
+            case AccountNameProblem.ORG:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another organization"")
+                )
+            case _:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another account"")
+                )"
+ef5e23422a13255054dfe106a5f7cde4e1543108,funnel/models/update.py,274,"match value:
+            case 'public':
+                vstate = VISIBILITY_STATE.PUBLIC
+            case 'participants':
+                vstate = VISIBILITY_STATE.PARTICIPANTS
+            case 'members':
+                vstate = VISIBILITY_STATE.MEMBERS
+            case _:
+                raise ValueError(""Unknown visibility state"")"
+ef5e23422a13255054dfe106a5f7cde4e1543108,funnel/models/account.py,1848,"match existing:
+                case User():
+                    return AccountNameProblem.USER
+                case Organization():
+                    return AccountNameProblem.ORG
+                case Placeholder():
+                    return AccountNameProblem.PLACEHOLDER
+                case _:
+                    return AccountNameProblem.ACCOUNT"
+ef5e23422a13255054dfe106a5f7cde4e1543108,migrations/versions/41b3af7e4449_migrating_preview_video_to_video_field.py,120,"match video_source:
+        case 'youtube':
+            return f'https://www.youtube.com/watch?v={video_id}'
+        case 'vimeo':
+            return f'https://vimeo.com/{video_id}'
+        case 'googledrive':
+            return f'https://drive.google.com/file/d/{video_id}/view'
+        case 'raw':
+            return video_id
+        case _:
+            raise ValueError(""Unknown video source"")"
+f46a59e88a6a79c508523bee9e3daf97893b5eba,funnel/views/helpers.py,574,"match algorithm:
+        case 'gzip':
+            return gzip.compress(data)
+        case 'deflate':
+            return zlib.compress(data)
+        case 'br':
+            return brotli.compress(data)"
+f46a59e88a6a79c508523bee9e3daf97893b5eba,funnel/views/helpers.py,593,"match algorithm:
+        case 'gzip':
+            return gzip.decompress(data)
+        case 'deflate':
+            return zlib.decompress(data)
+        case 'br':
+            return brotli.decompress(data)"
+f46a59e88a6a79c508523bee9e3daf97893b5eba,funnel/views/account.py,263,"match client_hints.get('sec-ch-ua-mobile'):
+            case '?0':
+                mobile = False
+            case '?1':
+                mobile = True"
+f46a59e88a6a79c508523bee9e3daf97893b5eba,funnel/forms/account.py,384,"match reason:
+        case AccountNameProblem.BLANK:
+            raise forms.validators.ValidationError(_(""This is required""))
+        case AccountNameProblem.LONG:
+            raise forms.validators.ValidationError(_(""This is too long""))
+        case AccountNameProblem.INVALID:
+            raise forms.validators.ValidationError(
+                _(""Usernames can only have alphabets, numbers and underscores"")
+            )
+        case AccountNameProblem.RESERVED:
+            raise forms.validators.ValidationError(_(""This username is reserved""))
+        case (
+            AccountNameProblem.ACCOUNT
+            | AccountNameProblem.USER
+            | AccountNameProblem.ORG
+            | AccountNameProblem.PLACEHOLDER
+        ):
+            raise forms.validators.ValidationError(_(""This username is taken""))"
+f46a59e88a6a79c508523bee9e3daf97893b5eba,funnel/forms/organization.py,61,"match reason:
+            case AccountNameProblem.INVALID:
+                raise forms.validators.ValidationError(
+                    _(""Names can only have alphabets, numbers and underscores"")
+                )
+            case AccountNameProblem.RESERVED:
+                raise forms.validators.ValidationError(_(""This name is reserved""))
+            case AccountNameProblem.USER:
+                if self.edit_user.name_is(field.data):
+                    raise forms.validators.ValidationError(
+                        Markup(
+                            _(
+                                'This is <em>your</em> current username.'
+                                ' You must change it first from <a href=""'
+                                '{account}"">your account</a> before you can assign it'
+                                ' to an organization'
+                            ).format(account=url_for('account'))
+                        )
+                    )
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another user"")
+                )
+            case AccountNameProblem.ORG:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another organization"")
+                )
+            case _:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another account"")
+                )"
+f46a59e88a6a79c508523bee9e3daf97893b5eba,funnel/models/update.py,274,"match value:
+            case 'public':
+                vstate = VISIBILITY_STATE.PUBLIC
+            case 'participants':
+                vstate = VISIBILITY_STATE.PARTICIPANTS
+            case 'members':
+                vstate = VISIBILITY_STATE.MEMBERS
+            case _:
+                raise ValueError(""Unknown visibility state"")"
+f46a59e88a6a79c508523bee9e3daf97893b5eba,funnel/models/account.py,1857,"match existing:
+                case User():
+                    return AccountNameProblem.USER
+                case Organization():
+                    return AccountNameProblem.ORG
+                case Placeholder():
+                    return AccountNameProblem.PLACEHOLDER
+                case _:
+                    return AccountNameProblem.ACCOUNT"
+f46a59e88a6a79c508523bee9e3daf97893b5eba,migrations/versions/41b3af7e4449_migrating_preview_video_to_video_field.py,120,"match video_source:
+        case 'youtube':
+            return f'https://www.youtube.com/watch?v={video_id}'
+        case 'vimeo':
+            return f'https://vimeo.com/{video_id}'
+        case 'googledrive':
+            return f'https://drive.google.com/file/d/{video_id}/view'
+        case 'raw':
+            return video_id
+        case _:
+            raise ValueError(""Unknown video source"")"
+7dba9cc6c772044b8f25e47d7cdfc6234771bdaa,funnel/views/helpers.py,574,"match algorithm:
+        case 'gzip':
+            return gzip.compress(data)
+        case 'deflate':
+            return zlib.compress(data)
+        case 'br':
+            return brotli.compress(data)"
+7dba9cc6c772044b8f25e47d7cdfc6234771bdaa,funnel/views/helpers.py,593,"match algorithm:
+        case 'gzip':
+            return gzip.decompress(data)
+        case 'deflate':
+            return zlib.decompress(data)
+        case 'br':
+            return brotli.decompress(data)"
+7dba9cc6c772044b8f25e47d7cdfc6234771bdaa,funnel/views/account.py,263,"match client_hints.get('sec-ch-ua-mobile'):
+            case '?0':
+                mobile = False
+            case '?1':
+                mobile = True"
+7dba9cc6c772044b8f25e47d7cdfc6234771bdaa,funnel/forms/organization.py,61,"match reason:
+            case AccountNameProblem.INVALID:
+                raise forms.validators.ValidationError(
+                    _(""Names can only have alphabets, numbers and underscores"")
+                )
+            case AccountNameProblem.RESERVED:
+                raise forms.validators.ValidationError(_(""This name is reserved""))
+            case AccountNameProblem.USER:
+                if self.edit_user.name_is(field.data):
+                    raise forms.validators.ValidationError(
+                        Markup(
+                            _(
+                                'This is <em>your</em> current username.'
+                                ' You must change it first from <a href=""'
+                                '{account}"">your account</a> before you can assign it'
+                                ' to an organization'
+                            ).format(account=url_for('account'))
+                        )
+                    )
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another user"")
+                )
+            case AccountNameProblem.ORG:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another organization"")
+                )
+            case _:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another account"")
+                )"
+7dba9cc6c772044b8f25e47d7cdfc6234771bdaa,funnel/forms/account.py,384,"match reason:
+        case AccountNameProblem.BLANK:
+            raise forms.validators.ValidationError(_(""This is required""))
+        case AccountNameProblem.LONG:
+            raise forms.validators.ValidationError(_(""This is too long""))
+        case AccountNameProblem.INVALID:
+            raise forms.validators.ValidationError(
+                _(""Usernames can only have alphabets, numbers and underscores"")
+            )
+        case AccountNameProblem.RESERVED:
+            raise forms.validators.ValidationError(_(""This username is reserved""))
+        case (
+            AccountNameProblem.ACCOUNT
+            | AccountNameProblem.USER
+            | AccountNameProblem.ORG
+            | AccountNameProblem.PLACEHOLDER
+        ):
+            raise forms.validators.ValidationError(_(""This username is taken""))"
+7dba9cc6c772044b8f25e47d7cdfc6234771bdaa,funnel/models/update.py,274,"match value:
+            case 'public':
+                vstate = VISIBILITY_STATE.PUBLIC
+            case 'participants':
+                vstate = VISIBILITY_STATE.PARTICIPANTS
+            case 'members':
+                vstate = VISIBILITY_STATE.MEMBERS
+            case _:
+                raise ValueError(""Unknown visibility state"")"
+7dba9cc6c772044b8f25e47d7cdfc6234771bdaa,funnel/models/account.py,1842,"match existing:
+                case User():
+                    return AccountNameProblem.USER
+                case Organization():
+                    return AccountNameProblem.ORG
+                case Placeholder():
+                    return AccountNameProblem.PLACEHOLDER
+                case _:
+                    return AccountNameProblem.ACCOUNT"
+7dba9cc6c772044b8f25e47d7cdfc6234771bdaa,migrations/versions/41b3af7e4449_migrating_preview_video_to_video_field.py,120,"match video_source:
+        case 'youtube':
+            return f'https://www.youtube.com/watch?v={video_id}'
+        case 'vimeo':
+            return f'https://vimeo.com/{video_id}'
+        case 'googledrive':
+            return f'https://drive.google.com/file/d/{video_id}/view'
+        case 'raw':
+            return video_id
+        case _:
+            raise ValueError(""Unknown video source"")"
+7659fd11011d0de7cdeff56b4d04faa4d340804d,funnel/views/helpers.py,574,"match algorithm:
+        case 'gzip':
+            return gzip.compress(data)
+        case 'deflate':
+            return zlib.compress(data)
+        case 'br':
+            return brotli.compress(data)"
+7659fd11011d0de7cdeff56b4d04faa4d340804d,funnel/views/helpers.py,593,"match algorithm:
+        case 'gzip':
+            return gzip.decompress(data)
+        case 'deflate':
+            return zlib.decompress(data)
+        case 'br':
+            return brotli.decompress(data)"
+7659fd11011d0de7cdeff56b4d04faa4d340804d,funnel/views/account.py,263,"match client_hints.get('sec-ch-ua-mobile'):
+            case '?0':
+                mobile = False
+            case '?1':
+                mobile = True"
+7659fd11011d0de7cdeff56b4d04faa4d340804d,funnel/forms/account.py,384,"match reason:
+        case AccountNameProblem.BLANK:
+            raise forms.validators.ValidationError(_(""This is required""))
+        case AccountNameProblem.LONG:
+            raise forms.validators.ValidationError(_(""This is too long""))
+        case AccountNameProblem.INVALID:
+            raise forms.validators.ValidationError(
+                _(""Usernames can only have alphabets, numbers and underscores"")
+            )
+        case AccountNameProblem.RESERVED:
+            raise forms.validators.ValidationError(_(""This username is reserved""))
+        case (
+            AccountNameProblem.ACCOUNT
+            | AccountNameProblem.USER
+            | AccountNameProblem.ORG
+            | AccountNameProblem.PLACEHOLDER
+        ):
+            raise forms.validators.ValidationError(_(""This username is taken""))"
+7659fd11011d0de7cdeff56b4d04faa4d340804d,funnel/forms/organization.py,61,"match reason:
+            case AccountNameProblem.INVALID:
+                raise forms.validators.ValidationError(
+                    _(""Names can only have alphabets, numbers and underscores"")
+                )
+            case AccountNameProblem.RESERVED:
+                raise forms.validators.ValidationError(_(""This name is reserved""))
+            case AccountNameProblem.USER:
+                if self.edit_user.name_is(field.data):
+                    raise forms.validators.ValidationError(
+                        Markup(
+                            _(
+                                'This is <em>your</em> current username.'
+                                ' You must change it first from <a href=""'
+                                '{account}"">your account</a> before you can assign it'
+                                ' to an organization'
+                            ).format(account=url_for('account'))
+                        )
+                    )
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another user"")
+                )
+            case AccountNameProblem.ORG:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another organization"")
+                )
+            case _:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another account"")
+                )"
+7659fd11011d0de7cdeff56b4d04faa4d340804d,funnel/models/update.py,274,"match value:
+            case 'public':
+                vstate = VISIBILITY_STATE.PUBLIC
+            case 'participants':
+                vstate = VISIBILITY_STATE.PARTICIPANTS
+            case 'members':
+                vstate = VISIBILITY_STATE.MEMBERS
+            case _:
+                raise ValueError(""Unknown visibility state"")"
+7659fd11011d0de7cdeff56b4d04faa4d340804d,funnel/models/account.py,1842,"match existing:
+                case User():
+                    return AccountNameProblem.USER
+                case Organization():
+                    return AccountNameProblem.ORG
+                case Placeholder():
+                    return AccountNameProblem.PLACEHOLDER
+                case _:
+                    return AccountNameProblem.ACCOUNT"
+7659fd11011d0de7cdeff56b4d04faa4d340804d,migrations/versions/41b3af7e4449_migrating_preview_video_to_video_field.py,120,"match video_source:
+        case 'youtube':
+            return f'https://www.youtube.com/watch?v={video_id}'
+        case 'vimeo':
+            return f'https://vimeo.com/{video_id}'
+        case 'googledrive':
+            return f'https://drive.google.com/file/d/{video_id}/view'
+        case 'raw':
+            return video_id
+        case _:
+            raise ValueError(""Unknown video source"")"
+93cf4a7596b1698a0921f858810e9d1522688fdb,funnel/views/helpers.py,574,"match algorithm:
+        case 'gzip':
+            return gzip.compress(data)
+        case 'deflate':
+            return zlib.compress(data)
+        case 'br':
+            return brotli.compress(data)"
+93cf4a7596b1698a0921f858810e9d1522688fdb,funnel/views/helpers.py,593,"match algorithm:
+        case 'gzip':
+            return gzip.decompress(data)
+        case 'deflate':
+            return zlib.decompress(data)
+        case 'br':
+            return brotli.decompress(data)"
+93cf4a7596b1698a0921f858810e9d1522688fdb,funnel/views/account.py,312,"match client_hints.get('sec-ch-ua-mobile'):
+            case '?0':
+                mobile = False
+            case '?1':
+                mobile = True"
+93cf4a7596b1698a0921f858810e9d1522688fdb,funnel/forms/organization.py,61,"match reason:
+            case AccountNameProblem.INVALID:
+                raise forms.validators.ValidationError(
+                    _(""Names can only have alphabets, numbers and underscores"")
+                )
+            case AccountNameProblem.RESERVED:
+                raise forms.validators.ValidationError(_(""This name is reserved""))
+            case AccountNameProblem.USER:
+                if self.edit_user.name_is(field.data):
+                    raise forms.validators.ValidationError(
+                        Markup(
+                            _(
+                                'This is <em>your</em> current username.'
+                                ' You must change it first from <a href=""'
+                                '{account}"">your account</a> before you can assign it'
+                                ' to an organization'
+                            ).format(account=url_for('account'))
+                        )
+                    )
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another user"")
+                )
+            case AccountNameProblem.ORG:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another organization"")
+                )
+            case _:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another account"")
+                )"
+93cf4a7596b1698a0921f858810e9d1522688fdb,funnel/forms/account.py,384,"match reason:
+        case AccountNameProblem.BLANK:
+            raise forms.validators.ValidationError(_(""This is required""))
+        case AccountNameProblem.LONG:
+            raise forms.validators.ValidationError(_(""This is too long""))
+        case AccountNameProblem.INVALID:
+            raise forms.validators.ValidationError(
+                _(""Usernames can only have alphabets, numbers and underscores"")
+            )
+        case AccountNameProblem.RESERVED:
+            raise forms.validators.ValidationError(_(""This username is reserved""))
+        case (
+            AccountNameProblem.ACCOUNT
+            | AccountNameProblem.USER
+            | AccountNameProblem.ORG
+            | AccountNameProblem.PLACEHOLDER
+        ):
+            raise forms.validators.ValidationError(_(""This username is taken""))"
+93cf4a7596b1698a0921f858810e9d1522688fdb,funnel/models/account.py,1842,"match existing:
+                case User():
+                    return AccountNameProblem.USER
+                case Organization():
+                    return AccountNameProblem.ORG
+                case Placeholder():
+                    return AccountNameProblem.PLACEHOLDER
+                case _:
+                    return AccountNameProblem.ACCOUNT"
+93cf4a7596b1698a0921f858810e9d1522688fdb,funnel/models/update.py,274,"match value:
+            case 'public':
+                vstate = VISIBILITY_STATE.PUBLIC
+            case 'participants':
+                vstate = VISIBILITY_STATE.PARTICIPANTS
+            case 'members':
+                vstate = VISIBILITY_STATE.MEMBERS
+            case _:
+                raise ValueError(""Unknown visibility state"")"
+93cf4a7596b1698a0921f858810e9d1522688fdb,migrations/versions/41b3af7e4449_migrating_preview_video_to_video_field.py,120,"match video_source:
+        case 'youtube':
+            return f'https://www.youtube.com/watch?v={video_id}'
+        case 'vimeo':
+            return f'https://vimeo.com/{video_id}'
+        case 'googledrive':
+            return f'https://drive.google.com/file/d/{video_id}/view'
+        case 'raw':
+            return video_id
+        case _:
+            raise ValueError(""Unknown video source"")"
+a92af056ef5b3704ab64574a8cb60f887870fa37,funnel/views/helpers.py,574,"match algorithm:
+        case 'gzip':
+            return gzip.compress(data)
+        case 'deflate':
+            return zlib.compress(data)
+        case 'br':
+            return brotli.compress(data)"
+a92af056ef5b3704ab64574a8cb60f887870fa37,funnel/views/helpers.py,593,"match algorithm:
+        case 'gzip':
+            return gzip.decompress(data)
+        case 'deflate':
+            return zlib.decompress(data)
+        case 'br':
+            return brotli.decompress(data)"
+a92af056ef5b3704ab64574a8cb60f887870fa37,funnel/views/account.py,312,"match client_hints.get('sec-ch-ua-mobile'):
+            case '?0':
+                mobile = False
+            case '?1':
+                mobile = True"
+a92af056ef5b3704ab64574a8cb60f887870fa37,funnel/forms/organization.py,61,"match reason:
+            case AccountNameProblem.INVALID:
+                raise forms.validators.ValidationError(
+                    _(""Names can only have alphabets, numbers and underscores"")
+                )
+            case AccountNameProblem.RESERVED:
+                raise forms.validators.ValidationError(_(""This name is reserved""))
+            case AccountNameProblem.USER:
+                if self.edit_user.name_is(field.data):
+                    raise forms.validators.ValidationError(
+                        Markup(
+                            _(
+                                'This is <em>your</em> current username.'
+                                ' You must change it first from <a href=""'
+                                '{account}"">your account</a> before you can assign it'
+                                ' to an organization'
+                            ).format(account=url_for('account'))
+                        )
+                    )
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another user"")
+                )
+            case AccountNameProblem.ORG:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another organization"")
+                )
+            case _:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another account"")
+                )"
+a92af056ef5b3704ab64574a8cb60f887870fa37,funnel/forms/account.py,384,"match reason:
+        case AccountNameProblem.BLANK:
+            raise forms.validators.ValidationError(_(""This is required""))
+        case AccountNameProblem.LONG:
+            raise forms.validators.ValidationError(_(""This is too long""))
+        case AccountNameProblem.INVALID:
+            raise forms.validators.ValidationError(
+                _(""Usernames can only have alphabets, numbers and underscores"")
+            )
+        case AccountNameProblem.RESERVED:
+            raise forms.validators.ValidationError(_(""This username is reserved""))
+        case (
+            AccountNameProblem.ACCOUNT
+            | AccountNameProblem.USER
+            | AccountNameProblem.ORG
+            | AccountNameProblem.PLACEHOLDER
+        ):
+            raise forms.validators.ValidationError(_(""This username is taken""))"
+a92af056ef5b3704ab64574a8cb60f887870fa37,funnel/models/account.py,1842,"match existing:
+                case User():
+                    return AccountNameProblem.USER
+                case Organization():
+                    return AccountNameProblem.ORG
+                case Placeholder():
+                    return AccountNameProblem.PLACEHOLDER
+                case _:
+                    return AccountNameProblem.ACCOUNT"
+a92af056ef5b3704ab64574a8cb60f887870fa37,funnel/models/update.py,274,"match value:
+            case 'public':
+                vstate = VISIBILITY_STATE.PUBLIC
+            case 'participants':
+                vstate = VISIBILITY_STATE.PARTICIPANTS
+            case 'members':
+                vstate = VISIBILITY_STATE.MEMBERS
+            case _:
+                raise ValueError(""Unknown visibility state"")"
+a92af056ef5b3704ab64574a8cb60f887870fa37,migrations/versions/41b3af7e4449_migrating_preview_video_to_video_field.py,120,"match video_source:
+        case 'youtube':
+            return f'https://www.youtube.com/watch?v={video_id}'
+        case 'vimeo':
+            return f'https://vimeo.com/{video_id}'
+        case 'googledrive':
+            return f'https://drive.google.com/file/d/{video_id}/view'
+        case 'raw':
+            return video_id
+        case _:
+            raise ValueError(""Unknown video source"")"
+b9aad4647ca6d1bf8d84ece4a385755991830371,funnel/views/helpers.py,574,"match algorithm:
+        case 'gzip':
+            return gzip.compress(data)
+        case 'deflate':
+            return zlib.compress(data)
+        case 'br':
+            return brotli.compress(data)"
+b9aad4647ca6d1bf8d84ece4a385755991830371,funnel/views/helpers.py,593,"match algorithm:
+        case 'gzip':
+            return gzip.decompress(data)
+        case 'deflate':
+            return zlib.decompress(data)
+        case 'br':
+            return brotli.decompress(data)"
+b9aad4647ca6d1bf8d84ece4a385755991830371,funnel/views/account.py,312,"match client_hints.get('sec-ch-ua-mobile'):
+            case '?0':
+                mobile = False
+            case '?1':
+                mobile = True"
+b9aad4647ca6d1bf8d84ece4a385755991830371,funnel/forms/organization.py,61,"match reason:
+            case AccountNameProblem.INVALID:
+                raise forms.validators.ValidationError(
+                    _(""Names can only have alphabets, numbers and underscores"")
+                )
+            case AccountNameProblem.RESERVED:
+                raise forms.validators.ValidationError(_(""This name is reserved""))
+            case AccountNameProblem.USER:
+                if self.edit_user.name_is(field.data):
+                    raise forms.validators.ValidationError(
+                        Markup(
+                            _(
+                                'This is <em>your</em> current username.'
+                                ' You must change it first from <a href=""'
+                                '{account}"">your account</a> before you can assign it'
+                                ' to an organization'
+                            ).format(account=url_for('account'))
+                        )
+                    )
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another user"")
+                )
+            case AccountNameProblem.ORG:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another organization"")
+                )
+            case _:
+                raise forms.validators.ValidationError(
+                    _(""This name has been taken by another account"")
+                )"
+b9aad4647ca6d1bf8d84ece4a385755991830371,funnel/forms/account.py,384,"match reason:
+        case AccountNameProblem.BLANK:
+            raise forms.validators.ValidationError(_(""This is required""))
+        case AccountNameProblem.LONG:
+            raise forms.validators.ValidationError(_(""This is too long""))
+        case AccountNameProblem.INVALID:
+            raise forms.validators.ValidationError(
+                _(""Usernames can only have alphabets, numbers and underscores"")
+            )
+        case AccountNameProblem.RESERVED:
+            raise forms.validators.ValidationError(_(""This username is reserved""))
+        case (
+            AccountNameProblem.ACCOUNT
+            | AccountNameProblem.USER
+            | AccountNameProblem.ORG
+            | AccountNameProblem.PLACEHOLDER
+        ):
+            raise forms.validators.ValidationError(_(""This username is taken""))"
+b9aad4647ca6d1bf8d84ece4a385755991830371,funnel/models/update.py,274,"match value:
+            case 'public':
+                vstate = VISIBILITY_STATE.PUBLIC
+            case 'participants':
+                vstate = VISIBILITY_STATE.PARTICIPANTS
+            case 'members':
+                vstate = VISIBILITY_STATE.MEMBERS
+            case _:
+                raise ValueError(""Unknown visibility state"")"
+b9aad4647ca6d1bf8d84ece4a385755991830371,funnel/models/account.py,1842,"match existing:
+                case User():
+                    return AccountNameProblem.USER
+                case Organization():
+                    return AccountNameProblem.ORG
+                case Placeholder():
+                    return AccountNameProblem.PLACEHOLDER
+                case _:
+                    return AccountNameProblem.ACCOUNT"
+b9aad4647ca6d1bf8d84ece4a385755991830371,migrations/versions/41b3af7e4449_migrating_preview_video_to_video_field.py,120,"match video_source:
+        case 'youtube':
+            return f'https://www.youtube.com/watch?v={video_id}'
+        case 'vimeo':
+            return f'https://vimeo.com/{video_id}'
+        case 'googledrive':
+            return f'https://drive.google.com/file/d/{video_id}/view'
+        case 'raw':
+            return video_id
+        case _:
+            raise ValueError(""Unknown video source"")"

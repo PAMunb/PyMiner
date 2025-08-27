@@ -1,0 +1,25 @@
+commit,file,lineno,code
+913d51af5cce3702a5ba0e04c41069f644a9fbfb,beetsplug/substitute.py,55,"match self.config.get():
+            case list():
+                pairs = self.config.as_pairs()
+            case dict():
+                pairs = [
+                    (key, view.as_str()) for key, view in self.config.items()
+                ]
+                self._log.warning(
+                    ""Unordered configuration is deprecated, as it leads to""
+                    + "" unpredictable behaviour on overlapping rules.\n""
+                    + textwrap.dedent(
+                        """"""
+                        Old syntax:
+                          substitute:
+                            a: b
+                            c: d
+
+                        New syntax:
+                          substitute:
+                          - a: b
+                          - c: d
+                        """"""
+                    )
+                )"

@@ -1,0 +1,211 @@
+commit,file,lineno,code
+798a12aa4decddb51f18fbe01a95d9bfd6d4eb7a,astropy/coordinates/angles/formats.py,218,"match p[1:]:
+                case [p1]:
+                    p[0] = p1
+                case [p1, p2] | [p1, "":"", p2]:
+                    p[0] = (p1, p2)
+                case [p1, p2, p3] | [p1, _, p2, _, p3]:
+                    p[0] = (p1, p2, p3)"
+798a12aa4decddb51f18fbe01a95d9bfd6d4eb7a,astropy/units/quantity_helper/function_helpers.py,486,"match args:
+        case (pos1,):
+            assert stop is None or start is None
+            if stop is None:
+                stop = pos1
+            elif start is None:
+                start = pos1
+        case start, stop, *rest:
+            if start is not None and stop is None:
+                start, stop = stop, start
+            match rest:
+                # rebind step and dtype if possible
+                case (step,):
+                    pass
+                case step, dtype:
+                    pass"
+798a12aa4decddb51f18fbe01a95d9bfd6d4eb7a,astropy/units/quantity_helper/function_helpers.py,496,"match rest:
+                # rebind step and dtype if possible
+                case (step,):
+                    pass
+                case step, dtype:
+                    pass"
+798a12aa4decddb51f18fbe01a95d9bfd6d4eb7a,astropy/units/format/ogip.py,171,"match p[1:]:
+                case (factor, unit) | (factor, _, unit):
+                    p[0] = core.CompositeUnit(
+                        factor * unit.scale, unit.bases, unit.powers
+                    )
+                case _:
+                    p[0] = p[1]"
+798a12aa4decddb51f18fbe01a95d9bfd6d4eb7a,astropy/units/format/ogip.py,200,"match p[1:]:
+                case _, unit:
+                    p[0] = unit**-1
+                case num, _, denom:
+                    p[0] = num / denom"
+798a12aa4decddb51f18fbe01a95d9bfd6d4eb7a,astropy/units/format/ogip.py,221,"match p[1:]:
+                case factor, _, unit, _, _, power:
+                    warnings.warn(
+                        bad_multiplication_message.format(factor, f""({unit})**{power}""),
+                        UnitParserWarning,
+                    )
+                    p[0] = factor * unit**power
+                case (_, unit, _, _, power) | (unit, ""**"", power):
+                    p[0] = unit**power
+                case left, _, right, _:
+                    warnings.warn(
+                        bad_multiplication_message.format(left, f""({right})""),
+                        UnitParserWarning,
+                    )
+                    p[0] = left * right
+                case _, unit, _:
+                    p[0] = unit
+                case _:
+                    p[0] = p[1]"
+798a12aa4decddb51f18fbe01a95d9bfd6d4eb7a,astropy/units/format/ogip.py,246,"match p[1:]:
+                case ""sqrt"", _, unit, _:
+                    p[0] = unit**0.5
+                case ""sqrt"", _, unit, _, _, numeric_power:
+                    p[0] = unit ** (0.5 * numeric_power)
+                case func, *_:
+                    raise ValueError(
+                        f""The function '{func}' is valid in OGIP, but not understood ""
+                        ""by astropy.units.""
+                    )"
+a44ae8df79cd3915f8542458391d21556575369e,astropy/coordinates/angles/formats.py,218,"match p[1:]:
+                case [p1]:
+                    p[0] = p1
+                case [p1, p2] | [p1, "":"", p2]:
+                    p[0] = (p1, p2)
+                case [p1, p2, p3] | [p1, _, p2, _, p3]:
+                    p[0] = (p1, p2, p3)"
+a44ae8df79cd3915f8542458391d21556575369e,astropy/units/quantity_helper/function_helpers.py,508,"match args:
+        case (pos1,):
+            assert stop is None or start is None
+            if stop is None:
+                stop = pos1
+            elif start is None:
+                start = pos1
+        case start, stop, *rest:
+            if start is not None and stop is None:
+                start, stop = stop, start
+            match rest:
+                # rebind step and dtype if possible
+                case (step,):
+                    pass
+                case step, dtype:
+                    pass"
+a44ae8df79cd3915f8542458391d21556575369e,astropy/units/quantity_helper/function_helpers.py,518,"match rest:
+                # rebind step and dtype if possible
+                case (step,):
+                    pass
+                case step, dtype:
+                    pass"
+a44ae8df79cd3915f8542458391d21556575369e,astropy/units/format/ogip.py,171,"match p[1:]:
+                case (factor, unit) | (factor, _, unit):
+                    p[0] = core.CompositeUnit(
+                        factor * unit.scale, unit.bases, unit.powers
+                    )
+                case _:
+                    p[0] = p[1]"
+a44ae8df79cd3915f8542458391d21556575369e,astropy/units/format/ogip.py,200,"match p[1:]:
+                case _, unit:
+                    p[0] = unit**-1
+                case num, _, denom:
+                    p[0] = num / denom"
+a44ae8df79cd3915f8542458391d21556575369e,astropy/units/format/ogip.py,221,"match p[1:]:
+                case factor, _, unit, _, _, power:
+                    warnings.warn(
+                        bad_multiplication_message.format(factor, f""({unit})**{power}""),
+                        UnitParserWarning,
+                    )
+                    p[0] = factor * unit**power
+                case (_, unit, _, _, power) | (unit, ""**"", power):
+                    p[0] = unit**power
+                case left, _, right, _:
+                    warnings.warn(
+                        bad_multiplication_message.format(left, f""({right})""),
+                        UnitParserWarning,
+                    )
+                    p[0] = left * right
+                case _, unit, _:
+                    p[0] = unit
+                case _:
+                    p[0] = p[1]"
+a44ae8df79cd3915f8542458391d21556575369e,astropy/units/format/ogip.py,246,"match p[1:]:
+                case ""sqrt"", _, unit, _:
+                    p[0] = unit**0.5
+                case ""sqrt"", _, unit, _, _, numeric_power:
+                    p[0] = unit ** (0.5 * numeric_power)
+                case func, *_:
+                    raise ValueError(
+                        f""The function '{func}' is valid in OGIP, but not understood ""
+                        ""by astropy.units.""
+                    )"
+19fd077df3561a8fcd90f432b409de20ad6f902d,astropy/coordinates/angles/formats.py,218,"match p[1:]:
+                case [p1]:
+                    p[0] = p1
+                case [p1, p2] | [p1, "":"", p2]:
+                    p[0] = (p1, p2)
+                case [p1, p2, p3] | [p1, _, p2, _, p3]:
+                    p[0] = (p1, p2, p3)"
+19fd077df3561a8fcd90f432b409de20ad6f902d,astropy/units/quantity_helper/function_helpers.py,517,"match args:
+        case (pos1,):
+            assert stop is None or start is None
+            if stop is None:
+                stop = pos1
+            elif start is None:
+                start = pos1
+        case start, stop, *rest:
+            if start is not None and stop is None:
+                start, stop = stop, start
+            match rest:
+                # rebind step and dtype if possible
+                case (step,):
+                    pass
+                case step, dtype:
+                    pass"
+19fd077df3561a8fcd90f432b409de20ad6f902d,astropy/units/quantity_helper/function_helpers.py,527,"match rest:
+                # rebind step and dtype if possible
+                case (step,):
+                    pass
+                case step, dtype:
+                    pass"
+19fd077df3561a8fcd90f432b409de20ad6f902d,astropy/units/format/ogip.py,174,"match p[1:]:
+                case (factor, unit) | (factor, _, unit):
+                    p[0] = core.CompositeUnit(
+                        factor * unit.scale, unit.bases, unit.powers
+                    )
+                case _:
+                    p[0] = p[1]"
+19fd077df3561a8fcd90f432b409de20ad6f902d,astropy/units/format/ogip.py,203,"match p[1:]:
+                case _, unit:
+                    p[0] = unit**-1
+                case num, _, denom:
+                    p[0] = num / denom"
+19fd077df3561a8fcd90f432b409de20ad6f902d,astropy/units/format/ogip.py,224,"match p[1:]:
+                case factor, _, unit, _, _, power:
+                    warnings.warn(
+                        bad_multiplication_message.format(factor, f""({unit})**{power}""),
+                        UnitParserWarning,
+                    )
+                    p[0] = factor * unit**power
+                case (_, unit, _, _, power) | (unit, ""**"", power):
+                    p[0] = unit**power
+                case left, _, right, _:
+                    warnings.warn(
+                        bad_multiplication_message.format(left, f""({right})""),
+                        UnitParserWarning,
+                    )
+                    p[0] = left * right
+                case _, unit, _:
+                    p[0] = unit
+                case _:
+                    p[0] = p[1]"
+19fd077df3561a8fcd90f432b409de20ad6f902d,astropy/units/format/ogip.py,249,"match p[1:]:
+                case ""sqrt"", _, unit, _:
+                    p[0] = unit**0.5
+                case ""sqrt"", _, unit, _, _, numeric_power:
+                    p[0] = unit ** (0.5 * numeric_power)
+                case func, *_:
+                    raise ValueError(
+                        f""The function '{func}' is valid in OGIP, but not understood ""
+                        ""by astropy.units.""
+                    )"

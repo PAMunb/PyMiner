@@ -1,0 +1,151 @@
+project,file,commit,commit_date,lineno,categoria,code_snippet,line_text,added_here,blame_commit
+cython_cython,tests/run/test_patma.py,a71a3b6e13f01f83a6fda4e2862824c96c195c13,2024-02-26T11:33:07+01:00,35,comment,"        y: int
+else:
+    # predates dataclasses with match args
+    class Point:
+        __match_args__ = (""x"", ""y"")
+        x: int
+        y: int
+
+# TestCompiler removed - it's very CPython-specific
+""""""",    # predates dataclasses with match args,False,12ac748fe70b1e8140ae5d3536223935da27155e
+frappe_frappe,frappe/utils/data.py,364366ae99d4fd1c1cf324917bb3a7dccfac256e,2022-08-19T11:41:50+05:30,1786,comment,"		if not meta.has_field(f.fieldname):
+
+			# try and match the doctype name from child tables
+			for df in meta.get_table_fields():
+				if frappe.get_meta(df.options).has_field(f.fieldname):
+					f.doctype = df.options
+					break
+
+	try:
+		df = frappe.get_meta(f.doctype).get_field(f.fieldname)",			# try and match the doctype name from child tables,False,daa9c094d0fb8d228a065cb0c22c40c6960e7e6c
+frappe_frappe,frappe/utils/typing_validations.py,1d31663f4b4b5e6a6283998484d926dfa762bcc4,2024-12-12T13:19:20+01:00,119,comment,"		prepared_args = dict(zip(arg_names, args, strict=False))
+
+	# check if type hints dont match the default values
+	func_signature = signature(func)
+	func_params = dict(func_signature.parameters)
+
+	# check if the argument types are correct
+	for current_arg, current_arg_type in annotations.items():
+		if current_arg not in prepared_args:
+			continue",	# check if type hints dont match the default values,False,ec931004caac440053c8a5ca2bc1057f0e7cf720
+gaphor_gaphor,gaphor/storage/recovery.py,2fcbc7db2d3eb29020c054a265cf4e6ea57a6225,2024-06-09T14:55:13-04:00,256,string_literal,"        except ChecksumFailed:
+            # Move file after it's closed.
+            log.info(""Recovery file hash does not match."")
+            self.move_aside()
+
+    def close(self):
+        if self._file:
+            self._file.close()
+            self._file = None
+","            log.info(""Recovery file hash does not match."")",False,9c4016c9499e532be2d4a815d33506b9ea0c2139
+hasgeek_funnel,funnel/forms/account.py,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,138,comment,"        # 2. Strip text on either side of the colon
+        # 3. Ensure the suffix is uppercase
+        # 4. If count is not a number, default it to 0 (ie, this is not a match)
+        matches: dict[str, int] = {
+            line_suffix.upper(): int(line_count) if line_count.isdigit() else 0
+            for line_suffix, line_count in (
+                (split1.strip(), split2.strip())
+                for split1, split2 in (
+                    (line + (':1' if ':' not in line else '')).split(':', 1)
+                    for line in rv.text.splitlines()","        # 4. If count is not a number, default it to 0 (ie, this is not a match)",False,390a02f90537cb8af8d01d7fe5bb46be919c8c3a
+hasgeek_funnel,funnel/models/account.py,dea6dca24179c12b791b031d570044f7be01b07f,2024-04-15T21:27:14+05:30,1753,comment,"            )
+        elif '@' in prefix and not prefix.startswith('@'):
+            # Query has an @ in the middle. Match email address (exact match only).
+            # Use param `prefix` instead of `like_query` because it's not a LIKE query.
+            # Combine results with regular user search
+            email_filter = EmailAddress.get_filter(email=prefix)
+            if email_filter is not None:
+                users = (
+                    cls.query.join(AccountEmail)
+                    .join(EmailAddress)",            # Query has an @ in the middle. Match email address (exact match only).,False,3ef0bec167dd8da25e7d8c2a09a9c8ae4004850f
+hasgeek_funnel,funnel/views/helpers.py,4a410b25e966e7a71945db418312546212d6e788,2024-03-12T14:11:12+05:30,103,comment,"    def crosscheck_session(self, response: ResponseType) -> ResponseType:
+        """"""Add timestamps to timed values in session, and remove expired values.""""""
+        # Process timestamps only if there is at least one match. Most requests will
+        # have no match.
+        if self.has_overlap_with(session):
+            now = utcnow()
+            for var, delta in self.items():
+                var_at = f'{var}_at'
+                if var in session:
+                    if var_at not in session:",        # Process timestamps only if there is at least one match. Most requests will,False,fc21891c8d22b9c924d2a14bd60706600d084067
+kliment_printrun,printrun/gui/widgets.py,f652640c0342d737a2315136ed8be0ef03cb9303,2023-04-13T17:13:57+02:00,143,comment,"            self.e.ShowPosition(stringpos)
+        else:
+            # TODO: Implement a Not Found state when no single match was found
+            self.titletext.SetLabel(_(""Found!""))
+            self.e.SetSelection(stringpos, stringpos + len(findstring))
+            self.e.ShowPosition(stringpos)
+
+    def ShowMessage(self, ev, message):
+        dlg = wx.MessageDialog(self, message,
+                               ""Info!"", wx.OK | wx.ICON_INFORMATION)",            # TODO: Implement a Not Found state when no single match was found,False,67750ad9b939a6cbdfe3d9c41cfd3ecb73196137
+mitmproxy_mitmproxy,mitmproxy/addons/readhar.py,47aaec4f746899433b3033a0ecb92b93b61840ca,2023-08-01T12:13:48+02:00,103,comment,"        )
+
+        # Change time to match HAR file
+        new_flow.request.timestamp_start = timestamp_start
+        new_flow.request.timestamp_end = timestamp_end
+
+        new_flow.response.timestamp_start = timestamp_start
+        new_flow.response.timestamp_end = timestamp_end
+
+        new_flow.client_conn.timestamp_start = timestamp_start",        # Change time to match HAR file,False,c34c86dd906befe0b999a4344caded587637fe01
+mitmproxy_mitmproxy,mitmproxy/io/har.py,bacbaadb0122c4d9897a3ebd009c24fdfe2ba270,2023-10-09T13:12:10+00:00,97,comment,"    )
+
+    # Change time to match HAR file
+    new_flow.request.timestamp_start = timestamp_start
+    new_flow.request.timestamp_end = timestamp_end
+
+    new_flow.response.timestamp_start = timestamp_start
+    new_flow.response.timestamp_end = timestamp_end
+
+    new_flow.client_conn.timestamp_start = timestamp_start",    # Change time to match HAR file,False,b3272a3757c18548e5731c91adc1c7e0b222c6ad
+mitmproxy_mitmproxy,release/build.py,5df703cc42666a2a3fa0d03f8b490b97e320adf9,2022-07-29T13:42:42+02:00,230,string_literal,"                ib_setup_hash.update(data)
+        if ib_setup_hash.hexdigest() != IB_SETUP_SHA256:  # pragma: no cover
+            raise RuntimeError(""InstallBuilder hashes don't match."")
+
+        print(""Install InstallBuilder..."")
+        subprocess.run(
+            [IB_SETUP, ""--mode"", ""unattended"", ""--unattendedmodeui"", ""none""], check=True
+        )
+        assert IB_CLI.is_file()
+","            raise RuntimeError(""InstallBuilder hashes don't match."")",False,3872d33111d27430c4b5f1ae021e91e3522cc0e3
+mozilla_kitsune,kitsune/questions/views.py,a244a911d529270feeda4a81fc048d6920a4eafa,2023-05-01T12:28:28+03:00,235,comment,"    # Filter by products.
+    if products:
+        # This filter will match if any of the products on a question have the
+        # correct id.
+        question_qs = question_qs.filter(product__in=products)
+
+    # Filter by topic.
+    if topic:
+        # This filter will match if any of the topics on a question have the
+        # correct id.",        # This filter will match if any of the products on a question have the,False,6d120e8d2b9b19a76fe4cc22af28eede5b46db0f
+mozilla_kitsune,kitsune/sumo/parser.py,94710f653eefbd48820717831bab9baa4c62fc81,2023-07-31T07:32:15-07:00,132,comment,"            d = d.redirect_document()
+
+        # The locale in the link urls should always match the current
+        # document's locale even if the document/slug being linked to
+        # is in the default locale.
+        url = reverse(""wiki.document"", locale=locale, args=[d.slug])
+        return {""found"": True, ""url"": url, ""text"": d.title}
+
+    # To avoid circular imports, wiki.models imports wiki_to_html
+    from kitsune.sumo.templatetags.jinja_helpers import urlparams",        # The locale in the link urls should always match the current,False,05d8bfea5809a82586bbbabe0bc16c8163569759
+shedskin_shedskin,tests/skip_control_match.py,f30f43f28b2b4ec4b2b6bb83a0211c9fe492311b,2023-01-06T08:49:10+00:00,14,comment,"            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet""
+
+
+def test_match():
+    assert http_error(400) == ""Bad request""
+    assert http_error(404) == ""Not found""","        # If an exact match is not confirmed, this last case will be used if provided",True,f30f43f28b2b4ec4b2b6bb83a0211c9fe492311b
+shedskin_shedskin,tests/skip_control_match/test_control_match.py,9cef8eb6adad1fba21eb633c87d52e704e1b45c0,2023-02-06T02:30:41-05:00,14,comment,"            return ""I'm a teapot""
+
+        # If an exact match is not confirmed, this last case will be used if provided
+        case _:
+            return ""Something's wrong with the internet""
+
+
+def test_match():
+    assert http_error(400) == ""Bad request""
+    assert http_error(404) == ""Not found""","        # If an exact match is not confirmed, this last case will be used if provided",False,f30f43f28b2b4ec4b2b6bb83a0211c9fe492311b

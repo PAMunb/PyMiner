@@ -4,10 +4,10 @@ import sys
 from datetime import datetime
 import os
 import warnings
-import concurrent.futures
 
 from feature_counter import FeatureCounter
-from visitors.type_hint_visitor import TypeHintVisitor
+from visitors.assignment_expression_visitor import AssignmentExpressionVisitor
+from visitors.suppressing_exception_context_visitor import SuppressingExceptionContextVisitor
 from visitors.type_parameter_visitor import TypeParameterVisitor
 from visitors.keyword_only_arguments_visitor import KeywordOnlyArgumentsVisitor
 from visitors.function_annotations_visitor import FunctionAnnotationsVisitor
@@ -19,14 +19,15 @@ from visitors.literal_string_interpolation_visitor import LiteralStringInterpola
 from visitors.coroutines_visitor import CoroutinesVisitor
 from visitors.matrix_multiplication_visitor import MatrixMultiplicationVisitor
 from visitors.asynchronous_comprehension_visitor import AsynchronousComprehensionVisitor
-from visitors.union_operators_visitor import UnionOperatorsVisitor
+from visitors.variable_annotations_visitor import VariableAnnotationsVisitor
+from visitors.yield_from_visitor import YieldFromVisitor
 
 # Desabilitar todos os SyntaxWarnings para evitar que apareçam durante a execução
 warnings.filterwarnings("ignore", category=SyntaxWarning)
 
 logger = logging.getLogger(__name__)
 
-def process_repository(repo_info, start_date, steps):
+def process_repository(repo_info, start_date, end_date, steps):
     
     owner = repo_info["owner"]
     repo = repo_info["repo"]
@@ -37,15 +38,15 @@ def process_repository(repo_info, start_date, steps):
     
     feature_counter = FeatureCounter(
         repo_url,
-        [UnionOperatorsVisitor, AsynchronousComprehensionVisitor, MatrixMultiplicationVisitor, CoroutinesVisitor,
-         LiteralStringInterpolationVisitor, ExceptionGroupsVisitor, StructuralPatternMatchingVisitor, UnpackVisitor,
-         NonlocalStatementVisitor, FunctionAnnotationsVisitor, KeywordOnlyArgumentsVisitor, TypeParameterVisitor,
-         TypeHintVisitor],
-        start_date, steps
+        [StructuralPatternMatchingVisitor],#AsynchronousComprehensionVisitor, MatrixMultiplicationVisitor, CoroutinesVisitor,
+         #LiteralStringInterpolationVisitor, ExceptionGroupsVisitor,
+         # UnpackVisitor,
+         #NonlocalStatementVisitor, FunctionAnnotationsVisitor, KeywordOnlyArgumentsVisitor, TypeParameterVisitor, YieldFromVisitor, AssignmentExpressionVisitor,
+         #VariableAnnotationsVisitor,SuppressingExceptionContextVisitor],
+        start_date, end_date, steps
     )
 
     feature_counter.process()
-    feature_counter.export_to_csv(f"results/{owner}_{repo}.csv")
     logger.info(f"Processamento do repositório {owner}/{repo} concluído e resultados salvos.")
 
 
@@ -61,7 +62,8 @@ if __name__ == "__main__":
     csv_file_path = sys.argv[1]
     
     # Configurações para o processamento
-    start_date = datetime(2012, 1, 1)  # Data para filtrar os commits
+    start_date = datetime(2008, 1, 1)  # Data inicio para filtrar os commits
+    end_date = datetime(2024, 12, 31)  # Data final para filtrar os commits
     steps = 30  # Número de dias entre os commits
     
     # Lista de repositórios para processar
@@ -81,6 +83,6 @@ if __name__ == "__main__":
     # Processa cada repositório sequencialmente
     for repo_info in repositories:
         try:
-            process_repository(repo_info, start_date, steps)
+            process_repository(repo_info, start_date, end_date, steps)
         except Exception as e:
             logger.error(f"Erro ao processar o repositório {repo_info['owner']}/{repo_info['repo']}: {str(e)}")
