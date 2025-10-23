@@ -40,7 +40,7 @@ class TestFunctionAnnotationsVisitor(unittest.TestCase):
         self.assertEqual(len(visitor.metrics['function_return_annotation_files']), 1)
         
         
-    def test_function_annotation_expression_count(self):
+    def test_function_annotation_count(self):
         # Create an AST node representing the code with a single With statement
         
         code = loader('tests/resources/functions_annotations.py')

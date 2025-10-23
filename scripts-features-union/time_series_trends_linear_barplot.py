@@ -1,13 +1,17 @@
+import os
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.dates as mdates
+from statsmodels.nonparametric.smoothers_lowess import lowess
 import statsmodels.api as sm
 import seaborn as sns
-from statsmodels.nonparametric.smoothers_lowess import lowess
 
+# Lê o CSV
 df = pd.read_csv('results-without-gaps.csv')
 
-df = df.drop(columns=[
+# Lista de colunas a serem removidas
+columns_to_drop = [
     'commit_hash', 'errors',
     'async_list_comprehensions',
     'async_set_comprehensions',
@@ -48,17 +52,21 @@ df = df.drop(columns=[
     'assignment_expression',
     'suppressing_exception_context',
     'variable_annotation',
-    'function_with_annotation','function_with_annotation_files','function_without_annotation','function_without_annotation_files','assign','assign_files','assign_with_type_comment','assign_with_type_comment_files','aug_assign','aug_assign_files',
-	'except_star',
-	'except_star_with_group',
-	'except_star_without_group',
-	'raised_exception_group',
-	'caught_exception_group',
-	'exception_groups',
-    ])
+    'function_with_annotation','function_with_annotation_files',
+    'function_without_annotation','function_without_annotation_files',
+    'assign','assign_files','assign_with_type_comment','assign_with_type_comment_files',
+    'aug_assign','aug_assign_files',
+    'except_star',
+    'except_star_with_group',
+    'except_star_without_group',
+    'raised_exception_group',
+    'caught_exception_group',
+    'exception_groups',
+]
+df = df.drop(columns=columns_to_drop)
 
-df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d')
-
+# Converte data e cria coluna ano-mês
+df['date'] = pd.to_datetime(df['date'], format='%Y-%m-%d', errors='coerce')
 df['year_month'] = df['date'].dt.strftime('%Y-%m')
 
 # Dicionário de mapeamento de features
@@ -102,105 +110,84 @@ features_mapping = {
     'assignment_expression_files': 'Assignment Expression',
     'suppressing_exception_context_files': 'Suppressing Exception Context',
     'variable_annotation_files': 'Variable Annotation',
-	'except_star_files': 'Except (*)',
-	'exception_group_files': 'ExceptionGroup',
+    'except_star_files': 'Except (*)',
+    'exception_group_files': 'ExceptionGroup',
 }
-
-
 df.rename(columns=features_mapping, inplace=True)
 
-# Use a função groupby para agrupar o DataFrame por projeto e ano/mês
+# Agrupa por projeto e ano-mês, e pega última revisão de cada grupo
 grouped = df.groupby(['project', 'year_month'])
-
-# Encontre o índice da última revisão em cada grupo
 last_revision_idx = grouped['date'].idxmax()
+df_last = df.loc[last_revision_idx]
 
-df_last_revision = df.loc[last_revision_idx]
+# Derrete o DataFrame para formato longo
+id_vars = ["project", "date", "statements", "files", "year_month"]
+melted_df = pd.melt(
+    df_last,
+    id_vars=id_vars,
+    var_name='feature',
+    value_name='total'
+)
 
-# Defina as variáveis de interesse
-# id_vars = ["project", "date", "year_month", "files", "statements"]
-id_vars = ["project", "date", "year_month"]
-value_name = "total"
-var_name = "feature"
-
-# Derreta o DataFrame para o formato apropriado
-melted_df = pd.melt(df_last_revision, id_vars=id_vars, value_name=value_name, var_name=var_name)
-
-# Converta a coluna 'date' para datetime
-melted_df['date'] = melted_df['date'].apply(lambda x: pd.to_datetime(x, format='%Y-%m-%d', errors='coerce'))
-
-melted_df['date'] = melted_df['year_month'].apply(lambda x: pd.to_datetime(x, format='%Y-%m', errors='coerce'))
-# Converta a coluna 'value' para um tipo numérico
+# Converte total para numérico e date para datetime ano-mês
 melted_df['total'] = pd.to_numeric(melted_df['total'], errors='coerce')
+melted_df['date'] = pd.to_datetime(melted_df['year_month'], format='%Y-%m', errors='coerce')
 
-melted_df = melted_df.sort_values(by='year_month')
-
-# Lista de recursos (features)
-# List of features
+# Lista fixa de features na ordem desejada
 features = [
-    # 'Asynchronous Comprehensions',
-    # 'Asynchronous Generators',
-    # 'Matrix Multiplication',
+    'Asynchronous Comprehensions',
+    'Asynchronous Generators',
+    'Matrix Multiplication',
     'Coroutines (async and await syntax)',
     'Formatted String Literals (f-strings)',
-    # 'Structural Pattern Matching',
+    'Structural Pattern Matching',
     'Extended Iterable Unpacking',
     'Additional Unpacking Generalizations',
     'Nonlocal Statements',
     'Function Annotations',
     'Keyword-only Arguments',
-    # 'Type Parameter Syntax',
+    'Type Parameter Syntax',
     'Yield From Expression',
     'Assignment Expression',
     'Suppressing Exception Context',
     'Variable Annotation',
-	# 'Except (*)',
-	# 'ExceptionGroup',
+    'Except (*)',
+    'ExceptionGroup',
 ]
 
-plt.figure(figsize=(16, 8))
+# --- Geração do gráfico de barras com mês-ano mas exibindo só ano no eixo Y ---
 
-# Configurações do gráfico com seaborn
-sns.set(style="whitegrid", font_scale=1.2)
+# Filtra apenas onde houve uso (>0)
+df_nonzero = melted_df[melted_df['total'] > 0].copy()
 
-# Iterar sobre os recursos e ajustar modelos de regressão e gerar gráficos
-for feature in features:
-    df_feature = melted_df[melted_df['feature'] == feature].copy()
-    total_by_month = df_feature.groupby(['year_month'])['total'].sum().reset_index()
+# Calcula a data (mês-ano) da primeira aparição de cada feature
+first_dates = (
+    df_nonzero
+    .groupby('feature')['date']
+    .min()
+    .reindex(features)  # mantém ordem
+)
 
-    X = sm.add_constant(total_by_month.index)  # Use o índice como variável independente
-    y = total_by_month['total']  # Use a coluna 'total' como variável dependente
+# Converte para números de data do matplotlib
+first_nums = mdates.date2num(first_dates.values)
 
-    # Aplicar a raiz quadrada a 'total'
-    total_by_month['sqrt_total'] = np.sqrt(total_by_month['total'])
+# Plot
+fig, ax = plt.subplots(figsize=(14, 6))
+ax.bar(features, first_nums)
 
-    # Criar as variáveis X e y com as colunas transformadas
-    X_sqrt = sm.add_constant(total_by_month.index)
-    y_sqrt = total_by_month['sqrt_total']
-    
-    
-    # Cálculo da suavização loess
-    loess_result = lowess(total_by_month['sqrt_total'], total_by_month.index, frac=0.25)
-    total_by_month['loess'] = loess_result[:, 1]
+# Configurações de labels e título
+ax.set_xlabel('Features')
+ax.set_ylabel('Data de Primeira Ocorrência')
+ax.set_title('Primeira Ocorrência de Cada Feature (Mês-Ano)')
 
-    # Plotar a série temporal original normalizada
-    # sns.lineplot(data=total_by_month, x='year_month', y='sqrt_total', label=f'{feature.replace("_", " ").title()} - Total Occurrences', errorbar=None, estimator=None, lw=2)
+# Rotaciona rótulos do eixo X
+plt.xticks(rotation=90, ha='right')
 
-    # Calcular a tendência suavizada (loess) normalizada
-    sns.lineplot(data=total_by_month, x='year_month', y='loess', label=f'{feature.replace("_", " ").title()}', errorbar=None, estimator=None, lw=2)
+# Formata eixo Y: apenas anos
+ax.yaxis_date()
+ax.yaxis.set_major_locator(mdates.YearLocator())         # um tick a cada ano
+ax.yaxis.set_major_formatter(mdates.DateFormatter('%Y')) # mostra só o ano
+ax.yaxis.set_minor_locator(mdates.MonthLocator())        # ticks menores para meses (sem label)
 
-# Configurações do gráfico
-plt.title('Smoothed Trends of Different Features')
-plt.xlabel('Date (Year)')
-plt.ylabel(f'Files with ≥1 use of the feature (monthly total)')
-plt.xticks(rotation=45)
-
-x_ticks = np.arange(0, len(total_by_month), 12)  # Por exemplo, mostra um ponto a cada 12 meses
-plt.xticks(x_ticks, total_by_month['year_month'].iloc[x_ticks].apply(lambda x: x[:4]), rotation=45)  # Exibe apenas o ano
-
-
-plt.legend(fontsize='small')
-plt.legend(bbox_to_anchor=(1.05, 1), loc='upper left')
-
-# Exibir o gráfico
-plt.savefig('all_features_trends.pdf', bbox_inches='tight')  # Use bbox_inches='tight' para evitar que a legenda seja cortada
+plt.tight_layout()
+plt.show()
