@@ -1,0 +1,27 @@
+\begin{table}[htb]
+\centering
+\caption{Onset of generalized adoption per feature (ruptures + median in pre/post windows).}
+\label{tab:trend_onsets_simple}
+\begin{tabular}{lccccc}
+\toprule
+Feature & Onset (Year--Month) & Total & Score & PreMed & PostMed \\
+\midrule
+Keyword-only Arguments & 2012-02 & 10 & 0.52 & 0.0 & 12.0 \\
+Nonlocal Statements & 2012-10 & 5 & 0.56 & 2.0 & 11.0 \\
+Yield From Expression & 2014-05 & 30 & 0.59 & 2.0 & 31.0 \\
+Coroutines (async and await syntax) & 2016-09 & 81 & 1.62 & 0.0 & 145.0 \\
+Function Annotations & 2016-10 & 57 & 1.04 & 8.0 & 265.0 \\
+Additional Unpacking Generalizations & 2018-04 & 39 & 3032.55 & 3.0 & 82.0 \\
+Variable Annotation & 2018-05 & 63 & 3795.49 & 1.0 & 88.0 \\
+Formatted String Literals (f-strings) & 2019-01 & 110 & 4634.73 & 8.0 & 926.0 \\
+Matrix Multiplication & 2019-02 & 14 & 4189.65 & 0.0 & 65.0 \\
+Extended Iterable Unpacking & 2019-09 & 33 & 0.54 & 14.0 & 62.0 \\
+Suppressing Exception Context & 2020-01 & 48 & 2.87 & 7.0 & 152.0 \\
+Assignment Expression & 2021-01 & 16 & 3277.14 & 1.0 & 52.0 \\
+Except (*) & 2022-05 & 1 & 693.15 & 0.0 & 1.0 \\
+ExceptionGroup & 2022-05 & 1 & 1098.61 & 0.0 & 2.0 \\
+Structural Pattern Matching & 2023-02 & 29 & 2538.97 & 5.0 & 75.0 \\
+Asynchronous Comprehensions & 2023-03 & 250 & 2913.90 & 13.0 & 257.0 \\
+\bottomrule
+\end{tabular}
+\end{table}
